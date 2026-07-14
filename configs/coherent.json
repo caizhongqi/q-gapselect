@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "experiment_name": "q-gapselect-coherent-exact-state-v1",
+  "master_seed": 20260714,
+  "trials": 8,
+  "quantiles": [0.5, 0.9, 0.95],
+  "controller": {
+    "confidence": 0.05,
+    "shots_per_round": 48,
+    "max_boundary_rounds": 6,
+    "batch_strategy": "known",
+    "max_steps": null
+  },
+  "baselines": {
+    "independent_per_arm": {
+      "confidence": 0.05,
+      "shots_per_round": 48,
+      "max_rounds": 6
+    },
+    "classical_uniform": {
+      "samples_per_arm": 512,
+      "confidence": 0.05
+    }
+  },
+  "scenarios": [
+    {
+      "name": "best_arm_n4",
+      "means": [0.9, 0.62, 0.31, 0.08],
+      "k": 1,
+      "metadata": {
+        "regime": "best_arm",
+        "purpose": "single_output_exact_state_reduction"
+      }
+    },
+    {
+      "name": "balanced_top2_n4",
+      "means": [0.86, 0.69, 0.32, 0.14],
+      "k": 2,
+      "metadata": {
+        "regime": "balanced_output",
+        "purpose": "selected_rejected_certificate_symmetry"
+      }
+    },
+    {
+      "name": "heterogeneous_top2_n6",
+      "means": [0.93, 0.78, 0.53, 0.39, 0.19, 0.06],
+      "k": 2,
+      "metadata": {
+        "regime": "heterogeneous_gap",
+        "purpose": "multiscale_resource_trace"
+      }
+    },
+    {
+      "name": "complement_top4_n6",
+      "means": [0.94, 0.83, 0.71, 0.6, 0.27, 0.09],
+      "k": 4,
+      "metadata": {
+        "regime": "complement_output",
+        "purpose": "rejected_orientation_dovetail"
+      }
+    }
+  ],
+  "notes": [
+    "Every coherent record executes the NumPy exact-state circuit backend.",
+    "The independent baseline executes exact-state per-arm boundary experiments.",
+    "The classical baseline uses basis-state Bernoulli samples and a Hoeffding certificate.",
+    "State-vector execution is not hardware evidence or an asymptotic quantum advantage."
+  ]
+}

@@ -1,0 +1,33 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+dist/
+build/
+
+# Generated experiment and paper artefacts. Two small audited code-sanity
+# outputs are versioned; all other generated results remain ignored.
+artifacts/*
+!artifacts/README.md
+!artifacts/scaling.json
+!artifacts/reference_diagnostic.json
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.pdf
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*.swp

@@ -1,0 +1,1343 @@
+{
+  "aggregate": {
+    "by_scenario": {
+      "complement_orientation": {
+        "backend": "all_active_analytic_iae_reference",
+        "candidate_theory_accounting": {
+          "aggregation_rule": "chosen charges summarize complete certificate traces only",
+          "chosen_charge": {
+            "mean": 5.485583281426827,
+            "quantiles": {
+              "0.5": 5.324102786621872,
+              "0.9": 5.776248172075744,
+              "0.95": 5.873136468958716
+            }
+          },
+          "comparable_complete_certificate_count": 4,
+          "incomplete_trace_count": 0,
+          "proof_status": "conjectural_not_a_query_bound",
+          "unit": "conjectural_normalized_layer_charge"
+        },
+        "certified_exact_recovery_count": 4,
+        "certified_exact_recovery_rate": 1.0,
+        "chosen_orientation_counts": {
+          "rejected_complement": 4,
+          "selected": 0
+        },
+        "claim_status": "simulation_regression_not_coherent_batch_execution",
+        "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+        "executed_query_accounting": {
+          "coherent_queries": {
+            "mean": 2160.0,
+            "quantiles": {
+              "0.5": 2064.0,
+              "0.9": 2668.8,
+              "0.95": 2726.4
+            }
+          },
+          "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+        },
+        "heuristic_inclusive_exact_recovery_count": 4,
+        "heuristic_inclusive_exact_recovery_rate": 1.0,
+        "interval_resolved_count": 4,
+        "interval_resolved_rate": 1.0,
+        "timeout_count": 0,
+        "trials": 4
+      },
+      "dense_output_half": {
+        "backend": "all_active_analytic_iae_reference",
+        "candidate_theory_accounting": {
+          "aggregation_rule": "chosen charges summarize complete certificate traces only",
+          "chosen_charge": {
+            "mean": 6.260027831166754,
+            "quantiles": {
+              "0.5": 6.302214213099743,
+              "0.9": 6.521826985472976,
+              "0.95": 6.568886865267241
+            }
+          },
+          "comparable_complete_certificate_count": 4,
+          "incomplete_trace_count": 0,
+          "proof_status": "conjectural_not_a_query_bound",
+          "unit": "conjectural_normalized_layer_charge"
+        },
+        "certified_exact_recovery_count": 4,
+        "certified_exact_recovery_rate": 1.0,
+        "chosen_orientation_counts": {
+          "rejected_complement": 1,
+          "selected": 3
+        },
+        "claim_status": "simulation_regression_not_coherent_batch_execution",
+        "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+        "executed_query_accounting": {
+          "coherent_queries": {
+            "mean": 2352.0,
+            "quantiles": {
+              "0.5": 2448.0,
+              "0.9": 2784.0,
+              "0.95": 2784.0
+            }
+          },
+          "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+        },
+        "heuristic_inclusive_exact_recovery_count": 4,
+        "heuristic_inclusive_exact_recovery_rate": 1.0,
+        "interval_resolved_count": 4,
+        "interval_resolved_rate": 1.0,
+        "timeout_count": 0,
+        "trials": 4
+      },
+      "easy_best_arm": {
+        "backend": "all_active_analytic_iae_reference",
+        "candidate_theory_accounting": {
+          "aggregation_rule": "chosen charges summarize complete certificate traces only",
+          "chosen_charge": {
+            "mean": 4.906496564651622,
+            "quantiles": {
+              "0.5": 3.819718634205488,
+              "0.9": 6.8626968394546655,
+              "0.95": 7.514763597722344
+            }
+          },
+          "comparable_complete_certificate_count": 4,
+          "incomplete_trace_count": 0,
+          "proof_status": "conjectural_not_a_query_bound",
+          "unit": "conjectural_normalized_layer_charge"
+        },
+        "certified_exact_recovery_count": 4,
+        "certified_exact_recovery_rate": 1.0,
+        "chosen_orientation_counts": {
+          "rejected_complement": 0,
+          "selected": 4
+        },
+        "claim_status": "simulation_regression_not_coherent_batch_execution",
+        "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+        "executed_query_accounting": {
+          "coherent_queries": {
+            "mean": 1848.0,
+            "quantiles": {
+              "0.5": 1488.0,
+              "0.9": 2832.0000000000005,
+              "0.95": 3047.9999999999995
+            }
+          },
+          "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+        },
+        "heuristic_inclusive_exact_recovery_count": 4,
+        "heuristic_inclusive_exact_recovery_rate": 1.0,
+        "interval_resolved_count": 4,
+        "interval_resolved_rate": 1.0,
+        "timeout_count": 0,
+        "trials": 4
+      },
+      "heterogeneous_top2": {
+        "backend": "all_active_analytic_iae_reference",
+        "candidate_theory_accounting": {
+          "aggregation_rule": "chosen charges summarize complete certificate traces only",
+          "chosen_charge": {
+            "mean": 10.132997531112999,
+            "quantiles": {
+              "0.5": 10.253617046036428,
+              "0.9": 10.253617046036428,
+              "0.95": 10.253617046036428
+            }
+          },
+          "comparable_complete_certificate_count": 4,
+          "incomplete_trace_count": 0,
+          "proof_status": "conjectural_not_a_query_bound",
+          "unit": "conjectural_normalized_layer_charge"
+        },
+        "certified_exact_recovery_count": 4,
+        "certified_exact_recovery_rate": 1.0,
+        "chosen_orientation_counts": {
+          "rejected_complement": 0,
+          "selected": 4
+        },
+        "claim_status": "simulation_regression_not_coherent_batch_execution",
+        "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+        "executed_query_accounting": {
+          "coherent_queries": {
+            "mean": 4344.0,
+            "quantiles": {
+              "0.5": 4272.0,
+              "0.9": 5462.4,
+              "0.95": 5563.2
+            }
+          },
+          "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+        },
+        "heuristic_inclusive_exact_recovery_count": 4,
+        "heuristic_inclusive_exact_recovery_rate": 1.0,
+        "interval_resolved_count": 4,
+        "interval_resolved_rate": 1.0,
+        "timeout_count": 0,
+        "trials": 4
+      }
+    },
+    "overall": {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "aggregation_rule": "chosen charges summarize complete certificate traces only",
+        "chosen_charge": {
+          "mean": 6.69627630208955,
+          "quantiles": {
+            "0.5": 6.136119489470716,
+            "0.9": 10.253617046036428,
+            "0.95": 10.253617046036428
+          }
+        },
+        "comparable_complete_certificate_count": 16,
+        "incomplete_trace_count": 0,
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery_count": 16,
+      "certified_exact_recovery_rate": 1.0,
+      "chosen_orientation_counts": {
+        "rejected_complement": 5,
+        "selected": 11
+      },
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "coherent_queries": {
+          "mean": 2676.0,
+          "quantiles": {
+            "0.5": 2592.0,
+            "0.9": 4272.0,
+            "0.95": 5160.0
+          }
+        },
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery_count": 16,
+      "heuristic_inclusive_exact_recovery_rate": 1.0,
+      "interval_resolved_count": 16,
+      "interval_resolved_rate": 1.0,
+      "timeout_count": 0,
+      "trials": 16
+    }
+  },
+  "artifact_type": "analytic_reference_multiseed_regression",
+  "backend": "all_active_analytic_iae_reference",
+  "claim_status": "simulation_regression_not_coherent_batch_execution",
+  "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+  "raw_records": [
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 4.751794671157494,
+        "alternative_orientation": "rejected_complement",
+        "chosen_charge": 3.819718634205488,
+        "chosen_orientation": "selected",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 4.751794671157494
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 3.819718634205488
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 1152,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 960,
+          "inverse": 192,
+          "total": 1152
+        },
+        "classical_queries": 0,
+        "coherent_queries": 1152,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 1,
+      "n": 4,
+      "rounds": 2,
+      "scenario": "easy_best_arm",
+      "selected": [
+        0
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 0,
+      "trial_seed": 3990562102152464826,
+      "truth": [
+        0
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 4.751794671157494,
+        "alternative_orientation": "rejected_complement",
+        "chosen_charge": 3.819718634205488,
+        "chosen_orientation": "selected",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 4.751794671157494
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 3.819718634205488
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 1824,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 1344,
+          "inverse": 480,
+          "total": 1824
+        },
+        "classical_queries": 0,
+        "coherent_queries": 1824,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 1,
+      "n": 4,
+      "rounds": 2,
+      "scenario": "easy_best_arm",
+      "selected": [
+        0
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 1,
+      "trial_seed": 10872324119001888980,
+      "truth": [
+        0
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 4.751794671157494,
+        "alternative_orientation": "rejected_complement",
+        "chosen_charge": 3.819718634205488,
+        "chosen_orientation": "selected",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 4.751794671157494
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 3.819718634205488
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 1152,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 960,
+          "inverse": 192,
+          "total": 1152
+        },
+        "classical_queries": 0,
+        "coherent_queries": 1152,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 1,
+      "n": 4,
+      "rounds": 2,
+      "scenario": "easy_best_arm",
+      "selected": [
+        0
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 2,
+      "trial_seed": 3387264751107230961,
+      "truth": [
+        0
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 9.098906392942032,
+        "alternative_orientation": "rejected_complement",
+        "chosen_charge": 8.166830355990026,
+        "chosen_orientation": "selected",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 9.098906392942032
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 8.166830355990026
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 3264,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 2304,
+          "inverse": 960,
+          "total": 3264
+        },
+        "classical_queries": 0,
+        "coherent_queries": 3264,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 1,
+      "n": 4,
+      "rounds": 3,
+      "scenario": "easy_best_arm",
+      "selected": [
+        0
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 3,
+      "trial_seed": 7998741972246691100,
+      "truth": [
+        0
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 11.395172392040394,
+        "alternative_orientation": "rejected_complement",
+        "chosen_charge": 10.253617046036428,
+        "chosen_orientation": "selected",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 11.395172392040394
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 10.253617046036428
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 5664,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 3840,
+          "inverse": 1824,
+          "total": 5664
+        },
+        "classical_queries": 0,
+        "coherent_queries": 5664,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 2,
+      "n": 6,
+      "rounds": 3,
+      "scenario": "heterogeneous_top2",
+      "selected": [
+        0,
+        1
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 0,
+      "trial_seed": 17937371223630676141,
+      "truth": [
+        0,
+        1
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 11.395172392040394,
+        "alternative_orientation": "rejected_complement",
+        "chosen_charge": 10.253617046036428,
+        "chosen_orientation": "selected",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 11.395172392040394
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 10.253617046036428
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 4992,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 3456,
+          "inverse": 1536,
+          "total": 4992
+        },
+        "classical_queries": 0,
+        "coherent_queries": 4992,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 2,
+      "n": 6,
+      "rounds": 3,
+      "scenario": "heterogeneous_top2",
+      "selected": [
+        0,
+        1
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 1,
+      "trial_seed": 15377003460673342001,
+      "truth": [
+        0,
+        1
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 10.417060965562523,
+        "alternative_orientation": "rejected_complement",
+        "chosen_charge": 9.771138986342708,
+        "chosen_orientation": "selected",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 10.417060965562523
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 9.771138986342708
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 3168,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 2400,
+          "inverse": 768,
+          "total": 3168
+        },
+        "classical_queries": 0,
+        "coherent_queries": 3168,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 2,
+      "n": 6,
+      "rounds": 3,
+      "scenario": "heterogeneous_top2",
+      "selected": [
+        0,
+        1
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 2,
+      "trial_seed": 9665302677383814650,
+      "truth": [
+        0,
+        1
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 11.395172392040394,
+        "alternative_orientation": "rejected_complement",
+        "chosen_charge": 10.253617046036428,
+        "chosen_orientation": "selected",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 11.395172392040394
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 10.253617046036428
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 3552,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 2688,
+          "inverse": 864,
+          "total": 3552
+        },
+        "classical_queries": 0,
+        "coherent_queries": 3552,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 2,
+      "n": 6,
+      "rounds": 3,
+      "scenario": "heterogeneous_top2",
+      "selected": [
+        0,
+        1
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 3,
+      "trial_seed": 15488201520934581666,
+      "truth": [
+        0,
+        1
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 6.025034215892656,
+        "alternative_orientation": "selected",
+        "chosen_charge": 5.819736153406023,
+        "chosen_orientation": "rejected_complement",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 5.819736153406023
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 6.025034215892656
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 1728,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 1440,
+          "inverse": 288,
+          "total": 1728
+        },
+        "classical_queries": 0,
+        "coherent_queries": 1728,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 3,
+      "n": 6,
+      "rounds": 2,
+      "scenario": "dense_output_half",
+      "selected": [
+        0,
+        1,
+        2
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 0,
+      "trial_seed": 14659837546683354747,
+      "truth": [
+        0,
+        1,
+        2
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 6.615946745061505,
+        "alternative_orientation": "rejected_complement",
+        "chosen_charge": 6.615946745061505,
+        "chosen_orientation": "selected",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 6.615946745061505
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 6.615946745061505
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 2112,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 1728,
+          "inverse": 384,
+          "total": 2112
+        },
+        "classical_queries": 0,
+        "coherent_queries": 2112,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 3,
+      "n": 6,
+      "rounds": 2,
+      "scenario": "dense_output_half",
+      "selected": [
+        0,
+        1,
+        2
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 1,
+      "trial_seed": 9346294881948635910,
+      "truth": [
+        0,
+        1,
+        2
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 6.652351781408003,
+        "alternative_orientation": "rejected_complement",
+        "chosen_charge": 6.302214213099743,
+        "chosen_orientation": "selected",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 6.652351781408003
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 6.302214213099743
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 2784,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 2112,
+          "inverse": 672,
+          "total": 2784
+        },
+        "classical_queries": 0,
+        "coherent_queries": 2784,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 3,
+      "n": 6,
+      "rounds": 2,
+      "scenario": "dense_output_half",
+      "selected": [
+        0,
+        1,
+        2
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 2,
+      "trial_seed": 14607264794286653960,
+      "truth": [
+        0,
+        1,
+        2
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 6.652351781408003,
+        "alternative_orientation": "rejected_complement",
+        "chosen_charge": 6.302214213099743,
+        "chosen_orientation": "selected",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 6.652351781408003
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 6.302214213099743
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 2784,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 2112,
+          "inverse": 672,
+          "total": 2784
+        },
+        "classical_queries": 0,
+        "coherent_queries": 2784,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 3,
+      "n": 6,
+      "rounds": 2,
+      "scenario": "dense_output_half",
+      "selected": [
+        0,
+        1,
+        2
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 3,
+      "trial_seed": 11815070386392652884,
+      "truth": [
+        0,
+        1,
+        2
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 6.520667582676806,
+        "alternative_orientation": "selected",
+        "chosen_charge": 5.324102786621872,
+        "chosen_orientation": "rejected_complement",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 5.324102786621872
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 6.520667582676806
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 2400,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 1824,
+          "inverse": 576,
+          "total": 2400
+        },
+        "classical_queries": 0,
+        "coherent_queries": 2400,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 4,
+      "n": 6,
+      "rounds": 2,
+      "scenario": "complement_orientation",
+      "selected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 0,
+      "trial_seed": 13077902496314701794,
+      "truth": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 6.520667582676806,
+        "alternative_orientation": "selected",
+        "chosen_charge": 5.324102786621872,
+        "chosen_orientation": "rejected_complement",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 5.324102786621872
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 6.520667582676806
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 1728,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 1440,
+          "inverse": 288,
+          "total": 1728
+        },
+        "classical_queries": 0,
+        "coherent_queries": 1728,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 4,
+      "n": 6,
+      "rounds": 2,
+      "scenario": "complement_orientation",
+      "selected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 1,
+      "trial_seed": 12290834126893480543,
+      "truth": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 7.1115801118456545,
+        "alternative_orientation": "selected",
+        "chosen_charge": 5.970024765841689,
+        "chosen_orientation": "rejected_complement",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 5.970024765841689
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 7.1115801118456545
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 2784,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 2112,
+          "inverse": 672,
+          "total": 2784
+        },
+        "classical_queries": 0,
+        "coherent_queries": 2784,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 4,
+      "n": 6,
+      "rounds": 2,
+      "scenario": "complement_orientation",
+      "selected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 2,
+      "trial_seed": 7633398506870207536,
+      "truth": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    },
+    {
+      "backend": "all_active_analytic_iae_reference",
+      "candidate_theory_accounting": {
+        "alternative_charge": 6.520667582676806,
+        "alternative_orientation": "selected",
+        "chosen_charge": 5.324102786621872,
+        "chosen_orientation": "rejected_complement",
+        "comparison_status": "complete_certificate_trace_proxy",
+        "expression": "min_b sum_r sqrt(N_r * (M_{r,b} + 1)) / epsilon_r; b in {selected, rejected_complement}",
+        "orientations": {
+          "rejected_complement": {
+            "complete": true,
+            "partial_charge": 5.324102786621872
+          },
+          "selected": {
+            "complete": true,
+            "partial_charge": 6.520667582676806
+          }
+        },
+        "proof_status": "conjectural_not_a_query_bound",
+        "unit": "conjectural_normalized_layer_charge"
+      },
+      "certified_exact_recovery": true,
+      "claim_status": "simulation_regression_not_coherent_batch_execution",
+      "config_hash": "54ba3796b02bbe83996f2f9cebb34d349b92f31cf74fcb71e0131e57475f54ba",
+      "executed_query_accounting": {
+        "all_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 1728,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 1440,
+          "inverse": 288,
+          "total": 1728
+        },
+        "classical_queries": 0,
+        "coherent_queries": 1728,
+        "unit": "logical_oracle_calls_in_analytic_measurement_simulator"
+      },
+      "heuristic_inclusive_exact_recovery": true,
+      "interval_resolved": true,
+      "k": 4,
+      "n": 6,
+      "rounds": 2,
+      "scenario": "complement_orientation",
+      "selected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "termination_status": "interval_resolved",
+      "timeout": false,
+      "trial_index": 3,
+      "trial_seed": 10232197571099501254,
+      "truth": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "warnings": [
+        "the executable backend estimates every active arm independently",
+        "candidate layer charges are conjectural and are not executed queries"
+      ]
+    }
+  ],
+  "resolved_config": {
+    "algorithm": {
+      "confidence": 0.05,
+      "epsilon_decay": 0.5,
+      "iae_grid_points": 4097,
+      "iae_max_grover_power": 63,
+      "iae_max_rounds": 7,
+      "initial_angular_epsilon": 1.5707963267948966,
+      "max_rounds": 8,
+      "shots_per_iae_round": 96
+    },
+    "experiment_name": "q-gapselect-analytic-reference-preregistered-v1",
+    "master_seed": 20260714,
+    "notes": [
+      "The preregistered default is 500 trials per scenario.",
+      "CLI --trials overrides are diagnostic runs and must retain their resolved config hash.",
+      "The angular schedule starts at pi/2 and halves at every round, matching the frozen candidate definition.",
+      "The backend analytically samples measurement laws and is not coherent batch execution."
+    ],
+    "quantiles": [
+      0.5,
+      0.9,
+      0.95
+    ],
+    "scenarios": [
+      {
+        "k": 1,
+        "means": [
+          0.9,
+          0.65,
+          0.35,
+          0.1
+        ],
+        "metadata": {
+          "purpose": "k_equals_one_reduction",
+          "regime": "best_arm"
+        },
+        "name": "easy_best_arm"
+      },
+      {
+        "k": 2,
+        "means": [
+          0.9,
+          0.76,
+          0.54,
+          0.43,
+          0.24,
+          0.08
+        ],
+        "metadata": {
+          "purpose": "multi_output_reference",
+          "regime": "heterogeneous_gap"
+        },
+        "name": "heterogeneous_top2"
+      },
+      {
+        "k": 3,
+        "means": [
+          0.88,
+          0.77,
+          0.64,
+          0.36,
+          0.23,
+          0.12
+        ],
+        "metadata": {
+          "purpose": "output_information_sanity",
+          "regime": "dense_output"
+        },
+        "name": "dense_output_half"
+      },
+      {
+        "k": 4,
+        "means": [
+          0.92,
+          0.84,
+          0.74,
+          0.63,
+          0.37,
+          0.18
+        ],
+        "metadata": {
+          "purpose": "orientation_accounting_sanity",
+          "regime": "complement_output"
+        },
+        "name": "complement_orientation"
+      }
+    ],
+    "schema_version": 1,
+    "trials": 4
+  },
+  "schema_version": 1
+}

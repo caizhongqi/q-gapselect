@@ -1,0 +1,15 @@
+{
+  "seed": 20260714,
+  "trials": 500,
+  "delta": 0.05,
+  "mean_gap": 0.125,
+  "sizes": [8, 16, 32, 64, 128],
+  "regimes": [
+    "best_arm",
+    "equal_gap_topk",
+    "heterogeneous_topk",
+    "dense_output",
+    "partition_direct_sum"
+  ],
+  "notes": "Angular dyadic scale starts at pi/2. Theoretical proxy fields are conjectural and must not be reported as measured quantum speedups."
+}

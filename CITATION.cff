@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this research code, cite the accompanying manuscript and versioned software snapshot."
+title: "Q-GapSelect: Heterogeneous-Gap Quantum Combinatorial Pure Exploration"
+type: software
+version: 0.1.0
+authors:
+  - name: "Q-GapSelect Contributors"
+repository-code: "https://github.com/caizhongqi/q-gapselect"

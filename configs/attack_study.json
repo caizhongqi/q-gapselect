@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "study_name": "authorized-offline-transfer-study",
+  "master_seed": 20260714,
+  "seeds": [11, 29],
+  "source_models": ["local-source-fixture"],
+  "victim_models": ["held-out-local-fixture"],
+  "budgets": [1, 2, 4],
+  "portfolio_size": 1,
+  "authorization": {
+    "scope": "local_or_owner-authorized_models_only",
+    "external_services": false,
+    "deploy_or_exploit": false
+  },
+  "tasks": [
+    {
+      "task_id": "fixture-task-a",
+      "clean_prompt_ref": "fixture://task-a/clean",
+      "validator_id": "fixture-state-validator",
+      "metadata": {
+        "data_status": "synthetic_state_only_fixture"
+      }
+    },
+    {
+      "task_id": "fixture-task-b",
+      "clean_prompt_ref": "fixture://task-b/clean",
+      "validator_id": "fixture-state-validator",
+      "metadata": {
+        "data_status": "synthetic_state_only_fixture"
+      }
+    }
+  ],
+  "variants": [
+    {
+      "task_id": "fixture-task-a",
+      "variant_id": "semantic-a",
+      "prompt_ref": "fixture://task-a/semantic-a",
+      "transformation": "opaque_semantics_preserving_fixture_a"
+    },
+    {
+      "task_id": "fixture-task-a",
+      "variant_id": "semantic-b",
+      "prompt_ref": "fixture://task-a/semantic-b",
+      "transformation": "opaque_semantics_preserving_fixture_b"
+    },
+    {
+      "task_id": "fixture-task-b",
+      "variant_id": "semantic-a",
+      "prompt_ref": "fixture://task-b/semantic-a",
+      "transformation": "opaque_semantics_preserving_fixture_a"
+    },
+    {
+      "task_id": "fixture-task-b",
+      "variant_id": "semantic-b",
+      "prompt_ref": "fixture://task-b/semantic-b",
+      "transformation": "opaque_semantics_preserving_fixture_b"
+    }
+  ],
+  "replay_files": [],
+  "use_safe_example_fixture": true,
+  "notes": [
+    "The bundled fixture contains only state labels and opaque references.",
+    "It proves pipeline execution only and is not empirical attack evidence."
+  ]
+}

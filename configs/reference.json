@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "experiment_name": "q-gapselect-analytic-reference-preregistered-v1",
+  "master_seed": 20260714,
+  "trials": 500,
+  "quantiles": [
+    0.5,
+    0.9,
+    0.95
+  ],
+  "algorithm": {
+    "confidence": 0.05,
+    "initial_angular_epsilon": 1.5707963267948966,
+    "epsilon_decay": 0.5,
+    "max_rounds": 8,
+    "shots_per_iae_round": 96,
+    "iae_max_rounds": 7,
+    "iae_max_grover_power": 63,
+    "iae_grid_points": 4097
+  },
+  "scenarios": [
+    {
+      "name": "easy_best_arm",
+      "means": [0.9, 0.65, 0.35, 0.1],
+      "k": 1,
+      "metadata": {
+        "regime": "best_arm",
+        "purpose": "k_equals_one_reduction"
+      }
+    },
+    {
+      "name": "heterogeneous_top2",
+      "means": [0.9, 0.76, 0.54, 0.43, 0.24, 0.08],
+      "k": 2,
+      "metadata": {
+        "regime": "heterogeneous_gap",
+        "purpose": "multi_output_reference"
+      }
+    },
+    {
+      "name": "dense_output_half",
+      "means": [0.88, 0.77, 0.64, 0.36, 0.23, 0.12],
+      "k": 3,
+      "metadata": {
+        "regime": "dense_output",
+        "purpose": "output_information_sanity"
+      }
+    },
+    {
+      "name": "complement_orientation",
+      "means": [0.92, 0.84, 0.74, 0.63, 0.37, 0.18],
+      "k": 4,
+      "metadata": {
+        "regime": "complement_output",
+        "purpose": "orientation_accounting_sanity"
+      }
+    }
+  ],
+  "notes": [
+    "The preregistered default is 500 trials per scenario.",
+    "CLI --trials overrides are diagnostic runs and must retain their resolved config hash.",
+    "The angular schedule starts at pi/2 and halves at every round, matching the frozen candidate definition.",
+    "The backend analytically samples measurement laws and is not coherent batch execution."
+  ]
+}

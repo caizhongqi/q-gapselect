@@ -1,0 +1,668 @@
+\documentclass[10pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\newtheorem{definition}{Definition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{obligation}{Proof Obligation}
+\theoremstyle{definition}
+\newtheorem{codesanity}{Code Sanity Check}
+\newtheorem{remark}{Remark}
+
+\newcommand{\TopK}{\operatorname{TopK}}
+\newcommand{\polylog}{\operatorname{polylog}}
+\newcommand{\Adv}{\operatorname{Adv}^{\pm}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\status}[1]{\textsc{#1}}
+
+\title{Q-GapSelect: An Audited Research Program for\\
+Heterogeneous-Gap Quantum Top-$k$ Identification}
+\author{Anonymous Authors}
+\date{Research manuscript --- \today}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.94\linewidth}{
+\textbf{Claim-status notice.}
+This manuscript specifies a research program; it does not report a proved
+quantum advantage.  Q-GapSelect is \status{proposed}.  Its angular-gap upper
+bound is a \status{conjecture}; sampler transport and direct-sum lower bounds are
+\status{proof obligations}.  Finite code checks are not mathematical proofs.
+The rejected mean-gap and fixed-smaller-side candidates are archived rather than
+silently renamed.  No LLM quantum-query advantage is claimed.
+}}
+\end{center}
+
+\begin{abstract}
+Recent quantum algorithms already cover approximate $k$-minimum finding,
+multiple-marked-element extraction, variable-time search, order statistics, and
+single-output fixed-confidence best-arm identification.  Consequently, noisy
+boundary localization, batch extraction, and the equal-gap Top-$k$ regime are not
+by themselves new quantum contributions.  We isolate a narrower open candidate:
+a tight fixed-confidence theorem for stochastic Top-$k$ identification with
+unknown heterogeneous gaps, measured in the amplitude angle rather than raw mean
+difference.  We distinguish a clean canonical block-rotation oracle from a
+natural purification sampler with generator garbage; the latter is the relevant
+interface for a reversible code-LLM surrogate and cannot be compressed to the
+former for free.  We also replace a falsified fixed-cardinality output orientation
+by a candidate minimum over selected-set and rejected-set certificates, approached
+by dovetailing two independently verifiable procedures.  We state the proposed
+Q-GapSelect architecture, its strongest black-box baselines, the precise
+purification-transport and direct-sum obligations, and a deferred matroid
+extension.  The accompanying implementation is an analytic canonical-oracle
+sanity harness only.  Neither the heterogeneous upper bound, a matching quantum
+lower bound, nor an LLM attack improvement has yet been established.
+\end{abstract}
+
+\section{Introduction}
+
+Quantum best-arm identification (BAI) gives a gap-dependent fixed-confidence
+speedup for one returned index~\cite{wang2021quantum}.  Multi-output selection is
+subtler, but much of the apparent algorithmic machinery is already known.
+Minimum and $k$-minimum search have a long history
+~\cite{durr1996minimum,durr2006graph,miyamoto2019kminima}; Gao, Ji, and Wang
+recently gave an almost optimal approximate $k$-minimum algorithm that explicitly
+handles approximate value access and applies it to selecting expectation values
+~\cite{gao2025approxkmin}.  Finding all marked elements with
+$O(\sqrt{Nk})$ queries and polylogarithmic gate overhead is also known
+~\cite{vanapeldoorn2024marked}.  Variable-time search
+~\cite{ambainis2023variable}, order-statistic lower bounds
+~\cite{nayak1999median}, and a time-efficient $k$-minimum data structure without
+QRAM~\cite{wang2026rmq} further narrow the available novelty.
+
+The viable question is therefore not whether amplitude estimation can be placed
+inside Top-$k$.  It is whether one can prove a \emph{strictly stronger}
+heterogeneous, fixed-confidence theorem than every black-box composition of those
+results, under an honest stochastic sampler interface, and match it with an
+all-algorithms lower bound.
+
+Our audited candidate is Q-GapSelect.  Relative to the earlier draft, three
+changes are fundamental.
+\begin{enumerate}[leftmargin=*]
+  \item We separate the exact clean block rotation used for synthetic analysis
+  from a natural purification sampler that retains generator randomness and
+  output garbage.
+  \item We measure local statistical difficulty by the amplitude-angle gap
+  $\gamma$, whose inverse is the correct local coherent-discrimination scale;
+  raw mean gaps $\Delta$ are retained only for reporting and an interior
+  corollary.
+  \item We reject the rule \emph{enumerate the smaller cardinality side}.  Gap
+  heterogeneity can make that side asymptotically more expensive.  The new
+  candidate minimizes over two certificate orientations and proposes a
+  first-verified-certificate dovetail.
+\end{enumerate}
+
+\paragraph{Current status.}
+The oracle specifications and falsification criteria are complete.  The
+orientation-aware complexity is a candidate functional.  The algorithm,
+canonical upper bound, transfer to natural purification access, direct-sum lower
+bound, and matroid extension remain unproved.  The current code estimates active
+arms independently with an analytic canonical backend; it does not implement the
+claimed coherent batch algorithm.
+
+\section{Prior Work and the Remaining Novelty Boundary}
+
+\paragraph{Estimation and single-output exploration.}
+Amplitude estimation and source-code mean estimation are established
+~\cite{brassard2002amplitude,kothari2023mean}; multivariate mean estimation also
+has near-optimal algorithms in explicitly distinguished input models
+~\cite{cornelissen2022multivariate}.  Quantum BAI already combines heterogeneous
+gaps and variable-time ideas for one answer~\cite{wang2021quantum}.  Calling a
+mean estimator inside elimination is thus a baseline, not a contribution.
+
+\paragraph{Order statistics, approximate values, and batch output.}
+D{\"u}rr--H{\o}yer minimum finding and later $k$-minimum procedures cover exact
+values~\cite{durr1996minimum,miyamoto2019kminima}.  More importantly,
+Gao--Ji--Wang cover approximate $k$-minimum finding for every $k$ and include
+expectation-value applications~\cite{gao2025approxkmin}.  Nayak--Wu establish
+quantum query bounds for medians and related statistics
+~\cite{nayak1999median}.  Van Apeldoorn--Gribling--Nieuwboer give an optimal-query,
+gate-efficient routine for all marked elements~\cite{vanapeldoorn2024marked}.
+Therefore \textsc{QBoundary}, approximate comparisons, equal-gap selection, and
+\textsc{QBatchExtract} cannot be advertised as new primitives.
+
+\paragraph{Variable costs and output information.}
+Ambainis--Kokainis--Vihrovs give improved upper and lower bounds for variable-time
+quantum search~\cite{ambainis2023variable}.  Oracle interrogation shows that
+returning a large structured answer can retain linear query cost
+~\cite{vandam1998interrogation}, while strong direct-product methods constrain
+query sharing across independent outputs~\cite{lee2012directproduct}.  These are
+the required comparison tools for heterogeneous layers; merely summing
+per-layer lower bounds is invalid.
+
+\paragraph{Classical combinatorial exploration.}
+Classical combinatorial pure exploration and Best-Set have mature
+instance-dependent theory~\cite{chen2014cpe,chen2017nearly}, including matroid
+best-basis identification~\cite{chen2016matroid}.  Any quantum comparison must
+use the strongest same-interface classical method rather than uniform sampling.
+
+\paragraph{Narrow candidate novelty.}
+The only core claim retained for investigation is:
+\begin{quote}
+A constructive, fixed-confidence, heterogeneous-\emph{angular}-gap Top-$k$
+algorithm, together with a matching lower bound, that is asymptotically stronger
+on an explicit family than the best composition of approximate $k$-minimum,
+quantum mean/amplitude estimation, variable-time search, multiple-marked
+extraction, and quantum BAI.
+\end{quote}
+If that strict comparison cannot be proved, Q-GapSelect is an integration study,
+not a new quantum algorithm.
+
+\section{Two Oracle Layers}
+
+\subsection{Layer C: canonical block rotation}
+
+Let $\theta_i=\arcsin\sqrt{\mu_i}\in[0,\pi/2]$.  The canonical oracle is the
+fully specified block rotation
+\begin{equation}
+ B_\mu=\sum_{i=1}^{n}\ket{i}\bra{i}\otimes R_y(2\theta_i),
+ \qquad
+ R_y(2\theta)=
+ \begin{pmatrix}
+ \cos\theta&-\sin\theta\\
+ \sin\theta& \cos\theta
+ \end{pmatrix}.
+ \label{eq:block}
+\end{equation}
+Its action on both reward basis states is
+\begin{align}
+ B_\mu\ket{i}\ket{0}
+ &=\ket{i}\bigl(\sqrt{1-\mu_i}\ket{0}+\sqrt{\mu_i}\ket{1}\bigr),\\
+ B_\mu\ket{i}\ket{1}
+ &=\ket{i}\bigl(-\sqrt{\mu_i}\ket{0}+\sqrt{1-\mu_i}\ket{1}\bigr).
+ \label{eq:blockbasis}
+\end{align}
+Equations~\eqref{eq:block}--\eqref{eq:blockbasis} define the unitary on arbitrary
+inputs by linearity and remove the phase/extension ambiguity in a one-column
+oracle definition.  The model provides $B_\mu$, $B_\mu^\dagger$, and explicitly
+requested controlled calls; each is counted.
+
+Layer C is used for analytic experiments and as a clean hard subfamily for lower
+bounds.  It is not assumed to be the free output of a reversible LLM generator.
+
+\subsection{Layer P: natural purification sampler}
+
+The broader interface prepares
+\begin{equation}
+ A\ket{i}\ket{0_W}\ket{0_R}
+ =\ket{i}\left(
+ \sqrt{1-\mu_i}\ket{\phi_{i,0}}\ket{0}
+ +\sqrt{\mu_i}\ket{\phi_{i,1}}\ket{1}
+ \right),
+ \label{eq:purification}
+\end{equation}
+where normalized work states may depend on the arm and outcome.  A reversible
+classical generator has the natural form requested by applications:
+\begin{equation}
+ A\ket{i}\ket{0_W}\ket{0_R}
+ =\ket{i}\sum_w\sqrt{P_i(w)}\ket{w}\ket{R_i(w)},
+ \qquad
+ \mu_i=\Pr_{w\sim P_i}[R_i(w)=1].
+ \label{eq:naturalsampler}
+\end{equation}
+The good projector and its reflection are
+\begin{equation}
+ \Pi_{\mathrm g}=I_I\otimes I_W\otimes\ket{1}\bra{1},
+ \qquad S_{\mathrm g}=I-2\Pi_{\mathrm g}.
+\end{equation}
+The default access is $A$, $A^\dagger$, and the known good reflection.  Controlled
+access is not silently assumed; a subroutine that needs it must state and charge
+it.
+
+The canonical block is a no-work special case of state preparation, but a general
+sampler in~\eqref{eq:naturalsampler} cannot be replaced by $B_\mu$ at unit cost.
+Doing so would erase $\ket{w}$ and synthesize a clean rotation whose angle is the
+unknown success probability---essentially solving an estimation/transduction
+problem.  Standard amplitude-estimation constructions can often work directly
+with $A,A^\dagger,\Pi_{\mathrm g}$, but every Q-GapSelect subroutine and its error
+composition must be re-proved in that access model.
+
+\begin{obligation}[Purification transport]
+Implement boundary tests, angular gap flags, batch extraction, filtering, and
+certificate verification using only the declared Layer-P operations.  Prove the
+claimed complexity without a free clean-rotation conversion, and account for
+work-register size, uncomputation, state preparation, and controlled operations.
+\end{obligation}
+
+\subsection{What the lower bound can say}
+
+For a fixed mean vector, different purifications can reveal different auxiliary
+information through their work states.  A lower bound for $B_\mu$ is therefore a
+lower bound for a canonical compatible sampler and, because canonical instances
+belong to the broad state-preparation class, a \emph{worst-case compatible-sampler}
+lower bound.  It is not an instance-wise lower bound for every $A$ with the same
+success probabilities.  An all-purification statement would require a
+no-leakage promise or a lower bound parameterized by full-state fidelity, neither
+of which is currently proved.
+
+\section{Top-k and Angular Gaps}
+
+Assume $\mu_{(1)}\ge\cdots\ge\mu_{(n)}$ and the strict-boundary promise
+$\mu_{(k)}>\mu_{(k+1)}$.  The fixed-confidence task returns
+\[
+S^\star=\TopK_k(\mu)
+\quad\text{with probability at least }1-\delta.
+\]
+Because $\arcsin\sqrt{x}$ is increasing, let
+$\theta_{(1)}\ge\cdots\ge\theta_{(n)}$ denote the correspondingly ordered angles.
+Define the primary boundary gaps
+\begin{equation}
+\gamma_i=
+\begin{cases}
+\theta_i-\theta_{(k+1)},& i\in S^\star,\\
+\theta_{(k)}-\theta_i,& i\notin S^\star.
+\end{cases}
+\label{eq:angulargap}
+\end{equation}
+The local coherent discrimination scale is
+\begin{equation}
+c_i=\Theta(1/\gamma_i),
+\label{eq:localcost}
+\end{equation}
+since canonical reward states at angles $\theta$ and $\theta'$ have overlap
+$\cos(\theta-\theta')$.  This is the cost supplied to any weighted-adversary or
+variable-time composition.
+
+For reporting and classical comparison we also retain the mean gaps
+\begin{equation}
+\Delta_i=
+\begin{cases}
+\mu_i-\mu_{(k+1)},& i\in S^\star,\\
+\mu_{(k)}-\mu_i,& i\notin S^\star.
+\end{cases}
+\end{equation}
+They are not interchangeable near $0$ or $1$.  If the compared means lie in
+$[\eta,1-\eta]$, the mean-value theorem gives the interior relation
+\begin{equation}
+2\sqrt{\eta(1-\eta)}\,\gamma_i
+\le \Delta_i\le\gamma_i.
+\label{eq:interior}
+\end{equation}
+Thus a mean-gap corollary is permitted only with an explicit interior promise.
+
+\section{Adaptive Certificate Orientation}
+
+\subsection{Why fixed smaller-side orientation is rejected}
+
+The Top-$k$ answer has two exact representations:
+\[
+S_+^\star=S^\star,\qquad S_-^\star=[n]\setminus S^\star.
+\]
+The earlier draft always enumerated whichever representation had smaller
+cardinality.  This is false as an instance-sensitive rule.  Let $n=3m$, $k=m$,
+place all $m$ selected arms at angular gap $\gamma$, one rejected arm at angular
+gap $\gamma$, and the remaining $2m-1$ rejected arms at constant gap.  At the
+fine scale, the selected orientation must extract $m$ hard outputs whereas the
+rejected orientation extracts one.  The respective fine terms differ by
+$\Theta(\sqrt m)$, although the selected set is smaller.  Choosing $\gamma$
+sufficiently small makes that ratio dominate coarse work.  The rejected formula
+and counterexample are preserved in
+\texttt{docs/rejected\_candidates.md}.
+
+\subsection{New orientation-aware candidate}
+
+Set $\eps_r=(\pi/2)2^{-r}$ and
+\begin{equation}
+\ell_i=\min\{r\ge0:\eps_r\le\gamma_i\},\qquad
+N_r=|\{i:\ell_i\ge r\}|.
+\end{equation}
+For $b\in\{+,-\}$ define
+\begin{equation}
+M_{r,b}=|S_b^\star\cap\{i:\ell_i=r\}|,
+\end{equation}
+\begin{equation}
+\mathcal H_b(\theta,k)
+=\sum_{r=0}^{\max_i\ell_i}
+\frac{\sqrt{N_r(M_{r,b}+1)}}{\eps_r},
+\qquad
+\mathcal H_{\mathrm{orient}}
+=\min\{\mathcal H_+,\mathcal H_-\}.
+\label{eq:horient}
+\end{equation}
+Equation~\eqref{eq:horient} is a candidate accounting functional, not a theorem.
+The $+1$ charges a certification stage even when no output item is first resolved
+at that scale.
+
+The algorithm does not know in advance which orientation minimizes
+\eqref{eq:horient}.  The proposed remedy is to dovetail two resumable procedures:
+one certifies a size-$k$ selected set; the other certifies a size-$(n-k)$ rejected
+set whose complement is returned.  Query budgets double geometrically and are
+interleaved.  A candidate is accepted only after an independent cross-boundary
+certificate verifier succeeds.  The first verified certificate wins.  A
+constant-overhead first-finish bound for random, variable-time quantum
+subroutines is itself a proof obligation.
+
+\begin{obligation}[Orientation dovetail]
+Define resumable selected/rejected procedures, failure budgets, and certificate
+verification.  Prove that the first valid certificate is correct and that the
+total cost is within a constant/polylogarithmic factor of the faster valid
+orientation, without assuming its identity.
+\end{obligation}
+
+\section{Proposed Q-GapSelect Architecture}
+
+For orientation $b$, the proposed staged procedure is:
+\begin{enumerate}[leftmargin=*,label=\textbf{Step \arabic*.}]
+  \item At angular scale $\eps_r$, obtain a coarse order-statistic boundary using
+  an approximate $k$-minimum/order-statistic routine.  This is a known component
+  ~\cite{gao2025approxkmin,nayak1999median}.
+  \item Construct a reversible three-way angular classifier: certified in,
+  certified out, or unresolved.  Compose arm-dependent stopping costs with a
+  variable-time routine; variable-time search itself is known
+  ~\cite{ambainis2023variable}.
+  \item Enumerate newly certified elements of $S_b^\star$ using a multiple-marked
+  routine~\cite{vanapeldoorn2024marked}.  Independently verify measured outputs.
+  \item Maintain an explicitly charged reversible activity predicate.  No rejected
+  list, QROM table, or previous confidence computation is free.
+  \item Allocate $\delta_r=6\delta/(\pi^2(r+1)^2)$, emit a candidate certificate
+  when the orientation quota is reached, and submit it to the independent
+  verifier.
+\end{enumerate}
+The main Q-GapSelect controller dovetails $b=+$ and $b=-$ and returns the first
+verified representation.
+
+\begin{conjecture}[Canonical heterogeneous-gap upper candidate]
+Under Layer-C access, a constructive Q-GapSelect algorithm returns the exact
+Top-$k$ set with probability at least $1-\delta$ using
+\begin{equation}
+\widetilde O\!\left(
+\mathcal H_{\mathrm{orient}}(\theta,k)
+\polylog(n,1/\delta,1/\gamma_{\min})
+\right)
+\label{eq:canonicalupper}
+\end{equation}
+canonical oracle calls and polynomial auxiliary time.
+\end{conjecture}
+
+\begin{conjecture}[Natural-sampler transport candidate]
+Under Layer-P access, the same asymptotic reward-query expression is achievable
+using $A,A^\dagger,\Pi_{\mathrm g}$, plus explicitly reported generator and
+reversible-checker resources.
+\end{conjecture}
+
+Neither conjecture is implied by listing the known subroutines.  The required
+advance is their fixed-confidence heterogeneous composition with certified output
+and no worst-gap multiplication.
+
+\begin{obligation}[Strict black-box separation]
+Derive the strongest upper bound obtained by composing
+Gao--Ji--Wang approximate $k$-minimum, quantum mean/amplitude estimation,
+Ambainis--Kokainis--Vihrovs variable-time search,
+van Apeldoorn--Gribling--Nieuwboer extraction, Wang et al.\ quantum BAI, and
+Wang--Xu--Zhang $k$-minimum data structures.  Exhibit an explicit heterogeneous
+profile on which~\eqref{eq:canonicalupper} is asymptotically smaller.  Without this
+separation the novelty claim is rejected.
+\end{obligation}
+
+\begin{obligation}[Boundary and noisy predicate composition]
+Prove adaptive correctness and cost when an approximate boundary is reused inside
+a bounded-error, variable-time marking predicate.  Existing approximate
+$k$-minimum and bounded-error search are baselines, not proof shortcuts.
+\end{obligation}
+
+\begin{obligation}[Implicit filtering and verification]
+Implement reversible filters and a cross-boundary certificate verifier with all
+work qubits uncomputed.  Bound repeated history access, QROM, arithmetic, and
+verification rather than hiding them behind one oracle call.
+\end{obligation}
+
+\section{Lower-Bound Program}
+
+For canonical hard instances, encode hypotheses as angular pairs around an
+interior angle $\theta_0$, for example
+$\theta_i\in\{\theta_0-\gamma_i,\theta_0+\gamma_i\}$.  Single-coordinate
+distinguishability costs $\Omega(1/\gamma_i)$.  Equal-gap fixed-weight recovery is
+a required sanity reduction, but is not proposed as new because approximate
+$k$-minimum, marked extraction, and order-statistic results already cover its
+core phenomena~\cite{gao2025approxkmin,vanapeldoorn2024marked,nayak1999median}.
+
+The potential new lower bound requires disjoint dyadic angular-gap blocks and
+orientation-aware output multiplicities.  The relevant exploratory cost vector
+is $c_i=\Theta(1/\gamma_i)$ in a weighted adversary quantity
+$\Adv_{\TopK}(c)$~\cite{lee2011stateconversion,reichardt2011reflections}.  We do
+not claim that it equals $\mathcal H_{\mathrm{orient}}$.
+
+\begin{obligation}[Dyadic direct sum]
+Construct a promised canonical family for which solving Top-$k$ recovers every
+designated block.  Use adversary composition or a strong direct-product theorem
+to control superposition queries across blocks; adding separate lower bounds is
+not valid.
+\end{obligation}
+
+\begin{obligation}[Orientation-aware lower target]
+Prove a lower bound matching the minimum over valid selected/rejected
+representations, or replace~\eqref{eq:horient} with a rigorously derived relation
+complexity.  The lower bound must hold against all adaptive quantum algorithms,
+not only estimate-then-sort methods.
+\end{obligation}
+
+\begin{obligation}[Compatible-sampler scope]
+State the result as a canonical lower bound and hence a worst-case lower bound
+over compatible purification samplers.  Do not transfer it to every purification
+with the same mean vector unless a no-leakage theorem is proved.
+\end{obligation}
+
+\begin{obligation}[Same-interface classical comparison]
+Give the strongest classical upper and lower bounds using basis-state samples
+from the same generator.  Confidence, output relation, preprocessing, and oracle
+construction must match the quantum comparison.
+\end{obligation}
+
+\section{Deferred Matroid Extension}
+
+Let $\cM=(E,\mathcal I)$ be a rank-$r$ matroid with unique maximum-mean basis
+\[
+B^\star=\arg\max_{B\in\cB(\cM)}\sum_{e\in B}\mu_e.
+\]
+Classical best-basis identification is established~\cite{chen2016matroid}.
+Because $\theta=\arcsin\sqrt{\mu}$ preserves order, exchange comparisons can be
+measured by angular gaps.  If $C_{B^\star}(f)$ is the fundamental circuit of
+$f\notin B^\star$, candidate exchange gaps are
+\[
+\gamma_f=\min_{e\in C_{B^\star}(f)\setminus\{f\}}(\theta_e-\theta_f),
+\]
+and, for $e\in B^\star$,
+\[
+\gamma_e=\theta_e-
+\max\{\theta_f:f\notin B^\star,\ e\in C_{B^\star}(f)\}.
+\]
+If the displayed exchange set is empty, define $\gamma_e=+\infty$; such an
+element has no outside exchange competitor and contributes no finite local
+exchange-discrimination cost.
+
+Q-BatchExchange would search uncertain exchanges, batch-certify basis-in/out
+elements, and contract/delete them.  It may dovetail a primal-basis certificate
+and a dual-cobasis certificate, but reversible dual-independence access must be
+charged.  This is a \status{proposed extension}, not a result.
+
+\begin{obligation}[Constructive matroid algorithm]
+Avoid enumerating bases or all exchange pairs.  Bound reward and reversible
+independence-oracle queries, auxiliary time, memory, and state preparation.
+Recover the audited uniform-matroid theorem as a special case.
+\end{obligation}
+
+\begin{obligation}[Partition direct sum]
+For independent partition groups, prove the necessary direct-sum behavior.  A
+global square root across required independent outputs is a rejection condition.
+\end{obligation}
+
+\section{Experimental Falsification Plan}
+
+The current implementation has two analytic Layer-C pipelines.  One evaluates
+deterministic complexity proxies; the other independently estimates every
+active arm while sampling analytic Grover measurement laws.  Their executed
+query ledgers and candidate-theory accounting are separate.  Neither implements
+\textsc{QBoundary}, coherent batch extraction, orientation dovetail, or Layer-P
+transport; passing its tests activates no asymptotic claim.
+
+\paragraph{Current artifact and pre-registered expansion.}
+The implemented \texttt{run\_scaling} pipeline evaluates five deterministic
+mean-space equal/geometric analytic-proxy regimes; its \texttt{trials} field is
+not used to repeat calculations.  Separately, \texttt{run\_reference} executes
+four fixed mean-vector instances over a configurable number of derived random
+seeds.  It uses \texttt{trials} as its loop count and randomly samples the
+analytic measurement law of each requested Grover experiment.  This is a
+multi-seed analytic-measurement regression, not a coherent index-register batch
+circuit and not random instance generation.  The checked-in reference artifact
+is a four-trial-per-scenario diagnostic (16 records), whereas the configuration's
+500-trial default has no committed run artifact.  Both pipelines are code sanity
+checks only and are not evidence for the candidate theorem.  Each reference
+record and aggregate separates \texttt{certified\_exact\_recovery}, which requires
+interval resolution and exact output, from
+\texttt{heuristic\_inclusive\_exact\_recovery}, which also counts exact outputs
+produced by empirical completion after a timeout.  Only the former is eligible
+as an empirical fixed-confidence success; the latter is a diagnostic and cannot
+be used to mask unresolved trials.
+
+The future experimental campaign will generate instances in angle space and map
+them by $\mu_i=\sin^2\theta_i$.  Before running that campaign, we will
+pre-register
+\[
+n\in\{8,16,32,64,128,256\},\quad
+k\in\{1,2,4,\lfloor n/4\rfloor,\lfloor n/2\rfloor\},\quad
+\delta\in\{0.05,0.01\}.
+\]
+The pre-registered future random-instance families will include equal angular
+gaps, geometric angular gaps, clustered boundaries, planted dyadic blocks,
+endpoint regimes, and the complement-asymmetry counterexample.  Both $\gamma_i$
+and $\Delta_i$ will be stored.  At least 500 independently generated instances
+will be used per random-instance configuration.  This proposed instance count
+is distinct from the already implemented multi-seed measurement repetition of
+four fixed instances and has not been executed.
+
+\paragraph{Required quantum baselines.}
+We compare against: uniform amplitude estimation plus sorting; adaptive per-arm
+mean estimation; approximate $k$-minimum with charged expectation-value oracle
+~\cite{gao2025approxkmin}; variable-time search over arm-specific classifiers
+~\cite{ambainis2023variable}; multiple-marked extraction at each layer
+~\cite{vanapeldoorn2024marked}; quantum BAI in its valid single-output regime
+~\cite{wang2021quantum}; and a time-efficient $k$-minimum implementation where
+its input model applies~\cite{wang2026rmq}.  Classical baselines include the
+strongest implemented fixed-confidence Top-$k$/Best-Set allocation, not only
+uniform sampling.
+
+\paragraph{Oracle audit.}
+Layer-C and Layer-P experiments are separate.  Layer-P manifests record work
+registers, $A/A^\dagger$ calls, good reflections, controlled calls, and generator
+cost.  No experiment replaces Layer P by a clean $R_y$ without recording the
+conversion algorithm and its cost.
+
+\paragraph{Reporting.}
+Primary synthetic outcomes are certified exact-set recovery, interval-resolution
+and timeout rates, forward/inverse/controlled queries, verifier calls, failure
+type, simple regret, and peak coherent resources.  Heuristic-inclusive exact
+recovery is reported separately and never treated as fixed-confidence success.
+Simulator wall time, gates, depth, qubits, CPU/GPU time, and memory are separate.
+Finite scaling slopes are empirical diagnostics, never proofs of a polynomial
+separation.
+
+\section{Mapping to Attacks on Code LLMs}
+
+Black-box attacks already steer code models toward insecure completions
+~\cite{hajipour2023codelmsec,jenko2025insec}, and semantics-preserving
+cross-origin context poisoning is a strong baseline~\cite{storek2026xoxo}.  Our
+exact application mapping is attack-\emph{portfolio} selection rather than an
+unvalidated additive composition of atomic edits.
+
+For complete semantics-preserving variant $e$, task/seed randomness $w=(t,z)$,
+source generator $M$, full functional oracle $F$, and exploit-confirmed oracle
+$V$, define
+\[
+R_e(w)=\mathbf1\{F(M(T_e(p_t),z))=1\land
+                  V(M(T_e(p_t),z))=1\},
+\qquad \mu_e=\mathbb E_wR_e(w).
+\]
+A reversible open-source implementation naturally prepares
+\begin{equation}
+A_{\mathrm{LLM}}\ket{e}\ket{0}
+=\ket{e}\sum_w\sqrt{P_e(w)}
+ \ket{w,M(T_e(p_t),z),F,V}\ket{R_e(w)}.
+\label{eq:llmsampler}
+\end{equation}
+This is Layer P, with large generator/checker garbage; it is not a clean
+single-qubit $R_y$.  Building and reversing~\eqref{eq:llmsampler}, including
+token generation, tests, exploit checkers, finite precision, and storage, must be
+charged.  After measurement, selected prompts are sent classically to held-out
+victims.  Proprietary APIs are never coherent oracles.
+
+Until the purification-transport theorem and a credible reversible resource
+analysis are complete, the LLM study cannot claim a genuine quantum-query
+advantage.  It may report a classical simulation of a selector or a source-side
+oracle study under those exact labels.
+
+\paragraph{Endpoints.}
+For a pre-registered attack predicate $G$ and victim budget $Q$,
+\begin{align}
+\mathrm{ASR@Q}
+&=\frac1{|\cT|}\sum_{t\in\cT}
+\mathbf1\{\exists q\le Q:G(c_{tq})=1\},\\
+\mathrm{FV\mbox{-}ASR@Q}
+&=\frac1{|\cT|}\sum_{t\in\cT}
+\mathbf1\{\exists q\le Q:F(c_{tq})=1\land V(c_{tq})=1\},\\
+\Delta\mathrm{\mbox{-}FV\mbox{-}ASR@Q}
+&=\mathrm{FV\mbox{-}ASR@Q}_{\mathrm{attack}}
+-\mathrm{FV\mbox{-}ASR@Q}_{\mathrm{clean}}.
+\end{align}
+The primary $Q$ is frozen before test access.  We also report functionality
+retention, fresh-seed success, timeouts/indeterminate outcomes, source-to-victim
+transfer, query-to-first-success, and separate budgets for quantum/source/victim/
+checker calls.
+
+CWEval, BaxBench, and SecRepoBench provide functionality/security or
+repository-level evaluation~\cite{peng2025cweval,vero2025baxbench,shen2026secrepobench}.
+Splits are by task, repository, CWE, and model family.  Repeated generations of
+one task never cross splits.  Victim outputs remain sealed until variants,
+selector, baselines, and endpoint are frozen.
+
+\section{Ethical and Claim Boundaries}
+
+Generated code and exploits execute only in authorized, network-isolated
+benchmark containers.  No third-party systems, accounts, or infrastructure are
+targeted.  Novel vulnerabilities are privately disclosed; operational payloads
+are redacted when publication would materially enable abuse.  The study does not
+automate deployment, persistence, credential theft, or lateral movement.
+
+A new-quantum-algorithm claim activates only after:
+\begin{enumerate}[leftmargin=*]
+  \item the Layer-C heterogeneous upper bound is complete and constructive;
+  \item it strictly beats the strongest black-box composition on an explicit
+  family;
+  \item an all-adaptive-algorithms canonical lower bound matches it, with honest
+  worst-case sampler scope;
+  \item orientation dovetail, verification, state preparation, QROM, and
+  reversible filters are polynomial and charged;
+  \item if an LLM quantum advantage is claimed, Layer-P transport and reversible
+  generator resources are also complete.
+\end{enumerate}
+Equal-gap recovery, QBoundary, batch extraction, simulator speed, or favorable
+unrun tables activate none of these claims.
+
+\section{Conclusion}
+
+After oracle, gap, orientation, and literature audit, Q-GapSelect is a narrower
+and higher-risk research candidate than the original draft.  Its only plausible
+algorithmic novelty is a tight heterogeneous-angular-gap, fixed-confidence
+multi-output theorem that survives comparison with approximate $k$-minimum,
+variable-time search, marked extraction, order statistics, and quantum BAI.  The
+canonical theorem, natural-sampler transport, direct-sum lower bound, matroid
+extension, and LLM attack effect all remain open.  The correct next step is to
+prove or falsify those obligations; no quantum advantage is presently claimed.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
