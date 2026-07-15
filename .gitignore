@@ -19,6 +19,8 @@ artifacts/*
 !artifacts/reference_diagnostic.json
 !artifacts/direct_search_diagnostic.json
 !artifacts/quantum_benchmark_diagnostic.json
+!artifacts/frozen_selector_benchmark_diagnostic.json
+!artifacts/frozen_quantum_reference_diagnostic.json
 paper/*.aux
 paper/*.bbl
 paper/*.blg

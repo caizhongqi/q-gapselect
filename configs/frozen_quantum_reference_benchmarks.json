@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "experiment_name": "q-gapselect-frozen-empirical-layer-c-reference-v1",
+  "master_seed": 20260715,
+  "problem_instances": 500,
+  "algorithm_repetitions": 1,
+  "table_size": 2048,
+  "public_threshold": 0.5,
+  "rounding_angular_margin": 0.002,
+  "failure_probability": 0.05,
+  "precision_fraction": 0.25,
+  "paired_bootstrap_repetitions": 10000,
+  "paired_bootstrap_confidence_level": 0.95,
+  "paired_holm_alpha": 0.05,
+  "instance_distribution": {
+    "generator": "nonisomorphic_angular_gap_vector_v1",
+    "case_seed_derivation": "sha256(master_seed,case_name,problem_index,'case')",
+    "assignment_seed_derivation": "sha256(master_seed,case_name,problem_index,'assignment')",
+    "varied_axes": [
+      "boundary_gap",
+      "nonboundary_gaps",
+      "selected_active_count",
+      "rejected_active_count",
+      "heterogeneity"
+    ],
+    "difficulty_fingerprint": "permutation_invariant_exact_count_structure_v1",
+    "paper_scale_minimum_unique_fraction": 0.95
+  },
+  "method_ids": [
+    "qgapselect",
+    "independent_iae_topk",
+    "known_threshold_iae_scan"
+  ],
+  "qgapselect": {
+    "confidence": 0.05,
+    "initial_angular_epsilon": 0.25,
+    "epsilon_decay": 0.5,
+    "max_rounds": 4,
+    "shots_per_iae_round": 64,
+    "iae_max_rounds": 4,
+    "iae_max_grover_power": 7,
+    "iae_grid_points": 1025
+  },
+  "independent_iae": {
+    "target_angular_precision": 0.02,
+    "confidence": 0.05,
+    "shots_per_round": 64,
+    "max_rounds": 4,
+    "max_grover_power": 7,
+    "grid_points": 1025
+  },
+  "known_threshold_iae": {
+    "target_angular_precision": 0.02,
+    "confidence": 0.05,
+    "shots_per_round": 64,
+    "max_rounds": 4,
+    "max_grover_power": 7,
+    "grid_points": 1025
+  },
+  "cases": [
+    {
+      "name": "equal_n8_k1_gap_pi8",
+      "family": "equal_gap",
+      "n": 8,
+      "k": 1,
+      "angular_gap": 0.39269908169872414
+    },
+    {
+      "name": "equal_n8_k4_gap_pi8",
+      "family": "equal_gap",
+      "n": 8,
+      "k": 4,
+      "angular_gap": 0.39269908169872414
+    },
+    {
+      "name": "equal_n8_k7_gap_pi8",
+      "family": "equal_gap",
+      "n": 8,
+      "k": 7,
+      "angular_gap": 0.39269908169872414
+    },
+    {
+      "name": "equal_n16_k4_gap_pi16",
+      "family": "equal_gap",
+      "n": 16,
+      "k": 4,
+      "angular_gap": 0.19634954084936207
+    },
+    {
+      "name": "dyadic_n16_k4_gap_pi32",
+      "family": "dyadic_gap",
+      "n": 16,
+      "k": 4,
+      "angular_gap": 0.09817477042468103
+    },
+    {
+      "name": "clustered_n16_k8_gap_pi32",
+      "family": "clustered_boundary",
+      "n": 16,
+      "k": 8,
+      "angular_gap": 0.09817477042468103
+    },
+    {
+      "name": "equal_n16_k8_gap_pi64",
+      "family": "equal_gap",
+      "n": 16,
+      "k": 8,
+      "angular_gap": 0.04908738521234052
+    },
+    {
+      "name": "clustered_n32_k8_gap_pi64",
+      "family": "clustered_boundary",
+      "n": 32,
+      "k": 8,
+      "angular_gap": 0.04908738521234052
+    },
+    {
+      "name": "dyadic_n32_k16_gap_pi128",
+      "family": "dyadic_gap",
+      "n": 32,
+      "k": 16,
+      "angular_gap": 0.02454369260617026
+    },
+    {
+      "name": "clustered_n32_k16_gap_pi256",
+      "family": "clustered_boundary",
+      "n": 32,
+      "k": 16,
+      "angular_gap": 0.01227184630308513
+    }
+  ],
+  "notes": [
+    "Every cell varies a non-isomorphic signed angular-gap vector before an independent exact-count table is frozen; algorithm measurement seeds are separate.",
+    "QGapSelect receives k only; independent IAE additionally receives the public gap floor and is a gap-aided reference rather than an information-matched baseline.",
+    "Known-threshold IAE is a stronger-information control and cannot establish an unknown-boundary win.",
+    "Only certified exact recovery counts as success; heuristic completions remain failures.",
+    "QGapSelect versus the gap-aided independent IAE reference uses exact paired McNemar tests, fixture-pair bootstrap intervals, unconditional all-pair query differences, and Holm FWER correction across cells.",
+    "Logical A and A-dagger calls are reported separately from classical samples and simulator time.",
+    "This campaign executes no LLM, commercial API, circuit backend, or quantum hardware.",
+    "The pi/128 and pi/256 cells are deliberate finite-precision stress tests and may fail certification.",
+    "Five hundred independently frozen fixtures are executed per cell; the run is rejected unless at least 95 percent have unique permutation-invariant difficulty fingerprints. This estimates the configured instance-mixture behavior but is not a worst-case theorem."
+  ]
+}
