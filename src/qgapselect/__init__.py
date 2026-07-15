@@ -9,6 +9,7 @@ be interpreted as importing a proved quantum bound.
 from .attack_metrics import AttackMetrics, aggregate_attack_metrics
 from .coherent import CanonicalRyStatevectorOracle
 from .contracts import CoherentOracleContract, CoherentRewardGate, OracleModel
+from .direct_baselines import ClassicalThresholdScan, IndependentQPEThresholdScan
 from .direct_phase import (
     DirectAmplitudeThresholdFlag,
     DirectPhaseFlagResources,
@@ -31,6 +32,7 @@ from .direct_topk import (
 )
 from .estimators import AnalyticIterativeAmplitudeEstimator, IterativeAmplitudeEstimator
 from .gapselect import QGapSelect
+from .iterative_ae_baseline import IterativeAEThresholdScan
 from .llm_attack import (
     AttackStudyPlan,
     CallableGenerationValidator,
@@ -64,6 +66,19 @@ from .primitives import (
     qboundary,
     qgap_flag,
 )
+from .quantum_benchmarking import (
+    QuantumBenchmarkConfig,
+    QuantumBenchmarkRunner,
+    aggregate_benchmark_records,
+    make_benchmark_instance,
+    paired_query_ratios,
+)
+from .quantum_diagnostics import (
+    run_diffusion_ablation,
+    run_phase_grid_sweep,
+    run_qpe_acceptance_sweep,
+)
+from .quantum_validation import run_unitary_validation, run_verifier_calibration
 
 __all__ = [
     "AnalyticIterativeAmplitudeEstimator",
@@ -75,6 +90,7 @@ __all__ = [
     "CanonicalRyStatevectorOracle",
     "CalibratedDirectTopKController",
     "CalibratedDirectTopKResult",
+    "ClassicalThresholdScan",
     "CoherentOracleContract",
     "CoherentRewardGate",
     "CounterfactualRateSelector",
@@ -97,12 +113,16 @@ __all__ = [
     "GenerationRequest",
     "FullWorkspaceBBHT",
     "IndexVerificationResult",
+    "IndependentQPEThresholdScan",
+    "IterativeAEThresholdScan",
     "NaturalArmDistribution",
     "NaturalPurificationStatevectorOracle",
     "OfflineReplayBackend",
     "OracleModel",
     "QGapSelect",
     "QGapSelectPortfolioAdapter",
+    "QuantumBenchmarkConfig",
+    "QuantumBenchmarkRunner",
     "QBoundaryEstimator",
     "QGapFlag",
     "QueryKind",
@@ -114,12 +134,20 @@ __all__ = [
     "TopKInstance",
     "ValidatorResult",
     "aggregate_attack_metrics",
+    "aggregate_benchmark_records",
     "collect_local_records",
     "full_workspace_rank_one_diffusion",
+    "make_benchmark_instance",
     "paired_counterfactual_event",
     "qbatch_extract",
     "qboundary",
     "qgap_flag",
+    "paired_query_ratios",
+    "run_diffusion_ablation",
+    "run_phase_grid_sweep",
+    "run_qpe_acceptance_sweep",
+    "run_unitary_validation",
+    "run_verifier_calibration",
     "run_attack_study",
 ]
 

@@ -199,6 +199,61 @@ def test_randomized_budget_exhaustion_never_claims_absence() -> None:
     assert search.resume(max_steps=10) == result
 
 
+def test_target_count_is_an_explicit_cardinality_promise_not_an_absence_test() -> None:
+    # Asking for fewer outputs than really satisfy the predicate is allowed,
+    # but completion then means only that the requested cardinality was met.
+    lower_oracle = CanonicalRyStatevectorOracle([1.0, 1.0, 0.0])
+    lower = FullWorkspaceBBHT(
+        lower_oracle,
+        0.5,
+        1,
+        phase_qubits=2,
+        verification_shots=32,
+        max_attempts_per_output=4,
+        seed=3,
+    ).run()
+    assert lower.complete
+    assert len(lower.outputs) == 1
+    assert set(lower.outputs) < {0, 1}
+    assert not lower.absence_certified
+
+    # Asking for more outputs than really satisfy the predicate discovers the
+    # available output and then terminates only by randomized budget exhaustion.
+    higher_oracle = CanonicalRyStatevectorOracle([1.0, 0.0])
+    higher_search = FullWorkspaceBBHT(
+        higher_oracle,
+        0.5,
+        2,
+        phase_qubits=2,
+        verification_shots=32,
+        max_attempts_per_output=3,
+        seed=3,
+    )
+    higher = higher_search.run()
+    while higher.status == "paused_resumable":
+        higher = higher_search.resume()
+    assert not higher.complete
+    assert higher.outputs == (0,)
+    assert higher.status == "search_attempt_budget_exhausted"
+    assert not higher.absence_certified
+
+
+def test_zero_target_is_trivially_complete_without_oracle_query() -> None:
+    oracle = CanonicalRyStatevectorOracle([0.4, 0.6])
+    result = FullWorkspaceBBHT(
+        oracle,
+        0.5,
+        0,
+        phase_qubits=3,
+        seed=2,
+    ).run()
+
+    assert result.complete and result.outputs == ()
+    assert result.resources.oracle_queries == 0
+    assert oracle.query_snapshot().total == 0
+    assert not result.absence_certified
+
+
 def test_statevector_limit_blocks_before_any_oracle_query() -> None:
     oracle = CanonicalRyStatevectorOracle([1.0, 0.0])
     search = FullWorkspaceBBHT(
@@ -206,23 +261,32 @@ def test_statevector_limit_blocks_before_any_oracle_query() -> None:
         0.5,
         1,
         phase_qubits=4,
-        # The retained 64 amplitudes fit, but the transient comparator doubles
-        # the peak allocation to 128 amplitudes.
-        max_statevector_dimension=64,
+        # M=16 and S=64.  The dense-QFT path, M^2+2S=384, dominates
+        # the comparator path, 3S=192.
+        max_statevector_dimension=383,
         seed=1,
     )
 
     result = search.run()
 
     assert search.statevector_dimension == 64
-    assert search.peak_statevector_dimension == 128
+    assert search.retained_statevector_dimension == 64
+    assert search.comparator_expanded_statevector_dimension == 128
+    assert search.dense_qft_matrix_dimension == 256
+    assert search.estimated_peak_complex_amplitudes == 384
+    assert search.peak_statevector_dimension == 384
     assert result.status == "statevector_budget_exceeded"
     assert not result.complete
     assert not result.absence_certified
     assert result.attempts == 0
     assert result.resources.oracle_queries == 0
     assert result.resources.statevector_dimension == 64
-    assert result.resources.peak_statevector_dimension == 128
+    assert result.resources.peak_statevector_dimension == 384
+    assert result.resources.retained_statevector_dimension == 64
+    assert result.resources.comparator_expanded_statevector_dimension == 128
+    assert result.resources.dense_qft_matrix_dimension == 256
+    assert result.resources.estimated_peak_complex_amplitudes == 384
+    assert "not compiled hardware" in result.resources.resource_semantics
     assert oracle.query_snapshot().total == 0
 
     allowed = FullWorkspaceBBHT(
@@ -230,7 +294,7 @@ def test_statevector_limit_blocks_before_any_oracle_query() -> None:
         0.5,
         0,
         phase_qubits=4,
-        max_statevector_dimension=128,
+        max_statevector_dimension=384,
         seed=1,
     ).run()
     assert allowed.complete

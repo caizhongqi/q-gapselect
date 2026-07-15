@@ -1,4 +1,4 @@
-.PHONY: install test lint check experiment scaling reference coherent attack paper clean
+.PHONY: install test lint check experiment scaling reference coherent quantum attack paper clean
 
 install:
 	python -m pip install -e '.[dev,plots]'
@@ -11,7 +11,7 @@ lint:
 
 check: lint test
 
-experiment: scaling coherent attack
+experiment: scaling coherent quantum attack
 
 scaling:
 	python scripts/run_scaling.py --output artifacts/scaling.json
@@ -21,6 +21,11 @@ reference:
 
 coherent:
 	python scripts/run_coherent.py --output artifacts/coherent_results.json
+
+quantum:
+	python scripts/run_quantum_benchmarks.py \
+		--config configs/quantum_benchmarks.json \
+		--output artifacts/quantum_benchmark_diagnostic.json
 
 attack:
 	python scripts/run_attack_study.py --config configs/attack_study.json \

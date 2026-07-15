@@ -138,6 +138,51 @@ def test_direct_search_cli_overrides_trials_seed_and_scenario(tmp_path: Path) ->
     )
 
 
+def test_direct_search_cli_resumes_multi_output_search_to_terminal(
+    tmp_path: Path,
+) -> None:
+    repository = Path(__file__).resolve().parents[1]
+    document = _small_document()
+    document["search"]["max_attempts_per_output"] = 1  # type: ignore[index]
+    document["scenarios"] = [
+        {
+            "name": "two_exact_above",
+            "means": [1.0, 1.0, 0.0],
+            "threshold": 0.5,
+            "expected_count": 2,
+            "relation": "above",
+        }
+    ]
+    config_path = tmp_path / "direct.json"
+    output_path = tmp_path / "result.json"
+    config_path.write_text(json.dumps(document), encoding="utf-8")
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(repository / "scripts" / "run_direct_search.py"),
+            "--config",
+            str(config_path),
+            "--output",
+            str(output_path),
+        ],
+        cwd=repository,
+        env=_environment(repository),
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    record = json.loads(output_path.read_text(encoding="utf-8"))[
+        "raw_execution_records"
+    ][0]
+    assert record["runner_reached_terminal"]
+    assert record["status"] == "complete_fixed_confidence_qpe_predicate"
+    assert sorted(record["selected_indices"]) == [0, 1]
+    assert record["result"]["attempts"] == 2
+
+
 def test_direct_search_cli_rejects_unknown_fields_and_bool_numbers(tmp_path: Path) -> None:
     repository = Path(__file__).resolve().parents[1]
     for position, document in enumerate(

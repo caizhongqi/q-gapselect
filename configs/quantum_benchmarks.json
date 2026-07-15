@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "experiment_name": "q-gapselect-quantum-core-audit-v1",
+  "master_seed": 20260715,
+  "quantiles": [0.1, 0.5, 0.9, 0.95],
+  "common": {
+    "threshold_angle": 0.7853981633974483,
+    "phase_qubits": 4,
+    "verification_confidence": 0.05,
+    "verification_shots": 64,
+    "max_attempts_per_output": 32,
+    "max_statevector_dimension": 32768,
+    "classical_shots_per_arm": 512,
+    "boundary_shots_per_round": 64,
+    "max_boundary_rounds": 6
+  },
+  "unitary_validation": {
+    "trials": 6,
+    "cases": [
+      {"name": "single_arm_m3", "means": [0.37], "phase_qubits": 3},
+      {"name": "padded_three_arm_m4", "means": [0.13, 0.52, 0.91], "phase_qubits": 4},
+      {"name": "padded_five_arm_m5", "means": [0.02, 0.21, 0.49, 0.74, 0.98], "phase_qubits": 5}
+    ]
+  },
+  "phase_grid": {
+    "phase_qubits": [2, 3, 4, 5, 6],
+    "threshold_angles": [0.7853981633974483],
+    "relations": ["above", "below"]
+  },
+  "qpe_resolution": {
+    "phase_qubits": [3, 4, 5, 6],
+    "angular_gaps": [
+      0.02454369260617026,
+      0.04908738521234052,
+      0.09817477042468103,
+      0.19634954084936207
+    ],
+    "relations": ["above", "below"]
+  },
+  "verifier_calibration": {
+    "trials": 20,
+    "phase_qubits": [3, 4],
+    "shots": [16, 64],
+    "confidence_values": [0.1, 0.05],
+    "angular_offsets": [-0.19634954084936207, 0.19634954084936207]
+  },
+  "random_benchmarks": {
+    "trials": 4,
+    "families": ["equal_grid", "heterogeneous_dyadic", "off_grid_random", "endpoint_angular"],
+    "cases": [
+      {"n": 4, "k": 1},
+      {"n": 4, "k": 2},
+      {"n": 8, "k": 2}
+    ],
+    "methods": ["direct_bbht", "independent_qpe_scan", "classical_threshold_scan"],
+    "relations": ["above", "below"]
+  },
+  "topk_comparison": {
+    "trials": 4,
+    "families": ["equal_grid", "heterogeneous_dyadic", "endpoint_angular"],
+    "cases": [
+      {"n": 4, "k": 1},
+      {"n": 4, "k": 2}
+    ],
+    "methods": ["boundary_only_negative_control", "calibrated_direct_topk"]
+  },
+  "iterative_ae": {
+    "trials": 4,
+    "families": ["equal_grid", "endpoint_angular"],
+    "cases": [
+      {"n": 4, "k": 1},
+      {"n": 4, "k": 2}
+    ],
+    "relations": ["above", "below"],
+    "target_angular_precision": 0.04908738521234052,
+    "shots_per_round": 64,
+    "max_rounds": 6,
+    "max_grover_power": 31,
+    "grid_points": 4097
+  },
+  "scheduler_sweep": {
+    "trials": 8,
+    "phase_qubits": 3,
+    "growth_values": [1.05, 1.2, 1.3333333333333333],
+    "cases": [
+      {"n": 4, "k": 1},
+      {"n": 8, "k": 1},
+      {"n": 8, "k": 4}
+    ]
+  },
+  "diffusion_ablation": {
+    "phase_qubits": [3, 4],
+    "iterations": [0, 1, 2, 3, 4],
+    "means": [0.83, 0.61, 0.37, 0.14],
+    "threshold": 0.5,
+    "relation": "above"
+  },
+  "failure_semantics": {
+    "enabled": true
+  },
+  "notes": [
+    "All direct quantum records execute the exact NumPy statevector backend and charged oracle interface.",
+    "Instance truth is evaluation-only and no marked membership set is passed to direct search.",
+    "Analytic iterative AE is a separate measurement-law backend and is never mixed with exact-state gate or qubit resources.",
+    "Boundary-only is a negative control because its calibration certificate already contains complete membership.",
+    "The index-only diffusion is explicitly invalid and never produces an algorithm answer.",
+    "Finite-size slopes and simulator results are diagnostics, not asymptotic proofs or hardware speedup evidence."
+  ]
+}

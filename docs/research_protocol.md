@@ -231,10 +231,12 @@ No genuine LLM quantum advantage may be claimed before WP3 and a credible revers
 
 ### 8.1 Current artifact disclosure
 
-The repository contains two distinct current pipelines:
+The repository contains four distinct current pipelines:
 
 - run_scaling evaluates five deterministic mean-space equal/geometric analytic-proxy regimes. Its trials configuration field is retained in provenance but is not used to repeat the deterministic calculations.
 - run_reference executes four fixed mean-vector instances over a configurable number of derived seeds. It uses trials in the scenario/seed loop and samples the analytic measurement law of every requested Grover experiment. It emits per-trial executed-query records separately from conjectural layer charges.
+- run_direct_search executes the charged canonical QPE threshold reflection and full-workspace BBHT on fixed scenarios, with joint decoding and fresh measured verification.
+- run_quantum_benchmarks executes a finite-size audit over random complex states, exact/off-grid QPE, verifier calibration, four seeded angular instance families, both threshold orientations, BBHT scheduler settings, direct and per-arm baselines, the Top-k boundary-only negative control, diffusion ablation, and explicit failure cases. Its analytic iterative-AE records form a separate backend and resource unit.
 
 The reference pipeline is stochastic at the analytic measurement-sampling level. It is not a coherent index-register batch circuit, does not generate random problem instances, and does not implement QBoundary, coherent batch extraction, orientation dovetail, Layer P, or an LLM attack. The versioned reference_diagnostic artifact contains four trials for each of four fixed scenarios, for 16 raw records. The frozen configuration schedules 500 trials per fixed scenario, but no artifact from that default 500-trial run is committed.
 
@@ -247,18 +249,20 @@ Raw records and aggregates report both fields separately, along with interval_re
 
 Current outputs may be labeled only CODE-SANITY, analytic proxy, or analytic-measurement regression as applicable. Logical calls recorded by the simulator are not physical quantum execution and must not be described as a measured quantum speedup.
 
+The quantum-core runner additionally reports conservative simultaneous NumPy allocations for the retained state, transient comparator state, and dense QFT matrix. Its gate/depth fields are logical circuit-IR counts, not compiled hardware resources. Fixed-parameter and paired same-logical-call-cap controls are both retained; neither is an accuracy-matched advantage theorem. Boundary-only is a negative control because its certificate already contains the complete Top-k membership.
+
 ### 8.2 Pre-registered future synthetic campaign
 
-The following work is EMPIRICAL-PENDING and has not been executed:
+The following larger paper campaign remains EMPIRICAL-PENDING and has not been executed:
 
-- angle-space equal-gap instances;
 - angle-space geometric-gap instances;
 - clustered boundary instances;
 - planted dyadic heterogeneous blocks;
-- endpoint regimes near zero and one;
 - complement-asymmetry counterexamples;
-- random-instance generation and evaluation beyond the four fixed references;
+- at least 500 independently generated instances per full grid cell;
 - Layer-P purification instances with controlled garbage leakage tests.
+
+Small equal-grid, simple dyadic, continuous off-grid, and endpoint angular families are now executable CODE-SANITY suites. They do not satisfy the repetition count or scale of the future campaign and must not be cited as completing it.
 
 Planned grid:
 

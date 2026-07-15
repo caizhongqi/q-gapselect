@@ -265,6 +265,25 @@ def _trial_seed(master_seed: int, scenario: str, trial: int) -> int:
     return int.from_bytes(hashlib.sha256(payload).digest()[:8], "big")
 
 
+def _run_to_terminal(search: object) -> object:
+    """Resume a bounded-per-call search until it reaches a real terminal state.
+
+    ``FullWorkspaceBBHT.run()`` intentionally advances only one configured
+    per-output attempt budget.  A multi-output experiment runner must therefore
+    resume a paused result instead of recording that intermediate checkpoint as
+    the final outcome.
+    """
+
+    run = getattr(search, "run", None)
+    if not callable(run):
+        raise TypeError("search must expose a callable run method")
+    while True:
+        result = run()
+        status = _attribute(result, ("status",), "status")
+        if status != "paused_resumable":
+            return result
+
+
 def load_config(
     path: Path,
     *,
@@ -308,7 +327,7 @@ def run(config: Mapping[str, object]) -> dict[str, object]:
         for trial in range(int(config["trials"])):
             seed = _trial_seed(int(config["master_seed"]), str(scenario["name"]), trial)
             oracle = CanonicalRyStatevectorOracle(scenario["means"], seed=seed)
-            result = FullWorkspaceBBHT(
+            search_instance = FullWorkspaceBBHT(
                 oracle,
                 scenario["threshold"],
                 scenario["expected_count"],
@@ -319,7 +338,8 @@ def run(config: Mapping[str, object]) -> dict[str, object]:
                 verification_shots=search["verification_shots"],
                 verification_confidence=search["verification_confidence"],
                 max_statevector_dimension=search["max_statevector_dimension"],
-            ).run()
+            )
+            result = _run_to_terminal(search_instance)
             selected = _attribute(
                 result,
                 ("selected_indices", "found_indices", "indices", "selected"),
@@ -339,6 +359,7 @@ def run(config: Mapping[str, object]) -> dict[str, object]:
                     "direct_unknown_oracle_search": True,
                     "selected_indices": _jsonable(selected),
                     "status": _jsonable(status),
+                    "runner_reached_terminal": status != "paused_resumable",
                     "executed_resources": _jsonable(resources),
                     "oracle_query_ledger": {
                         "coherent_total": snapshot.coherent_total,

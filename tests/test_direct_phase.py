@@ -132,6 +132,9 @@ def test_direct_flag_properties_and_zero_workspace_preparation() -> None:
     assert flag.valid_indices == (0, 1, 2)
     assert flag.workspace_dimension == 16
     assert flag.statevector_dimension == 8 * 4 * 2
+    assert flag.comparator_expanded_statevector_dimension == 128
+    assert flag.dense_qft_matrix_dimension == 64
+    assert flag.estimated_peak_complex_amplitudes == 192
     assert np.allclose(view[0, (0, 2), 0], 1 / np.sqrt(2))
     assert np.count_nonzero(view) == 2
 
@@ -209,6 +212,35 @@ def test_phase_predicate_is_mirror_symmetric_and_api_has_no_marked_set() -> None
     assert "marked_indices" not in inspect.signature(
         DirectAmplitudeThresholdFlag
     ).parameters
+
+
+@pytest.mark.parametrize("phase_qubits", range(2, 7))
+def test_exact_half_threshold_grid_bin_is_mirror_symmetric(
+    phase_qubits: int,
+) -> None:
+    oracle = CanonicalRyStatevectorOracle([0.5])
+    phase_bins = 1 << phase_qubits
+    positive = phase_bins // 4
+    negative = phase_bins - positive
+    above = DirectAmplitudeThresholdFlag(
+        oracle,
+        0.5,
+        phase_qubits=phase_qubits,
+        relation="above",
+    )
+    below = DirectAmplitudeThresholdFlag(
+        oracle,
+        0.5,
+        phase_qubits=phase_qubits,
+        relation="below",
+    )
+
+    assert positive in above.marked_phase_bins
+    assert negative in above.marked_phase_bins
+    assert positive not in below.marked_phase_bins
+    assert negative not in below.marked_phase_bins
+    assert above.acceptance_probability(0) == pytest.approx(1.0, abs=1e-12)
+    assert below.acceptance_probability(0) == pytest.approx(0.0, abs=1e-12)
 
 
 def test_threshold_endpoints_and_padded_indices_have_explicit_semantics() -> None:
@@ -289,6 +321,26 @@ def test_reflection_reports_finite_qpe_leakage_without_discarding_it() -> None:
     )
     assert result.resources.query_counts["coherent_total"] == 30
     assert result.state.shape == (flag.statevector_dimension,)
+    assert result.resources.retained_statevector_dimension == 16
+    assert result.resources.comparator_expanded_statevector_dimension == 32
+    assert result.resources.dense_qft_matrix_dimension == 64
+    assert result.resources.estimated_peak_complex_amplitudes == 96
+    assert "logical circuit-IR" in result.resources.resource_semantics
+    assert "not compiled hardware" in result.resources.resource_semantics
+
+
+def test_dense_qft_can_dominate_exact_simulator_peak_accounting() -> None:
+    oracle = CanonicalRyStatevectorOracle([0.25])
+    flag = DirectAmplitudeThresholdFlag(oracle, 0.5, phase_qubits=4)
+
+    result = flag.reflect(flag.initial_state())
+
+    # M=16 and S=16*1*2=32.  The comparator path is 3S=96 while
+    # dense-QFT execution retains M^2+2S=320 complex entries.
+    assert result.resources.retained_statevector_dimension == 32
+    assert result.resources.comparator_expanded_statevector_dimension == 64
+    assert result.resources.dense_qft_matrix_dimension == 256
+    assert result.resources.estimated_peak_complex_amplitudes == 320
 
 
 def test_verify_index_reruns_and_charges_every_qpe_shot() -> None:
@@ -301,6 +353,9 @@ def test_verify_index_reruns_and_charges_every_qpe_shot() -> None:
     assert rejected.rejected and rejected.successes == 0
     assert accepted.resources.oracle_queries == 32 * 7
     assert rejected.resources.oracle_queries == 32 * 7
+    assert accepted.resources.comparator_expanded_statevector_dimension == 0
+    assert rejected.resources.comparator_expanded_statevector_dimension == 0
+    assert accepted.resources.estimated_peak_complex_amplitudes == 48
     assert oracle.query_snapshot().coherent_total == 64 * 7
 
 

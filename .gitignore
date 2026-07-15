@@ -11,13 +11,14 @@ venv/
 dist/
 build/
 
-# Generated experiment and paper artefacts. Two small audited code-sanity
-# outputs are versioned; all other generated results remain ignored.
+# Generated experiment and paper artefacts. Four audited code-sanity outputs
+# are versioned; all other generated results remain ignored.
 artifacts/*
 !artifacts/README.md
 !artifacts/scaling.json
 !artifacts/reference_diagnostic.json
 !artifacts/direct_search_diagnostic.json
+!artifacts/quantum_benchmark_diagnostic.json
 paper/*.aux
 paper/*.bbl
 paper/*.blg

@@ -26,6 +26,7 @@ from numpy.typing import NDArray
 
 from .coherent import CanonicalRyStatevectorOracle
 from .direct_phase import (
+    RESOURCE_SEMANTICS,
     DirectAmplitudeThresholdFlag,
     DirectPhaseFlagResources,
     IndexVerificationResult,
@@ -118,15 +119,20 @@ class DirectSearchResources:
     depth: int
     qubits: int
     workspace_qubits: int
-    # Retained phase/index/reward state and peak state including the transient
-    # reversible comparator flag, respectively.
+    # Compatibility fields: these retain their public names while now meaning
+    # the retained state and corrected conservative simulator peak.
     statevector_dimension: int
     peak_statevector_dimension: int
+    retained_statevector_dimension: int
+    comparator_expanded_statevector_dimension: int
+    dense_qft_matrix_dimension: int
+    estimated_peak_complex_amplitudes: int
     phase_ancilla_residual: float
     zero_workspace_residual: float
     comparator_residual: float
     backend: str = BACKEND
     claim_status: str = CLAIM_STATUS
+    resource_semantics: str = RESOURCE_SEMANTICS
 
     @property
     def oracle_queries(self) -> int:
@@ -198,8 +204,10 @@ class DirectThresholdSearchResult:
 class _ResourceAccumulator:
     def __init__(
         self,
-        statevector_dimension: int,
-        peak_statevector_dimension: int,
+        retained_statevector_dimension: int,
+        comparator_expanded_statevector_dimension: int,
+        dense_qft_matrix_dimension: int,
+        estimated_peak_complex_amplitudes: int,
     ) -> None:
         self.queries: Counter[str] = Counter()
         self.gates: Counter[str] = Counter()
@@ -212,8 +220,14 @@ class _ResourceAccumulator:
         self.depth = 0
         self.qubits = 0
         self.workspace_qubits = 0
-        self.statevector_dimension = statevector_dimension
-        self.peak_statevector_dimension = peak_statevector_dimension
+        self.statevector_dimension = retained_statevector_dimension
+        self.peak_statevector_dimension = estimated_peak_complex_amplitudes
+        self.retained_statevector_dimension = retained_statevector_dimension
+        self.comparator_expanded_statevector_dimension = (
+            comparator_expanded_statevector_dimension
+        )
+        self.dense_qft_matrix_dimension = dense_qft_matrix_dimension
+        self.estimated_peak_complex_amplitudes = estimated_peak_complex_amplitudes
         self.phase_residual = 0.0
         self.zero_residual = 0.0
         self.comparator_residual = 0.0
@@ -260,6 +274,22 @@ class _ResourceAccumulator:
             self.peak_statevector_dimension,
             other.peak_statevector_dimension,
         )
+        self.retained_statevector_dimension = max(
+            self.retained_statevector_dimension,
+            other.retained_statevector_dimension,
+        )
+        self.comparator_expanded_statevector_dimension = max(
+            self.comparator_expanded_statevector_dimension,
+            other.comparator_expanded_statevector_dimension,
+        )
+        self.dense_qft_matrix_dimension = max(
+            self.dense_qft_matrix_dimension,
+            other.dense_qft_matrix_dimension,
+        )
+        self.estimated_peak_complex_amplitudes = max(
+            self.estimated_peak_complex_amplitudes,
+            other.estimated_peak_complex_amplitudes,
+        )
         self.phase_residual = max(self.phase_residual, other.phase_residual)
         self.zero_residual = max(self.zero_residual, other.zero_residual)
         self.comparator_residual = max(
@@ -294,6 +324,14 @@ class _ResourceAccumulator:
             workspace_qubits=self.workspace_qubits,
             statevector_dimension=self.statevector_dimension,
             peak_statevector_dimension=self.peak_statevector_dimension,
+            retained_statevector_dimension=self.retained_statevector_dimension,
+            comparator_expanded_statevector_dimension=(
+                self.comparator_expanded_statevector_dimension
+            ),
+            dense_qft_matrix_dimension=self.dense_qft_matrix_dimension,
+            estimated_peak_complex_amplitudes=(
+                self.estimated_peak_complex_amplitudes
+            ),
             phase_ancilla_residual=self.phase_residual,
             zero_workspace_residual=self.zero_residual,
             comparator_residual=self.comparator_residual,
@@ -388,10 +426,23 @@ class FullWorkspaceBBHT:
             seed = _integer(seed, "seed")
         self._rng = np.random.default_rng(seed)
 
-        self.statevector_dimension = (
-            (1 << self.phase_qubits) * oracle.index_dimension * 2
+        phase_bins = 1 << self.phase_qubits
+        self.retained_statevector_dimension = (
+            phase_bins * oracle.index_dimension * 2
         )
-        self.peak_statevector_dimension = 2 * self.statevector_dimension
+        self.comparator_expanded_statevector_dimension = (
+            2 * self.retained_statevector_dimension
+        )
+        self.dense_qft_matrix_dimension = phase_bins * phase_bins
+        self.estimated_peak_complex_amplitudes = max(
+            3 * self.retained_statevector_dimension,
+            self.dense_qft_matrix_dimension
+            + 2 * self.retained_statevector_dimension,
+        )
+        # Compatibility aliases.  The old peak calculation was only ``2S``;
+        # it now exposes the corrected conservative simultaneous allocation.
+        self.statevector_dimension = self.retained_statevector_dimension
+        self.peak_statevector_dimension = self.estimated_peak_complex_amplitudes
         self._blocked_status = (
             "statevector_budget_exceeded"
             if self.peak_statevector_dimension > self.max_statevector_dimension
@@ -411,8 +462,10 @@ class FullWorkspaceBBHT:
         self._attempts_for_current_output = 0
         self._bbht_bound = 1.0
         self._resources = _ResourceAccumulator(
-            self.statevector_dimension,
-            self.peak_statevector_dimension,
+            self.retained_statevector_dimension,
+            self.comparator_expanded_statevector_dimension,
+            self.dense_qft_matrix_dimension,
+            self.estimated_peak_complex_amplitudes,
         )
 
     def _eligible_indices(self) -> tuple[int, ...]:
@@ -437,8 +490,10 @@ class FullWorkspaceBBHT:
         verification_shots: int,
     ) -> _ResourceAccumulator:
         resources = _ResourceAccumulator(
-            self.statevector_dimension,
-            self.peak_statevector_dimension,
+            self.retained_statevector_dimension,
+            self.comparator_expanded_statevector_dimension,
+            self.dense_qft_matrix_dimension,
+            self.estimated_peak_complex_amplitudes,
         )
         resources.attempts = 1
         resources.amplification_iterations = iterations

@@ -63,6 +63,14 @@ separately throughout the repository.
 - Deterministic analytic, reference, and exact-state coherent experiment runners.
   Raw records keep heuristic output agreement, certificate-gated success, executed
   query/gate/depth/qubit resources, and conjectural theory fields separate.
+- A unified executed quantum-core audit runner covering random complex-state
+  unitarity, exact and off-grid QPE resolution, measured verifier calibration,
+  four seeded angular instance families, full-workspace BBHT scheduling, both
+  threshold orientations, multi-output exclusion, direct/independent/classical
+  fixed-parameter and same-logical-budget controls, an analytic iterative-AE
+  comparator, Top-k boundary-only negative control, invalid index-only diffusion,
+  and explicit failure semantics. Dense NumPy QFT and comparator peak allocations
+  are reported separately from logical query/gate/depth counts.
 - An authorization-scoped offline LLM attack-study pipeline: typed local-model and
   validator adapters, strict JSONL replay, source-only portfolio selection,
   held-out-victim isolation, paired clean/attack seeds, and task-level `ASR@Q`,
@@ -86,12 +94,39 @@ implementations.
 
 ## Current measured status
 
-The checked coherent diagnostic contains four fixed scenarios, eight seeds, and
-three executable methods (96 raw records). All methods certify the answer on these
-easy instances. The current boundary-plus-certificate-enumeration controller averages
-2,100 reward oracle calls, while the independent exact-state boundary baseline averages 1,188.
-This is a negative baseline result: the present code does **not** demonstrate a
-quantum query advantage or a leading attack result. The bundled attack fixture is
+The versioned quantum-core diagnostic was executed from source commit
+`eeed49c2ce9d845a374967085a078b317984410d`. It contains 688 primary records and
+288 additional paired same-logical-query-cap records across all ten configured
+suites. The most important finite-size results are:
+
+- all 18 random-complex-state compute/inverse and reflection-involution checks
+  passed; the largest residual was `8.08e-15`;
+- all 134 exact phase-grid predicate checks agreed with their expected
+  classification up to a maximum absolute error of `7.55e-15`;
+- the measured verifier made 2 wrong resolved decisions in 320 trials, and the
+  minimum per-cell empirical interval coverage was `0.90`; these small cells are
+  calibration diagnostics, not evidence of nominal-coverage certification;
+- on the 96 fixed-parameter random instances per method, direct BBHT returned an
+  exact complete answer in 85 cases, independent QPE scan in 84, and the classical
+  scan in 58, at mean logical-query counts `9668`, `8949`, and `2464`, respectively;
+- direct BBHT and independent QPE each completed the finite-QPE predicate in 86
+  cases, but only 85 and 84 of those outputs matched the true-mean threshold target.
+  Predicate completion is therefore never reported as true-mean correctness;
+- under a per-instance query cap copied from the paired direct run, the exact
+  counts were 85/96 for direct, 82/96 for independent QPE, and 79/96 for the
+  classical scan. This is not an accuracy-matched advantage result;
+- the analytic iterative-AE comparator completed exactly on 32/32 diagnostic
+  cases with a mean of 4,642 analytic oracle calls, but its measurement-law
+  backend is deliberately not mixed with exact-state gate or qubit resources;
+- all 24 calibrated direct Top-k trials stopped with
+  `phase_resolution_insufficient`, while the boundary-only negative control was
+  exact in 24/24 trials only because its certificate already contains the full
+  membership answer. It is forbidden evidence for quantum discovery.
+
+These results validate important implementation invariants and expose current
+failure modes. They do **not** demonstrate a quantum query advantage, a new quantum
+algorithm, hardware feasibility, or a leading LLM attack result. No local LLM or
+attack reward oracle was run in this diagnostic. The bundled attack fixture remains
 synthetic state-only data used to test metric and split semantics; its rates are not
 empirical LLM evidence.
 
@@ -118,20 +153,27 @@ python scripts/run_scaling.py --output artifacts/scaling.json
 python scripts/run_reference.py --output artifacts/reference_results.json
 python scripts/run_coherent.py --output artifacts/coherent_results.json
 python scripts/run_direct_search.py --output artifacts/direct_search_results.json
+python scripts/run_quantum_benchmarks.py \
+  --config configs/quantum_benchmarks.json \
+  --output artifacts/quantum_benchmark_diagnostic.json
 python scripts/run_attack_study.py \
   --config configs/attack_study.json \
   --output artifacts/attack_study_results.json \
   --raw-output artifacts/attack_study_raw.jsonl
 ```
 
-Use each script's `--help` option for experiment controls. The reference
+Use each script's `--help` option for experiment controls. The quantum-core
+runner supports `--suite`, `--trials`, and `--seed`; its default configuration
+runs no local LLM and records exact-state and analytic-measurement evidence in
+separate resource classes. The reference
 configuration schedules 500 repetitions per scenario; an explicit `--trials`
 override is recorded in the resolved configuration and hash. Generated data are
-written beneath `artifacts/`. The repository versions only the audited analytic
-scaling table and a 4-trial-per-scenario reference diagnostic; other outputs stay
-ignored until a recorded run is intentionally promoted. The default attack command
-runs only the clearly labelled, non-empirical state fixture; pass authorized offline
-JSONL through `--replay` for an actual study.
+written beneath `artifacts/`. The repository versions four audited diagnostics:
+the analytic scaling table, the 4-trial-per-scenario reference run, the direct-search
+run, and the full quantum-core run. Other outputs stay ignored until a recorded run
+is intentionally promoted. The default attack command runs only the clearly
+labelled, non-empirical state fixture; pass authorized offline JSONL through
+`--replay` for an actual study.
 
 ## Paper-grade completion criteria
 

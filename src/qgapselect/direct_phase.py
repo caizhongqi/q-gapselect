@@ -29,6 +29,16 @@ from .oracles import QueryKind, QueryLedger, QuerySnapshot
 ComplexState = NDArray[np.complex128]
 BACKEND = "numpy_exact_statevector_small_scale"
 CLAIM_STATUS = "direct_charged_qpe_threshold_reflection_no_complexity_theorem"
+RESOURCE_SEMANTICS = (
+    "simulator memory dimensions count complex entries and the estimated peak "
+    "counts conservatively simultaneous live entries; query, gate, and depth "
+    "counts are logical circuit-IR resources, not compiled hardware resources"
+)
+# The phase predicate is defined in angular space.  Mirrored QPE bins must be
+# classified identically, including when a grid point lies exactly on the
+# threshold.  A small absolute tolerance absorbs only the final floating-point
+# evaluation of pi*r/M and asin(sqrt(tau)); it is not a statistical margin.
+PHASE_BOUNDARY_ATOL = 32.0 * math.ulp(math.pi)
 
 
 def _integer(value: object, name: str) -> int:
@@ -71,11 +81,16 @@ class DirectPhaseFlagResources:
     workspace_qubits: int
     phase_qubits: int
     phase_bins: int
+    retained_statevector_dimension: int
+    comparator_expanded_statevector_dimension: int
+    dense_qft_matrix_dimension: int
+    estimated_peak_complex_amplitudes: int
     phase_ancilla_residual: float
     zero_workspace_residual: float
     comparator_residual: float
     backend: str = BACKEND
     claim_status: str = CLAIM_STATUS
+    resource_semantics: str = RESOURCE_SEMANTICS
 
     @property
     def oracle_queries(self) -> int:
@@ -184,14 +199,26 @@ class DirectAmplitudeThresholdFlag:
         if any(not 0 <= index < oracle.n_arms for index in excluded):
             raise IndexError("an excluded index is outside the valid arm range")
         self.excluded_indices = excluded
+        self.threshold_angle = math.asin(math.sqrt(self.threshold))
+
+        def is_above(phase_bin: int) -> bool:
+            # QPE produces the conjugate eigenphases +/-2*theta.  Folding the
+            # bin before comparison makes the predicate exactly mirror
+            # symmetric by construction instead of relying on two separately
+            # rounded sin^2 evaluations.
+            folded_bin = min(phase_bin, self.phase_bins - phase_bin)
+            bin_angle = math.pi * folded_bin / self.phase_bins
+            return bin_angle >= self.threshold_angle or math.isclose(
+                bin_angle,
+                self.threshold_angle,
+                rel_tol=0.0,
+                abs_tol=PHASE_BOUNDARY_ATOL,
+            )
+
         self._marked_bins = tuple(
             phase_bin
             for phase_bin in range(self.phase_bins)
-            if (
-                math.sin(math.pi * phase_bin / self.phase_bins) ** 2
-                >= self.threshold
-            )
-            == (relation == "above")
+            if is_above(phase_bin) == (relation == "above")
         )
         mask = np.zeros(
             (self.phase_bins, self.index_dimension, 2),
@@ -234,6 +261,52 @@ class DirectAmplitudeThresholdFlag:
     @property
     def statevector_dimension(self) -> int:
         return self.phase_bins * self.index_dimension * 2
+
+    @property
+    def comparator_expanded_statevector_dimension(self) -> int:
+        """Complex amplitudes in the materialized comparator-flag state."""
+
+        return 2 * self.statevector_dimension
+
+    @property
+    def dense_qft_matrix_dimension(self) -> int:
+        """Complex entries in the dense NumPy QFT matrix."""
+
+        return self.phase_bins * self.phase_bins
+
+    @property
+    def estimated_peak_complex_amplitudes(self) -> int:
+        """Conservative peak for this exact-state NumPy implementation.
+
+        Comparator kickback keeps the retained source (``S``) live beside its
+        expanded flag state (``2S``).  Dense QFT keeps its ``M x M`` matrix,
+        input (``S``), and output (``S``) live together.  This is a count of
+        complex entries, not a hardware-qubit or byte-memory claim.
+        """
+
+        retained = self.statevector_dimension
+        comparator_path = 3 * retained
+        dense_qft_path = self.dense_qft_matrix_dimension + 2 * retained
+        return max(comparator_path, dense_qft_path)
+
+    def _executed_memory_dimensions(
+        self,
+        gate_counts: Mapping[str, int],
+    ) -> tuple[int, int]:
+        """Return comparator allocation and peak for executed operations."""
+
+        retained = self.statevector_dimension
+        comparator_executed = int(
+            gate_counts.get("phase_bin_comparator_compute", 0)
+        ) > 0
+        comparator = (
+            self.comparator_expanded_statevector_dimension
+            if comparator_executed
+            else 0
+        )
+        qft_path = self.dense_qft_matrix_dimension + 2 * retained
+        comparator_path = retained + comparator
+        return comparator, max(qft_path, comparator_path)
 
     @property
     def register_shape(self) -> tuple[int, ...]:
@@ -548,6 +621,9 @@ class DirectAmplitudeThresholdFlag:
         comparator_residual: float,
     ) -> DirectPhaseFlagResources:
         query_counts = QueryLedger.difference(self.oracle.query_snapshot(), before)
+        comparator_dimension, operation_peak = self._executed_memory_dimensions(
+            gates.counts
+        )
         resources = DirectPhaseFlagResources(
             query_counts=_immutable(query_counts),
             gate_counts=_immutable(gates.counts),
@@ -563,6 +639,10 @@ class DirectAmplitudeThresholdFlag:
             workspace_qubits=self.phase_qubits + 1,
             phase_qubits=self.phase_qubits,
             phase_bins=self.phase_bins,
+            retained_statevector_dimension=self.statevector_dimension,
+            comparator_expanded_statevector_dimension=comparator_dimension,
+            dense_qft_matrix_dimension=self.dense_qft_matrix_dimension,
+            estimated_peak_complex_amplitudes=operation_peak,
             phase_ancilla_residual=phase_residual,
             zero_workspace_residual=zero_residual,
             comparator_residual=comparator_residual,
@@ -867,6 +947,9 @@ class DirectAmplitudeThresholdFlag:
         )
         counts["classical_total"] = counts[QueryKind.CLASSICAL_SAMPLE.value]
         counts["total"] = counts["coherent_total"] + counts["classical_total"]
+        comparator_dimension, operation_peak = self._executed_memory_dimensions(
+            self._gate_counts
+        )
         return DirectPhaseFlagResources(
             query_counts=_immutable(counts),
             gate_counts=_immutable(self._gate_counts),
@@ -879,6 +962,10 @@ class DirectAmplitudeThresholdFlag:
             workspace_qubits=self.phase_qubits + 1,
             phase_qubits=self.phase_qubits,
             phase_bins=self.phase_bins,
+            retained_statevector_dimension=self.statevector_dimension,
+            comparator_expanded_statevector_dimension=comparator_dimension,
+            dense_qft_matrix_dimension=self.dense_qft_matrix_dimension,
+            estimated_peak_complex_amplitudes=operation_peak,
             phase_ancilla_residual=self._max_phase_residual,
             zero_workspace_residual=self._max_zero_residual,
             comparator_residual=self._max_comparator_residual,
