@@ -17,6 +17,7 @@ artifacts/*
 !artifacts/README.md
 !artifacts/scaling.json
 !artifacts/reference_diagnostic.json
+!artifacts/direct_search_diagnostic.json
 paper/*.aux
 paper/*.bbl
 paper/*.blg

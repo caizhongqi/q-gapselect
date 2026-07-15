@@ -37,11 +37,23 @@ separately throughout the repository.
 - A natural-purification statevector oracle with explicit work garbage and a
   deterministic full-unitary Householder completion. The completion is a simulator
   convention, not a unit-cost reversible LLM compiler.
+- A direct, charged amplitude-threshold reflection for the canonical oracle. It
+  constructs QPE from embedded controlled reward-oracle calls, compares phase bins,
+  applies phase kickback, and uncomputes on the complete phase/index/reward space.
+  It receives a numeric threshold and never receives a hidden marked-index set.
+- Full-workspace BBHT threshold search with a rank-one diffusion about the complete
+  initial state, joint accept/index decoding, output exclusion, and independently
+  rerun fixed-confidence QPE verification. Failed search budgets remain explicitly
+  uncertified; they are not interpreted as proof that no qualifying arm exists.
+- A calibrated direct Top-$k$ controller that passes only one numeric boundary and
+  simultaneous confidence intervals into fair above/below searches. Completion
+  requires a final strict interval certificate for every selected and rejected arm;
+  the calibration still samples every arm and therefore is not an advantage result.
 - Executable `QBoundary`, reversible compute--phase--uncompute `QGapFlag`, known-count
   Grover and BBHT `QBatchExtract`, and a resumable selected/complement dovetail
   controller. Every reward-oracle experiment and measured flag verification is
-  charged. The current boundary stage still samples arms independently, and the
-  flag is compiled from its resulting certificate.
+  charged. This earlier controller still compiles its flag from the resulting
+  certificate and is retained as a clearly labelled baseline.
 - An analytic iterative-amplitude-estimation simulator and multiscale Q-GapSelect
   research selector with mean/angular confidence diagnostics and separate
   simulated versus conjectural cost fields.
@@ -63,13 +75,14 @@ The orientation-optimized angular layer complexity reported by the current exper
 **research hypothesis**, not a proved runtime theorem. The manuscript states the
 proof obligations and falsification criteria explicitly.
 
-The coherent primitives are executable reference semantics, but they do not yet
-constitute the proposed new heterogeneous-gap quantum algorithm. Their ingredients
-overlap substantially with prior order-statistic, variable-time search, and
-all-marked enumeration algorithms. Only a strictly stronger unknown-gap procedure
-with a matching lower bound could activate that claim. Likewise, the repository
-does not compile an LLM generator into a reversible circuit; it supplies the natural
-oracle contract and a finite exact-state reference implementation.
+The direct threshold path fixes the earlier semantic flaw in which the coherent
+flag merely encoded an already known answer. It is nevertheless a careful
+composition of amplitude estimation and unknown-success amplitude amplification,
+not yet the proposed new heterogeneous-gap quantum algorithm. Only a strictly
+stronger unknown-gap procedure with a matching lower bound could activate that
+claim. Likewise, the repository does not compile an LLM generator into a reversible
+circuit; it supplies the natural oracle contract and finite exact-state reference
+implementations.
 
 ## Current measured status
 
@@ -104,6 +117,7 @@ pytest
 python scripts/run_scaling.py --output artifacts/scaling.json
 python scripts/run_reference.py --output artifacts/reference_results.json
 python scripts/run_coherent.py --output artifacts/coherent_results.json
+python scripts/run_direct_search.py --output artifacts/direct_search_results.json
 python scripts/run_attack_study.py \
   --config configs/attack_study.json \
   --output artifacts/attack_study_results.json \

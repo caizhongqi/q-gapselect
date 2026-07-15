@@ -9,6 +9,26 @@ be interpreted as importing a proved quantum bound.
 from .attack_metrics import AttackMetrics, aggregate_attack_metrics
 from .coherent import CanonicalRyStatevectorOracle
 from .contracts import CoherentOracleContract, CoherentRewardGate, OracleModel
+from .direct_phase import (
+    DirectAmplitudeThresholdFlag,
+    DirectPhaseFlagResources,
+    DirectPhaseFlagResult,
+    DirectPhaseThresholdFlag,
+    IndexVerificationResult,
+)
+from .direct_search import (
+    DirectSearchAttempt,
+    DirectSearchResources,
+    DirectThresholdSearchResult,
+    FullWorkspaceBBHT,
+    full_workspace_rank_one_diffusion,
+)
+from .direct_topk import (
+    CalibratedDirectTopKController,
+    CalibratedDirectTopKResult,
+    DirectTopKBranchTrace,
+    DirectTopKResources,
+)
 from .estimators import AnalyticIterativeAmplitudeEstimator, IterativeAmplitudeEstimator
 from .gapselect import QGapSelect
 from .llm_attack import (
@@ -53,9 +73,20 @@ __all__ = [
     "CallableLocalModelAdapter",
     "CanonicalBernoulliOracleSimulator",
     "CanonicalRyStatevectorOracle",
+    "CalibratedDirectTopKController",
+    "CalibratedDirectTopKResult",
     "CoherentOracleContract",
     "CoherentRewardGate",
     "CounterfactualRateSelector",
+    "DirectAmplitudeThresholdFlag",
+    "DirectPhaseFlagResources",
+    "DirectPhaseFlagResult",
+    "DirectPhaseThresholdFlag",
+    "DirectSearchAttempt",
+    "DirectSearchResources",
+    "DirectThresholdSearchResult",
+    "DirectTopKBranchTrace",
+    "DirectTopKResources",
     "DovetailTopKController",
     "EvaluatedGeneration",
     "GapSelectConfig",
@@ -64,6 +95,8 @@ __all__ = [
     "IterativeAmplitudeEstimator",
     "GenerationRecord",
     "GenerationRequest",
+    "FullWorkspaceBBHT",
+    "IndexVerificationResult",
     "NaturalArmDistribution",
     "NaturalPurificationStatevectorOracle",
     "OfflineReplayBackend",
@@ -82,6 +115,7 @@ __all__ = [
     "ValidatorResult",
     "aggregate_attack_metrics",
     "collect_local_records",
+    "full_workspace_rank_one_diffusion",
     "paired_counterfactual_event",
     "qbatch_extract",
     "qboundary",

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "experiment_name": "q-gapselect-direct-unknown-oracle-search-v1",
+  "master_seed": 20260714,
+  "trials": 4,
+  "search": {
+    "phase_qubits": 4,
+    "max_attempts_per_output": 24,
+    "verification_shots": 64,
+    "verification_confidence": 0.05,
+    "max_statevector_dimension": 4096
+  },
+  "scenarios": [
+    {
+      "name": "one_above_exact_grid_n4",
+      "means": [1.0, 0.0, 0.0, 0.0],
+      "threshold": 0.5,
+      "expected_count": 1,
+      "relation": "above",
+      "metadata": {
+        "regime": "deterministic_exact_grid",
+        "purpose": "single-output charged-search audit"
+      }
+    },
+    {
+      "name": "two_above_exact_grid_n4",
+      "means": [1.0, 1.0, 0.0, 0.0],
+      "threshold": 0.5,
+      "expected_count": 2,
+      "relation": "above",
+      "metadata": {
+        "regime": "deterministic_exact_grid",
+        "purpose": "exclusion-and-reconstruction audit"
+      }
+    },
+    {
+      "name": "two_below_exact_grid_n4",
+      "means": [1.0, 1.0, 0.0, 0.0],
+      "threshold": 0.5,
+      "expected_count": 2,
+      "relation": "below",
+      "metadata": {
+        "regime": "deterministic_exact_grid",
+        "purpose": "complementary-threshold audit"
+      }
+    },
+    {
+      "name": "finite_phase_leakage_n4",
+      "means": [0.95, 0.72, 0.31, 0.05],
+      "threshold": 0.5,
+      "expected_count": 2,
+      "relation": "above",
+      "metadata": {
+        "regime": "finite-precision-qpe",
+        "purpose": "false-positive-verification and attempt-budget audit"
+      }
+    }
+  ],
+  "notes": [
+    "Means construct the canonical reward oracle but are not passed to the search controller.",
+    "The search must discover accepted indices through charged QPE reflections and joint accept-index measurements.",
+    "Every reported query count comes from executed oracle-ledger calls.",
+    "Exact-state simulation is not hardware evidence or an asymptotic quantum-advantage result."
+  ]
+}

@@ -10,6 +10,7 @@ and it does not establish a query-complexity theorem.
 from __future__ import annotations
 
 import math
+import operator
 import random
 import threading
 from collections.abc import Mapping, Sequence
@@ -239,6 +240,107 @@ class CanonicalRyStatevectorOracle:
             operator = block.conj().T if inverse else block
             active[arm] = operator @ active[arm]
 
+        kind = {
+            (False, False): QueryKind.FORWARD,
+            (True, False): QueryKind.INVERSE,
+            (False, True): QueryKind.CONTROLLED_FORWARD,
+            (True, True): QueryKind.CONTROLLED_INVERSE,
+        }[(inverse, controlled)]
+        self.__ledger.record(kind, tag=tag)
+        return view.reshape(-1)
+
+    def apply_embedded(
+        self,
+        state: ComplexState,
+        *,
+        register_shape: Sequence[int],
+        index_axis: int,
+        reward_axis: int,
+        control_axis: int | None = None,
+        inverse: bool = False,
+        tag: str | None = None,
+    ) -> ComplexState:
+        """Apply the oracle inside an explicitly described larger register.
+
+        ``register_shape`` describes a tensor-product register whose
+        computational-basis axes include the complete index and reward
+        registers.  If ``control_axis`` is supplied, that axis must be a
+        qubit and only its ``|1>`` branch is acted on.  All other axes are
+        preserved coherently.  One invocation is one logical oracle query,
+        regardless of the number of spectator-register basis states present.
+
+        This is the algorithm-facing API used by small-state controlled-QPE
+        experiments.  It intentionally does not expose the private rotation
+        blocks or a dense oracle matrix.
+        """
+
+        if not isinstance(inverse, bool):
+            raise TypeError("inverse must be bool")
+        try:
+            raw_shape = tuple(register_shape)
+        except TypeError as error:
+            raise TypeError("register_shape must be a sequence of integers") from error
+        if any(isinstance(size, bool) for size in raw_shape):
+            raise TypeError("register_shape entries must be integers, not bool")
+        try:
+            shape = tuple(operator.index(size) for size in raw_shape)
+        except TypeError as error:
+            raise TypeError("register_shape entries must be integers") from error
+        if not shape or any(size <= 0 for size in shape):
+            raise ValueError("register_shape entries must be positive")
+
+        def checked_axis(value: object, name: str) -> int:
+            if isinstance(value, bool):
+                raise TypeError(f"{name} must be an integer, not bool")
+            try:
+                axis = operator.index(value)
+            except TypeError as error:
+                raise TypeError(f"{name} must be an integer") from error
+            if not 0 <= axis < len(shape):
+                raise ValueError(f"{name} is outside register_shape")
+            return axis
+
+        index_axis = checked_axis(index_axis, "index_axis")
+        reward_axis = checked_axis(reward_axis, "reward_axis")
+        if index_axis == reward_axis:
+            raise ValueError("index_axis and reward_axis must be distinct")
+        if shape[index_axis] != self.index_dimension:
+            raise ValueError("index axis has the wrong dimension")
+        if shape[reward_axis] != 2:
+            raise ValueError("reward axis must be a qubit")
+
+        checked_control: int | None = None
+        if control_axis is not None:
+            checked_control = checked_axis(control_axis, "control_axis")
+            if checked_control in (index_axis, reward_axis):
+                raise ValueError("control_axis must be distinct from oracle axes")
+            if shape[checked_control] != 2:
+                raise ValueError("control axis must be a qubit")
+
+        values = np.asarray(state, dtype=np.complex128)
+        expected = math.prod(shape)
+        if values.ndim != 1 or values.size != expected:
+            raise ValueError(
+                f"expected a flat statevector of length {expected}, got {values.shape}"
+            )
+        if not np.isclose(np.linalg.norm(values), 1.0, atol=1e-10):
+            raise ValueError("statevector must be normalized")
+        view = values.copy().reshape(shape)
+
+        if checked_control is None:
+            active = np.moveaxis(view, (index_axis, reward_axis), (-2, -1))
+        else:
+            ordered = np.moveaxis(
+                view,
+                (checked_control, index_axis, reward_axis),
+                (-3, -2, -1),
+            )
+            active = ordered[..., 1, :, :]
+        for arm, block in enumerate(self.__blocks):
+            operator_block = block.conj().T if inverse else block
+            active[..., arm, :] = active[..., arm, :] @ operator_block.T
+
+        controlled = checked_control is not None
         kind = {
             (False, False): QueryKind.FORWARD,
             (True, False): QueryKind.INVERSE,
