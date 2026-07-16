@@ -1,0 +1,1145 @@
+{
+  "aggregate_assertions": {
+    "all_assertions_passed": true,
+    "all_cases_match_preregistered_behavior": true,
+    "all_query_formulas_reconciled": true,
+    "both_on_grid_cases_complete_clean_and_score_exact": true,
+    "cleanup_collision_identity_holds_within_tolerance": true,
+    "exact_tie_cleans_and_fails_closed": true,
+    "no_answer_dependent_algorithm_input": true,
+    "no_certificate_issued": true,
+    "no_compiled_ancilla_count_claimed": true,
+    "no_elementary_gate_ledger_claimed": true,
+    "no_qram_assumed": true,
+    "no_quantum_advantage_claimed": true,
+    "no_transpiled_depth_claimed": true,
+    "off_grid_case_entangles_and_fails_closed": true,
+    "required_panel_roles_present_exactly_once": true
+  },
+  "artifact_type": "q_gapselect_coherent_unknown_boundary_topk_s2_panel",
+  "claim_boundaries": {
+    "does_not_support": [
+      "a generic finite-QPE rounding theorem",
+      "a correctness or confidence certificate",
+      "a new query-complexity upper bound",
+      "a same-interface composition separation",
+      "a matching oracle lower bound",
+      "an elementary-gate count or target gate-set decomposition",
+      "logical, transpiled, scheduled, or hardware circuit depth",
+      "post-decomposition ancilla or physical-qubit requirements",
+      "hardware performance",
+      "a new quantum advantage or CCF-A publication claim"
+    ],
+    "supports": [
+      "tiny exact-state end-to-end coherent rank-copy-uncompute semantics",
+      "complete durable Top-k masks on two exact-grid strict fixtures",
+      "the rank-copy cleanup collision identity on all four fixtures",
+      "fail-closed behavior for generic off-grid entanglement and an exact tie",
+      "an exact executed canonical-oracle query ledger with formula reconciliation",
+      "executed NumPy kernel-macro counts, not circuit gate counts",
+      "undecomposed logical macro counts and unsynthesised structural rank proxies",
+      "declared register qubits and analytic statevector-size proxies"
+    ]
+  },
+  "claim_scope": "tiny_rounding_promise_circuit_sanity_no_new_upper_bound_no_composition_separation_no_lower_bound_no_transpiled_gate_depth_no_hardware",
+  "claim_status": "circuit_semantics_and_exact_queries_supported_no_transpilation_theory_advantage_not_claimable",
+  "config_hash": "06d8aef2705d524009b7191b48fc60d2307d2252275fd42f942c39f8d6a8b22e",
+  "experiment_name": "coherent_unknown_boundary_topk_s2_panel_v1",
+  "notes": [
+    "The trusted harness uses means only to construct and score the canonical oracle; the algorithm receives only the oracle handle, k, and public circuit limits.",
+    "The two exact-grid cases test complete durable Top-k output and inverse cleanup under the explicit rounding promise.",
+    "The generic off-grid case must expose rank-copy entanglement and fail closed rather than silently discard garbage.",
+    "The exact boundary tie must clean but reject the non-strict Top-k relation.",
+    "This tiny exact-state panel is circuit-semantic evidence only; it is not a certificate, query-complexity separation, hardware result, new quantum advantage, or CCF-A claim."
+  ],
+  "provenance": {
+    "config_path": "/workspace/scratch/9476d8f4ff7c/q-gapselect/configs/coherent_unknown_boundary_topk.json",
+    "config_sha256": "06d8aef2705d524009b7191b48fc60d2307d2252275fd42f942c39f8d6a8b22e",
+    "git_commit": "3a8e3fe4476e4f91beb520340dd74b37e9058055",
+    "git_tree": "c90d70efc7bb7c86459db467bf066a6e9464f767",
+    "numpy_version": "2.5.1",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13",
+    "source_status_capture": "before_s2_artifact_write",
+    "source_tree_dirty_at_execution": false
+  },
+  "records": [
+    {
+      "algorithm_inputs": {
+        "answer_dependent_inputs_supplied": false,
+        "cleanup_tolerance": 1e-10,
+        "k": 1,
+        "max_statevector_dimension": 600000,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+        "phase_qubits": 3
+      },
+      "case_id": "on_grid_n2_k1_q3",
+      "cleanup_identity": {
+        "cleanup_tolerance": 1e-10,
+        "executed_garbage_probability": 2.886579864025407e-15,
+        "identity": "P_garbage = 1 - sum_y p_y^2",
+        "output_collision_probability": 0.9999999999999942,
+        "output_reduced_purity": 0.9999999999999942,
+        "passed": true,
+        "predicted_garbage_probability": 5.773159728050814e-15,
+        "prediction_residual": 2.886579864025407e-15,
+        "purity_residual": 0.0
+      },
+      "expected_behavior": "complete",
+      "expected_behavior_matched": true,
+      "output_distribution": [
+        {
+          "arm_order_membership_bits": [
+            0,
+            0
+          ],
+          "membership_mask": 0,
+          "probability": 3.5535059819914793e-31
+        },
+        {
+          "arm_order_membership_bits": [
+            1,
+            0
+          ],
+          "membership_mask": 1,
+          "probability": 0.9999999999999971
+        },
+        {
+          "arm_order_membership_bits": [
+            0,
+            1
+          ],
+          "membership_mask": 2,
+          "probability": 8.395694607766346e-33
+        },
+        {
+          "arm_order_membership_bits": [
+            1,
+            1
+          ],
+          "membership_mask": 3,
+          "probability": 0.0
+        }
+      ],
+      "query_formula_reconciliation": {
+        "derivation": "n forward preparations + n inverse preparations + two QPE directions, each charging forward and inverse oracle calls for n*(2^phase_qubits-1) controlled Grover iterations",
+        "expected_query_counts": {
+          "coherent_total": 60,
+          "controlled_forward": 28,
+          "controlled_inverse": 28,
+          "forward": 2,
+          "inverse": 2,
+          "qram_queries": 0
+        },
+        "formula": "Q = 2*n*(2^(phase_qubits+1)-1)",
+        "observed_query_counts": {
+          "coherent_total": 60,
+          "controlled_forward": 28,
+          "controlled_inverse": 28,
+          "forward": 2,
+          "inverse": 2,
+          "qram_queries": 0
+        },
+        "parameters": {
+          "n": 2,
+          "phase_bins": 8,
+          "phase_qubits": 3
+        },
+        "reconciled": true
+      },
+      "result": {
+        "backend": "numpy_exact_statevector_coherent_unknown_boundary_topk",
+        "blockers": [
+          "no_new_query_complexity_upper_bound",
+          "no_same_interface_composition_separation",
+          "no_matching_oracle_lower_bound",
+          "no_elementary_gate_or_transpiled_depth_ledger",
+          "tiny_exact_state_simulation_not_hardware_evidence",
+          "exact_grid_rounding_promise_not_generic_input_theorem"
+        ],
+        "boundary": {
+          "dominant_mask": 1,
+          "dominant_probability": 0.9999999999999971,
+          "information_source": "charged_coherent_qpe_and_reversible_rank_relation",
+          "nonstrict_probability": 1.3322676295501878e-15,
+          "output_collision_probability": 0.9999999999999942,
+          "output_mask_probabilities": {
+            "0": 3.5535059819914793e-31,
+            "1": 0.9999999999999971,
+            "2": 8.395694607766346e-33,
+            "3": 0.0
+          },
+          "predicted_transient_nonzero_probability": 5.773159728050814e-15,
+          "strict_probability": 0.9999999999999987
+        },
+        "certificate_issued": false,
+        "claim_scope": "tiny_rounding_promise_circuit_sanity_no_new_upper_bound_no_composition_separation_no_lower_bound_no_transpiled_gate_depth_no_hardware",
+        "direct_multi_output_complete": true,
+        "membership_bits": [
+          1,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_coherent_unknown_boundary_topk",
+          "claim_scope": "tiny_rounding_promise_circuit_sanity_no_new_upper_bound_no_composition_separation_no_lower_bound_no_transpiled_gate_depth_no_hardware",
+          "cleanup": {
+            "compiled_index_nonzero_probability": 2.886579864025407e-15,
+            "executed_transient_nonzero_probability": 2.886579864025407e-15,
+            "norm_error": 1.4432899320127035e-15,
+            "output_collision_probability": 0.9999999999999942,
+            "output_reduced_purity": 0.9999999999999942,
+            "passed": true,
+            "phase_nonzero_probability": 2.886579864025407e-15,
+            "predicted_transient_nonzero_probability": 5.773159728050814e-15,
+            "prediction_residual": 2.886579864025407e-15,
+            "purity_residual": 0.0,
+            "rank_work_nonzero_probability": 2.886579864025407e-15,
+            "reward_nonzero_probability": 2.886579864025407e-15,
+            "tolerance": 1e-10
+          },
+          "compilation_proxy_semantics": "structural_truth_table_rows_control_width_and_output_bit_incidence_only_no_gate_or_depth_synthesis",
+          "compiled_ancilla_qubits_available": false,
+          "compiled_relation_storage_bits": 192,
+          "controlled_grover_iterations": 28,
+          "declared_register_qubits": 15,
+          "dense_qft_matrix_entries": 64,
+          "elementary_gate_ledger_available": false,
+          "estimated_peak_complex_amplitudes": 65600,
+          "executed_numpy_kernel_operation_counts": {
+            "compiled_index_xor_permutation": 4,
+            "controlled_global_phase": 28,
+            "controlled_good_reflection": 28,
+            "controlled_reward_oracle_forward": 28,
+            "controlled_reward_oracle_inverse": 28,
+            "controlled_zero_reflection": 28,
+            "dense_inverse_qft_matrix_multiply": 2,
+            "dense_qft_matrix_multiply": 2,
+            "durable_output_permutation": 1,
+            "exhaustive_rank_boundary_permutation": 2,
+            "phase_hadamard": 12,
+            "reward_oracle_forward": 2,
+            "reward_oracle_inverse": 2
+          },
+          "execution_count_semantics": "executed_numpy_kernel_macro_invocations_only_not_circuit_gate_counts",
+          "logical_circuit_macro_counts": {
+            "canonical_reward_prepare": 2,
+            "canonical_reward_unprepare": 2,
+            "compiled_index_label_load": 2,
+            "compiled_index_label_reset": 2,
+            "controlled_grover_forward": 14,
+            "controlled_grover_inverse": 14,
+            "dense_inverse_qft": 2,
+            "dense_qft": 2,
+            "durable_output_copy": 1,
+            "qpe_forward": 2,
+            "qpe_inverse": 2,
+            "rank_boundary_relation": 2
+          },
+          "logical_macro_count_semantics": "undecomposed_circuit_semantic_macros_not_elementary_or_transpiled_gates",
+          "memory_semantics": "analytic live-complex-entry proxy for the retained state, one unitary target, and the dense tiny-QFT matrix; not measured allocator memory",
+          "qpe_calls": 4,
+          "qram_assumed": false,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_zero_qram_charge",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 60,
+            "controlled_forward": 28,
+            "controlled_inverse": 28,
+            "forward": 2,
+            "inverse": 2,
+            "qram_queries": 0,
+            "total": 60
+          },
+          "rank_compilation_model": "exhaustive_reversible_phase_rank_relation_no_qram",
+          "rank_compilation_proxies": {
+            "compiled_index_x_bit_incidences_compute_and_uncompute": 2,
+            "phase_control_width": 6,
+            "rank_relation_calls": 2,
+            "rank_relation_output_bit_incidences_across_calls": 228,
+            "rank_relation_output_width": 3,
+            "rank_relation_rows_per_call": 64
+          },
+          "rank_truth_table_rows": 64,
+          "register_dimensions": {
+            "compiled_index_pack": 4,
+            "durable_membership_output": 4,
+            "phase_estimate_pack": 64,
+            "rank_boundary_work": 8,
+            "reward_pack": 4
+          },
+          "retained_statevector_dimension": 32768,
+          "transpiled_depth": null,
+          "transpiled_depth_available": false
+        },
+        "rounding_promise_witnessed": true,
+        "status": "rounding_promise_top_k_unitary_complete_theorem_blocked",
+        "strict_boundary_witnessed": true
+      },
+      "role": "on_grid_two_arm",
+      "trusted_scoring": {
+        "fail_closed": false,
+        "grid_coordinates": [
+          3,
+          1
+        ],
+        "means": [
+          0.8535533905932737,
+          0.14644660940672624
+        ],
+        "output_exact_on_strict_relation": true,
+        "returned_top_k_indices": [
+          0
+        ],
+        "truth": {
+          "membership_mask": 1,
+          "strict_boundary": true,
+          "top_k_indices": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "algorithm_inputs": {
+        "answer_dependent_inputs_supplied": false,
+        "cleanup_tolerance": 1e-10,
+        "k": 2,
+        "max_statevector_dimension": 600000,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+        "phase_qubits": 1
+      },
+      "case_id": "on_grid_n3_k2_q1",
+      "cleanup_identity": {
+        "cleanup_tolerance": 1e-10,
+        "executed_garbage_probability": 1.9984014443252818e-15,
+        "identity": "P_garbage = 1 - sum_y p_y^2",
+        "output_collision_probability": 0.999999999999996,
+        "output_reduced_purity": 0.999999999999996,
+        "passed": true,
+        "predicted_garbage_probability": 3.9968028886505635e-15,
+        "prediction_residual": 1.9984014443252818e-15,
+        "purity_residual": 0.0
+      },
+      "expected_behavior": "complete",
+      "expected_behavior_matched": true,
+      "output_distribution": [
+        {
+          "arm_order_membership_bits": [
+            0,
+            0,
+            0
+          ],
+          "membership_mask": 0,
+          "probability": 4.807960816967475e-33
+        },
+        {
+          "arm_order_membership_bits": [
+            1,
+            0,
+            0
+          ],
+          "membership_mask": 1,
+          "probability": 0.0
+        },
+        {
+          "arm_order_membership_bits": [
+            0,
+            1,
+            0
+          ],
+          "membership_mask": 2,
+          "probability": 0.0
+        },
+        {
+          "arm_order_membership_bits": [
+            1,
+            1,
+            0
+          ],
+          "membership_mask": 3,
+          "probability": 0.999999999999998
+        },
+        {
+          "arm_order_membership_bits": [
+            0,
+            0,
+            1
+          ],
+          "membership_mask": 4,
+          "probability": 0.0
+        },
+        {
+          "arm_order_membership_bits": [
+            1,
+            0,
+            1
+          ],
+          "membership_mask": 5,
+          "probability": 1.6005639875442723e-69
+        },
+        {
+          "arm_order_membership_bits": [
+            0,
+            1,
+            1
+          ],
+          "membership_mask": 6,
+          "probability": 2.0261591885650085e-66
+        },
+        {
+          "arm_order_membership_bits": [
+            1,
+            1,
+            1
+          ],
+          "membership_mask": 7,
+          "probability": 0.0
+        }
+      ],
+      "query_formula_reconciliation": {
+        "derivation": "n forward preparations + n inverse preparations + two QPE directions, each charging forward and inverse oracle calls for n*(2^phase_qubits-1) controlled Grover iterations",
+        "expected_query_counts": {
+          "coherent_total": 18,
+          "controlled_forward": 6,
+          "controlled_inverse": 6,
+          "forward": 3,
+          "inverse": 3,
+          "qram_queries": 0
+        },
+        "formula": "Q = 2*n*(2^(phase_qubits+1)-1)",
+        "observed_query_counts": {
+          "coherent_total": 18,
+          "controlled_forward": 6,
+          "controlled_inverse": 6,
+          "forward": 3,
+          "inverse": 3,
+          "qram_queries": 0
+        },
+        "parameters": {
+          "n": 3,
+          "phase_bins": 2,
+          "phase_qubits": 1
+        },
+        "reconciled": true
+      },
+      "result": {
+        "backend": "numpy_exact_statevector_coherent_unknown_boundary_topk",
+        "blockers": [
+          "no_new_query_complexity_upper_bound",
+          "no_same_interface_composition_separation",
+          "no_matching_oracle_lower_bound",
+          "no_elementary_gate_or_transpiled_depth_ledger",
+          "tiny_exact_state_simulation_not_hardware_evidence",
+          "exact_grid_rounding_promise_not_generic_input_theorem"
+        ],
+        "boundary": {
+          "dominant_mask": 3,
+          "dominant_probability": 0.999999999999998,
+          "information_source": "charged_coherent_qpe_and_reversible_rank_relation",
+          "nonstrict_probability": 8.881784197001252e-16,
+          "output_collision_probability": 0.999999999999996,
+          "output_mask_probabilities": {
+            "0": 4.807960816967475e-33,
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.999999999999998,
+            "4": 0.0,
+            "5": 1.6005639875442723e-69,
+            "6": 2.0261591885650085e-66,
+            "7": 0.0
+          },
+          "predicted_transient_nonzero_probability": 3.9968028886505635e-15,
+          "strict_probability": 0.9999999999999991
+        },
+        "certificate_issued": false,
+        "claim_scope": "tiny_rounding_promise_circuit_sanity_no_new_upper_bound_no_composition_separation_no_lower_bound_no_transpiled_gate_depth_no_hardware",
+        "direct_multi_output_complete": true,
+        "membership_bits": [
+          1,
+          1,
+          0
+        ],
+        "membership_mask": 3,
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_coherent_unknown_boundary_topk",
+          "claim_scope": "tiny_rounding_promise_circuit_sanity_no_new_upper_bound_no_composition_separation_no_lower_bound_no_transpiled_gate_depth_no_hardware",
+          "cleanup": {
+            "compiled_index_nonzero_probability": 1.9984014443252818e-15,
+            "executed_transient_nonzero_probability": 1.9984014443252818e-15,
+            "norm_error": 9.992007221626409e-16,
+            "output_collision_probability": 0.999999999999996,
+            "output_reduced_purity": 0.999999999999996,
+            "passed": true,
+            "phase_nonzero_probability": 1.9984014443252818e-15,
+            "predicted_transient_nonzero_probability": 3.9968028886505635e-15,
+            "prediction_residual": 1.9984014443252818e-15,
+            "purity_residual": 0.0,
+            "rank_work_nonzero_probability": 1.9984014443252818e-15,
+            "reward_nonzero_probability": 1.9984014443252818e-15,
+            "tolerance": 1e-10
+          },
+          "compilation_proxy_semantics": "structural_truth_table_rows_control_width_and_output_bit_incidence_only_no_gate_or_depth_synthesis",
+          "compiled_ancilla_qubits_available": false,
+          "compiled_relation_storage_bits": 32,
+          "controlled_grover_iterations": 6,
+          "declared_register_qubits": 19,
+          "dense_qft_matrix_entries": 4,
+          "elementary_gate_ledger_available": false,
+          "estimated_peak_complex_amplitudes": 1048580,
+          "executed_numpy_kernel_operation_counts": {
+            "compiled_index_xor_permutation": 6,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 6,
+            "controlled_reward_oracle_inverse": 6,
+            "controlled_zero_reflection": 6,
+            "dense_inverse_qft_matrix_multiply": 3,
+            "dense_qft_matrix_multiply": 3,
+            "durable_output_permutation": 1,
+            "exhaustive_rank_boundary_permutation": 2,
+            "phase_hadamard": 6,
+            "reward_oracle_forward": 3,
+            "reward_oracle_inverse": 3
+          },
+          "execution_count_semantics": "executed_numpy_kernel_macro_invocations_only_not_circuit_gate_counts",
+          "logical_circuit_macro_counts": {
+            "canonical_reward_prepare": 3,
+            "canonical_reward_unprepare": 3,
+            "compiled_index_label_load": 3,
+            "compiled_index_label_reset": 3,
+            "controlled_grover_forward": 3,
+            "controlled_grover_inverse": 3,
+            "dense_inverse_qft": 3,
+            "dense_qft": 3,
+            "durable_output_copy": 1,
+            "qpe_forward": 3,
+            "qpe_inverse": 3,
+            "rank_boundary_relation": 2
+          },
+          "logical_macro_count_semantics": "undecomposed_circuit_semantic_macros_not_elementary_or_transpiled_gates",
+          "memory_semantics": "analytic live-complex-entry proxy for the retained state, one unitary target, and the dense tiny-QFT matrix; not measured allocator memory",
+          "qpe_calls": 6,
+          "qram_assumed": false,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_zero_qram_charge",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 18,
+            "controlled_forward": 6,
+            "controlled_inverse": 6,
+            "forward": 3,
+            "inverse": 3,
+            "qram_queries": 0,
+            "total": 18
+          },
+          "rank_compilation_model": "exhaustive_reversible_phase_rank_relation_no_qram",
+          "rank_compilation_proxies": {
+            "compiled_index_x_bit_incidences_compute_and_uncompute": 4,
+            "phase_control_width": 3,
+            "rank_relation_calls": 2,
+            "rank_relation_output_bit_incidences_across_calls": 38,
+            "rank_relation_output_width": 4,
+            "rank_relation_rows_per_call": 8
+          },
+          "rank_truth_table_rows": 8,
+          "register_dimensions": {
+            "compiled_index_pack": 64,
+            "durable_membership_output": 8,
+            "phase_estimate_pack": 8,
+            "rank_boundary_work": 16,
+            "reward_pack": 8
+          },
+          "retained_statevector_dimension": 524288,
+          "transpiled_depth": null,
+          "transpiled_depth_available": false
+        },
+        "rounding_promise_witnessed": true,
+        "status": "rounding_promise_top_k_unitary_complete_theorem_blocked",
+        "strict_boundary_witnessed": true
+      },
+      "role": "on_grid_three_arm",
+      "trusted_scoring": {
+        "fail_closed": false,
+        "grid_coordinates": [
+          1,
+          1,
+          0
+        ],
+        "means": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "output_exact_on_strict_relation": true,
+        "returned_top_k_indices": [
+          0,
+          1
+        ],
+        "truth": {
+          "membership_mask": 3,
+          "strict_boundary": true,
+          "top_k_indices": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "algorithm_inputs": {
+        "answer_dependent_inputs_supplied": false,
+        "cleanup_tolerance": 1e-10,
+        "k": 1,
+        "max_statevector_dimension": 600000,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+        "phase_qubits": 3
+      },
+      "case_id": "off_grid_n2_k1_q3",
+      "cleanup_identity": {
+        "cleanup_tolerance": 1e-10,
+        "executed_garbage_probability": 0.034769713197007945,
+        "identity": "P_garbage = 1 - sum_y p_y^2",
+        "output_collision_probability": 0.9652302868029905,
+        "output_reduced_purity": 0.9652302868029905,
+        "passed": false,
+        "predicted_garbage_probability": 0.0347697131970095,
+        "prediction_residual": 1.5543122344752192e-15,
+        "purity_residual": 0.0
+      },
+      "expected_behavior": "entanglement_fail_closed",
+      "expected_behavior_matched": true,
+      "output_distribution": [
+        {
+          "arm_order_membership_bits": [
+            0,
+            0
+          ],
+          "membership_mask": 0,
+          "probability": 0.012586569486991654
+        },
+        {
+          "arm_order_membership_bits": [
+            1,
+            0
+          ],
+          "membership_mask": 1,
+          "probability": 0.9823677550851393
+        },
+        {
+          "arm_order_membership_bits": [
+            0,
+            1
+          ],
+          "membership_mask": 2,
+          "probability": 0.005045675427867304
+        },
+        {
+          "arm_order_membership_bits": [
+            1,
+            1
+          ],
+          "membership_mask": 3,
+          "probability": 0.0
+        }
+      ],
+      "query_formula_reconciliation": {
+        "derivation": "n forward preparations + n inverse preparations + two QPE directions, each charging forward and inverse oracle calls for n*(2^phase_qubits-1) controlled Grover iterations",
+        "expected_query_counts": {
+          "coherent_total": 60,
+          "controlled_forward": 28,
+          "controlled_inverse": 28,
+          "forward": 2,
+          "inverse": 2,
+          "qram_queries": 0
+        },
+        "formula": "Q = 2*n*(2^(phase_qubits+1)-1)",
+        "observed_query_counts": {
+          "coherent_total": 60,
+          "controlled_forward": 28,
+          "controlled_inverse": 28,
+          "forward": 2,
+          "inverse": 2,
+          "qram_queries": 0
+        },
+        "parameters": {
+          "n": 2,
+          "phase_bins": 8,
+          "phase_qubits": 3
+        },
+        "reconciled": true
+      },
+      "result": {
+        "backend": "numpy_exact_statevector_coherent_unknown_boundary_topk",
+        "blockers": [
+          "no_new_query_complexity_upper_bound",
+          "no_same_interface_composition_separation",
+          "no_matching_oracle_lower_bound",
+          "no_elementary_gate_or_transpiled_depth_ledger",
+          "tiny_exact_state_simulation_not_hardware_evidence",
+          "finite_qpe_output_entanglement_cleanup_failed"
+        ],
+        "boundary": {
+          "dominant_mask": 1,
+          "dominant_probability": 0.9823677550851393,
+          "information_source": "charged_coherent_qpe_and_reversible_rank_relation",
+          "nonstrict_probability": 0.01258656948699255,
+          "output_collision_probability": 0.9652302868029905,
+          "output_mask_probabilities": {
+            "0": 0.012586569486991654,
+            "1": 0.9823677550851393,
+            "2": 0.005045675427867304,
+            "3": 0.0
+          },
+          "predicted_transient_nonzero_probability": 0.0347697131970095,
+          "strict_probability": 0.9874134305130075
+        },
+        "certificate_issued": false,
+        "claim_scope": "tiny_rounding_promise_circuit_sanity_no_new_upper_bound_no_composition_separation_no_lower_bound_no_transpiled_gate_depth_no_hardware",
+        "direct_multi_output_complete": false,
+        "membership_bits": [],
+        "membership_mask": null,
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_coherent_unknown_boundary_topk",
+          "claim_scope": "tiny_rounding_promise_circuit_sanity_no_new_upper_bound_no_composition_separation_no_lower_bound_no_transpiled_gate_depth_no_hardware",
+          "cleanup": {
+            "compiled_index_nonzero_probability": 1.887379141862766e-15,
+            "executed_transient_nonzero_probability": 0.034769713197007945,
+            "norm_error": 8.881784197001252e-16,
+            "output_collision_probability": 0.9652302868029905,
+            "output_reduced_purity": 0.9652302868029905,
+            "passed": false,
+            "phase_nonzero_probability": 0.034769713197007945,
+            "predicted_transient_nonzero_probability": 0.0347697131970095,
+            "prediction_residual": 1.5543122344752192e-15,
+            "purity_residual": 0.0,
+            "rank_work_nonzero_probability": 1.887379141862766e-15,
+            "reward_nonzero_probability": 0.025613671825681084,
+            "tolerance": 1e-10
+          },
+          "compilation_proxy_semantics": "structural_truth_table_rows_control_width_and_output_bit_incidence_only_no_gate_or_depth_synthesis",
+          "compiled_ancilla_qubits_available": false,
+          "compiled_relation_storage_bits": 192,
+          "controlled_grover_iterations": 28,
+          "declared_register_qubits": 15,
+          "dense_qft_matrix_entries": 64,
+          "elementary_gate_ledger_available": false,
+          "estimated_peak_complex_amplitudes": 65600,
+          "executed_numpy_kernel_operation_counts": {
+            "compiled_index_xor_permutation": 4,
+            "controlled_global_phase": 28,
+            "controlled_good_reflection": 28,
+            "controlled_reward_oracle_forward": 28,
+            "controlled_reward_oracle_inverse": 28,
+            "controlled_zero_reflection": 28,
+            "dense_inverse_qft_matrix_multiply": 2,
+            "dense_qft_matrix_multiply": 2,
+            "durable_output_permutation": 1,
+            "exhaustive_rank_boundary_permutation": 2,
+            "phase_hadamard": 12,
+            "reward_oracle_forward": 2,
+            "reward_oracle_inverse": 2
+          },
+          "execution_count_semantics": "executed_numpy_kernel_macro_invocations_only_not_circuit_gate_counts",
+          "logical_circuit_macro_counts": {
+            "canonical_reward_prepare": 2,
+            "canonical_reward_unprepare": 2,
+            "compiled_index_label_load": 2,
+            "compiled_index_label_reset": 2,
+            "controlled_grover_forward": 14,
+            "controlled_grover_inverse": 14,
+            "dense_inverse_qft": 2,
+            "dense_qft": 2,
+            "durable_output_copy": 1,
+            "qpe_forward": 2,
+            "qpe_inverse": 2,
+            "rank_boundary_relation": 2
+          },
+          "logical_macro_count_semantics": "undecomposed_circuit_semantic_macros_not_elementary_or_transpiled_gates",
+          "memory_semantics": "analytic live-complex-entry proxy for the retained state, one unitary target, and the dense tiny-QFT matrix; not measured allocator memory",
+          "qpe_calls": 4,
+          "qram_assumed": false,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_zero_qram_charge",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 60,
+            "controlled_forward": 28,
+            "controlled_inverse": 28,
+            "forward": 2,
+            "inverse": 2,
+            "qram_queries": 0,
+            "total": 60
+          },
+          "rank_compilation_model": "exhaustive_reversible_phase_rank_relation_no_qram",
+          "rank_compilation_proxies": {
+            "compiled_index_x_bit_incidences_compute_and_uncompute": 2,
+            "phase_control_width": 6,
+            "rank_relation_calls": 2,
+            "rank_relation_output_bit_incidences_across_calls": 228,
+            "rank_relation_output_width": 3,
+            "rank_relation_rows_per_call": 64
+          },
+          "rank_truth_table_rows": 64,
+          "register_dimensions": {
+            "compiled_index_pack": 4,
+            "durable_membership_output": 4,
+            "phase_estimate_pack": 64,
+            "rank_boundary_work": 8,
+            "reward_pack": 4
+          },
+          "retained_statevector_dimension": 32768,
+          "transpiled_depth": null,
+          "transpiled_depth_available": false
+        },
+        "rounding_promise_witnessed": false,
+        "status": "finite_qpe_output_entanglement_fail_closed",
+        "strict_boundary_witnessed": false
+      },
+      "role": "off_grid_two_arm",
+      "trusted_scoring": {
+        "fail_closed": true,
+        "grid_coordinates": [
+          null,
+          null
+        ],
+        "means": [
+          0.82,
+          0.18
+        ],
+        "output_exact_on_strict_relation": false,
+        "returned_top_k_indices": null,
+        "truth": {
+          "membership_mask": 1,
+          "strict_boundary": true,
+          "top_k_indices": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "algorithm_inputs": {
+        "answer_dependent_inputs_supplied": false,
+        "cleanup_tolerance": 1e-10,
+        "k": 1,
+        "max_statevector_dimension": 600000,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+        "phase_qubits": 2
+      },
+      "case_id": "exact_tie_n2_k1_q2",
+      "cleanup_identity": {
+        "cleanup_tolerance": 1e-10,
+        "executed_garbage_probability": 0.0,
+        "identity": "P_garbage = 1 - sum_y p_y^2",
+        "output_collision_probability": 1.0000000000000018,
+        "output_reduced_purity": 1.0000000000000018,
+        "passed": true,
+        "predicted_garbage_probability": 0.0,
+        "prediction_residual": 0.0,
+        "purity_residual": 0.0
+      },
+      "expected_behavior": "tie_fail_closed",
+      "expected_behavior_matched": true,
+      "output_distribution": [
+        {
+          "arm_order_membership_bits": [
+            0,
+            0
+          ],
+          "membership_mask": 0,
+          "probability": 1.0000000000000009
+        },
+        {
+          "arm_order_membership_bits": [
+            1,
+            0
+          ],
+          "membership_mask": 1,
+          "probability": 3.682108231660498e-32
+        },
+        {
+          "arm_order_membership_bits": [
+            0,
+            1
+          ],
+          "membership_mask": 2,
+          "probability": 2.942315108478407e-32
+        },
+        {
+          "arm_order_membership_bits": [
+            1,
+            1
+          ],
+          "membership_mask": 3,
+          "probability": 0.0
+        }
+      ],
+      "query_formula_reconciliation": {
+        "derivation": "n forward preparations + n inverse preparations + two QPE directions, each charging forward and inverse oracle calls for n*(2^phase_qubits-1) controlled Grover iterations",
+        "expected_query_counts": {
+          "coherent_total": 28,
+          "controlled_forward": 12,
+          "controlled_inverse": 12,
+          "forward": 2,
+          "inverse": 2,
+          "qram_queries": 0
+        },
+        "formula": "Q = 2*n*(2^(phase_qubits+1)-1)",
+        "observed_query_counts": {
+          "coherent_total": 28,
+          "controlled_forward": 12,
+          "controlled_inverse": 12,
+          "forward": 2,
+          "inverse": 2,
+          "qram_queries": 0
+        },
+        "parameters": {
+          "n": 2,
+          "phase_bins": 4,
+          "phase_qubits": 2
+        },
+        "reconciled": true
+      },
+      "result": {
+        "backend": "numpy_exact_statevector_coherent_unknown_boundary_topk",
+        "blockers": [
+          "no_new_query_complexity_upper_bound",
+          "no_same_interface_composition_separation",
+          "no_matching_oracle_lower_bound",
+          "no_elementary_gate_or_transpiled_depth_ledger",
+          "tiny_exact_state_simulation_not_hardware_evidence",
+          "coherent_discrete_boundary_not_strict"
+        ],
+        "boundary": {
+          "dominant_mask": 0,
+          "dominant_probability": 1.0000000000000009,
+          "information_source": "charged_coherent_qpe_and_reversible_rank_relation",
+          "nonstrict_probability": 1.0,
+          "output_collision_probability": 1.0000000000000018,
+          "output_mask_probabilities": {
+            "0": 1.0000000000000009,
+            "1": 3.682108231660498e-32,
+            "2": 2.942315108478407e-32,
+            "3": 0.0
+          },
+          "predicted_transient_nonzero_probability": 0.0,
+          "strict_probability": 6.624423340138902e-32
+        },
+        "certificate_issued": false,
+        "claim_scope": "tiny_rounding_promise_circuit_sanity_no_new_upper_bound_no_composition_separation_no_lower_bound_no_transpiled_gate_depth_no_hardware",
+        "direct_multi_output_complete": false,
+        "membership_bits": [],
+        "membership_mask": null,
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_coherent_unknown_boundary_topk",
+          "claim_scope": "tiny_rounding_promise_circuit_sanity_no_new_upper_bound_no_composition_separation_no_lower_bound_no_transpiled_gate_depth_no_hardware",
+          "cleanup": {
+            "compiled_index_nonzero_probability": 0.0,
+            "executed_transient_nonzero_probability": 0.0,
+            "norm_error": 4.440892098500626e-16,
+            "output_collision_probability": 1.0000000000000018,
+            "output_reduced_purity": 1.0000000000000018,
+            "passed": true,
+            "phase_nonzero_probability": 0.0,
+            "predicted_transient_nonzero_probability": 0.0,
+            "prediction_residual": 0.0,
+            "purity_residual": 0.0,
+            "rank_work_nonzero_probability": 0.0,
+            "reward_nonzero_probability": 0.0,
+            "tolerance": 1e-10
+          },
+          "compilation_proxy_semantics": "structural_truth_table_rows_control_width_and_output_bit_incidence_only_no_gate_or_depth_synthesis",
+          "compiled_ancilla_qubits_available": false,
+          "compiled_relation_storage_bits": 48,
+          "controlled_grover_iterations": 12,
+          "declared_register_qubits": 13,
+          "dense_qft_matrix_entries": 16,
+          "elementary_gate_ledger_available": false,
+          "estimated_peak_complex_amplitudes": 16400,
+          "executed_numpy_kernel_operation_counts": {
+            "compiled_index_xor_permutation": 4,
+            "controlled_global_phase": 12,
+            "controlled_good_reflection": 12,
+            "controlled_reward_oracle_forward": 12,
+            "controlled_reward_oracle_inverse": 12,
+            "controlled_zero_reflection": 12,
+            "dense_inverse_qft_matrix_multiply": 2,
+            "dense_qft_matrix_multiply": 2,
+            "durable_output_permutation": 1,
+            "exhaustive_rank_boundary_permutation": 2,
+            "phase_hadamard": 8,
+            "reward_oracle_forward": 2,
+            "reward_oracle_inverse": 2
+          },
+          "execution_count_semantics": "executed_numpy_kernel_macro_invocations_only_not_circuit_gate_counts",
+          "logical_circuit_macro_counts": {
+            "canonical_reward_prepare": 2,
+            "canonical_reward_unprepare": 2,
+            "compiled_index_label_load": 2,
+            "compiled_index_label_reset": 2,
+            "controlled_grover_forward": 6,
+            "controlled_grover_inverse": 6,
+            "dense_inverse_qft": 2,
+            "dense_qft": 2,
+            "durable_output_copy": 1,
+            "qpe_forward": 2,
+            "qpe_inverse": 2,
+            "rank_boundary_relation": 2
+          },
+          "logical_macro_count_semantics": "undecomposed_circuit_semantic_macros_not_elementary_or_transpiled_gates",
+          "memory_semantics": "analytic live-complex-entry proxy for the retained state, one unitary target, and the dense tiny-QFT matrix; not measured allocator memory",
+          "qpe_calls": 4,
+          "qram_assumed": false,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_zero_qram_charge",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 28,
+            "controlled_forward": 12,
+            "controlled_inverse": 12,
+            "forward": 2,
+            "inverse": 2,
+            "qram_queries": 0,
+            "total": 28
+          },
+          "rank_compilation_model": "exhaustive_reversible_phase_rank_relation_no_qram",
+          "rank_compilation_proxies": {
+            "compiled_index_x_bit_incidences_compute_and_uncompute": 2,
+            "phase_control_width": 4,
+            "rank_relation_calls": 2,
+            "rank_relation_output_bit_incidences_across_calls": 52,
+            "rank_relation_output_width": 3,
+            "rank_relation_rows_per_call": 16
+          },
+          "rank_truth_table_rows": 16,
+          "register_dimensions": {
+            "compiled_index_pack": 4,
+            "durable_membership_output": 4,
+            "phase_estimate_pack": 16,
+            "rank_boundary_work": 8,
+            "reward_pack": 4
+          },
+          "retained_statevector_dimension": 8192,
+          "transpiled_depth": null,
+          "transpiled_depth_available": false
+        },
+        "rounding_promise_witnessed": true,
+        "status": "coherent_discrete_boundary_not_strict_fail_closed",
+        "strict_boundary_witnessed": false
+      },
+      "role": "exact_tie",
+      "trusted_scoring": {
+        "fail_closed": true,
+        "grid_coordinates": [
+          1,
+          1
+        ],
+        "means": [
+          0.5,
+          0.5
+        ],
+        "output_exact_on_strict_relation": null,
+        "returned_top_k_indices": null,
+        "truth": {
+          "membership_mask": null,
+          "strict_boundary": false,
+          "top_k_indices": null
+        }
+      }
+    }
+  ],
+  "resolved_config": {
+    "cases": [
+      {
+        "case_id": "on_grid_n2_k1_q3",
+        "cleanup_tolerance": 1e-10,
+        "expected_behavior": "complete",
+        "k": 1,
+        "max_statevector_dimension": 600000,
+        "means": [
+          0.8535533905932737,
+          0.14644660940672624
+        ],
+        "phase_qubits": 3,
+        "role": "on_grid_two_arm"
+      },
+      {
+        "case_id": "on_grid_n3_k2_q1",
+        "cleanup_tolerance": 1e-10,
+        "expected_behavior": "complete",
+        "k": 2,
+        "max_statevector_dimension": 600000,
+        "means": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "phase_qubits": 1,
+        "role": "on_grid_three_arm"
+      },
+      {
+        "case_id": "off_grid_n2_k1_q3",
+        "cleanup_tolerance": 1e-10,
+        "expected_behavior": "entanglement_fail_closed",
+        "k": 1,
+        "max_statevector_dimension": 600000,
+        "means": [
+          0.82,
+          0.18
+        ],
+        "phase_qubits": 3,
+        "role": "off_grid_two_arm"
+      },
+      {
+        "case_id": "exact_tie_n2_k1_q2",
+        "cleanup_tolerance": 1e-10,
+        "expected_behavior": "tie_fail_closed",
+        "k": 1,
+        "max_statevector_dimension": 600000,
+        "means": [
+          0.5,
+          0.5
+        ],
+        "phase_qubits": 2,
+        "role": "exact_tie"
+      }
+    ],
+    "experiment_name": "coherent_unknown_boundary_topk_s2_panel_v1",
+    "notes": [
+      "The trusted harness uses means only to construct and score the canonical oracle; the algorithm receives only the oracle handle, k, and public circuit limits.",
+      "The two exact-grid cases test complete durable Top-k output and inverse cleanup under the explicit rounding promise.",
+      "The generic off-grid case must expose rank-copy entanglement and fail closed rather than silently discard garbage.",
+      "The exact boundary tie must clean but reject the non-strict Top-k relation.",
+      "This tiny exact-state panel is circuit-semantic evidence only; it is not a certificate, query-complexity separation, hardware result, new quantum advantage, or CCF-A claim."
+    ],
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "summary": {
+    "case_count": 4,
+    "ccf_a_claimable": false,
+    "certificate_issued_count": 0,
+    "cleanup_pass_count": 3,
+    "compiled_ancilla_qubits_available": false,
+    "elementary_gate_ledger_available": false,
+    "end_to_end_coherent_tiny_reference": true,
+    "exact_output_rate_on_strict_cases": 0.6666666666666666,
+    "fail_closed_count": 2,
+    "generic_rounding_robustness_proved": false,
+    "hardware_evidence": false,
+    "matching_lower_bound_proved": false,
+    "new_query_upper_bound_proved": false,
+    "on_grid_complete_count": 2,
+    "quantum_advantage_claimable": false,
+    "same_interface_composition_separation_proved": false,
+    "strict_case_count": 3,
+    "transpiled_depth_available": false
+  }
+}

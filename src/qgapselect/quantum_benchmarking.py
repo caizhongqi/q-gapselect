@@ -41,7 +41,10 @@ METHODS = (
     "independent_qpe_scan",
     "classical_threshold_scan",
     "boundary_only_negative_control",
+    "refined_boundary_only_negative_control",
     "calibrated_direct_topk",
+    "adaptive_calibrated_direct_topk",
+    "fixed_max_precision_topk",
 )
 TRUTH_USAGE = "evaluation_only_never_passed_as_membership_to_algorithm"
 CLAIM_STATUS = "executed_small_state_benchmark_no_quantum_advantage_theorem"
@@ -307,6 +310,7 @@ class QuantumBenchmarkConfig:
     """Shared strict execution budgets for all benchmark adapters."""
 
     phase_qubits: int = 4
+    max_phase_qubits: int = 7
     verification_shots: int = 32
     confidence: float = 0.05
     max_attempts_per_output: int = 12
@@ -318,6 +322,7 @@ class QuantumBenchmarkConfig:
     def __post_init__(self) -> None:
         for name in (
             "phase_qubits",
+            "max_phase_qubits",
             "verification_shots",
             "max_attempts_per_output",
             "max_statevector_dimension",
@@ -331,6 +336,10 @@ class QuantumBenchmarkConfig:
             object.__setattr__(self, name, value)
         if self.phase_qubits > 12:
             raise ValueError("phase_qubits exceeds the small-state limit of 12")
+        if self.max_phase_qubits < self.phase_qubits:
+            raise ValueError("max_phase_qubits must be at least phase_qubits")
+        if self.max_phase_qubits > 12:
+            raise ValueError("max_phase_qubits exceeds the small-state limit of 12")
         object.__setattr__(
             self,
             "confidence",
@@ -385,6 +394,13 @@ class BenchmarkRecord:
     interpretation: str
     truth_usage: str = TRUTH_USAGE
     claim_status: str = CLAIM_STATUS
+    initial_phase_qubits: int | None = None
+    max_phase_qubits: int | None = None
+    phase_candidate_levels: str = ""
+    boundary_rounds: int = 0
+    memory_proxy_semantics: str = (
+        "analytic_array_size_proxy_not_measured_numpy_peak"
+    )
 
     @property
     def success(self) -> bool:
@@ -463,6 +479,10 @@ def _record(
     quantum_discovery_claim_allowed: bool,
     control_role: str,
     interpretation: str,
+    initial_phase_qubits: int | None = None,
+    max_phase_qubits: int | None = None,
+    phase_candidate_levels: str = "",
+    boundary_rounds: int = 0,
 ) -> BenchmarkRecord:
     split = (
         reflection_queries
@@ -522,6 +542,10 @@ def _record(
         quantum_discovery_claim_allowed=quantum_discovery_claim_allowed,
         control_role=control_role,
         interpretation=interpretation,
+        initial_phase_qubits=initial_phase_qubits,
+        max_phase_qubits=max_phase_qubits,
+        phase_candidate_levels=phase_candidate_levels,
+        boundary_rounds=boundary_rounds,
     )
 
 
@@ -722,14 +746,29 @@ class QuantumBenchmarkRunner:
                 interpretation="simultaneous_hoeffding_threshold_scan",
             )
 
-        if method == "boundary_only_negative_control":
+        if method in {
+            "boundary_only_negative_control",
+            "refined_boundary_only_negative_control",
+        }:
+            refined = method == "refined_boundary_only_negative_control"
+            boundary_seed = (
+                int(np.random.default_rng(trial_seed).integers(0, 2**32))
+                if refined
+                else trial_seed
+            )
+            minimum_margin = (
+                2.0 * math.pi / (1 << config.max_phase_qubits)
+                if refined
+                else 0.0
+            )
             result = QBoundaryEstimator(
                 oracle,
                 instance.k,
                 confidence=config.confidence,
                 shots_per_round=config.boundary_shots_per_round,
                 max_rounds=config.max_boundary_rounds,
-                seed=trial_seed,
+                minimum_angular_margin=minimum_margin,
+                seed=boundary_seed,
                 tag="benchmark_boundary_negative_control",
             ).run()
             resources = result.resources
@@ -737,7 +776,9 @@ class QuantumBenchmarkRunner:
             outputs = () if certificate is None else tuple(certificate.selected)
             total = _query_total(resources)
             status = (
-                "complete_membership_certificate_forbidden_quantum_discovery_claim"
+                "complete_refined_membership_certificate_forbidden_quantum_discovery_claim"
+                if refined and result.complete
+                else "complete_membership_certificate_forbidden_quantum_discovery_claim"
                 if result.complete
                 else "boundary_not_separated"
             )
@@ -770,16 +811,51 @@ class QuantumBenchmarkRunner:
                 attempts=len(result.rounds),
                 boundary_certificate_available=certificate is not None,
                 quantum_discovery_claim_allowed=False,
-                control_role="NEGATIVE_CONTROL_boundary_already_knows_membership",
-                interpretation=(
-                    "FORBIDDEN_as_quantum_discovery_boundary_contains_full_certificate"
+                control_role=(
+                    "NEGATIVE_CONTROL_refined_boundary_already_knows_membership"
+                    if refined
+                    else "NEGATIVE_CONTROL_boundary_already_knows_membership"
                 ),
+                interpretation=(
+                    "FORBIDDEN_as_quantum_discovery_refined_boundary_contains_full_certificate"
+                    if refined
+                    else "FORBIDDEN_as_quantum_discovery_boundary_contains_full_certificate"
+                ),
+                initial_phase_qubits=(config.phase_qubits if refined else None),
+                max_phase_qubits=(config.max_phase_qubits if refined else None),
+                phase_candidate_levels=(
+                    ",".join(
+                        str(value)
+                        for value in range(
+                            config.phase_qubits, config.max_phase_qubits + 1
+                        )
+                    )
+                    if refined
+                    else ""
+                ),
+                boundary_rounds=len(result.rounds),
             )
 
+        adaptive_phase = method in {
+            "adaptive_calibrated_direct_topk",
+            "fixed_max_precision_topk",
+        }
+        initial_phase_qubits = (
+            config.max_phase_qubits
+            if method == "fixed_max_precision_topk"
+            else config.phase_qubits
+        )
+        maximum_phase_qubits = (
+            config.max_phase_qubits
+            if adaptive_phase
+            else initial_phase_qubits
+        )
         controller = CalibratedDirectTopKController(
             oracle,
             instance.k,
-            phase_qubits=config.phase_qubits,
+            phase_qubits=initial_phase_qubits,
+            adaptive_phase_qubits=adaptive_phase,
+            max_phase_qubits=maximum_phase_qubits,
             confidence=config.confidence,
             boundary_shots_per_round=config.boundary_shots_per_round,
             max_boundary_rounds=config.max_boundary_rounds,
@@ -794,11 +870,10 @@ class QuantumBenchmarkRunner:
             step_bound=max(2, 2 * instance.n_arms * config.max_attempts_per_output + 2),
         )
         total = _query_total(result.resources)
-        # DirectTopK shares one oracle between boundary calibration and search.
-        # QBoundaryEstimator's live ledger snapshot can therefore include
-        # later search calls.  The immutable measured intervals retain the
-        # exact number of actually executed boundary shots without that
-        # contamination.
+        # DirectTopK freezes the boundary query ledger at calibration time.
+        # The interval-shot reconstruction is still recorded as a redundant
+        # audit check because the boundary certificate already determines
+        # membership and therefore forbids a discovery-advantage claim.
         basis = sum(interval.shots for interval in result.boundary.intervals)
         reflection = 0
         decode = 0
@@ -854,18 +929,47 @@ class QuantumBenchmarkRunner:
                 )
             attempts += len(branch.attempts)
             branch_reflection, branch_decode, branch_verification = _direct_query_split(
-                branch, config.phase_qubits
+                branch, result.resources.phase_qubits
             )
             reflection += branch_reflection
             decode += branch_decode
             verification += branch_verification
         certificate_available = result.boundary.certificate is not None
+        roles = {
+            "calibrated_direct_topk": (
+                "calibrated_direct_rediscovery_information_firewall",
+                "fixed_precision_coherent_rediscovery_no_advantage_claim",
+            ),
+            "adaptive_calibrated_direct_topk": (
+                "resource_aware_measured_margin_phase_schedule",
+                "adaptive_precision_selected_before_search_no_advantage_claim",
+            ),
+            "fixed_max_precision_topk": (
+                "fixed_max_precision_matched_boundary_refinement_control",
+                "same_refined_boundary_fixed_max_precision_control",
+            ),
+        }
+        control_role, interpretation = roles[method]
+        schedule = result.phase_schedule
+        candidate_levels = (
+            ""
+            if schedule is None
+            else ",".join(
+                str(candidate.phase_qubits) for candidate in schedule.candidates
+            )
+        )
         return _record(
             instance=instance,
             trial_seed=trial_seed,
             method=method,
             relation="topk",
-            phase_qubits=config.phase_qubits,
+            phase_qubits=(
+                schedule.selected_phase_qubits
+                if schedule is not None
+                else result.resources.phase_qubits
+                if result.branches
+                else None
+            ),
             expected_count=instance.k,
             outputs=tuple(result.selected),
             truth=instance.topk_truth,
@@ -888,11 +992,13 @@ class QuantumBenchmarkRunner:
             dense_qft_matrix_dimension=dense_qft,
             attempts=attempts,
             boundary_certificate_available=certificate_available,
-            quantum_discovery_claim_allowed=True,
-            control_role="calibrated_direct_rediscovery_information_firewall",
-            interpretation=(
-                "coherent_rediscovery_after_scalar_boundary_calibration_no_advantage_claim"
-            ),
+            quantum_discovery_claim_allowed=False,
+            control_role=control_role,
+            interpretation=interpretation,
+            initial_phase_qubits=result.initial_phase_qubits,
+            max_phase_qubits=result.max_phase_qubits,
+            phase_candidate_levels=candidate_levels,
+            boundary_rounds=len(result.boundary.rounds),
         )
 
 
@@ -1030,6 +1136,8 @@ def aggregate_benchmark_records(
         "comparator_expanded_statevector_dimension",
         "dense_qft_matrix_dimension",
         "estimated_peak_bytes",
+        "attempts",
+        "boundary_rounds",
     )
     results: list[BenchmarkAggregate] = []
     for (family, n_arms, k, method, relation), group in sorted(groups.items()):
@@ -1047,6 +1155,17 @@ def aggregate_benchmark_records(
             )
             for name in metric_names
         }
+        for name in (
+            "phase_qubits",
+            "initial_phase_qubits",
+            "max_phase_qubits",
+        ):
+            values = [getattr(record, name) for record in group]
+            if all(value is not None for value in values):
+                metrics[name] = _numeric_aggregate(
+                    [float(value) for value in values if value is not None],
+                    labels,
+                )
         results.append(
             BenchmarkAggregate(
                 family=family,
@@ -1145,12 +1264,15 @@ def paired_query_ratios(
             continue
         numerator_value = float(getattr(numerator, query_field))
         denominator_value = float(getattr(denominator, query_field))
-        if denominator_value == 0.0:
+        if not numerator.success or not denominator.success:
+            ratio = None
+            status = "not_both_certified_success_excluded"
+        elif denominator_value == 0.0:
             ratio = None
             status = "zero_denominator_excluded"
         else:
             ratio = numerator_value / denominator_value
-            status = "paired"
+            status = "both_certified_success_paired"
         pairs.append(
             PairedQueryRatio(
                 family=numerator.family,

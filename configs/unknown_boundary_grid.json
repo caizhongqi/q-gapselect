@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "experiment_name": "q-gapselect-unknown-boundary-history-grid-v1",
+  "cases": [
+    {
+      "name": "default_v4",
+      "m_values": [8, 16, 32, 64, 128, 256],
+      "n_exponent": 3.0,
+      "level_exponent": 1.0,
+      "active_exponent": 1.0,
+      "gamma_exponent": 2.0,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 0.25,
+      "activity_decay_exponent": 0.0,
+      "predicate_cost_exponent": 0.0,
+      "baseline_match_tolerance": 1.2
+    },
+    {
+      "name": "larger_inactive_sea",
+      "m_values": [8, 16, 32, 64, 128],
+      "n_exponent": 3.5,
+      "level_exponent": 1.0,
+      "active_exponent": 1.0,
+      "gamma_exponent": 2.0,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 0.25,
+      "activity_decay_exponent": 0.0,
+      "predicate_cost_exponent": 0.0,
+      "baseline_match_tolerance": 1.2
+    },
+    {
+      "name": "growing_activity",
+      "m_values": [8, 16, 32, 64, 128],
+      "n_exponent": 3.0,
+      "level_exponent": 1.0,
+      "active_exponent": 1.25,
+      "gamma_exponent": 2.0,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 0.25,
+      "activity_decay_exponent": 0.0,
+      "predicate_cost_exponent": 0.0,
+      "baseline_match_tolerance": 1.2
+    },
+    {
+      "name": "decaying_activity",
+      "m_values": [8, 16, 32, 64, 128],
+      "n_exponent": 3.0,
+      "level_exponent": 1.0,
+      "active_exponent": 1.25,
+      "gamma_exponent": 2.0,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 0.25,
+      "activity_decay_exponent": 0.25,
+      "predicate_cost_exponent": 0.0,
+      "baseline_match_tolerance": 1.2
+    },
+    {
+      "name": "costly_activity_predicate",
+      "m_values": [8, 16, 32, 64, 128],
+      "n_exponent": 3.0,
+      "level_exponent": 1.0,
+      "active_exponent": 1.0,
+      "gamma_exponent": 2.0,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 0.25,
+      "activity_decay_exponent": 0.0,
+      "predicate_cost_exponent": 0.5,
+      "baseline_match_tolerance": 1.2
+    },
+    {
+      "name": "loose_gate_negative_control",
+      "m_values": [8, 16, 32, 64],
+      "n_exponent": 3.0,
+      "level_exponent": 1.0,
+      "active_exponent": 1.0,
+      "gamma_exponent": 2.0,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 0.25,
+      "activity_decay_exponent": 0.0,
+      "predicate_cost_exponent": 0.0,
+      "baseline_match_tolerance": 2.0
+    }
+  ],
+  "notes": [
+    "This grid is analytic proxy accounting only; it does not execute a quantum algorithm.",
+    "The loose_gate_negative_control intentionally demonstrates that the novelty gate can fail when the tolerance is relaxed.",
+    "Open gates mean no encoded legal baseline matched under this configuration; they are proof obligations, not theorem claims."
+  ]
+}

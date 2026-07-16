@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_name": "q-gapselect-exact-state-coherent-history-v1",
+  "master_seed": 20260715,
+  "repetitions": 8,
+  "phase_qubits_by_level": [2, 3],
+  "boundary_phase_qubits": 3,
+  "boundary_shots": 48,
+  "minimum_boundary_samples_per_arm": 2,
+  "cleanup_tolerance": 1e-9,
+  "max_statevector_dimension": 500000,
+  "cases": [
+    {
+      "case_id": "on_grid_heterogeneous_stop",
+      "means": [1.0, 0.5, 0.0],
+      "k": 1
+    },
+    {
+      "case_id": "tied_boundary_negative_control",
+      "means": [1.0, 0.5, 0.5, 0.0],
+      "k": 2
+    },
+    {
+      "case_id": "off_grid_cleanup_stress",
+      "means": [0.95, 0.55, 0.05],
+      "k": 1
+    }
+  ],
+  "notes": [
+    "The kernel applies controlled canonical reward-oracle unitaries to an index superposition; it does not call analytic per-arm IAE.",
+    "The unknown boundary is inferred only from measured joint index-phase histograms.",
+    "A branch-local coherent output-mask XOR is executed, but complete direct Top-k union extraction remains unproved and no certificate is issued.",
+    "This tiny exact-state panel is circuit-semantics evidence, not a query-advantage or hardware result."
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "experiment_name": "same_interface_strong_composition_s3_v1",
+  "families": [
+    "F-EQ",
+    "F-DYADIC",
+    "F-CLUSTER",
+    "F-HIDDEN-FRONTIER",
+    "F-UNKNOWN-TIME-NC",
+    "F-TIE-NC"
+  ],
+  "execution_config": {
+    "phase_powers": [
+      0,
+      1,
+      3,
+      7,
+      15,
+      31,
+      63
+    ],
+    "fixed_shots_per_power": 128,
+    "unknown_time_shots_per_level": 64,
+    "grid_points": 4097
+  },
+  "panels": [
+    {
+      "panel_id": "hidden-frontier-n32-k6-s3",
+      "n": 32,
+      "k": 6,
+      "design_gap": 0.01227184630308513,
+      "fixture_seeds": [
+        1,
+        4,
+        6
+      ],
+      "measurement_seeds": [
+        11,
+        23,
+        37
+      ],
+      "delta": 0.025,
+      "atomic_query_caps": [
+        262144,
+        524288,
+        1048576
+      ]
+    }
+  ],
+  "claim_boundary": [
+    "Every method receives only n, k, delta, a fresh canonical oracle handle, and the atomic query cap.",
+    "Family, design gap, fixture seed, latent angles, Top-k truth, ties, and stopping histories remain trusted-harness data and are not algorithm inputs.",
+    "The fixed-phase methods sample exact Grover reward-measurement laws but do not execute a coherent QPE register.",
+    "The public-cap unknown-time method is a serial adaptive composition with a post-run L2 proxy; it does not execute coherent variable-time search or VTAA.",
+    "F-PUBLIC-PARTITION is excluded because it is a stronger-information interface; counting it without supplying the partition would duplicate F-HIDDEN-FRONTIER.",
+    "These controls do not activate strongest-literature-baseline coverage and support no hardware, theorem, quantum-advantage, or CCF-A claim."
+  ]
+}

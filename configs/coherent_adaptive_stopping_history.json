@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "experiment_name": "tiny_true_coherent_adaptive_stopping_history_s3_v1",
+  "algorithm_parameters": {
+    "cleanup_tolerance": 1e-10,
+    "max_statevector_dimension": 600000
+  },
+  "cases": [
+    {
+      "case_id": "exact_grid_first_stop",
+      "role": "exact_grid_first_stop",
+      "means": [
+        1.0,
+        0.0
+      ],
+      "expected_output_status": "MASK",
+      "expected_history": "10"
+    },
+    {
+      "case_id": "exact_grid_second_stop",
+      "role": "exact_grid_second_stop",
+      "means": [
+        0.5,
+        0.0
+      ],
+      "expected_output_status": "MASK",
+      "expected_history": "01"
+    },
+    {
+      "case_id": "exact_grid_arm1_second_stop",
+      "role": "exact_grid_arm1_winner",
+      "means": [
+        0.0,
+        0.5
+      ],
+      "expected_output_status": "MASK",
+      "expected_history": "01"
+    },
+    {
+      "case_id": "exact_grid_unresolved_tie",
+      "role": "exact_grid_tie",
+      "means": [
+        0.5,
+        0.5
+      ],
+      "expected_output_status": "INCONCLUSIVE",
+      "expected_history": "00"
+    },
+    {
+      "case_id": "generic_off_grid_entangled",
+      "role": "off_grid_fail_closed",
+      "means": [
+        0.82,
+        0.18
+      ],
+      "expected_output_status": "INCONCLUSIVE",
+      "expected_history": "mixed"
+    }
+  ],
+  "notes": [
+    "The algorithm receives only an opaque two-arm canonical oracle and numerical resource caps; the two phase levels and stop rule are fixed internally.",
+    "Phase, history, scratch mask, durable mask, rank work, and active query control coexist in one exact statevector.",
+    "Every level-two oracle invocation is controlled by the coherent not-stopped flag and charged in the worst-case query ledger.",
+    "The direct scratch mask is copied to a durable output before complete reverse replay of both level kernels.",
+    "Exact-grid first-stop and second-stop fixtures must output the correct mask and clean; the exact tie and generic off-grid fixture must fail closed.",
+    "The branch-RMS value is a theorem target only, never counted as an executed saving or proved variable-time upper bound."
+  ]
+}

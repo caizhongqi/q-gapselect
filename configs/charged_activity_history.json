@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_name": "charged_activity_history_phase_window_audit_v1",
+  "cases": [
+    {
+      "name": "phase_window_default",
+      "m_values": [4, 8, 16, 32],
+      "n_exponent": 2.0,
+      "level_exponent": 1.0,
+      "boundary_phase": 0.5,
+      "near_boundary_fraction": 0.5,
+      "base_bits": 3,
+      "growth_period": 2,
+      "guard_band": 0.0,
+      "max_statevector_dimension": 131072
+    },
+    {
+      "name": "finer_level_growth",
+      "m_values": [4, 8, 16],
+      "n_exponent": 2.0,
+      "level_exponent": 1.0,
+      "boundary_phase": 0.5,
+      "near_boundary_fraction": 0.375,
+      "base_bits": 4,
+      "growth_period": 1,
+      "guard_band": 0.0,
+      "max_statevector_dimension": 131072
+    }
+  ],
+  "notes": [
+    "Predicates are generated from finite phase windows, not supplied active/output rows.",
+    "Exact-state traces are capped; skipped larger traces remain analytic classifier records.",
+    "This artifact is code-sanity for P0-U08, not an upper-bound or lower-bound theorem."
+  ]
+}

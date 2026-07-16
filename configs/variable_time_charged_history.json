@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "experiment_name": "variable_time_charged_history_alignment_v1",
+  "cases": [
+    {
+      "name": "default_mainline_charged",
+      "m_values": [8, 16, 32, 64, 128, 256],
+      "n_exponent": 3.0,
+      "level_exponent": 1.0,
+      "active_exponent": 1.0,
+      "gamma_exponent": 2.0,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 0.25,
+      "activity_decay_exponent": 0.0,
+      "predicate_cost_exponent": 0.0,
+      "precision_multiplier": 2.0,
+      "min_precision_bits": 1,
+      "max_precision_bits": null,
+      "baseline_match_tolerance": 1.2
+    },
+    {
+      "name": "decaying_activity_charged",
+      "m_values": [8, 16, 32, 64, 128, 256],
+      "n_exponent": 3.0,
+      "level_exponent": 1.0,
+      "active_exponent": 1.0,
+      "gamma_exponent": 2.0,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 0.25,
+      "activity_decay_exponent": 0.35,
+      "predicate_cost_exponent": 0.0,
+      "precision_multiplier": 2.0,
+      "min_precision_bits": 1,
+      "max_precision_bits": null,
+      "baseline_match_tolerance": 1.2
+    },
+    {
+      "name": "loose_gate_negative_control",
+      "m_values": [8, 16, 32, 64],
+      "n_exponent": 3.0,
+      "level_exponent": 1.0,
+      "active_exponent": 1.0,
+      "gamma_exponent": 2.0,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 0.25,
+      "activity_decay_exponent": 0.0,
+      "predicate_cost_exponent": 0.0,
+      "precision_multiplier": 2.0,
+      "min_precision_bits": 1,
+      "max_precision_bits": null,
+      "baseline_match_tolerance": 10.0
+    }
+  ],
+  "notes": [
+    "This grid aligns charged finite-QPE predicate costs with the active unknown-boundary history target.",
+    "Open gates mean the family survived encoded proxy baselines, not that an upper or lower theorem has been proved.",
+    "The loose tolerance case is a negative control that should fail the novelty gate."
+  ]
+}

@@ -20,6 +20,20 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
       - run: python -m pip install --upgrade pip
-      - run: python -m pip install -e '.[dev]'
+      - run: python -m pip install -e '.[dev,datasets]'
       - run: python -m ruff check .
       - run: python -m pytest
+      - run: python scripts/run_unknown_boundary_grid.py --output /tmp/unknown_boundary_grid.json
+      - run: >
+          python scripts/run_research_gap_audit.py
+          --quantum-artifact artifacts/quantum_benchmark_diagnostic.json
+          --grid-artifact /tmp/unknown_boundary_grid.json
+          --output /tmp/research_gap_audit.json
+          --markdown /tmp/research_gap_audit.md
+      - run: >
+          python scripts/run_quantum_benchmarks.py
+          --config configs/quantum_benchmarks.json
+          --output /tmp/quantum_history.json
+          --suite unknown_boundary_history
+          --suite generic_composition_audit
+          --suite failure_semantics

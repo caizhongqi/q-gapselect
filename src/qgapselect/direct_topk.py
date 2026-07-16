@@ -23,6 +23,11 @@ from typing import Any
 
 import numpy as np
 
+from .adaptive_phase import (
+    PHASE_GUARD_FACTOR,
+    AdaptivePhaseQubitScheduler,
+    AdaptivePhaseSchedule,
+)
 from .coherent import CanonicalRyStatevectorOracle
 from .oracles import QueryLedger, QuerySnapshot
 from .primitives import BoundaryArmInterval, BoundaryResult, QBoundaryEstimator
@@ -32,6 +37,9 @@ CLAIM_STATUS = (
     "calibrated_direct_qpe_topk_execution_heuristic_phase_guard_no_advantage_theorem"
 )
 PHASE_GUARD_STATUS = "heuristic_execution_guard_not_a_complexity_theorem"
+ADAPTIVE_PHASE_GUARD_STATUS = (
+    "adaptive_measured_margin_execution_guard_not_a_complexity_theorem"
+)
 
 
 def _integer(value: object, name: str) -> int:
@@ -83,6 +91,9 @@ class DirectTopKResources:
     search_query_counts: Mapping[str, int]
     phase_qubits: int
     phase_resolution: float
+    initial_phase_qubits: int
+    max_phase_qubits: int
+    adaptive_phase_qubits: bool
     max_statevector_dimension: int
     backend: str = BACKEND
     claim_status: str = CLAIM_STATUS
@@ -123,6 +134,10 @@ class CalibratedDirectTopKResult:
     phase_resolution: float
     phase_guard_passed: bool | None
     phase_guard_status: str
+    initial_phase_qubits: int
+    max_phase_qubits: int
+    adaptive_phase_qubits: bool
+    phase_schedule: AdaptivePhaseSchedule | None
     branches: tuple[DirectTopKBranchTrace, ...]
     resources: DirectTopKResources
     status: str
@@ -161,6 +176,8 @@ class CalibratedDirectTopKController:
         k: int,
         *,
         phase_qubits: int = 5,
+        adaptive_phase_qubits: bool = False,
+        max_phase_qubits: int | None = None,
         confidence: float = 0.05,
         boundary_shots_per_round: int = 64,
         max_boundary_rounds: int = 8,
@@ -174,6 +191,12 @@ class CalibratedDirectTopKController:
             raise TypeError("oracle must be a CanonicalRyStatevectorOracle")
         k = _integer(k, "k")
         phase_qubits = _integer(phase_qubits, "phase_qubits")
+        if not isinstance(adaptive_phase_qubits, bool):
+            raise TypeError("adaptive_phase_qubits must be a bool")
+        if max_phase_qubits is None:
+            max_phase_qubits = phase_qubits
+        else:
+            max_phase_qubits = _integer(max_phase_qubits, "max_phase_qubits")
         boundary_shots_per_round = _integer(
             boundary_shots_per_round, "boundary_shots_per_round"
         )
@@ -197,6 +220,20 @@ class CalibratedDirectTopKController:
             raise ValueError("phase_qubits must be positive")
         if phase_qubits > 12:
             raise ValueError("phase_qubits exceeds the small-state limit of 12")
+        if max_phase_qubits < phase_qubits:
+            raise ValueError("max_phase_qubits must be at least phase_qubits")
+        if max_phase_qubits > 12:
+            raise ValueError("max_phase_qubits exceeds the small-state limit of 12")
+        if not adaptive_phase_qubits and max_phase_qubits != phase_qubits:
+            raise ValueError(
+                "max_phase_qubits above phase_qubits requires "
+                "adaptive_phase_qubits=True"
+            )
+        if adaptive_phase_qubits and max_phase_qubits < 2:
+            raise ValueError(
+                "adaptive max_phase_qubits must be at least 2 because no "
+                "finite Top-k boundary margin can satisfy the m=1 guard"
+            )
         if boundary_shots_per_round <= 0 or max_boundary_rounds <= 0:
             raise ValueError("boundary budgets must be positive")
         if max_attempts_per_output <= 0 or verification_shots <= 0:
@@ -206,12 +243,30 @@ class CalibratedDirectTopKController:
 
         self.oracle = oracle
         self.k = k
+        self.initial_phase_qubits = phase_qubits
+        self.max_phase_qubits = max_phase_qubits
+        self.adaptive_phase_qubits = adaptive_phase_qubits
         self.phase_qubits = phase_qubits
         self.phase_resolution = math.pi / (1 << phase_qubits)
         self.max_attempts_per_output = max_attempts_per_output
         self.verification_shots = verification_shots
         self.verification_confidence = verification_confidence
         self.max_statevector_dimension = max_statevector_dimension
+        self._phase_scheduler = (
+            AdaptivePhaseQubitScheduler(
+                oracle.index_dimension,
+                minimum_phase_qubits=phase_qubits,
+                maximum_phase_qubits=max_phase_qubits,
+                max_statevector_dimension=max_statevector_dimension,
+            )
+            if adaptive_phase_qubits
+            else None
+        )
+        minimum_angular_margin = (
+            PHASE_GUARD_FACTOR * math.pi / (1 << max_phase_qubits)
+            if adaptive_phase_qubits
+            else 0.0
+        )
         self._rng = np.random.default_rng(seed)
         boundary_seed = int(self._rng.integers(0, 2**32))
         self._before_queries = oracle.query_snapshot()
@@ -221,15 +276,18 @@ class CalibratedDirectTopKController:
             confidence=confidence,
             shots_per_round=boundary_shots_per_round,
             max_rounds=max_boundary_rounds,
+            minimum_angular_margin=minimum_angular_margin,
             seed=boundary_seed,
             tag="direct_topk_boundary",
         )
         self._boundary_end_queries: QuerySnapshot | None = None
+        self._boundary_query_counts: Mapping[str, int] | None = None
         self._intervals: tuple[BoundaryArmInterval, ...] | None = None
         self._mean_threshold: float | None = None
         self._angular_threshold: float | None = None
         self._angular_margin: float | None = None
         self._phase_guard_passed: bool | None = None
+        self._phase_schedule: AdaptivePhaseSchedule | None = None
         self._branches: tuple[_BranchState, _BranchState] | None = None
         self._next_branch = 0
         self._winner: str | None = None
@@ -307,12 +365,29 @@ class CalibratedDirectTopKController:
         # asin(sqrt(mu)) is nonlinear.
         self._mean_threshold = math.sin(self._angular_threshold) ** 2
         self._angular_margin = float(certificate.angular_margin)
-        self._phase_guard_passed = self.phase_resolution <= (
-            self._angular_margin / 2.0
-        )
+        if self._phase_scheduler is None:
+            self._phase_guard_passed = self.phase_resolution <= (
+                self._angular_margin / PHASE_GUARD_FACTOR
+            )
+        else:
+            self._phase_schedule = self._phase_scheduler.schedule(
+                self._angular_margin
+            )
+            selected_phase_qubits = self._phase_schedule.selected_phase_qubits
+            self._phase_guard_passed = selected_phase_qubits is not None
+            if selected_phase_qubits is not None:
+                self.phase_qubits = selected_phase_qubits
+                self.phase_resolution = math.pi / (1 << selected_phase_qubits)
         self._boundary_end_queries = self.oracle.query_snapshot()
+        self._boundary_query_counts = _immutable_counts(
+            boundary.resources.query_counts
+        )
         if not self._phase_guard_passed:
-            self._terminal_status = "phase_resolution_insufficient"
+            self._terminal_status = (
+                "phase_resolution_insufficient"
+                if self._phase_schedule is None
+                else str(self._phase_schedule.blocked_reason)
+            )
             return
 
         from .direct_search import FullWorkspaceBBHT
@@ -404,6 +479,10 @@ class CalibratedDirectTopKController:
         if not boundary.complete:
             if self._boundary.exhausted:
                 self._boundary_end_queries = self.oracle.query_snapshot()
+                boundary = self._boundary.result()
+                self._boundary_query_counts = _immutable_counts(
+                    boundary.resources.query_counts
+                )
                 self._terminal_status = "boundary_not_separated"
                 return self.result()
             self._boundary.step()
@@ -499,7 +578,9 @@ class CalibratedDirectTopKController:
     def _resources(self) -> DirectTopKResources:
         current = self.oracle.query_snapshot()
         total = QueryLedger.difference(current, self._before_queries)
-        boundary = self._boundary.result().resources.query_counts
+        boundary = self._boundary_query_counts
+        if boundary is None:
+            boundary = self._boundary.result().resources.query_counts
         boundary_end = self._boundary_end_queries
         search = (
             _empty_query_counts()
@@ -512,6 +593,9 @@ class CalibratedDirectTopKController:
             search_query_counts=search,
             phase_qubits=self.phase_qubits,
             phase_resolution=self.phase_resolution,
+            initial_phase_qubits=self.initial_phase_qubits,
+            max_phase_qubits=self.max_phase_qubits,
+            adaptive_phase_qubits=self.adaptive_phase_qubits,
             max_statevector_dimension=self.max_statevector_dimension,
         )
 
@@ -535,7 +619,15 @@ class CalibratedDirectTopKController:
             angular_margin=self._angular_margin,
             phase_resolution=self.phase_resolution,
             phase_guard_passed=self._phase_guard_passed,
-            phase_guard_status=PHASE_GUARD_STATUS,
+            phase_guard_status=(
+                ADAPTIVE_PHASE_GUARD_STATUS
+                if self.adaptive_phase_qubits
+                else PHASE_GUARD_STATUS
+            ),
+            initial_phase_qubits=self.initial_phase_qubits,
+            max_phase_qubits=self.max_phase_qubits,
+            adaptive_phase_qubits=self.adaptive_phase_qubits,
+            phase_schedule=self._phase_schedule,
             branches=self._branch_traces(),
             resources=self._resources(),
             status=status,

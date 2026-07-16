@@ -5,6 +5,8 @@ from __future__ import annotations
 import math
 from dataclasses import replace
 
+import numpy as np
+
 from .models import (
     AmplitudeEstimate,
     AngularConfidenceInterval,
@@ -20,6 +22,81 @@ def _bernoulli_log_likelihood(successes: int, shots: int, probability: float) ->
     return successes * math.log(probability) + (shots - successes) * math.log1p(
         -probability
     )
+
+
+def _fit_grid_scalar_reference(
+    observations: list[GroverObservation],
+    config: IAEConfig,
+) -> tuple[
+    float,
+    ConfidenceInterval,
+    AngularConfidenceInterval,
+    str | None,
+]:
+    """Scalar specification for the vectorised confidence-grid fit.
+
+    This is intentionally kept private and off the execution path.  It makes
+    the numerical semantics of :meth:`AnalyticIterativeAmplitudeEstimator._fit_grid`
+    executable in regression tests without retaining a Python loop over grid
+    points in production experiments.
+    """
+
+    grid_size = config.grid_points
+    theta_step = (math.pi / 2.0) / (grid_size - 1)
+    radius = math.sqrt(
+        math.log(2.0 * config.max_rounds / config.confidence)
+        / (2.0 * config.shots_per_round)
+    )
+
+    minimum_consistent_theta: float | None = None
+    maximum_consistent_theta: float | None = None
+    maximum_consistent_likelihood = -math.inf
+    mle_theta = math.pi / 4.0
+
+    for grid_index in range(grid_size):
+        theta = grid_index * theta_step
+        consistent = True
+        log_likelihood = 0.0
+        for observation in observations:
+            multiplier = observation.frequency
+            probability = math.sin(multiplier * theta) ** 2
+            log_likelihood += _bernoulli_log_likelihood(
+                observation.successes,
+                observation.shots,
+                probability,
+            )
+            numerical_padding = multiplier * theta_step / 2.0
+            if (
+                abs(probability - observation.empirical_probability)
+                > radius + numerical_padding
+            ):
+                consistent = False
+
+        if consistent:
+            if minimum_consistent_theta is None:
+                minimum_consistent_theta = theta
+            maximum_consistent_theta = theta
+            if log_likelihood > maximum_consistent_likelihood:
+                maximum_consistent_likelihood = log_likelihood
+                mle_theta = theta
+
+    if minimum_consistent_theta is None or maximum_consistent_theta is None:
+        return (
+            0.5,
+            ConfidenceInterval(0.0, 1.0),
+            AngularConfidenceInterval(0.0, math.pi / 2.0),
+            "empty numerical confidence set; returned the vacuous interval",
+        )
+
+    estimate = math.sin(mle_theta) ** 2
+    theta_lower = max(0.0, minimum_consistent_theta - theta_step / 2.0)
+    theta_upper = min(math.pi / 2.0, maximum_consistent_theta + theta_step / 2.0)
+    interval = ConfidenceInterval(
+        lower=max(0.0, math.sin(theta_lower) ** 2),
+        upper=min(1.0, math.sin(theta_upper) ** 2),
+    )
+    angular_interval = AngularConfidenceInterval(theta_lower, theta_upper)
+    return estimate, interval, angular_interval, None
 
 
 class AnalyticIterativeAmplitudeEstimator:
@@ -126,41 +203,38 @@ class AnalyticIterativeAmplitudeEstimator:
             / (2.0 * config.shots_per_round)
         )
 
-        minimum_consistent_theta: float | None = None
-        maximum_consistent_theta: float | None = None
-        maximum_consistent_likelihood = -math.inf
-        mle_theta = math.pi / 4.0
+        # Shape: (rounds, grid points).  The only Python-sized dimension left
+        # is the short observation list used to construct the input vectors;
+        # all grid evaluation, confidence-set intersection and likelihood
+        # aggregation are NumPy operations.
+        theta_grid = np.arange(grid_size, dtype=np.float64) * theta_step
+        frequencies = np.asarray(
+            [observation.frequency for observation in observations],
+            dtype=np.float64,
+        )
+        successes = np.asarray(
+            [observation.successes for observation in observations],
+            dtype=np.float64,
+        )
+        shots = np.asarray(
+            [observation.shots for observation in observations],
+            dtype=np.float64,
+        )
 
-        for grid_index in range(grid_size):
-            theta = grid_index * theta_step
-            consistent = True
-            log_likelihood = 0.0
-            for observation in observations:
-                multiplier = observation.frequency
-                probability = math.sin(multiplier * theta) ** 2
-                log_likelihood += _bernoulli_log_likelihood(
-                    observation.successes,
-                    observation.shots,
-                    probability,
-                )
-                # |d sin^2(q theta) / d theta| <= q.  Padding by one
-                # half-grid cell makes the numerical set an outer hull.
-                numerical_padding = multiplier * theta_step / 2.0
-                if (
-                    abs(probability - observation.empirical_probability)
-                    > radius + numerical_padding
-                ):
-                    consistent = False
+        phases = frequencies[:, np.newaxis] * theta_grid[np.newaxis, :]
+        probabilities = np.sin(phases) ** 2
+        empirical_probabilities = (successes / shots)[:, np.newaxis]
+        # |d sin^2(q theta) / d theta| <= q.  Padding by one half-grid
+        # cell makes the numerical set an outer hull.
+        numerical_padding = (frequencies * theta_step / 2.0)[:, np.newaxis]
+        consistent_mask = np.all(
+            np.abs(probabilities - empirical_probabilities)
+            <= radius + numerical_padding,
+            axis=0,
+        )
 
-            if consistent:
-                if minimum_consistent_theta is None:
-                    minimum_consistent_theta = theta
-                maximum_consistent_theta = theta
-                if log_likelihood > maximum_consistent_likelihood:
-                    maximum_consistent_likelihood = log_likelihood
-                    mle_theta = theta
-
-        if minimum_consistent_theta is None or maximum_consistent_theta is None:
+        consistent_indices = np.flatnonzero(consistent_mask)
+        if consistent_indices.size == 0:
             # Numerical or model inconsistency must make the interval wider,
             # never silently create a confident estimate.
             return (
@@ -169,6 +243,22 @@ class AnalyticIterativeAmplitudeEstimator:
                 AngularConfidenceInterval(0.0, math.pi / 2.0),
                 "empty numerical confidence set; returned the vacuous interval",
             )
+
+        clipped_probabilities = np.clip(probabilities, 1e-15, 1.0 - 1e-15)
+        log_likelihoods = np.sum(
+            successes[:, np.newaxis] * np.log(clipped_probabilities)
+            + (shots - successes)[:, np.newaxis]
+            * np.log1p(-clipped_probabilities),
+            axis=0,
+        )
+        consistent_likelihoods = log_likelihoods[consistent_indices]
+        # np.argmax returns the first maximum.  Because consistent_indices is
+        # increasing, this exactly retains the scalar MLE tie-break toward the
+        # smallest theta grid point.
+        mle_index = int(consistent_indices[int(np.argmax(consistent_likelihoods))])
+        minimum_consistent_theta = float(theta_grid[int(consistent_indices[0])])
+        maximum_consistent_theta = float(theta_grid[int(consistent_indices[-1])])
+        mle_theta = float(theta_grid[mle_index])
 
         estimate = math.sin(mle_theta) ** 2
         theta_lower = max(0.0, minimum_consistent_theta - theta_step / 2.0)

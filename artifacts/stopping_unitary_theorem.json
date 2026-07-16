@@ -1,0 +1,689 @@
+{
+  "artifact_type": "q_gapselect_stopping_unitary_theorem_scaffold",
+  "case_results": [
+    {
+      "name": "canonical_output_phase",
+      "parameters": {
+        "base_bits": 3,
+        "boundary_phase": 0.5,
+        "growth_period": 2,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8,
+          16
+        ],
+        "n_exponent": 2.0,
+        "name": "canonical_output_phase",
+        "near_boundary_fraction": 0.5,
+        "phase_on": "output"
+      },
+      "raw_records": [
+        {
+          "level_count": 4,
+          "m": 4,
+          "n_arms": 16,
+          "precision_bits_by_level": [
+            3,
+            3,
+            4,
+            4
+          ],
+          "scaffold": {
+            "active_count": 9,
+            "all_branch_rms_formula_residual": 0.0,
+            "all_branch_rms_search_proxy": 164.00914608643018,
+            "branch_rms_over_serial": 0.9318701482183532,
+            "checks": [
+              {
+                "check_id": "ST-U01",
+                "evidence": "L2 residual 0.000e+00.",
+                "missing_for_theorem": "Generalize from exact-state fixture to a symbolic unitary over all valid basis states and padded registers.",
+                "statement": "The stopping compute relation is an involution on the tested state.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-U02",
+                "evidence": "L2 residual 0.000e+00 for phase_on=output.",
+                "missing_for_theorem": "Prove the predicate equivalence for all superpositions and for the eventual unknown-boundary predicate.",
+                "statement": "Compute--phase--uncompute implements the intended phase predicate.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-U03",
+                "evidence": "Work-garbage probability 0.000e+00.",
+                "missing_for_theorem": "Lift the cleanup identity to the final circuit with boundary, QPE, verification, and confidence workspaces.",
+                "statement": "The stop, active, and output work registers are cleaned after phase.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-R01",
+                "evidence": "branch_rms=41.0023, serial=44.",
+                "missing_for_theorem": "Derive the same inequality from charged stopping times in the formal variable-time algorithm.",
+                "statement": "The branch-RMS stopping ledger is no larger than serial full history.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-R02",
+                "evidence": "Formula residual 0.000e+00.",
+                "missing_for_theorem": "Connect this proxy to the chosen variable-time search or amplitude-amplification theorem.",
+                "statement": "The all-branch RMS proxy equals sqrt(sum_i T_i^2).",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-P01",
+                "evidence": "Current code supplies a relation skeleton and exact-state traces.",
+                "missing_for_theorem": "Write the circuit construction using controlled QPE, stopping flags, inverse calls, and explicit workspace dimensions.",
+                "statement": "There is a compiled stopping-time unitary with charged QPE calls.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P02",
+                "evidence": "The scaffold uses deterministic finite-phase fixtures.",
+                "missing_for_theorem": "Add confidence allocation and prove no unresolved/duplicate output is accepted.",
+                "statement": "The bounded-error predicate composes across levels and outputs.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P03",
+                "evidence": "The current transducer receives a numeric boundary phase.",
+                "missing_for_theorem": "Integrate the unknown-boundary localization unitary and prove that it does not leak membership.",
+                "statement": "The boundary is localized coherently rather than supplied.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P04",
+                "evidence": "Composition frontier is still a separate P1 audit.",
+                "missing_for_theorem": "Instantiate strongest loop composition, k-minimum, QBAI, and variable-time baselines under identical assumptions.",
+                "statement": "Known loop/composition theorems do not already imply the same bound.",
+                "status": "proof_obligation"
+              }
+            ],
+            "claim_status": "stopping_time_unitary_lemma_scaffold_no_proof",
+            "coherent_branch_rms_cost": 41.002286521607545,
+            "compute_involution_residual_l2": 0.0,
+            "failed_count": 0,
+            "index_dimension": 16,
+            "level_count": 4,
+            "n_arms": 16,
+            "output_count": 3,
+            "passed_count": 5,
+            "phase_equivalence_residual_l2": 0.0,
+            "phase_on": "output",
+            "proof_obligation_count": 4,
+            "readiness": "execution_checks_passed_proof_obligations_remain",
+            "serial_full_history_cost_per_branch": 44,
+            "statevector_dimension": 512,
+            "stop_dimension": 8,
+            "theorem_name": "Variable-time stopping-unitary lemma scaffold",
+            "unresolved_count": 13,
+            "work_garbage_probability_after_phase": 0.0
+          }
+        },
+        {
+          "level_count": 8,
+          "m": 8,
+          "n_arms": 64,
+          "precision_bits_by_level": [
+            3,
+            3,
+            4,
+            4,
+            5,
+            5,
+            6,
+            6
+          ],
+          "scaffold": {
+            "active_count": 37,
+            "all_branch_rms_formula_residual": 0.0,
+            "all_branch_rms_search_proxy": 1583.8797302825742,
+            "branch_rms_over_serial": 0.8533834753677663,
+            "checks": [
+              {
+                "check_id": "ST-U01",
+                "evidence": "L2 residual 0.000e+00.",
+                "missing_for_theorem": "Generalize from exact-state fixture to a symbolic unitary over all valid basis states and padded registers.",
+                "statement": "The stopping compute relation is an involution on the tested state.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-U02",
+                "evidence": "L2 residual 0.000e+00 for phase_on=output.",
+                "missing_for_theorem": "Prove the predicate equivalence for all superpositions and for the eventual unknown-boundary predicate.",
+                "statement": "Compute--phase--uncompute implements the intended phase predicate.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-U03",
+                "evidence": "Work-garbage probability 0.000e+00.",
+                "missing_for_theorem": "Lift the cleanup identity to the final circuit with boundary, QPE, verification, and confidence workspaces.",
+                "statement": "The stop, active, and output work registers are cleaned after phase.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-R01",
+                "evidence": "branch_rms=197.985, serial=232.",
+                "missing_for_theorem": "Derive the same inequality from charged stopping times in the formal variable-time algorithm.",
+                "statement": "The branch-RMS stopping ledger is no larger than serial full history.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-R02",
+                "evidence": "Formula residual 0.000e+00.",
+                "missing_for_theorem": "Connect this proxy to the chosen variable-time search or amplitude-amplification theorem.",
+                "statement": "The all-branch RMS proxy equals sqrt(sum_i T_i^2).",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-P01",
+                "evidence": "Current code supplies a relation skeleton and exact-state traces.",
+                "missing_for_theorem": "Write the circuit construction using controlled QPE, stopping flags, inverse calls, and explicit workspace dimensions.",
+                "statement": "There is a compiled stopping-time unitary with charged QPE calls.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P02",
+                "evidence": "The scaffold uses deterministic finite-phase fixtures.",
+                "missing_for_theorem": "Add confidence allocation and prove no unresolved/duplicate output is accepted.",
+                "statement": "The bounded-error predicate composes across levels and outputs.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P03",
+                "evidence": "The current transducer receives a numeric boundary phase.",
+                "missing_for_theorem": "Integrate the unknown-boundary localization unitary and prove that it does not leak membership.",
+                "statement": "The boundary is localized coherently rather than supplied.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P04",
+                "evidence": "Composition frontier is still a separate P1 audit.",
+                "missing_for_theorem": "Instantiate strongest loop composition, k-minimum, QBAI, and variable-time baselines under identical assumptions.",
+                "statement": "Known loop/composition theorems do not already imply the same bound.",
+                "status": "proof_obligation"
+              }
+            ],
+            "claim_status": "stopping_time_unitary_lemma_scaffold_no_proof",
+            "coherent_branch_rms_cost": 197.98496628532178,
+            "compute_involution_residual_l2": 0.0,
+            "failed_count": 0,
+            "index_dimension": 64,
+            "level_count": 8,
+            "n_arms": 64,
+            "output_count": 19,
+            "passed_count": 5,
+            "phase_equivalence_residual_l2": 0.0,
+            "phase_on": "output",
+            "proof_obligation_count": 4,
+            "readiness": "execution_checks_passed_proof_obligations_remain",
+            "serial_full_history_cost_per_branch": 232,
+            "statevector_dimension": 4096,
+            "stop_dimension": 16,
+            "theorem_name": "Variable-time stopping-unitary lemma scaffold",
+            "unresolved_count": 45,
+            "work_garbage_probability_after_phase": 0.0
+          }
+        },
+        {
+          "level_count": 16,
+          "m": 16,
+          "n_arms": 256,
+          "precision_bits_by_level": [
+            3,
+            3,
+            4,
+            4,
+            5,
+            5,
+            6,
+            6,
+            7,
+            7,
+            8,
+            8,
+            9,
+            9,
+            10,
+            10
+          ],
+          "scaffold": {
+            "active_count": 148,
+            "all_branch_rms_formula_residual": 0.0,
+            "all_branch_rms_search_proxy": 53493.137157957004,
+            "branch_rms_over_serial": 0.8226675867057857,
+            "checks": [
+              {
+                "check_id": "ST-U01",
+                "evidence": "L2 residual 0.000e+00.",
+                "missing_for_theorem": "Generalize from exact-state fixture to a symbolic unitary over all valid basis states and padded registers.",
+                "statement": "The stopping compute relation is an involution on the tested state.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-U02",
+                "evidence": "L2 residual 0.000e+00 for phase_on=output.",
+                "missing_for_theorem": "Prove the predicate equivalence for all superpositions and for the eventual unknown-boundary predicate.",
+                "statement": "Compute--phase--uncompute implements the intended phase predicate.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-U03",
+                "evidence": "Work-garbage probability 0.000e+00.",
+                "missing_for_theorem": "Lift the cleanup identity to the final circuit with boundary, QPE, verification, and confidence workspaces.",
+                "statement": "The stop, active, and output work registers are cleaned after phase.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-R01",
+                "evidence": "branch_rms=3343.32, serial=4064.",
+                "missing_for_theorem": "Derive the same inequality from charged stopping times in the formal variable-time algorithm.",
+                "statement": "The branch-RMS stopping ledger is no larger than serial full history.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-R02",
+                "evidence": "Formula residual 0.000e+00.",
+                "missing_for_theorem": "Connect this proxy to the chosen variable-time search or amplitude-amplification theorem.",
+                "statement": "The all-branch RMS proxy equals sqrt(sum_i T_i^2).",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-P01",
+                "evidence": "Current code supplies a relation skeleton and exact-state traces.",
+                "missing_for_theorem": "Write the circuit construction using controlled QPE, stopping flags, inverse calls, and explicit workspace dimensions.",
+                "statement": "There is a compiled stopping-time unitary with charged QPE calls.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P02",
+                "evidence": "The scaffold uses deterministic finite-phase fixtures.",
+                "missing_for_theorem": "Add confidence allocation and prove no unresolved/duplicate output is accepted.",
+                "statement": "The bounded-error predicate composes across levels and outputs.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P03",
+                "evidence": "The current transducer receives a numeric boundary phase.",
+                "missing_for_theorem": "Integrate the unknown-boundary localization unitary and prove that it does not leak membership.",
+                "statement": "The boundary is localized coherently rather than supplied.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P04",
+                "evidence": "Composition frontier is still a separate P1 audit.",
+                "missing_for_theorem": "Instantiate strongest loop composition, k-minimum, QBAI, and variable-time baselines under identical assumptions.",
+                "statement": "Known loop/composition theorems do not already imply the same bound.",
+                "status": "proof_obligation"
+              }
+            ],
+            "claim_status": "stopping_time_unitary_lemma_scaffold_no_proof",
+            "coherent_branch_rms_cost": 3343.3210723723128,
+            "compute_involution_residual_l2": 0.0,
+            "failed_count": 0,
+            "index_dimension": 256,
+            "level_count": 16,
+            "n_arms": 256,
+            "output_count": 83,
+            "passed_count": 5,
+            "phase_equivalence_residual_l2": 0.0,
+            "phase_on": "output",
+            "proof_obligation_count": 4,
+            "readiness": "execution_checks_passed_proof_obligations_remain",
+            "serial_full_history_cost_per_branch": 4064,
+            "statevector_dimension": 32768,
+            "stop_dimension": 32,
+            "theorem_name": "Variable-time stopping-unitary lemma scaffold",
+            "unresolved_count": 173,
+            "work_garbage_probability_after_phase": 0.0
+          }
+        }
+      ],
+      "simulator_wall_seconds": 0.07006328599891276,
+      "summary": {
+        "all_execution_checks_passed": true,
+        "asymptotic_theorem_claimed": false,
+        "check_status_counts": {
+          "passed": 15,
+          "proof_obligation": 12
+        },
+        "executed_quantum_algorithm": false,
+        "interpretation": "paper-facing stopping-unitary lemma scaffold; executable checks pass but proof obligations remain",
+        "last_branch_rms_over_serial": 0.8226675867057857,
+        "last_proof_obligation_count": 4,
+        "m_values": [
+          4,
+          8,
+          16
+        ],
+        "records": 3
+      }
+    },
+    {
+      "name": "active_phase_cleanup",
+      "parameters": {
+        "base_bits": 4,
+        "boundary_phase": 0.5,
+        "growth_period": 1,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8
+        ],
+        "n_exponent": 2.0,
+        "name": "active_phase_cleanup",
+        "near_boundary_fraction": 0.375,
+        "phase_on": "active"
+      },
+      "raw_records": [
+        {
+          "level_count": 4,
+          "m": 4,
+          "n_arms": 16,
+          "precision_bits_by_level": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "scaffold": {
+            "active_count": 5,
+            "all_branch_rms_formula_residual": 0.0,
+            "all_branch_rms_search_proxy": 859.2263962425735,
+            "branch_rms_over_serial": 0.9101974536467939,
+            "checks": [
+              {
+                "check_id": "ST-U01",
+                "evidence": "L2 residual 0.000e+00.",
+                "missing_for_theorem": "Generalize from exact-state fixture to a symbolic unitary over all valid basis states and padded registers.",
+                "statement": "The stopping compute relation is an involution on the tested state.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-U02",
+                "evidence": "L2 residual 0.000e+00 for phase_on=active.",
+                "missing_for_theorem": "Prove the predicate equivalence for all superpositions and for the eventual unknown-boundary predicate.",
+                "statement": "Compute--phase--uncompute implements the intended phase predicate.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-U03",
+                "evidence": "Work-garbage probability 0.000e+00.",
+                "missing_for_theorem": "Lift the cleanup identity to the final circuit with boundary, QPE, verification, and confidence workspaces.",
+                "statement": "The stop, active, and output work registers are cleaned after phase.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-R01",
+                "evidence": "branch_rms=214.807, serial=236.",
+                "missing_for_theorem": "Derive the same inequality from charged stopping times in the formal variable-time algorithm.",
+                "statement": "The branch-RMS stopping ledger is no larger than serial full history.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-R02",
+                "evidence": "Formula residual 0.000e+00.",
+                "missing_for_theorem": "Connect this proxy to the chosen variable-time search or amplitude-amplification theorem.",
+                "statement": "The all-branch RMS proxy equals sqrt(sum_i T_i^2).",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-P01",
+                "evidence": "Current code supplies a relation skeleton and exact-state traces.",
+                "missing_for_theorem": "Write the circuit construction using controlled QPE, stopping flags, inverse calls, and explicit workspace dimensions.",
+                "statement": "There is a compiled stopping-time unitary with charged QPE calls.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P02",
+                "evidence": "The scaffold uses deterministic finite-phase fixtures.",
+                "missing_for_theorem": "Add confidence allocation and prove no unresolved/duplicate output is accepted.",
+                "statement": "The bounded-error predicate composes across levels and outputs.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P03",
+                "evidence": "The current transducer receives a numeric boundary phase.",
+                "missing_for_theorem": "Integrate the unknown-boundary localization unitary and prove that it does not leak membership.",
+                "statement": "The boundary is localized coherently rather than supplied.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P04",
+                "evidence": "Composition frontier is still a separate P1 audit.",
+                "missing_for_theorem": "Instantiate strongest loop composition, k-minimum, QBAI, and variable-time baselines under identical assumptions.",
+                "statement": "Known loop/composition theorems do not already imply the same bound.",
+                "status": "proof_obligation"
+              }
+            ],
+            "claim_status": "stopping_time_unitary_lemma_scaffold_no_proof",
+            "coherent_branch_rms_cost": 214.80659906064338,
+            "compute_involution_residual_l2": 0.0,
+            "failed_count": 0,
+            "index_dimension": 16,
+            "level_count": 4,
+            "n_arms": 16,
+            "output_count": 3,
+            "passed_count": 5,
+            "phase_equivalence_residual_l2": 0.0,
+            "phase_on": "active",
+            "proof_obligation_count": 4,
+            "readiness": "execution_checks_passed_proof_obligations_remain",
+            "serial_full_history_cost_per_branch": 236,
+            "statevector_dimension": 512,
+            "stop_dimension": 8,
+            "theorem_name": "Variable-time stopping-unitary lemma scaffold",
+            "unresolved_count": 13,
+            "work_garbage_probability_after_phase": 0.0
+          }
+        },
+        {
+          "level_count": 8,
+          "m": 8,
+          "n_arms": 64,
+          "precision_bits_by_level": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "scaffold": {
+            "active_count": 18,
+            "all_branch_rms_formula_residual": 0.0,
+            "all_branch_rms_search_proxy": 29368.99596513303,
+            "branch_rms_over_serial": 0.9015531669060973,
+            "checks": [
+              {
+                "check_id": "ST-U01",
+                "evidence": "L2 residual 0.000e+00.",
+                "missing_for_theorem": "Generalize from exact-state fixture to a symbolic unitary over all valid basis states and padded registers.",
+                "statement": "The stopping compute relation is an involution on the tested state.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-U02",
+                "evidence": "L2 residual 0.000e+00 for phase_on=active.",
+                "missing_for_theorem": "Prove the predicate equivalence for all superpositions and for the eventual unknown-boundary predicate.",
+                "statement": "Compute--phase--uncompute implements the intended phase predicate.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-U03",
+                "evidence": "Work-garbage probability 0.000e+00.",
+                "missing_for_theorem": "Lift the cleanup identity to the final circuit with boundary, QPE, verification, and confidence workspaces.",
+                "statement": "The stop, active, and output work registers are cleaned after phase.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-R01",
+                "evidence": "branch_rms=3671.12, serial=4072.",
+                "missing_for_theorem": "Derive the same inequality from charged stopping times in the formal variable-time algorithm.",
+                "statement": "The branch-RMS stopping ledger is no larger than serial full history.",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-R02",
+                "evidence": "Formula residual 0.000e+00.",
+                "missing_for_theorem": "Connect this proxy to the chosen variable-time search or amplitude-amplification theorem.",
+                "statement": "The all-branch RMS proxy equals sqrt(sum_i T_i^2).",
+                "status": "passed"
+              },
+              {
+                "check_id": "ST-P01",
+                "evidence": "Current code supplies a relation skeleton and exact-state traces.",
+                "missing_for_theorem": "Write the circuit construction using controlled QPE, stopping flags, inverse calls, and explicit workspace dimensions.",
+                "statement": "There is a compiled stopping-time unitary with charged QPE calls.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P02",
+                "evidence": "The scaffold uses deterministic finite-phase fixtures.",
+                "missing_for_theorem": "Add confidence allocation and prove no unresolved/duplicate output is accepted.",
+                "statement": "The bounded-error predicate composes across levels and outputs.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P03",
+                "evidence": "The current transducer receives a numeric boundary phase.",
+                "missing_for_theorem": "Integrate the unknown-boundary localization unitary and prove that it does not leak membership.",
+                "statement": "The boundary is localized coherently rather than supplied.",
+                "status": "proof_obligation"
+              },
+              {
+                "check_id": "ST-P04",
+                "evidence": "Composition frontier is still a separate P1 audit.",
+                "missing_for_theorem": "Instantiate strongest loop composition, k-minimum, QBAI, and variable-time baselines under identical assumptions.",
+                "statement": "Known loop/composition theorems do not already imply the same bound.",
+                "status": "proof_obligation"
+              }
+            ],
+            "claim_status": "stopping_time_unitary_lemma_scaffold_no_proof",
+            "coherent_branch_rms_cost": 3671.1244956416285,
+            "compute_involution_residual_l2": 0.0,
+            "failed_count": 0,
+            "index_dimension": 64,
+            "level_count": 8,
+            "n_arms": 64,
+            "output_count": 12,
+            "passed_count": 5,
+            "phase_equivalence_residual_l2": 0.0,
+            "phase_on": "active",
+            "proof_obligation_count": 4,
+            "readiness": "execution_checks_passed_proof_obligations_remain",
+            "serial_full_history_cost_per_branch": 4072,
+            "statevector_dimension": 4096,
+            "stop_dimension": 16,
+            "theorem_name": "Variable-time stopping-unitary lemma scaffold",
+            "unresolved_count": 52,
+            "work_garbage_probability_after_phase": 0.0
+          }
+        }
+      ],
+      "simulator_wall_seconds": 0.014637480999226682,
+      "summary": {
+        "all_execution_checks_passed": true,
+        "asymptotic_theorem_claimed": false,
+        "check_status_counts": {
+          "passed": 10,
+          "proof_obligation": 8
+        },
+        "executed_quantum_algorithm": false,
+        "interpretation": "paper-facing stopping-unitary lemma scaffold; executable checks pass but proof obligations remain",
+        "last_branch_rms_over_serial": 0.9015531669060973,
+        "last_proof_obligation_count": 4,
+        "m_values": [
+          4,
+          8
+        ],
+        "records": 2
+      }
+    }
+  ],
+  "claim_boundaries": {
+    "does_not_support": [
+      "a completed variable-time upper-bound proof",
+      "a matching all-algorithms lower bound",
+      "composition-frontier novelty against all prior variable-time theorems"
+    ],
+    "supports": [
+      "formalized stopping-unitary lemma obligations",
+      "exact-state execution checks for involution, phase equivalence, cleanup, and RMS ledgers"
+    ]
+  },
+  "claim_status": "stopping_time_unitary_lemma_scaffold_no_proof",
+  "config_hash": "da08d6f3d69c702e7f337953c9f79422d7ea630d6af5ff8f475d67429b8ae62e",
+  "experiment_name": "stopping_unitary_theorem_scaffold_v1",
+  "provenance": {
+    "byte_for_byte_reproduction_expected": false,
+    "git_commit": "7564881cc4b7a8c19c10d510b8cd5b7e3950c39e",
+    "git_tree": "e910319f576018b9bafc3a8afabe486e5fd7e8f7",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13 (main, Mar  3 2026, 14:59:34) [Clang 21.1.4 ]",
+    "source_status_capture": "before_stopping_unitary_theorem_execution",
+    "source_tree_dirty_at_execution": true,
+    "volatile_fields": [
+      "case_results.*.simulator_wall_seconds"
+    ]
+  },
+  "resolved_config": {
+    "cases": [
+      {
+        "base_bits": 3,
+        "boundary_phase": 0.5,
+        "growth_period": 2,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8,
+          16
+        ],
+        "n_exponent": 2.0,
+        "name": "canonical_output_phase",
+        "near_boundary_fraction": 0.5,
+        "phase_on": "output"
+      },
+      {
+        "base_bits": 4,
+        "boundary_phase": 0.5,
+        "growth_period": 1,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8
+        ],
+        "n_exponent": 2.0,
+        "name": "active_phase_cleanup",
+        "near_boundary_fraction": 0.375,
+        "phase_on": "active"
+      }
+    ],
+    "experiment_name": "stopping_unitary_theorem_scaffold_v1",
+    "notes": [
+      "This artifact is a theorem scaffold: executable checks may pass while proof obligations remain.",
+      "The supplied boundary and deterministic finite-phase fixtures mean this is not yet the final unknown-boundary theorem.",
+      "The next manual proof should promote ST-P01 through ST-P04."
+    ],
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "summary": {
+    "all_execution_checks_passed": true,
+    "asymptotic_theorem_claimed": false,
+    "case_count": 2,
+    "check_status_counts": {
+      "passed": 25,
+      "proof_obligation": 20
+    },
+    "executed_quantum_algorithm": false,
+    "total_records": 5
+  }
+}

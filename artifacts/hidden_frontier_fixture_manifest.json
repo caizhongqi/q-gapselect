@@ -1,0 +1,862 @@
+{
+  "aggregate_audit": {
+    "algorithm_performance_measured": false,
+    "all_checks_passed": true,
+    "ccf_a_claimable": false,
+    "checks": {
+      "all_fixture_validation_and_replay_passed": true,
+      "all_hidden_public_pair_audits_passed": true,
+      "all_public_algorithm_views_isolated": true,
+      "all_tie_labels_trusted_only": true,
+      "multiple_fixed_seeds_per_panel": true,
+      "n32_k6_default_scale_present": true,
+      "raw_orbit_grouping_and_algorithmic_deduplication_passed": true,
+      "registered_family_coverage_complete": true
+    },
+    "family_count": 7,
+    "fixture_count": 21,
+    "panel_count": 1,
+    "quantum_advantage_claimed": false,
+    "theorem_claimed": false
+  },
+  "artifact_type": "q_gapselect_hidden_frontier_fixture_manifest",
+  "claim_boundaries": {
+    "does_not_support": [
+      "performance of any classical or quantum algorithm",
+      "a coherent unknown-boundary implementation",
+      "an upper or lower bound theorem",
+      "a quantum advantage or CCF-A publication claim"
+    ],
+    "supports": [
+      "deterministic replay of seven frozen fixture families",
+      "blind/public-partition interface isolation auditing",
+      "trusted-only tie-control labeling",
+      "raw permutation-orbit grouping without conflating information interfaces",
+      "algorithmic fixture deduplication by orbit hash and interface ID"
+    ]
+  },
+  "claim_status": "fixture_isolation_audit_only_not_algorithm_evidence",
+  "hidden_public_pair_audits": [
+    {
+      "checks": {
+        "distinct_interface_ids": true,
+        "hidden_view_has_no_partition": true,
+        "public_view_has_static_partition": true,
+        "same_angle_multiset": true,
+        "same_count_profile": true,
+        "same_hidden_permutation": true,
+        "same_orbit_hash": true,
+        "same_ordered_angles": true
+      },
+      "fixture_seed": 1,
+      "hidden_fixture_hash": "aa7c8be669eec4de74f43afd51add44b8faf27be33ad2e0ccaa12de9a08b4ba1",
+      "panel_id": "hidden-frontier-n32-k6",
+      "passed": true,
+      "public_partition_fixture_hash": "b7f0f8e5eb35d355827f18aa33c81f783710cb81d6d73885347b43399d7a6de6"
+    },
+    {
+      "checks": {
+        "distinct_interface_ids": true,
+        "hidden_view_has_no_partition": true,
+        "public_view_has_static_partition": true,
+        "same_angle_multiset": true,
+        "same_count_profile": true,
+        "same_hidden_permutation": true,
+        "same_orbit_hash": true,
+        "same_ordered_angles": true
+      },
+      "fixture_seed": 4,
+      "hidden_fixture_hash": "6717bd08d72d00fc3dcfbc843e19a1876c860e871d1debf4ef91332a5606a90d",
+      "panel_id": "hidden-frontier-n32-k6",
+      "passed": true,
+      "public_partition_fixture_hash": "3165ad9a8dbc013bf806d49523712a401ca735b5f9ae33f23433f60ae375586f"
+    },
+    {
+      "checks": {
+        "distinct_interface_ids": true,
+        "hidden_view_has_no_partition": true,
+        "public_view_has_static_partition": true,
+        "same_angle_multiset": true,
+        "same_count_profile": true,
+        "same_hidden_permutation": true,
+        "same_orbit_hash": true,
+        "same_ordered_angles": true
+      },
+      "fixture_seed": 6,
+      "hidden_fixture_hash": "e20c53e41a97bbb85f2041a9e464ebb3732b22b969fcf4131be3e20640e26ada",
+      "panel_id": "hidden-frontier-n32-k6",
+      "passed": true,
+      "public_partition_fixture_hash": "da12142a11b25674a5b7f999ae0f75778ab226b08df7322df5cb0994a1a38cfd"
+    }
+  ],
+  "orbit_hash_audit": {
+    "checks": {
+      "algorithmic_deduplicator_count_matches_unique_geometry_interface_keys": true,
+      "algorithmic_deduplicator_preserves_first_fixture_per_key": true,
+      "algorithmic_key_count_includes_interface": true,
+      "all_fixture_hashes_unique": true,
+      "hidden_public_pair_members_are_both_retained": true,
+      "raw_duplicate_orbits_are_only_hidden_public_pairs": true
+    },
+    "deduplicated_algorithmic_fixture_count": 21,
+    "deduplication_key": [
+      "orbit_hash",
+      "interface_id"
+    ],
+    "fixture_count": 21,
+    "raw_duplicate_orbit_group_count": 3,
+    "raw_duplicate_orbit_groups": [
+      {
+        "fixture_keys": [
+          "hidden-frontier-n32-k6/F-HIDDEN-FRONTIER/seed-6",
+          "hidden-frontier-n32-k6/F-PUBLIC-PARTITION/seed-6"
+        ],
+        "orbit_hash": "2f50f827076f9d2ce64efda88afc97da75a8286f0bd1f156b8ad37f9ba0c4ad1"
+      },
+      {
+        "fixture_keys": [
+          "hidden-frontier-n32-k6/F-HIDDEN-FRONTIER/seed-4",
+          "hidden-frontier-n32-k6/F-PUBLIC-PARTITION/seed-4"
+        ],
+        "orbit_hash": "3d1f705766454ac6c777a754b7bfa181c62864d7f0ce0c88fde8e77a5c186366"
+      },
+      {
+        "fixture_keys": [
+          "hidden-frontier-n32-k6/F-HIDDEN-FRONTIER/seed-1",
+          "hidden-frontier-n32-k6/F-PUBLIC-PARTITION/seed-1"
+        ],
+        "orbit_hash": "fe99d79266da9254ccea9d36ec2a645c1b97aa6a2d2b757d3342ebbf9cc45f46"
+      }
+    ],
+    "raw_unique_orbit_hash_count": 18,
+    "unique_algorithmic_deduplication_key_count": 21,
+    "unique_fixture_hash_count": 21
+  },
+  "provenance": {
+    "config_path": "configs/hidden_frontier_fixture_manifest.json",
+    "config_sha256": "93ec364e8d18dc71b17b0795f07014aed44999a5b3733bc2c7157dbafad3c66a",
+    "git_commit": "9ea5c1f7a112aaf3706a4af498f879f9d1b93028",
+    "git_tree": "cb02783b1683d169ee9a528763ad3a73263b759e",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13",
+    "source_status_capture": "before_fixture_manifest_artifact_write",
+    "source_tree_dirty_at_execution": false
+  },
+  "public_algorithm_views": [
+    {
+      "algorithm_view": {
+        "delta": 0.025,
+        "hard_query_cap": 524288,
+        "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+        "k": 6,
+        "n": 32,
+        "oracle_access": {
+          "allowed_calls": [
+            "B",
+            "B_dagger",
+            "controlled_B",
+            "controlled_B_dagger"
+          ],
+          "base": "canonical_bernoulli_block_rotation",
+          "logical_query_cost_per_base_call": 1
+        },
+        "schema": "qgapselect.blind-canonical-topk-interface.v1",
+        "structural_promise": {
+          "boundary_information": "not_supplied",
+          "padding_action": "identity_and_never_returnable",
+          "relation": "complete_strict_top_k_or_fail_closed_rejection",
+          "valid_index_count": 32
+        }
+      },
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242"
+    },
+    {
+      "algorithm_view": {
+        "delta": 0.025,
+        "hard_query_cap": 524288,
+        "interface_id": "4a4f8325ea26fcbcf72e9451b37d175600aedbe9f83f00c975a64694ebd91d91",
+        "k": 6,
+        "n": 32,
+        "oracle_access": {
+          "allowed_calls": [
+            "B",
+            "B_dagger",
+            "controlled_B",
+            "controlled_B_dagger"
+          ],
+          "base": "canonical_bernoulli_block_rotation",
+          "logical_query_cost_per_base_call": 1
+        },
+        "partition_semantics": "unordered_static_blocks_without_truth_or_epoch_order",
+        "schema": "qgapselect.public-static-partition-topk-interface.v1",
+        "static_partition": [
+          [
+            0,
+            2,
+            14,
+            21,
+            25,
+            27,
+            31
+          ],
+          [
+            1,
+            10,
+            12,
+            17,
+            20,
+            28,
+            29
+          ],
+          [
+            3,
+            4,
+            6,
+            8,
+            13,
+            15,
+            26,
+            30
+          ],
+          [
+            5,
+            11,
+            16,
+            18,
+            19,
+            22,
+            23,
+            24
+          ],
+          [
+            7,
+            9
+          ]
+        ],
+        "structural_promise": {
+          "boundary_information": "not_supplied",
+          "padding_action": "identity_and_never_returnable",
+          "relation": "complete_strict_top_k_or_fail_closed_rejection",
+          "valid_index_count": 32
+        }
+      },
+      "interface_id": "4a4f8325ea26fcbcf72e9451b37d175600aedbe9f83f00c975a64694ebd91d91"
+    },
+    {
+      "algorithm_view": {
+        "delta": 0.025,
+        "hard_query_cap": 524288,
+        "interface_id": "f82fb6e564298d1c36c09cde508933711da96a79ca6c43e53d5ac4727801b2fb",
+        "k": 6,
+        "n": 32,
+        "oracle_access": {
+          "allowed_calls": [
+            "B",
+            "B_dagger",
+            "controlled_B",
+            "controlled_B_dagger"
+          ],
+          "base": "canonical_bernoulli_block_rotation",
+          "logical_query_cost_per_base_call": 1
+        },
+        "partition_semantics": "unordered_static_blocks_without_truth_or_epoch_order",
+        "schema": "qgapselect.public-static-partition-topk-interface.v1",
+        "static_partition": [
+          [
+            0,
+            11,
+            13,
+            17,
+            19,
+            20,
+            25,
+            28
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3,
+            4,
+            7,
+            10,
+            16,
+            24,
+            29
+          ],
+          [
+            6,
+            9,
+            12,
+            15,
+            18,
+            21,
+            31
+          ],
+          [
+            8,
+            14,
+            22,
+            23,
+            26,
+            27,
+            30
+          ]
+        ],
+        "structural_promise": {
+          "boundary_information": "not_supplied",
+          "padding_action": "identity_and_never_returnable",
+          "relation": "complete_strict_top_k_or_fail_closed_rejection",
+          "valid_index_count": 32
+        }
+      },
+      "interface_id": "f82fb6e564298d1c36c09cde508933711da96a79ca6c43e53d5ac4727801b2fb"
+    },
+    {
+      "algorithm_view": {
+        "delta": 0.025,
+        "hard_query_cap": 524288,
+        "interface_id": "f905ad65e99d3216702bbd0100818367e18f4f5babe5b43a8a00140fdbf026c7",
+        "k": 6,
+        "n": 32,
+        "oracle_access": {
+          "allowed_calls": [
+            "B",
+            "B_dagger",
+            "controlled_B",
+            "controlled_B_dagger"
+          ],
+          "base": "canonical_bernoulli_block_rotation",
+          "logical_query_cost_per_base_call": 1
+        },
+        "partition_semantics": "unordered_static_blocks_without_truth_or_epoch_order",
+        "schema": "qgapselect.public-static-partition-topk-interface.v1",
+        "static_partition": [
+          [
+            0,
+            1,
+            6,
+            10,
+            11,
+            13,
+            22
+          ],
+          [
+            2,
+            3,
+            12,
+            14,
+            15,
+            18,
+            20,
+            26
+          ],
+          [
+            4,
+            7,
+            9,
+            16,
+            24,
+            28,
+            30
+          ],
+          [
+            5,
+            17,
+            21,
+            23,
+            25,
+            27,
+            29,
+            31
+          ],
+          [
+            8,
+            19
+          ]
+        ],
+        "structural_promise": {
+          "boundary_information": "not_supplied",
+          "padding_action": "identity_and_never_returnable",
+          "relation": "complete_strict_top_k_or_fail_closed_rejection",
+          "valid_index_count": 32
+        }
+      },
+      "interface_id": "f905ad65e99d3216702bbd0100818367e18f4f5babe5b43a8a00140fdbf026c7"
+    }
+  ],
+  "resolved_config": {
+    "families": [
+      "F-EQ",
+      "F-DYADIC",
+      "F-CLUSTER",
+      "F-HIDDEN-FRONTIER",
+      "F-PUBLIC-PARTITION",
+      "F-UNKNOWN-TIME-NC",
+      "F-TIE-NC"
+    ],
+    "generator_version": "qgapselect.hidden-frontier-fixture.v1",
+    "panels": [
+      {
+        "delta": 0.025,
+        "design_gap": 0.01227184630308513,
+        "fixture_seeds": [
+          1,
+          4,
+          6
+        ],
+        "hard_query_cap": 524288,
+        "k": 6,
+        "n": 32,
+        "panel_id": "hidden-frontier-n32-k6"
+      }
+    ],
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "tie_trusted_only_audits": [
+    {
+      "checks": {
+        "non_unique_label_is_trusted_true": true,
+        "same_blind_algorithm_view_as_positive": true,
+        "same_blind_interface_id_as_positive": true,
+        "tie_label_absent_from_algorithm_view": true,
+        "top_k_truth_withheld_for_tie": true
+      },
+      "fixture_seed": 1,
+      "panel_id": "hidden-frontier-n32-k6",
+      "passed": true,
+      "tie_fixture_hash": "e66d8c832dba8f007ef55658f8de6253d90c8e731e04a488906efdab9c6bb231"
+    },
+    {
+      "checks": {
+        "non_unique_label_is_trusted_true": true,
+        "same_blind_algorithm_view_as_positive": true,
+        "same_blind_interface_id_as_positive": true,
+        "tie_label_absent_from_algorithm_view": true,
+        "top_k_truth_withheld_for_tie": true
+      },
+      "fixture_seed": 4,
+      "panel_id": "hidden-frontier-n32-k6",
+      "passed": true,
+      "tie_fixture_hash": "8fabe48ea3edc2648f4ba9840dc55b34e372ac971098c3e18c612b54bd1be27e"
+    },
+    {
+      "checks": {
+        "non_unique_label_is_trusted_true": true,
+        "same_blind_algorithm_view_as_positive": true,
+        "same_blind_interface_id_as_positive": true,
+        "tie_label_absent_from_algorithm_view": true,
+        "top_k_truth_withheld_for_tie": true
+      },
+      "fixture_seed": 6,
+      "panel_id": "hidden-frontier-n32-k6",
+      "passed": true,
+      "tie_fixture_hash": "4e344a06c97362f656638d66a9835fdc196720509e73948675c148ac5b79a77b"
+    }
+  ],
+  "trusted_fixture_summary": [
+    {
+      "angle_multiset_commitment_sha256": "d40acbdb854cd6483c2fc2aff29fafba19ffb989985a043c3a5b9d60cbdef5e7",
+      "angle_order_commitment_sha256": "830b75a81cb738ebba9d2a81d3ac5e8d9cbd286550eaa4c803c8efc5e9120bc1",
+      "family_id": "F-EQ",
+      "fixture_hash": "cae7521db52758ea5607b19f0eeaff4dda63c9197d45321367ca8bf82b151a5e",
+      "fixture_key": "hidden-frontier-n32-k6/F-EQ/seed-1",
+      "fixture_seed": 1,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "ec8db4eea86d51f10af818721c23aaf3361ca6a51939301bec146a4d006138e9",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "c057a397f06b2d8c73b573dc7e3c636a1a14e9848bce27938ee388205295a369",
+      "replay_fixture_hash": "cae7521db52758ea5607b19f0eeaff4dda63c9197d45321367ca8bf82b151a5e",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "c4c3a523654b189448cf3f8351ac26236184f8fca0ec6082af012c09b236a9e2",
+      "angle_order_commitment_sha256": "33f20dbc1583a557b219170817e2dbc093e66d1fc12020215d0dce2b23d4aebf",
+      "family_id": "F-DYADIC",
+      "fixture_hash": "33b30a79ed97725077e3d8418f73ae2d369c1410c598bdcfe92c5823d82e314d",
+      "fixture_key": "hidden-frontier-n32-k6/F-DYADIC/seed-1",
+      "fixture_seed": 1,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "a4b9b46aec6dc23b4d762c8f37006826dc42062a114270a1406bf833f563ec1b",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "0923d09b97816d66d459929d4fae9f1244ab012fd6a85f69ab323a52090802e8",
+      "replay_fixture_hash": "33b30a79ed97725077e3d8418f73ae2d369c1410c598bdcfe92c5823d82e314d",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "af45ae0706649a07e1b9c216d1d312b241644862878525c7f369bcc4c8366116",
+      "angle_order_commitment_sha256": "0ab4a8e619d9dbcf3d45f5410e16280f60f1a39eb188e30997948bb446f0b4ff",
+      "family_id": "F-CLUSTER",
+      "fixture_hash": "4fefa1d3572609801386ce5df86a17d39d51b5dbb702ed41be184e4057a5e74b",
+      "fixture_key": "hidden-frontier-n32-k6/F-CLUSTER/seed-1",
+      "fixture_seed": 1,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "e55b540b644738275600077fe2054aa085eef17bddc1f2bfed8ba66a1525d248",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "d0aeef5649d293a5e15d1504d60cfc97e0d7f771ce50f015fe5b65e8d9dbab20",
+      "replay_fixture_hash": "4fefa1d3572609801386ce5df86a17d39d51b5dbb702ed41be184e4057a5e74b",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "2716b900a0b75e05fb0f074fd5c06c573a713cdd7e7e107b111a03a2ae579925",
+      "angle_order_commitment_sha256": "654df715f3ccb637c075dc3d337fd946f50cacf5c22c0c325eaf7fb4b77d99ff",
+      "family_id": "F-HIDDEN-FRONTIER",
+      "fixture_hash": "aa7c8be669eec4de74f43afd51add44b8faf27be33ad2e0ccaa12de9a08b4ba1",
+      "fixture_key": "hidden-frontier-n32-k6/F-HIDDEN-FRONTIER/seed-1",
+      "fixture_seed": 1,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "fe99d79266da9254ccea9d36ec2a645c1b97aa6a2d2b757d3342ebbf9cc45f46",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "84317e3fdb2f4c21a3ab80b9bb7d3b09a166324098d70f4b4b79868931d8631e",
+      "replay_fixture_hash": "aa7c8be669eec4de74f43afd51add44b8faf27be33ad2e0ccaa12de9a08b4ba1",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "2716b900a0b75e05fb0f074fd5c06c573a713cdd7e7e107b111a03a2ae579925",
+      "angle_order_commitment_sha256": "654df715f3ccb637c075dc3d337fd946f50cacf5c22c0c325eaf7fb4b77d99ff",
+      "family_id": "F-PUBLIC-PARTITION",
+      "fixture_hash": "b7f0f8e5eb35d355827f18aa33c81f783710cb81d6d73885347b43399d7a6de6",
+      "fixture_key": "hidden-frontier-n32-k6/F-PUBLIC-PARTITION/seed-1",
+      "fixture_seed": 1,
+      "interface_id": "f905ad65e99d3216702bbd0100818367e18f4f5babe5b43a8a00140fdbf026c7",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "fe99d79266da9254ccea9d36ec2a645c1b97aa6a2d2b757d3342ebbf9cc45f46",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "84317e3fdb2f4c21a3ab80b9bb7d3b09a166324098d70f4b4b79868931d8631e",
+      "replay_fixture_hash": "b7f0f8e5eb35d355827f18aa33c81f783710cb81d6d73885347b43399d7a6de6",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "0434f34298e4880e913e4373a4221058a6181e683a806f80a1ea42ae0be561b8",
+      "angle_order_commitment_sha256": "a7c00cc16d7157eadcbe9c3499ab834a5b424422f0ef8d9addc9e038f3e63b59",
+      "family_id": "F-UNKNOWN-TIME-NC",
+      "fixture_hash": "8b6c1830558c4d2a4d15c6e02da0a11a958910b93e9282a23b3b5e3806baea1c",
+      "fixture_key": "hidden-frontier-n32-k6/F-UNKNOWN-TIME-NC/seed-1",
+      "fixture_seed": 1,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "fc62d8f72a2f5ed66c312452d31d108defa24e51be0db1f8f63d0fdea89028a3",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "56dd5661cb4490361edef4bf43e4efa6d74c534abf0a3ca6ade57171c886f7f7",
+      "replay_fixture_hash": "8b6c1830558c4d2a4d15c6e02da0a11a958910b93e9282a23b3b5e3806baea1c",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "985288b4305f185d94dcc542a0b956ebe6e5880772d8b7511e2ba5691c34ff81",
+      "angle_order_commitment_sha256": "cc7cdd7b33701bdf088c0da28eb92826786a00d75bbce9e25d202e2862d8cc42",
+      "family_id": "F-TIE-NC",
+      "fixture_hash": "e66d8c832dba8f007ef55658f8de6253d90c8e731e04a488906efdab9c6bb231",
+      "fixture_key": "hidden-frontier-n32-k6/F-TIE-NC/seed-1",
+      "fixture_seed": 1,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": true,
+      "orbit_hash": "0665192c8b17ecbfe5902ec02d3dc3852cecba6db009724be426f5e9e36e2dce",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "42bd5969de03f74ec799b1e5c83e39579bb86f1ac66eb996a96a0808edd0935a",
+      "replay_fixture_hash": "e66d8c832dba8f007ef55658f8de6253d90c8e731e04a488906efdab9c6bb231",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "non_unique_reject_control"
+    },
+    {
+      "angle_multiset_commitment_sha256": "768a8fc048b764fdbb2413339bfcee6c558fce935bb9985ece8c194cf82321cc",
+      "angle_order_commitment_sha256": "4df96cbf229fb0d5531ad9f72665afe6a98ee52cbdc29dec6e856dc52ba599b7",
+      "family_id": "F-EQ",
+      "fixture_hash": "68cc49972c53a17040a08fd778df1e481c5030551e1a2ccc9142cc6c02c1f43b",
+      "fixture_key": "hidden-frontier-n32-k6/F-EQ/seed-4",
+      "fixture_seed": 4,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "82e4f1a0929e197926979f4ac5b3f9316c17db4553e7d04e33e66e3675d30318",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "83fb1a9b3cd52a7076bb6ee8b462755a65ca2aa5c7b7f0eb5b80cae3f6f3d435",
+      "replay_fixture_hash": "68cc49972c53a17040a08fd778df1e481c5030551e1a2ccc9142cc6c02c1f43b",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "04ae999d337c1d425e817114f806357fb661885dfc26dd82e5ff9040bae8a777",
+      "angle_order_commitment_sha256": "74fe92e2882d45e19ea74de2871093f5a9153d88e2db4011b2b51695bbd94620",
+      "family_id": "F-DYADIC",
+      "fixture_hash": "6714b73bfb8ebe29d00d282e8a4f2dc5538cc0c4bb56dccd176201c3998eb580",
+      "fixture_key": "hidden-frontier-n32-k6/F-DYADIC/seed-4",
+      "fixture_seed": 4,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "39321d2c55061a86d896af218cf250650e12af3be57aaad204d127e35cc338ab",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "453fb81fff80e7b9a6ff9b3512ac68ae0e0c782787de312cd4825a946860073e",
+      "replay_fixture_hash": "6714b73bfb8ebe29d00d282e8a4f2dc5538cc0c4bb56dccd176201c3998eb580",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "ee9fba8457eea8f1428bfc4387feb3a65355a7da303fdbace3548592b520ceeb",
+      "angle_order_commitment_sha256": "ae646918f42f7ee40e7ee94f2918b2fb07c2354d0361f12aaf88afcd6e4f9aed",
+      "family_id": "F-CLUSTER",
+      "fixture_hash": "a21054d22c18a249e5e2d91b8ba40c47d7bd10e465c8331482e495196049847b",
+      "fixture_key": "hidden-frontier-n32-k6/F-CLUSTER/seed-4",
+      "fixture_seed": 4,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "ebf4047bd91d0644ec088c1eda775dc0969972be8f99140baac7bf2ae054a15a",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "4334add815d0297228690c3aab44e53b87c9a52aa9b670b263a87662f4815f7a",
+      "replay_fixture_hash": "a21054d22c18a249e5e2d91b8ba40c47d7bd10e465c8331482e495196049847b",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "e679227acdf1e7dca9ab40a10d323f89502f90a8550091681d147cf56eee900b",
+      "angle_order_commitment_sha256": "3709a0f789ec8152e3ea350f1afb4a375c72de9a6e4edb8c850710a52bc5fefe",
+      "family_id": "F-HIDDEN-FRONTIER",
+      "fixture_hash": "6717bd08d72d00fc3dcfbc843e19a1876c860e871d1debf4ef91332a5606a90d",
+      "fixture_key": "hidden-frontier-n32-k6/F-HIDDEN-FRONTIER/seed-4",
+      "fixture_seed": 4,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "3d1f705766454ac6c777a754b7bfa181c62864d7f0ce0c88fde8e77a5c186366",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "6fb292cb30faec03f2db5e405b86ab8dc20bb2c1b5c5c05ed845a6c594620cfa",
+      "replay_fixture_hash": "6717bd08d72d00fc3dcfbc843e19a1876c860e871d1debf4ef91332a5606a90d",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "e679227acdf1e7dca9ab40a10d323f89502f90a8550091681d147cf56eee900b",
+      "angle_order_commitment_sha256": "3709a0f789ec8152e3ea350f1afb4a375c72de9a6e4edb8c850710a52bc5fefe",
+      "family_id": "F-PUBLIC-PARTITION",
+      "fixture_hash": "3165ad9a8dbc013bf806d49523712a401ca735b5f9ae33f23433f60ae375586f",
+      "fixture_key": "hidden-frontier-n32-k6/F-PUBLIC-PARTITION/seed-4",
+      "fixture_seed": 4,
+      "interface_id": "4a4f8325ea26fcbcf72e9451b37d175600aedbe9f83f00c975a64694ebd91d91",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "3d1f705766454ac6c777a754b7bfa181c62864d7f0ce0c88fde8e77a5c186366",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "6fb292cb30faec03f2db5e405b86ab8dc20bb2c1b5c5c05ed845a6c594620cfa",
+      "replay_fixture_hash": "3165ad9a8dbc013bf806d49523712a401ca735b5f9ae33f23433f60ae375586f",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "0476308ae28aac218c2b7520b747a9711c0c2e27f109102ee45ec82147e0f3a4",
+      "angle_order_commitment_sha256": "d3039fa9eba7199a930b26add085750e4ab8ec5485476e911d663e211143659a",
+      "family_id": "F-UNKNOWN-TIME-NC",
+      "fixture_hash": "0b6ef8c53f43bf1e97e2f47a3446233b81fd8a4da33521111b27436dae7fbaea",
+      "fixture_key": "hidden-frontier-n32-k6/F-UNKNOWN-TIME-NC/seed-4",
+      "fixture_seed": 4,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "ae16d4dd52fa3037733fb3de968db4596c6d060bf6148da47ce5e1d5103d05c1",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "29858079786768f60477e38f3530c1b01630f7a7b5fe4394d3735e516506d24a",
+      "replay_fixture_hash": "0b6ef8c53f43bf1e97e2f47a3446233b81fd8a4da33521111b27436dae7fbaea",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "d93e462031ca976d519c54cffd6dd33ee6d3e893163c3bfb313e6f682a7c0448",
+      "angle_order_commitment_sha256": "1dc534c33eb76b579950ccda10c26aa067c90c54ed47f3559ca6f59130a22a55",
+      "family_id": "F-TIE-NC",
+      "fixture_hash": "8fabe48ea3edc2648f4ba9840dc55b34e372ac971098c3e18c612b54bd1be27e",
+      "fixture_key": "hidden-frontier-n32-k6/F-TIE-NC/seed-4",
+      "fixture_seed": 4,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": true,
+      "orbit_hash": "8b144cfbd03a282156a3a91c98672d63e32ab8f116ce99ff745084926f6666f2",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "b53c496db39571fdf3f1d26e7bff6bd60758bc6f38f5b8363e5f057986b4cec7",
+      "replay_fixture_hash": "8fabe48ea3edc2648f4ba9840dc55b34e372ac971098c3e18c612b54bd1be27e",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "non_unique_reject_control"
+    },
+    {
+      "angle_multiset_commitment_sha256": "44224af26a006ee72f1efdd530d988e892856be7ce8ae50989f31d79ab7af9d2",
+      "angle_order_commitment_sha256": "0dbf4a4fca9c35319e1ca935f03500778a56fe2f9bca2ea0d30fde8c51f0ce02",
+      "family_id": "F-EQ",
+      "fixture_hash": "177eca9654782297ae1cb53777b2b775041c7a04d33c2acc796a4f3507a95ab8",
+      "fixture_key": "hidden-frontier-n32-k6/F-EQ/seed-6",
+      "fixture_seed": 6,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "c3d38222a013becb9dbefe8eee3e5bab96f373027e6cf40cf075d27dfbe104d5",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "cea1535594e171a3d7e9083c7a791815d2a56918a383eee82a38f3e9e3aa5e40",
+      "replay_fixture_hash": "177eca9654782297ae1cb53777b2b775041c7a04d33c2acc796a4f3507a95ab8",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "f2625f9402b5489c2a7e8fecfc2e5ec8754be615c8ba0de584ea59c8b06c1a16",
+      "angle_order_commitment_sha256": "3de5c85dcd292248d334d912e5e83448f15bab889e1028b7bda86717e617cf64",
+      "family_id": "F-DYADIC",
+      "fixture_hash": "895dcdeb698b88eb24eab186e14dc66b8fa080afa20d62b42b3ae6355ee26257",
+      "fixture_key": "hidden-frontier-n32-k6/F-DYADIC/seed-6",
+      "fixture_seed": 6,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "5432ce1dd1a9c94f12ba873c5adc8cb0e304e51466746b6bd391987abd6224db",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "208534f2682f9ade01ca73abbef09d5babfb7a4b57f4224e3e98efd1695e497c",
+      "replay_fixture_hash": "895dcdeb698b88eb24eab186e14dc66b8fa080afa20d62b42b3ae6355ee26257",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "bd826cc1139c59d281c703121e60b9928717402606e2867c247d76a657f7e4fe",
+      "angle_order_commitment_sha256": "f0424f83664fcceb851053fd9726080d4999084a71bf102f4f4bcc460a4149dd",
+      "family_id": "F-CLUSTER",
+      "fixture_hash": "1981be51eca2f8fedc2d3d4c3a3f3f6f6ebeeb9856a110164bab0191d2af6d4b",
+      "fixture_key": "hidden-frontier-n32-k6/F-CLUSTER/seed-6",
+      "fixture_seed": 6,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "35cddfd89aeebcf28a59953c902e89ffb5682a01dc5e19e3a6e209a2ce316ecb",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "c64e25bb61e9f5f8480256ef7f01e69090d564a2a2d6a7f85ce590c2d7c49a8f",
+      "replay_fixture_hash": "1981be51eca2f8fedc2d3d4c3a3f3f6f6ebeeb9856a110164bab0191d2af6d4b",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "648f6ad2e86dae52ae5312de6e52fb1c775d9d48b31df845d0e03a1782e36565",
+      "angle_order_commitment_sha256": "f46d78d5bb5b6b0708b89ad67027a7e962bf519639f882f88bed2e7da92eda45",
+      "family_id": "F-HIDDEN-FRONTIER",
+      "fixture_hash": "e20c53e41a97bbb85f2041a9e464ebb3732b22b969fcf4131be3e20640e26ada",
+      "fixture_key": "hidden-frontier-n32-k6/F-HIDDEN-FRONTIER/seed-6",
+      "fixture_seed": 6,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "2f50f827076f9d2ce64efda88afc97da75a8286f0bd1f156b8ad37f9ba0c4ad1",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "f6621927ec5795419cddd701df799307a076745d549159ccf8a6ede5937b980c",
+      "replay_fixture_hash": "e20c53e41a97bbb85f2041a9e464ebb3732b22b969fcf4131be3e20640e26ada",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "648f6ad2e86dae52ae5312de6e52fb1c775d9d48b31df845d0e03a1782e36565",
+      "angle_order_commitment_sha256": "f46d78d5bb5b6b0708b89ad67027a7e962bf519639f882f88bed2e7da92eda45",
+      "family_id": "F-PUBLIC-PARTITION",
+      "fixture_hash": "da12142a11b25674a5b7f999ae0f75778ab226b08df7322df5cb0994a1a38cfd",
+      "fixture_key": "hidden-frontier-n32-k6/F-PUBLIC-PARTITION/seed-6",
+      "fixture_seed": 6,
+      "interface_id": "f82fb6e564298d1c36c09cde508933711da96a79ca6c43e53d5ac4727801b2fb",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "2f50f827076f9d2ce64efda88afc97da75a8286f0bd1f156b8ad37f9ba0c4ad1",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "f6621927ec5795419cddd701df799307a076745d549159ccf8a6ede5937b980c",
+      "replay_fixture_hash": "da12142a11b25674a5b7f999ae0f75778ab226b08df7322df5cb0994a1a38cfd",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "633ca15605f1a13533b8d96f1019e2b163eded20fe106137542b4fdce0200090",
+      "angle_order_commitment_sha256": "c2b7c998822e0d43bbe5be897c075d22c2653196700a3d2102cae02a08d4e4f0",
+      "family_id": "F-UNKNOWN-TIME-NC",
+      "fixture_hash": "ba348bb27e84a889974d10cbb96c4ec87647ab92cb81f6855c21f5c708929d3e",
+      "fixture_key": "hidden-frontier-n32-k6/F-UNKNOWN-TIME-NC/seed-6",
+      "fixture_seed": 6,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": false,
+      "orbit_hash": "9501b7ff97e25b7848d3d88cd388fc78ef585c53b0155bba895764d351244d18",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "363fdc211980c551577ee2093020b9f915ab81764e7aceb41f6737fa0dafb6f6",
+      "replay_fixture_hash": "ba348bb27e84a889974d10cbb96c4ec87647ab92cb81f6855c21f5c708929d3e",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "unique_truth_committed_in_fixture_hash"
+    },
+    {
+      "angle_multiset_commitment_sha256": "8aa4da837987ab98cb0321f25346479571113f35f7a71311799d14bdf9803a3e",
+      "angle_order_commitment_sha256": "0d1d904edc79b5a01e5f67fd6f6e00114138d6b4efa8147bf8f5fe09b252cfac",
+      "family_id": "F-TIE-NC",
+      "fixture_hash": "4e344a06c97362f656638d66a9835fdc196720509e73948675c148ac5b79a77b",
+      "fixture_key": "hidden-frontier-n32-k6/F-TIE-NC/seed-6",
+      "fixture_seed": 6,
+      "interface_id": "3c27930d0895b3f52887cafbad82d9041d9ca2d42628db641cdd0c866bad4242",
+      "k": 6,
+      "n": 32,
+      "non_unique_output": true,
+      "orbit_hash": "74781be14bc9b3b469cb2f5be80d13696f1a7db1460c2681f7250727d96abef1",
+      "panel_id": "hidden-frontier-n32-k6",
+      "permutation_commitment_sha256": "014ad9028058caa53f173c1bebac535a5fd95cf0f18ceecc472adfc1b31b4592",
+      "replay_fixture_hash": "4e344a06c97362f656638d66a9835fdc196720509e73948675c148ac5b79a77b",
+      "replay_passed": true,
+      "tie_label_scope": "trusted_harness_only",
+      "top_k_truth_status": "non_unique_reject_control"
+    }
+  ]
+}

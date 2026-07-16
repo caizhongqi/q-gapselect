@@ -13,6 +13,7 @@ import platform
 import subprocess
 import sys
 import time
+from collections import Counter
 from collections.abc import Mapping, Sequence
 from enum import Enum
 from pathlib import Path
@@ -21,6 +22,10 @@ from typing import Any
 import numpy as np
 
 from qgapselect.coherent import CanonicalRyStatevectorOracle
+from qgapselect.composition_audit import (
+    composition_audit_sweep,
+    composition_loglog_slope,
+)
 from qgapselect.direct_baselines import (
     ClassicalThresholdScan,
     IndependentQPEThresholdScan,
@@ -52,6 +57,14 @@ from qgapselect.quantum_validation import (
     run_unitary_validation,
     run_verifier_calibration,
 )
+from qgapselect.theory_falsification import (
+    descriptive_loglog_slope,
+    orientation_separation_sweep,
+)
+from qgapselect.unknown_boundary_history import (
+    unknown_boundary_history_loglog_slope,
+    unknown_boundary_history_sweep,
+)
 
 REPOSITORY = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = REPOSITORY / "configs" / "quantum_benchmarks.json"
@@ -65,6 +78,9 @@ SUITES = (
     "verifier_calibration",
     "random_benchmarks",
     "topk_comparison",
+    "orientation_separation",
+    "generic_composition_audit",
+    "unknown_boundary_history",
     "iterative_ae",
     "scheduler_sweep",
     "diffusion_ablation",
@@ -245,9 +261,11 @@ def _git_provenance() -> dict[str, object]:
         return completed.stdout.strip() if completed.returncode == 0 else None
 
     commit = command("rev-parse", "HEAD")
+    tree = command("rev-parse", "HEAD^{tree}")
     status = command("status", "--porcelain")
     return {
         "git_commit": commit or "unknown",
+        "git_tree": tree or "unknown",
         "source_tree_dirty_at_execution": bool(status),
     }
 
@@ -274,8 +292,8 @@ def _resolved_config(document: object) -> dict[str, object]:
     root = _mapping(document, "configuration")
     _only_keys(root, _TOP_LEVEL_FIELDS, "top-level configuration")
     schema = _integer(root.get("schema_version"), "schema_version", minimum=1)
-    if schema != 1:
-        raise ValueError("schema_version must be 1")
+    if schema != 2:
+        raise ValueError("schema_version must be 2")
     resolved: dict[str, object] = {
         "schema_version": schema,
         "experiment_name": _string(root.get("experiment_name"), "experiment_name"),
@@ -290,6 +308,7 @@ def _resolved_config(document: object) -> dict[str, object]:
     common_fields = {
         "threshold_angle",
         "phase_qubits",
+        "max_phase_qubits",
         "verification_confidence",
         "verification_shots",
         "max_attempts_per_output",
@@ -308,6 +327,11 @@ def _resolved_config(document: object) -> dict[str, object]:
         ),
         "phase_qubits": _integer(
             common.get("phase_qubits"), "common.phase_qubits", minimum=1
+        ),
+        "max_phase_qubits": _integer(
+            common.get("max_phase_qubits"),
+            "common.max_phase_qubits",
+            minimum=1,
         ),
         "verification_confidence": _number(
             common.get("verification_confidence"),
@@ -347,6 +371,17 @@ def _resolved_config(document: object) -> dict[str, object]:
             minimum=1,
         ),
     }
+    resolved_common = resolved["common"]
+    if not isinstance(resolved_common, Mapping):
+        raise RuntimeError("resolved common configuration is invalid")
+    if int(resolved_common["max_phase_qubits"]) < int(
+        resolved_common["phase_qubits"]
+    ):
+        raise ValueError(
+            "common.max_phase_qubits must be at least common.phase_qubits"
+        )
+    if int(resolved_common["max_phase_qubits"]) > 12:
+        raise ValueError("common.max_phase_qubits cannot exceed 12")
 
     unitary = _mapping(root.get("unitary_validation"), "unitary_validation")
     _only_keys(unitary, {"trials", "cases"}, "unitary_validation")
@@ -443,7 +478,13 @@ def _resolved_config(document: object) -> dict[str, object]:
         ),
         (
             "topk_comparison",
-            {"boundary_only_negative_control", "calibrated_direct_topk"},
+            {
+                "boundary_only_negative_control",
+                "refined_boundary_only_negative_control",
+                "calibrated_direct_topk",
+                "adaptive_calibrated_direct_topk",
+                "fixed_max_precision_topk",
+            },
             True,
         ),
     ):
@@ -470,6 +511,179 @@ def _resolved_config(document: object) -> dict[str, object]:
                 raise ValueError(f"{suite_name}.relations must contain only above/below")
             item["relations"] = relations
         resolved[suite_name] = item
+
+    separation = _mapping(root.get("orientation_separation"), "orientation_separation")
+    _only_keys(
+        separation,
+        {"m_values", "gamma_exponent", "beta", "far_offset"},
+        "orientation_separation",
+    )
+    separation_m_values = _integers(
+        separation.get("m_values"),
+        "orientation_separation.m_values",
+        minimum=2,
+    )
+    if separation_m_values != sorted(set(separation_m_values)):
+        raise ValueError("orientation_separation.m_values must be sorted and unique")
+    separation_beta = _number(
+        separation.get("beta"),
+        "orientation_separation.beta",
+        minimum=0.0,
+        maximum=math.pi / 2.0,
+        strict_minimum=True,
+    )
+    if separation_beta >= math.pi / 2.0:
+        raise ValueError("orientation_separation.beta must be strictly below pi/2")
+    separation_far_offset = _number(
+        separation.get("far_offset"),
+        "orientation_separation.far_offset",
+        minimum=0.0,
+        strict_minimum=True,
+    )
+    if separation_far_offset >= separation_beta:
+        raise ValueError(
+            "orientation_separation.far_offset must be strictly below beta"
+        )
+    resolved["orientation_separation"] = {
+        "m_values": separation_m_values,
+        "gamma_exponent": _number(
+            separation.get("gamma_exponent"),
+            "orientation_separation.gamma_exponent",
+            minimum=0.0,
+            strict_minimum=True,
+        ),
+        "beta": separation_beta,
+        "far_offset": separation_far_offset,
+    }
+
+    composition = _mapping(
+        root.get("generic_composition_audit"), "generic_composition_audit"
+    )
+    _only_keys(
+        composition,
+        {"m_values", "gamma_exponent", "beta", "far_offset"},
+        "generic_composition_audit",
+    )
+    composition_m_values = _integers(
+        composition.get("m_values"),
+        "generic_composition_audit.m_values",
+        minimum=2,
+    )
+    if composition_m_values != sorted(set(composition_m_values)):
+        raise ValueError(
+            "generic_composition_audit.m_values must be sorted and unique"
+        )
+    composition_beta = _number(
+        composition.get("beta"),
+        "generic_composition_audit.beta",
+        minimum=0.0,
+        maximum=math.pi / 2.0,
+        strict_minimum=True,
+    )
+    if composition_beta >= math.pi / 2.0:
+        raise ValueError(
+            "generic_composition_audit.beta must be strictly below pi/2"
+        )
+    composition_far_offset = _number(
+        composition.get("far_offset"),
+        "generic_composition_audit.far_offset",
+        minimum=0.0,
+        strict_minimum=True,
+    )
+    if composition_far_offset >= composition_beta:
+        raise ValueError(
+            "generic_composition_audit.far_offset must be strictly below beta"
+        )
+    resolved["generic_composition_audit"] = {
+        "m_values": composition_m_values,
+        "gamma_exponent": _number(
+            composition.get("gamma_exponent"),
+            "generic_composition_audit.gamma_exponent",
+            minimum=0.0,
+            strict_minimum=True,
+        ),
+        "beta": composition_beta,
+        "far_offset": composition_far_offset,
+    }
+
+    history = _mapping(
+        root.get("unknown_boundary_history"), "unknown_boundary_history"
+    )
+    _only_keys(
+        history,
+        {
+            "m_values",
+            "n_exponent",
+            "level_exponent",
+            "active_exponent",
+            "gamma_exponent",
+            "output_births_per_level",
+            "epsilon_growth_exponent",
+            "activity_decay_exponent",
+            "predicate_cost_exponent",
+            "baseline_match_tolerance",
+        },
+        "unknown_boundary_history",
+    )
+    history_m_values = _integers(
+        history.get("m_values"),
+        "unknown_boundary_history.m_values",
+        minimum=2,
+    )
+    if history_m_values != sorted(set(history_m_values)):
+        raise ValueError("unknown_boundary_history.m_values must be sorted and unique")
+    resolved["unknown_boundary_history"] = {
+        "m_values": history_m_values,
+        "n_exponent": _number(
+            history.get("n_exponent"),
+            "unknown_boundary_history.n_exponent",
+            minimum=0.0,
+            strict_minimum=True,
+        ),
+        "level_exponent": _number(
+            history.get("level_exponent"),
+            "unknown_boundary_history.level_exponent",
+            minimum=0.0,
+            strict_minimum=True,
+        ),
+        "active_exponent": _number(
+            history.get("active_exponent"),
+            "unknown_boundary_history.active_exponent",
+            minimum=0.0,
+            strict_minimum=True,
+        ),
+        "gamma_exponent": _number(
+            history.get("gamma_exponent"),
+            "unknown_boundary_history.gamma_exponent",
+            minimum=0.0,
+            strict_minimum=True,
+        ),
+        "output_births_per_level": _integer(
+            history.get("output_births_per_level"),
+            "unknown_boundary_history.output_births_per_level",
+            minimum=1,
+        ),
+        "epsilon_growth_exponent": _number(
+            history.get("epsilon_growth_exponent"),
+            "unknown_boundary_history.epsilon_growth_exponent",
+            minimum=0.0,
+        ),
+        "activity_decay_exponent": _number(
+            history.get("activity_decay_exponent"),
+            "unknown_boundary_history.activity_decay_exponent",
+            minimum=0.0,
+        ),
+        "predicate_cost_exponent": _number(
+            history.get("predicate_cost_exponent"),
+            "unknown_boundary_history.predicate_cost_exponent",
+            minimum=0.0,
+        ),
+        "baseline_match_tolerance": _number(
+            history.get("baseline_match_tolerance"),
+            "unknown_boundary_history.baseline_match_tolerance",
+            minimum=1.0,
+        ),
+    }
 
     iae = _mapping(root.get("iterative_ae"), "iterative_ae")
     _only_keys(
@@ -620,6 +834,7 @@ def _benchmark_config(config: Mapping[str, object]) -> QuantumBenchmarkConfig:
     common = _common(config)
     return QuantumBenchmarkConfig(
         phase_qubits=int(common["phase_qubits"]),
+        max_phase_qubits=int(common["max_phase_qubits"]),
         verification_shots=int(common["verification_shots"]),
         confidence=float(common["verification_confidence"]),
         max_attempts_per_output=int(common["max_attempts_per_output"]),
@@ -1053,7 +1268,15 @@ def _benchmark_suite(
     )
     pairs: dict[str, object] = {}
     comparisons = (
-        (("calibrated_direct_topk", "boundary_only_negative_control"),)
+        (
+            ("adaptive_calibrated_direct_topk", "calibrated_direct_topk"),
+            ("adaptive_calibrated_direct_topk", "fixed_max_precision_topk"),
+            (
+                "adaptive_calibrated_direct_topk",
+                "refined_boundary_only_negative_control",
+            ),
+            ("adaptive_calibrated_direct_topk", "boundary_only_negative_control"),
+        )
         if suite_name == "topk_comparison"
         else (
             ("direct_bbht", "independent_qpe_scan"),
@@ -1075,20 +1298,258 @@ def _benchmark_suite(
                     )
                 ),
             }
+    summary: dict[str, object] = {
+        "records": len(records),
+        "successes": sum(record.success for record in records),
+        "aggregates": _jsonable(aggregates),
+        "paired_query_ratios": pairs,
+        "paired_query_ratio_eligibility": (
+            "ratio is finite only when both methods are certified successes"
+        ),
+        "fixed_parameter_records_present": True,
+        "accuracy_matched_advantage_claimed": False,
+        "budget_matched_controls": len(budget_matched_records),
+        "budget_match_semantics": (
+            "baseline total logical oracle calls are capped by the paired "
+            "direct run; access categories remain reported separately"
+        ),
+    }
+    if suite_name == "topk_comparison":
+        summary["selected_phase_qubit_counts"] = {
+            method: dict(
+                sorted(
+                    Counter(
+                        str(record.phase_qubits)
+                        for record in records
+                        if record.method == method
+                        and record.phase_qubits is not None
+                    ).items()
+                )
+            )
+            for method in sorted(available)
+        }
+        summary["status_counts_by_method"] = {
+            method: dict(
+                sorted(
+                    Counter(
+                        record.status
+                        for record in records
+                        if record.method == method
+                    ).items()
+                )
+            )
+            for method in sorted(available)
+        }
+        summary["adaptive_precision_semantics"] = (
+            "the measured boundary margin selects one QPE precision before "
+            "coherent search; candidate levels are not executed quantum stages"
+        )
+        summary["boundary_certificate_discovery_advantage_claimed"] = False
+    else:
+        multi_output = [
+            record
+            for record in records
+            if record.method == "direct_bbht" and record.expected_count > 1
+        ]
+        summary["direct_multi_output_records"] = len(multi_output)
+        summary["direct_multi_output_certified_successes"] = sum(
+            record.success for record in multi_output
+        )
+        summary["direct_multi_output_semantics"] = (
+            "sequential full-workspace BBHT with measured exclusion and fresh "
+            "verification; not a one-shot multi-output theorem"
+        )
     return {
         "raw_records": [record.as_flat_dict() for record in records],
         "budget_matched_records": budget_matched_records,
+        "summary": summary,
+    }
+
+
+def _orientation_separation_suite(config: Mapping[str, object]) -> dict[str, object]:
+    section = _section(config, "orientation_separation")
+    records = orientation_separation_sweep(
+        section["m_values"],  # type: ignore[arg-type]
+        gamma_exponent=float(section["gamma_exponent"]),
+        beta=float(section["beta"]),
+        far_offset=float(section["far_offset"]),
+    )
+    raw_records = [dataclasses.asdict(record) for record in records]
+    slope_fields = (
+        "orientation_candidate_proxy",
+        "independent_all_arm_proxy",
+        "worst_gap_marked_extraction_proxy",
+        "selected_candidate_proxy",
+        "rejected_candidate_proxy",
+    )
+    slopes = {
+        field: descriptive_loglog_slope(records, field)
+        for field in slope_fields
+    }
+    ratios = {
+        "candidate_over_independent_last": (
+            raw_records[-1]["orientation_candidate_proxy"]
+            / raw_records[-1]["independent_all_arm_proxy"]
+        ),
+        "candidate_over_worst_gap_marked_last": (
+            raw_records[-1]["orientation_candidate_proxy"]
+            / raw_records[-1]["worst_gap_marked_extraction_proxy"]
+        ),
+        "candidate_over_rejected_orientation_last": (
+            raw_records[-1]["orientation_candidate_proxy"]
+            / raw_records[-1]["rejected_candidate_proxy"]
+        ),
+    }
+    return {
+        "raw_records": raw_records,
         "summary": {
-            "records": len(records),
-            "successes": sum(record.success for record in records),
-            "aggregates": _jsonable(aggregates),
-            "paired_query_ratios": pairs,
-            "fixed_parameter_records_present": True,
-            "accuracy_matched_advantage_claimed": False,
-            "budget_matched_controls": len(budget_matched_records),
-            "budget_match_semantics": (
-                "baseline total logical oracle calls are capped by the paired "
-                "direct run; access categories remain reported separately"
+            "records": len(raw_records),
+            "m_values": [record["m"] for record in raw_records],
+            "chosen_orientation_counts": dict(
+                sorted(
+                    Counter(record["chosen_orientation"] for record in raw_records).items()
+                )
+            ),
+            "descriptive_loglog_slopes": slopes,
+            "last_point_ratios": ratios,
+            "executed_quantum_algorithm": False,
+            "asymptotic_theorem_claimed": False,
+            "generic_composition_audit_status": "failed_explicit_family",
+            "interpretation": (
+                "analytic separation-family diagnostic for the declared "
+                "orientation proxy; the configured family has been falsified "
+                "by a matching same-relation composition"
+            ),
+        },
+    }
+
+
+def _generic_composition_audit_suite(
+    config: Mapping[str, object],
+) -> dict[str, object]:
+    section = _section(config, "generic_composition_audit")
+    records = composition_audit_sweep(
+        section["m_values"],  # type: ignore[arg-type]
+        gamma_exponent=float(section["gamma_exponent"]),
+        beta=float(section["beta"]),
+        far_offset=float(section["far_offset"]),
+    )
+    raw_records = [dataclasses.asdict(record) for record in records]
+    slope_fields = (
+        "orientation_candidate_proxy",
+        "direct_layered_multi_output_proxy",
+        "variable_time_rms_proxy",
+        "coarse_partition_plus_bai_proxy",
+        "independent_all_arm_proxy",
+        "worst_gap_marked_extraction_proxy",
+        "exceptional_search_lower_proxy",
+    )
+    slopes = {
+        field: composition_loglog_slope(records, field) for field in slope_fields
+    }
+    failures = sum(
+        record.novelty_gate == "failed_explicit_family" for record in records
+    )
+    return {
+        "raw_records": raw_records,
+        "summary": {
+            "records": len(raw_records),
+            "descriptive_loglog_slopes": slopes,
+            "outer_composition_match_count": sum(
+                record.outer_composition_matches_candidate for record in records
+            ),
+            "explicit_family_novelty_failure_count": failures,
+            "explicit_family_separation_survives": all(
+                record.explicit_family_separation_survives for record in records
+            ),
+            "direct_multi_output_status": (
+                "known_boundary_outer_layer_matched_by_all_marked_extraction"
+            ),
+            "variable_time_status": (
+                "generic_rms_and_loop_composition_are_mandatory_known_baselines"
+            ),
+            "upper_bound_status": (
+                "conditional_outer_cost_only_unknown_boundary_and_activity_open"
+            ),
+            "lower_bound_status": (
+                "explicit_family_scaling_matched_general_all_algorithm_bound_open"
+            ),
+            "executed_quantum_algorithm": False,
+            "asymptotic_theorem_claimed": False,
+            "novelty_gate": (
+                "failed_explicit_family"
+                if failures == len(records)
+                else "requires_further_audit"
+            ),
+        },
+    }
+
+
+def _unknown_boundary_history_suite(
+    config: Mapping[str, object],
+) -> dict[str, object]:
+    section = _section(config, "unknown_boundary_history")
+    records = unknown_boundary_history_sweep(
+        section["m_values"],  # type: ignore[arg-type]
+        n_exponent=float(section["n_exponent"]),
+        level_exponent=float(section["level_exponent"]),
+        active_exponent=float(section["active_exponent"]),
+        gamma_exponent=float(section["gamma_exponent"]),
+        output_births_per_level=int(section["output_births_per_level"]),
+        epsilon_growth_exponent=float(section["epsilon_growth_exponent"]),
+        activity_decay_exponent=float(section["activity_decay_exponent"]),
+        predicate_cost_exponent=float(section["predicate_cost_exponent"]),
+        baseline_match_tolerance=float(section["baseline_match_tolerance"]),
+    )
+    raw_records = [dataclasses.asdict(record) for record in records]
+    slope_fields = (
+        "boundary_localization_proxy",
+        "coherent_activity_history_proxy",
+        "direct_multi_output_quadrature_proxy",
+        "candidate_total_proxy",
+        "known_boundary_free_history_layered_proxy",
+        "rebuild_history_scan_layered_proxy",
+        "variable_time_rebuild_rms_proxy",
+        "grover_activity_layered_proxy",
+        "independent_all_arm_proxy",
+        "coarse_partition_bai_proxy",
+        "adversary_lower_target_proxy",
+        "min_encoded_valid_baseline_proxy",
+    )
+    slopes = {
+        field: unknown_boundary_history_loglog_slope(records, field)
+        for field in slope_fields
+    }
+    gates = Counter(record.novelty_gate for record in records)
+    strongest = Counter(record.min_encoded_valid_baseline_name for record in records)
+    last = records[-1]
+    return {
+        "raw_records": raw_records,
+        "summary": {
+            "records": len(raw_records),
+            "m_values": [record.m for record in records],
+            "descriptive_loglog_slopes": slopes,
+            "novelty_gate_counts": dict(sorted(gates.items())),
+            "strongest_encoded_valid_baseline_counts": dict(
+                sorted(strongest.items())
+            ),
+            "last_point_min_valid_baseline_over_candidate": (
+                last.min_valid_baseline_over_candidate
+            ),
+            "last_point_lower_target_over_candidate": (
+                last.lower_target_over_candidate
+            ),
+            "no_free_qram_assumption": last.no_free_qram_assumption,
+            "known_boundary_free_history_is_valid_baseline": False,
+            "executed_quantum_algorithm": False,
+            "asymptotic_theorem_claimed": False,
+            "upper_bound_status": last.matching_upper_bound_status,
+            "lower_bound_status": last.matching_lower_bound_status,
+            "interpretation": (
+                "analytic candidate-core audit for unknown-boundary coherent "
+                "activity histories; open records mean no encoded valid "
+                "baseline matched under the configured tolerance, not that an "
+                "advantage theorem has been proved"
             ),
         },
     }
@@ -1495,6 +1956,9 @@ def run(
         "topk_comparison": lambda value: _benchmark_suite(
             value, suite_name="topk_comparison"
         ),
+        "orientation_separation": _orientation_separation_suite,
+        "generic_composition_audit": _generic_composition_audit_suite,
+        "unknown_boundary_history": _unknown_boundary_history_suite,
         "iterative_ae": _iterative_ae_suite,
         "scheduler_sweep": _scheduler_suite,
         "diffusion_ablation": _diffusion_suite,
@@ -1510,7 +1974,7 @@ def run(
         )
         results[name] = suite_result
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "artifact_type": ARTIFACT_TYPE,
         "experiment_name": config["experiment_name"],
         "claim_status": CLAIM_STATUS,
@@ -1520,9 +1984,12 @@ def run(
         "provenance": {
             **execution_provenance,
             "means_used_only_for_oracle_construction_and_evaluation": True,
-            "direct_search_receives_no_marked_membership_set": True,
+            "direct_search_receives_no_explicit_membership_tuple": True,
+            "post_qpe_validation_uses_full_boundary_intervals": True,
+            "boundary_certificate_discovery_advantage_claimed": False,
             "query_ledgers_are_executed_logical_calls": True,
-            "dense_qft_numpy_allocation_is_reported": True,
+            "dense_qft_analytic_array_proxy_is_reported": True,
+            "measured_numpy_peak_memory_is_reported": False,
             "statevector_simulation_is_not_hardware_execution": True,
         },
         "claim_boundaries": {
@@ -1531,13 +1998,17 @@ def run(
                 "finite-QPE resolution and verifier calibration diagnostics",
                 "small exact-state BBHT behavior on randomized angular instances",
                 "negative controls, failure semantics, and reproducibility",
+                "analytic composition falsification of the declared orientation proxy",
+                "analytic no-free-QRAM audit for the new unknown-boundary candidate",
             ],
             "does_not_support": [
                 "a new QPE, BBHT, or iterative amplitude-estimation theorem",
                 "asymptotic quantum advantage or a matching lower bound",
                 "hardware feasibility, noise robustness, or simulator speedup",
-                "a local-LLM reward oracle or an LLM attack result",
+                "an application-domain performance or advantage claim",
                 "Top-k advantage over boundary-only calibration",
+                "a generic-composition separation for the orientation candidate",
+                "a proved unknown-boundary activity-history transducer theorem",
             ],
         },
         "suite_results": results,
@@ -1584,7 +2055,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"suites={','.join(report['selected_suites'])}\n"
         f"claim_status={CLAIM_STATUS}\n"
         "These exact-state and analytic measurement-law results are not a "
-        "complexity theorem, hardware run, or LLM attack experiment.\n"
+        "complexity theorem, hardware run, or application-domain experiment.\n"
     )
     return 0
 

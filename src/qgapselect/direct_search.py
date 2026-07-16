@@ -119,8 +119,8 @@ class DirectSearchResources:
     depth: int
     qubits: int
     workspace_qubits: int
-    # Compatibility fields: these retain their public names while now meaning
-    # the retained state and corrected conservative simulator peak.
+    # Compatibility fields: these retain their public names while meaning the
+    # retained state and an analytic simultaneous-array-size proxy.
     statevector_dimension: int
     peak_statevector_dimension: int
     retained_statevector_dimension: int
@@ -439,8 +439,8 @@ class FullWorkspaceBBHT:
             self.dense_qft_matrix_dimension
             + 2 * self.retained_statevector_dimension,
         )
-        # Compatibility aliases.  The old peak calculation was only ``2S``;
-        # it now exposes the corrected conservative simultaneous allocation.
+        # Compatibility aliases.  The old calculation was only ``2S``; this
+        # exposes a larger analytic array-size proxy, not measured NumPy peak.
         self.statevector_dimension = self.retained_statevector_dimension
         self.peak_statevector_dimension = self.estimated_peak_complex_amplitudes
         self._blocked_status = (

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "experiment_name": "q-gapselect-ccfa-matched-layer-c-campaign-v1",
+  "master_seed": 20260715,
+  "anchors_per_family": 10,
+  "repetitions_per_fixture": 50,
+  "query_caps": [65536, 131072, 262144, 524288, 1048576],
+  "failure_budget": 0.05,
+  "included_families": [
+    "equal_n16_k8_gap_pi64",
+    "dyadic_n32_k16_gap_pi128",
+    "clustered_n32_k16_gap_pi256"
+  ],
+  "selection_rule": "within_family_mid_quantiles_of_active_count_over_boundary_gap",
+  "coherent_config": {
+    "confidence": 0.05,
+    "initial_angular_precision": 0.19634954084936207,
+    "precision_decay": 0.5,
+    "max_levels": 8,
+    "shots_per_iae_round": 64,
+    "iae_max_rounds": 6,
+    "iae_max_grover_power": 63,
+    "iae_grid_points": 2049,
+    "verification_angular_precision": 0.02454369260617026,
+    "verification_shots_per_round": 64,
+    "verification_max_rounds": 7,
+    "verification_max_grover_power": 63,
+    "verification_grid_points": 4097
+  },
+  "baseline_config": {
+    "initial_angular_precision": 0.19634954084936207,
+    "precision_decay": 0.5,
+    "max_levels": 8,
+    "iae": {
+      "target_angular_precision": 0.04908738521234052,
+      "confidence": 0.05,
+      "shots_per_round": 64,
+      "max_rounds": 6,
+      "max_grover_power": 63,
+      "grid_points": 2049
+    }
+  },
+  "coarse_partition_block_size": 8,
+  "coarse_partition_seed": 17,
+  "fixed_fixture_target_probability": 0.95,
+  "familywise_alpha": 0.05,
+  "minimum_risk_difference": 0.05,
+  "bootstrap_repetitions": 10000,
+  "bootstrap_seed": 20260715,
+  "dataset_protocol": {
+    "tier": "synthetic_exact_count_hard_family",
+    "fixture_unit": "one frozen non-isomorphic exact-count reward tensor",
+    "seed_unit": "within-fixture analytic measurement seed",
+    "outcome_adaptive_selection": false,
+    "application_data_used": false
+  },
+  "notes": [
+    "This is the algorithm-core tier; public real-data semi-synthetic tiers are separate and must use the same oracle/output/budget contract.",
+    "Anchors are selected from public structure only, before any matched-method outcome is observed.",
+    "Every timeout, unresolved output, wrong certificate, and budget failure remains in the denominator.",
+    "The maximum query cap is also reported as a fixed-fixture multi-seed calibration panel with simultaneous exact lower confidence bounds.",
+    "The candidate and primary baselines receive only a fresh blind oracle, k, one failure budget, and one hard query cap.",
+    "No LLM, commercial API, security experiment, or quantum hardware is executed."
+  ]
+}

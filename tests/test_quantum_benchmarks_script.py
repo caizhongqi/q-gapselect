@@ -16,6 +16,7 @@ def _small_document(repository: Path) -> dict[str, object]:
     document["common"].update(  # type: ignore[union-attr]
         {
             "phase_qubits": 2,
+            "max_phase_qubits": 5,
             "verification_shots": 32,
             "max_attempts_per_output": 8,
             "max_statevector_dimension": 4096,
@@ -64,6 +65,30 @@ def _small_document(repository: Path) -> dict[str, object]:
             "boundary_only_negative_control",
             "calibrated_direct_topk",
         ],
+    }
+    document["orientation_separation"] = {
+        "m_values": [4, 8],
+        "gamma_exponent": 2.0,
+        "beta": 0.7853981633974483,
+        "far_offset": 0.39269908169872414,
+    }
+    document["generic_composition_audit"] = {
+        "m_values": [4, 8],
+        "gamma_exponent": 2.0,
+        "beta": 0.7853981633974483,
+        "far_offset": 0.39269908169872414,
+    }
+    document["unknown_boundary_history"] = {
+        "m_values": [4, 8],
+        "n_exponent": 3.0,
+        "level_exponent": 1.0,
+        "active_exponent": 1.0,
+        "gamma_exponent": 2.0,
+        "output_births_per_level": 1,
+        "epsilon_growth_exponent": 0.25,
+        "activity_decay_exponent": 0.0,
+        "predicate_cost_exponent": 0.0,
+        "baseline_match_tolerance": 1.2,
     }
     document["iterative_ae"].update(  # type: ignore[union-attr]
         {
@@ -128,6 +153,12 @@ def test_quantum_benchmark_cli_runs_selected_suites_and_writes_claim_boundaries(
             "--suite",
             "random_benchmarks",
             "--suite",
+            "orientation_separation",
+            "--suite",
+            "generic_composition_audit",
+            "--suite",
+            "unknown_boundary_history",
+            "--suite",
             "failure_semantics",
             "--trials",
             "1",
@@ -147,6 +178,9 @@ def test_quantum_benchmark_cli_runs_selected_suites_and_writes_claim_boundaries(
     assert artifact["selected_suites"] == [
         "unitary_validation",
         "random_benchmarks",
+        "orientation_separation",
+        "generic_composition_audit",
+        "unknown_boundary_history",
         "failure_semantics",
     ]
     assert artifact["resolved_config"]["master_seed"] == 73
@@ -157,6 +191,7 @@ def test_quantum_benchmark_cli_runs_selected_suites_and_writes_claim_boundaries(
     assert provenance["python_version"]
     assert provenance["numpy_version"]
     assert provenance["platform"]
+    assert provenance["git_tree"]
     assert provenance["byte_for_byte_reproduction_expected"] is False
     assert provenance["volatile_fields"] == [
         "suite_results.*.simulator_wall_seconds"
@@ -172,7 +207,30 @@ def test_quantum_benchmark_cli_runs_selected_suites_and_writes_claim_boundaries(
     assert artifact["suite_results"]["failure_semantics"]["summary"][
         "statevector_block_queries"
     ] == 0
+    orientation = artifact["suite_results"]["orientation_separation"]["summary"]
+    assert orientation["records"] == 2
+    assert orientation["executed_quantum_algorithm"] is False
+    assert orientation["asymptotic_theorem_claimed"] is False
+    assert orientation["generic_composition_audit_status"] == "failed_explicit_family"
+    composition = artifact["suite_results"]["generic_composition_audit"]["summary"]
+    assert composition["records"] == 2
+    assert composition["outer_composition_match_count"] == 2
+    assert composition["explicit_family_novelty_failure_count"] == 2
+    assert composition["explicit_family_separation_survives"] is False
+    assert composition["novelty_gate"] == "failed_explicit_family"
+    assert composition["executed_quantum_algorithm"] is False
+    history = artifact["suite_results"]["unknown_boundary_history"]["summary"]
+    assert history["records"] == 2
+    assert history["executed_quantum_algorithm"] is False
+    assert history["asymptotic_theorem_claimed"] is False
+    assert history["known_boundary_free_history_is_valid_baseline"] is False
+    assert "open_no_encoded_baseline_match" in " ".join(
+        history["novelty_gate_counts"]
+    )
     assert "asymptotic quantum advantage" in " ".join(
+        artifact["claim_boundaries"]["does_not_support"]
+    )
+    assert "unknown-boundary" in " ".join(
         artifact["claim_boundaries"]["does_not_support"]
     )
     assert "not a complexity theorem" in completed.stdout

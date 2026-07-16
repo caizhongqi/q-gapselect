@@ -1,0 +1,739 @@
+{
+  "artifact_type": "q_gapselect_charged_activity_history",
+  "case_results": [
+    {
+      "name": "phase_window_default",
+      "parameters": {
+        "base_bits": 3,
+        "boundary_phase": 0.5,
+        "growth_period": 2,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "max_statevector_dimension": 131072,
+        "n_exponent": 2.0,
+        "name": "phase_window_default",
+        "near_boundary_fraction": 0.5
+      },
+      "raw_records": [
+        {
+          "average_active_fraction": 0.46875,
+          "average_output_fraction": 0.09375,
+          "boundary_phase": 0.5,
+          "exact_state_trace": {
+            "active_probability": 0.46875,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "flag_garbage_probability_after_phase": 0.0,
+            "output_probability": 0.09375,
+            "query_counts_after_trace": {
+              "charged:coherent_classifier_calls": 4,
+              "charged:qpe_query_units_max_level": 60,
+              "charged:qpe_query_units_serial_levels": 176,
+              "charged_history:compute": 4,
+              "charged_history:phase:output": 1
+            },
+            "statevector_dimension": 256
+          },
+          "level_count": 4,
+          "m": 4,
+          "max_level_qpe_query_units_per_compute": 15,
+          "n_arms": 16,
+          "no_supplied_predicate_rows": true,
+          "precision_bits_by_level": [
+            3,
+            3,
+            4,
+            4
+          ],
+          "predicate_summary": {
+            "active_counts_by_level": [
+              9,
+              9,
+              6,
+              6
+            ],
+            "max_active_count": 9,
+            "max_level_qpe_query_units_per_compute": 15,
+            "min_active_count": 6,
+            "output_counts_by_level": [
+              1,
+              1,
+              2,
+              2
+            ],
+            "output_subset_active": true,
+            "predicate_source": "finite_qpe_phase_windows",
+            "serial_qpe_query_units_per_compute": 44,
+            "total_active_pairs": 30,
+            "total_output_pairs": 6
+          },
+          "serial_qpe_query_units_per_compute": 44,
+          "statevector_dimension": 256
+        },
+        {
+          "average_active_fraction": 0.36328125,
+          "average_output_fraction": 0.12890625,
+          "boundary_phase": 0.5,
+          "exact_state_trace": {
+            "active_probability": 0.3632812499999999,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "flag_garbage_probability_after_phase": 0.0,
+            "output_probability": 0.12890624999999994,
+            "query_counts_after_trace": {
+              "charged:coherent_classifier_calls": 4,
+              "charged:qpe_query_units_max_level": 252,
+              "charged:qpe_query_units_serial_levels": 928,
+              "charged_history:compute": 4,
+              "charged_history:phase:output": 1
+            },
+            "statevector_dimension": 2048
+          },
+          "level_count": 8,
+          "m": 8,
+          "max_level_qpe_query_units_per_compute": 63,
+          "n_arms": 64,
+          "no_supplied_predicate_rows": true,
+          "precision_bits_by_level": [
+            3,
+            3,
+            4,
+            4,
+            5,
+            5,
+            6,
+            6
+          ],
+          "predicate_summary": {
+            "active_counts_by_level": [
+              37,
+              37,
+              24,
+              24,
+              20,
+              20,
+              12,
+              12
+            ],
+            "max_active_count": 37,
+            "max_level_qpe_query_units_per_compute": 63,
+            "min_active_count": 12,
+            "output_counts_by_level": [
+              5,
+              5,
+              8,
+              8,
+              12,
+              12,
+              8,
+              8
+            ],
+            "output_subset_active": true,
+            "predicate_source": "finite_qpe_phase_windows",
+            "serial_qpe_query_units_per_compute": 232,
+            "total_active_pairs": 186,
+            "total_output_pairs": 66
+          },
+          "serial_qpe_query_units_per_compute": 232,
+          "statevector_dimension": 2048
+        },
+        {
+          "average_active_fraction": 0.2041015625,
+          "average_output_fraction": 0.0791015625,
+          "boundary_phase": 0.5,
+          "exact_state_trace": {
+            "active_probability": 0.2041015625,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "flag_garbage_probability_after_phase": 0.0,
+            "output_probability": 0.0791015625,
+            "query_counts_after_trace": {
+              "charged:coherent_classifier_calls": 4,
+              "charged:qpe_query_units_max_level": 4092,
+              "charged:qpe_query_units_serial_levels": 16256,
+              "charged_history:compute": 4,
+              "charged_history:phase:output": 1
+            },
+            "statevector_dimension": 16384
+          },
+          "level_count": 16,
+          "m": 16,
+          "max_level_qpe_query_units_per_compute": 1023,
+          "n_arms": 256,
+          "no_supplied_predicate_rows": true,
+          "precision_bits_by_level": [
+            3,
+            3,
+            4,
+            4,
+            5,
+            5,
+            6,
+            6,
+            7,
+            7,
+            8,
+            8,
+            9,
+            9,
+            10,
+            10
+          ],
+          "predicate_summary": {
+            "active_counts_by_level": [
+              148,
+              148,
+              96,
+              96,
+              80,
+              80,
+              48,
+              48,
+              24,
+              24,
+              12,
+              12,
+              6,
+              6,
+              4,
+              4
+            ],
+            "max_active_count": 148,
+            "max_level_qpe_query_units_per_compute": 1023,
+            "min_active_count": 4,
+            "output_counts_by_level": [
+              20,
+              20,
+              32,
+              32,
+              48,
+              48,
+              32,
+              32,
+              16,
+              16,
+              8,
+              8,
+              4,
+              4,
+              2,
+              2
+            ],
+            "output_subset_active": true,
+            "predicate_source": "finite_qpe_phase_windows",
+            "serial_qpe_query_units_per_compute": 4064,
+            "total_active_pairs": 836,
+            "total_output_pairs": 324
+          },
+          "serial_qpe_query_units_per_compute": 4064,
+          "statevector_dimension": 16384
+        },
+        {
+          "average_active_fraction": 0.1025390625,
+          "average_output_fraction": 0.0400390625,
+          "boundary_phase": 0.5,
+          "exact_state_trace": {
+            "active_probability": 0.10253906249999997,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "flag_garbage_probability_after_phase": 0.0,
+            "output_probability": 0.04003906249999999,
+            "query_counts_after_trace": {
+              "charged:coherent_classifier_calls": 4,
+              "charged:qpe_query_units_max_level": 1048572,
+              "charged:qpe_query_units_serial_levels": 4194112,
+              "charged_history:compute": 4,
+              "charged_history:phase:output": 1
+            },
+            "statevector_dimension": 131072
+          },
+          "level_count": 32,
+          "m": 32,
+          "max_level_qpe_query_units_per_compute": 262143,
+          "n_arms": 1024,
+          "no_supplied_predicate_rows": true,
+          "precision_bits_by_level": [
+            3,
+            3,
+            4,
+            4,
+            5,
+            5,
+            6,
+            6,
+            7,
+            7,
+            8,
+            8,
+            9,
+            9,
+            10,
+            10,
+            11,
+            11,
+            12,
+            12,
+            13,
+            13,
+            14,
+            14,
+            15,
+            15,
+            16,
+            16,
+            17,
+            17,
+            18,
+            18
+          ],
+          "predicate_summary": {
+            "active_counts_by_level": [
+              592,
+              592,
+              384,
+              384,
+              320,
+              320,
+              192,
+              192,
+              96,
+              96,
+              48,
+              48,
+              24,
+              24,
+              12,
+              12,
+              6,
+              6,
+              4,
+              4,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "max_active_count": 592,
+            "max_level_qpe_query_units_per_compute": 262143,
+            "min_active_count": 0,
+            "output_counts_by_level": [
+              80,
+              80,
+              128,
+              128,
+              192,
+              192,
+              128,
+              128,
+              64,
+              64,
+              32,
+              32,
+              16,
+              16,
+              8,
+              8,
+              4,
+              4,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "output_subset_active": true,
+            "predicate_source": "finite_qpe_phase_windows",
+            "serial_qpe_query_units_per_compute": 1048528,
+            "total_active_pairs": 3360,
+            "total_output_pairs": 1312
+          },
+          "serial_qpe_query_units_per_compute": 1048528,
+          "statevector_dimension": 131072
+        }
+      ],
+      "simulator_wall_seconds": 0.5401412089995574,
+      "summary": {
+        "all_no_supplied_predicate_rows": true,
+        "all_output_subset_active": true,
+        "asymptotic_theorem_claimed": false,
+        "descriptive_loglog_slopes": {
+          "average_active_fraction": -0.7409734912854333,
+          "average_output_fraction": -0.4386775604783046,
+          "max_level_qpe_query_units_per_compute": 4.630062220905387,
+          "serial_qpe_query_units_per_compute": 4.7752210707184055
+        },
+        "exact_state_trace_count": 4,
+        "executed_quantum_algorithm": false,
+        "interpretation": "charged finite-phase predicate-generation prototype; not a variable-time upper-bound theorem",
+        "m_values": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "records": 4
+      }
+    },
+    {
+      "name": "finer_level_growth",
+      "parameters": {
+        "base_bits": 4,
+        "boundary_phase": 0.5,
+        "growth_period": 1,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8,
+          16
+        ],
+        "max_statevector_dimension": 131072,
+        "n_exponent": 2.0,
+        "name": "finer_level_growth",
+        "near_boundary_fraction": 0.375
+      },
+      "raw_records": [
+        {
+          "average_active_fraction": 0.1875,
+          "average_output_fraction": 0.09375,
+          "boundary_phase": 0.5,
+          "exact_state_trace": {
+            "active_probability": 0.1875,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "flag_garbage_probability_after_phase": 0.0,
+            "output_probability": 0.09375,
+            "query_counts_after_trace": {
+              "charged:coherent_classifier_calls": 4,
+              "charged:qpe_query_units_max_level": 508,
+              "charged:qpe_query_units_serial_levels": 944,
+              "charged_history:compute": 4,
+              "charged_history:phase:output": 1
+            },
+            "statevector_dimension": 256
+          },
+          "level_count": 4,
+          "m": 4,
+          "max_level_qpe_query_units_per_compute": 127,
+          "n_arms": 16,
+          "no_supplied_predicate_rows": true,
+          "precision_bits_by_level": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "predicate_summary": {
+            "active_counts_by_level": [
+              5,
+              4,
+              2,
+              1
+            ],
+            "max_active_count": 5,
+            "max_level_qpe_query_units_per_compute": 127,
+            "min_active_count": 1,
+            "output_counts_by_level": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "output_subset_active": true,
+            "predicate_source": "finite_qpe_phase_windows",
+            "serial_qpe_query_units_per_compute": 236,
+            "total_active_pairs": 12,
+            "total_output_pairs": 6
+          },
+          "serial_qpe_query_units_per_compute": 236,
+          "statevector_dimension": 256
+        },
+        {
+          "average_active_fraction": 0.099609375,
+          "average_output_fraction": 0.052734375,
+          "boundary_phase": 0.5,
+          "exact_state_trace": {
+            "active_probability": 0.09960937499999996,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "flag_garbage_probability_after_phase": 0.0,
+            "output_probability": 0.052734374999999986,
+            "query_counts_after_trace": {
+              "charged:coherent_classifier_calls": 4,
+              "charged:qpe_query_units_max_level": 8188,
+              "charged:qpe_query_units_serial_levels": 16288,
+              "charged_history:compute": 4,
+              "charged_history:phase:output": 1
+            },
+            "statevector_dimension": 2048
+          },
+          "level_count": 8,
+          "m": 8,
+          "max_level_qpe_query_units_per_compute": 2047,
+          "n_arms": 64,
+          "no_supplied_predicate_rows": true,
+          "precision_bits_by_level": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "predicate_summary": {
+            "active_counts_by_level": [
+              18,
+              15,
+              10,
+              5,
+              2,
+              1,
+              0,
+              0
+            ],
+            "max_active_count": 18,
+            "max_level_qpe_query_units_per_compute": 2047,
+            "min_active_count": 0,
+            "output_counts_by_level": [
+              6,
+              9,
+              6,
+              3,
+              2,
+              1,
+              0,
+              0
+            ],
+            "output_subset_active": true,
+            "predicate_source": "finite_qpe_phase_windows",
+            "serial_qpe_query_units_per_compute": 4072,
+            "total_active_pairs": 51,
+            "total_output_pairs": 27
+          },
+          "serial_qpe_query_units_per_compute": 4072,
+          "statevector_dimension": 2048
+        },
+        {
+          "average_active_fraction": 0.0498046875,
+          "average_output_fraction": 0.0263671875,
+          "boundary_phase": 0.5,
+          "exact_state_trace": {
+            "active_probability": 0.0498046875,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "flag_garbage_probability_after_phase": 0.0,
+            "output_probability": 0.0263671875,
+            "query_counts_after_trace": {
+              "charged:coherent_classifier_calls": 4,
+              "charged:qpe_query_units_max_level": 2097148,
+              "charged:qpe_query_units_serial_levels": 4194176,
+              "charged_history:compute": 4,
+              "charged_history:phase:output": 1
+            },
+            "statevector_dimension": 16384
+          },
+          "level_count": 16,
+          "m": 16,
+          "max_level_qpe_query_units_per_compute": 524287,
+          "n_arms": 256,
+          "no_supplied_predicate_rows": true,
+          "precision_bits_by_level": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "predicate_summary": {
+            "active_counts_by_level": [
+              72,
+              60,
+              36,
+              18,
+              10,
+              5,
+              2,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "max_active_count": 72,
+            "max_level_qpe_query_units_per_compute": 524287,
+            "min_active_count": 0,
+            "output_counts_by_level": [
+              24,
+              36,
+              24,
+              12,
+              6,
+              3,
+              2,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "output_subset_active": true,
+            "predicate_source": "finite_qpe_phase_windows",
+            "serial_qpe_query_units_per_compute": 1048544,
+            "total_active_pairs": 204,
+            "total_output_pairs": 108
+          },
+          "serial_qpe_query_units_per_compute": 1048544,
+          "statevector_dimension": 16384
+        }
+      ],
+      "simulator_wall_seconds": 0.0573733759993047,
+      "summary": {
+        "all_no_supplied_predicate_rows": true,
+        "all_output_subset_active": true,
+        "asymptotic_theorem_claimed": false,
+        "descriptive_loglog_slopes": {
+          "average_active_fraction": -0.9562685793748306,
+          "average_output_fraction": -0.9150374992788438,
+          "max_level_qpe_query_units_per_compute": 6.005656280751398,
+          "serial_qpe_query_units_per_compute": 6.05865646120386
+        },
+        "exact_state_trace_count": 3,
+        "executed_quantum_algorithm": false,
+        "interpretation": "charged finite-phase predicate-generation prototype; not a variable-time upper-bound theorem",
+        "m_values": [
+          4,
+          8,
+          16
+        ],
+        "records": 3
+      }
+    }
+  ],
+  "claim_boundaries": {
+    "does_not_support": [
+      "unknown Top-k boundary localization by itself",
+      "a variable-time coherent-search upper bound",
+      "a matching all-algorithms lower bound",
+      "hardware feasibility or simulator speedup"
+    ],
+    "supports": [
+      "predicate generation from finite phase windows rather than supplied rows",
+      "exact-state compute/uncompute traces for small charged fixtures",
+      "explicit QPE query-unit ledger for classifier calls"
+    ]
+  },
+  "claim_status": "charged_phase_history_prototype_no_upper_bound_theorem",
+  "config_hash": "640805ae282d82000b4bc9d346d571d010778b41b1b687cf24db765ab126d7d0",
+  "experiment_name": "charged_activity_history_phase_window_audit_v1",
+  "provenance": {
+    "byte_for_byte_reproduction_expected": false,
+    "git_commit": "7564881cc4b7a8c19c10d510b8cd5b7e3950c39e",
+    "git_tree": "e910319f576018b9bafc3a8afabe486e5fd7e8f7",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13 (main, Mar  3 2026, 14:59:34) [Clang 21.1.4 ]",
+    "source_status_capture": "before_charged_activity_execution",
+    "source_tree_dirty_at_execution": true,
+    "volatile_fields": [
+      "case_results.*.simulator_wall_seconds"
+    ]
+  },
+  "resolved_config": {
+    "cases": [
+      {
+        "base_bits": 3,
+        "boundary_phase": 0.5,
+        "growth_period": 2,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "max_statevector_dimension": 131072,
+        "n_exponent": 2.0,
+        "name": "phase_window_default",
+        "near_boundary_fraction": 0.5
+      },
+      {
+        "base_bits": 4,
+        "boundary_phase": 0.5,
+        "growth_period": 1,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8,
+          16
+        ],
+        "max_statevector_dimension": 131072,
+        "n_exponent": 2.0,
+        "name": "finer_level_growth",
+        "near_boundary_fraction": 0.375
+      }
+    ],
+    "experiment_name": "charged_activity_history_phase_window_audit_v1",
+    "notes": [
+      "Predicates are generated from finite phase windows, not supplied active/output rows.",
+      "Exact-state traces are capped; skipped larger traces remain analytic classifier records.",
+      "This artifact is code-sanity for P0-U08, not an upper-bound or lower-bound theorem."
+    ],
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "summary": {
+    "all_no_supplied_predicate_rows": true,
+    "all_output_subset_active": true,
+    "asymptotic_theorem_claimed": false,
+    "case_count": 2,
+    "exact_state_trace_count": 7,
+    "executed_quantum_algorithm": false,
+    "total_records": 7
+  }
+}

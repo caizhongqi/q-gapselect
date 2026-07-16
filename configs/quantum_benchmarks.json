@@ -1,11 +1,12 @@
 {
-  "schema_version": 1,
-  "experiment_name": "q-gapselect-quantum-core-audit-v1",
+  "schema_version": 2,
+  "experiment_name": "q-gapselect-quantum-core-audit-v4-unknown-boundary-history",
   "master_seed": 20260715,
   "quantiles": [0.1, 0.5, 0.9, 0.95],
   "common": {
     "threshold_angle": 0.7853981633974483,
     "phase_qubits": 4,
+    "max_phase_qubits": 7,
     "verification_confidence": 0.05,
     "verification_shots": 64,
     "max_attempts_per_output": 32,
@@ -62,7 +63,37 @@
       {"n": 4, "k": 1},
       {"n": 4, "k": 2}
     ],
-    "methods": ["boundary_only_negative_control", "calibrated_direct_topk"]
+    "methods": [
+      "boundary_only_negative_control",
+      "refined_boundary_only_negative_control",
+      "calibrated_direct_topk",
+      "adaptive_calibrated_direct_topk",
+      "fixed_max_precision_topk"
+    ]
+  },
+  "orientation_separation": {
+    "m_values": [8, 16, 32, 64, 128, 256],
+    "gamma_exponent": 2.0,
+    "beta": 0.7853981633974483,
+    "far_offset": 0.39269908169872414
+  },
+  "generic_composition_audit": {
+    "m_values": [8, 16, 32, 64, 128, 256],
+    "gamma_exponent": 2.0,
+    "beta": 0.7853981633974483,
+    "far_offset": 0.39269908169872414
+  },
+  "unknown_boundary_history": {
+    "m_values": [8, 16, 32, 64, 128, 256],
+    "n_exponent": 3.0,
+    "level_exponent": 1.0,
+    "active_exponent": 1.0,
+    "gamma_exponent": 2.0,
+    "output_births_per_level": 1,
+    "epsilon_growth_exponent": 0.25,
+    "activity_decay_exponent": 0.0,
+    "predicate_cost_exponent": 0.0,
+    "baseline_match_tolerance": 1.2
   },
   "iterative_ae": {
     "trials": 4,
@@ -100,10 +131,12 @@
   },
   "notes": [
     "All direct quantum records execute the exact NumPy statevector backend and charged oracle interface.",
-    "Instance truth is evaluation-only and no marked membership set is passed to direct search.",
+    "Instance truth is evaluation-only; direct Top-k receives no explicit membership tuple, but post-QPE validation uses the full boundary intervals and therefore carries membership-equivalent information.",
     "Analytic iterative AE is a separate measurement-law backend and is never mixed with exact-state gate or qubit resources.",
     "Boundary-only is a negative control because its calibration certificate already contains complete membership.",
     "The index-only diffusion is explicitly invalid and never produces an algorithm answer.",
-    "Finite-size slopes and simulator results are diagnostics, not asymptotic proofs or hardware speedup evidence."
+    "Finite-size slopes and simulator results are diagnostics, not asymptotic proofs or hardware speedup evidence.",
+    "The n=3m orientation family fails its novelty gate because coarse grouping plus strong-oracle BAI matches its candidate leading scale.",
+    "The unknown-boundary history suite starts the new no-free-QRAM candidate core; open gates are research obligations, not theorem claims."
   ]
 }

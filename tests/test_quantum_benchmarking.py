@@ -245,6 +245,51 @@ def test_calibrated_topk_record_separates_boundary_and_direct_search_queries() -
     )
 
 
+def test_adaptive_topk_uses_smallest_feasible_precision_and_fixed_max_control() -> None:
+    config = replace(
+        _small_config(phase_qubits=2),
+        max_phase_qubits=5,
+        max_statevector_dimension=4096,
+    )
+    runner = QuantumBenchmarkRunner(config)
+    instance = _endpoint_instance()
+
+    adaptive = runner.run(
+        "adaptive_calibrated_direct_topk", instance, trial_seed=5
+    )
+    fixed_max = runner.run("fixed_max_precision_topk", instance, trial_seed=5)
+    refined_boundary = runner.run(
+        "refined_boundary_only_negative_control", instance, trial_seed=5
+    )
+
+    assert adaptive.complete and adaptive.exact and adaptive.certified
+    assert fixed_max.complete and fixed_max.exact and fixed_max.certified
+    assert refined_boundary.complete and refined_boundary.exact
+    assert not refined_boundary.quantum_discovery_claim_allowed
+    assert not adaptive.quantum_discovery_claim_allowed
+    assert not fixed_max.quantum_discovery_claim_allowed
+    assert adaptive.initial_phase_qubits == 2
+    assert adaptive.max_phase_qubits == 5
+    assert adaptive.phase_qubits == 4
+    assert adaptive.phase_candidate_levels == "2,3,4,5"
+    assert fixed_max.initial_phase_qubits == fixed_max.max_phase_qubits == 5
+    assert fixed_max.phase_qubits == 5
+    assert fixed_max.phase_candidate_levels == "5"
+    assert adaptive.boundary_rounds == fixed_max.boundary_rounds
+    assert adaptive.boundary_rounds == refined_boundary.boundary_rounds
+    assert (
+        adaptive.basis_sampling_queries
+        == fixed_max.basis_sampling_queries
+        == refined_boundary.basis_sampling_queries
+    )
+    assert adaptive.dense_qft_matrix_dimension < fixed_max.dense_qft_matrix_dimension
+    assert adaptive.control_role == "resource_aware_measured_margin_phase_schedule"
+    assert fixed_max.control_role == (
+        "fixed_max_precision_matched_boundary_refinement_control"
+    )
+    assert "NEGATIVE_CONTROL_refined_boundary" in refined_boundary.control_role
+
+
 def test_budget_failure_status_and_noncertificate_semantics_are_preserved() -> None:
     blocked_config = replace(_small_config(phase_qubits=4), max_statevector_dimension=1)
     record = QuantumBenchmarkRunner(blocked_config).run(
@@ -318,7 +363,10 @@ def test_query_ratios_are_paired_by_instance_and_trial_before_aggregation() -> N
     )
     assert len(pairs) == 2
     assert {pair.trial_seed for pair in pairs} == {1, 2}
-    assert all(pair.status == "paired" and pair.ratio is not None for pair in pairs)
+    assert all(
+        pair.status == "both_certified_success_paired" and pair.ratio is not None
+        for pair in pairs
+    )
     for pair in pairs:
         assert pair.ratio == pytest.approx(
             pair.numerator_queries / pair.denominator_queries
@@ -326,7 +374,7 @@ def test_query_ratios_are_paired_by_instance_and_trial_before_aggregation() -> N
 
     aggregate = aggregate_paired_query_ratios(pairs)
     assert aggregate.pairs == aggregate.finite_pairs == 2
-    assert aggregate.status_counts == {"paired": 2}
+    assert aggregate.status_counts == {"both_certified_success_paired": 2}
     assert aggregate.ratios is not None
     assert aggregate.ratios.mean == pytest.approx(
         sum(float(pair.ratio) for pair in pairs) / 2.0
@@ -340,6 +388,12 @@ def test_query_ratios_are_paired_by_instance_and_trial_before_aggregation() -> N
         (lambda: make_benchmark_instance("equal_grid", k=1.5), TypeError),
         (lambda: make_benchmark_instance("missing"), ValueError),
         (lambda: QuantumBenchmarkConfig(phase_qubits=True), TypeError),
+        (
+            lambda: QuantumBenchmarkConfig(
+                phase_qubits=5, max_phase_qubits=4
+            ),
+            ValueError,
+        ),
         (lambda: QuantumBenchmarkConfig(confidence=True), TypeError),
         (lambda: wilson_success_interval(True, 2), TypeError),
         (lambda: wilson_success_interval(3, 2), ValueError),

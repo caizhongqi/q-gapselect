@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "experiment_name": "q-gapselect-fixed-fixture-multiseed-calibration-v1",
+  "master_seed": 20260716,
+  "anchors_per_family": 20,
+  "repetitions_per_anchor": 200,
+  "target_success_probability": 0.95,
+  "familywise_alpha": 0.05,
+  "included_families": [
+    "equal_n16_k8_gap_pi64",
+    "dyadic_n32_k16_gap_pi128",
+    "clustered_n32_k16_gap_pi256"
+  ],
+  "selection_rule": "within_family_mid_quantiles_of_active_count_over_boundary_gap",
+  "notes": [
+    "Anchors are selected from public structural metadata only; algorithm outcomes are not available to the selector.",
+    "Each fixed fixture is rerun under 200 fresh method-specific measurement seeds.",
+    "The fixture is the independent experimental unit; repeated seeds are not pooled as independent instances.",
+    "One-sided exact lower bounds use Bonferroni family-wise alpha across every anchor-method calibration gate.",
+    "The panel executes no LLM, commercial API, quantum circuit backend, or hardware.",
+    "Finite fixed-fixture calibration does not replace a worst-case fixed-confidence theorem."
+  ]
+}

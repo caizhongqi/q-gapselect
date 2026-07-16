@@ -1,0 +1,588 @@
+{
+  "artifact_type": "q_gapselect_stopping_time_transducer",
+  "case_results": [
+    {
+      "name": "small_exact_stopping",
+      "parameters": {
+        "base_bits": 3,
+        "boundary_phase": 0.5,
+        "growth_period": 2,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "max_statevector_dimension": 262144,
+        "n_exponent": 2.0,
+        "name": "small_exact_stopping",
+        "near_boundary_fraction": 0.5
+      },
+      "raw_records": [
+        {
+          "active_fraction": 0.5625,
+          "all_branch_rms_search_proxy": 164.00914608643018,
+          "coherent_branch_rms_cost": 41.002286521607545,
+          "exact_state_trace": {
+            "active_probability": 0.5625,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "output_probability": 0.1875,
+            "query_counts_after_trace": {
+              "stopping:ceil_all_branch_rms_search_proxy": 660,
+              "stopping:ceil_branch_rms_cost": 168,
+              "stopping:serial_full_history_cost_per_branch": 176,
+              "stopping_history:compute": 4,
+              "stopping_history:phase:output": 1
+            },
+            "statevector_dimension": 512,
+            "work_garbage_probability_after_phase": 0.0
+          },
+          "level_count": 4,
+          "m": 4,
+          "n_arms": 16,
+          "output_fraction": 0.1875,
+          "precision_bits_by_level": [
+            3,
+            3,
+            4,
+            4
+          ],
+          "serial_full_history_cost_per_branch": 44,
+          "statevector_dimension": 512,
+          "summary": {
+            "active_count": 9,
+            "active_fraction": 0.5625,
+            "all_branch_rms_search_proxy": 164.00914608643018,
+            "coherent_branch_rms_cost": 41.002286521607545,
+            "level_count": 4,
+            "max_stopping_cost": 44,
+            "mean_stopping_cost": 39.8125,
+            "n_arms": 16,
+            "output_count": 3,
+            "output_fraction": 0.1875,
+            "predicate_source": "charged_finite_qpe_first_output_stopping",
+            "serial_full_history_cost_per_branch": 44,
+            "stop_code_sentinel": 4,
+            "unresolved_count": 13,
+            "variable_over_serial_per_branch": 0.9318701482183532
+          },
+          "variable_over_serial_per_branch": 0.9318701482183532
+        },
+        {
+          "active_fraction": 0.578125,
+          "all_branch_rms_search_proxy": 1583.8797302825742,
+          "coherent_branch_rms_cost": 197.98496628532178,
+          "exact_state_trace": {
+            "active_probability": 0.578125,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "output_probability": 0.296875,
+            "query_counts_after_trace": {
+              "stopping:ceil_all_branch_rms_search_proxy": 6336,
+              "stopping:ceil_branch_rms_cost": 792,
+              "stopping:serial_full_history_cost_per_branch": 928,
+              "stopping_history:compute": 4,
+              "stopping_history:phase:output": 1
+            },
+            "statevector_dimension": 4096,
+            "work_garbage_probability_after_phase": 0.0
+          },
+          "level_count": 8,
+          "m": 8,
+          "n_arms": 64,
+          "output_fraction": 0.296875,
+          "precision_bits_by_level": [
+            3,
+            3,
+            4,
+            4,
+            5,
+            5,
+            6,
+            6
+          ],
+          "serial_full_history_cost_per_branch": 232,
+          "statevector_dimension": 4096,
+          "summary": {
+            "active_count": 37,
+            "active_fraction": 0.578125,
+            "all_branch_rms_search_proxy": 1583.8797302825742,
+            "coherent_branch_rms_cost": 197.98496628532178,
+            "level_count": 8,
+            "max_stopping_cost": 232,
+            "mean_stopping_cost": 177.265625,
+            "n_arms": 64,
+            "output_count": 19,
+            "output_fraction": 0.296875,
+            "predicate_source": "charged_finite_qpe_first_output_stopping",
+            "serial_full_history_cost_per_branch": 232,
+            "stop_code_sentinel": 8,
+            "unresolved_count": 45,
+            "variable_over_serial_per_branch": 0.8533834753677663
+          },
+          "variable_over_serial_per_branch": 0.8533834753677663
+        },
+        {
+          "active_fraction": 0.578125,
+          "all_branch_rms_search_proxy": 53493.137157957004,
+          "coherent_branch_rms_cost": 3343.3210723723128,
+          "exact_state_trace": {
+            "active_probability": 0.578125,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "output_probability": 0.32421875,
+            "query_counts_after_trace": {
+              "stopping:ceil_all_branch_rms_search_proxy": 213976,
+              "stopping:ceil_branch_rms_cost": 13376,
+              "stopping:serial_full_history_cost_per_branch": 16256,
+              "stopping_history:compute": 4,
+              "stopping_history:phase:output": 1
+            },
+            "statevector_dimension": 32768,
+            "work_garbage_probability_after_phase": 0.0
+          },
+          "level_count": 16,
+          "m": 16,
+          "n_arms": 256,
+          "output_fraction": 0.32421875,
+          "precision_bits_by_level": [
+            3,
+            3,
+            4,
+            4,
+            5,
+            5,
+            6,
+            6,
+            7,
+            7,
+            8,
+            8,
+            9,
+            9,
+            10,
+            10
+          ],
+          "serial_full_history_cost_per_branch": 4064,
+          "statevector_dimension": 32768,
+          "summary": {
+            "active_count": 148,
+            "active_fraction": 0.578125,
+            "all_branch_rms_search_proxy": 53493.137157957004,
+            "coherent_branch_rms_cost": 3343.3210723723128,
+            "level_count": 16,
+            "max_stopping_cost": 4064,
+            "mean_stopping_cost": 2777.80078125,
+            "n_arms": 256,
+            "output_count": 83,
+            "output_fraction": 0.32421875,
+            "predicate_source": "charged_finite_qpe_first_output_stopping",
+            "serial_full_history_cost_per_branch": 4064,
+            "stop_code_sentinel": 16,
+            "unresolved_count": 173,
+            "variable_over_serial_per_branch": 0.8226675867057857
+          },
+          "variable_over_serial_per_branch": 0.8226675867057857
+        },
+        {
+          "active_fraction": 0.578125,
+          "all_branch_rms_search_proxy": 27502643.87425427,
+          "coherent_branch_rms_cost": 859457.621070446,
+          "exact_state_trace": {
+            "active_probability": 0.578125,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "output_probability": 0.328125,
+            "query_counts_after_trace": {
+              "stopping:ceil_all_branch_rms_search_proxy": 110010576,
+              "stopping:ceil_branch_rms_cost": 3437832,
+              "stopping:serial_full_history_cost_per_branch": 4194112,
+              "stopping_history:compute": 4,
+              "stopping_history:phase:output": 1
+            },
+            "statevector_dimension": 262144,
+            "work_garbage_probability_after_phase": 0.0
+          },
+          "level_count": 32,
+          "m": 32,
+          "n_arms": 1024,
+          "output_fraction": 0.328125,
+          "precision_bits_by_level": [
+            3,
+            3,
+            4,
+            4,
+            5,
+            5,
+            6,
+            6,
+            7,
+            7,
+            8,
+            8,
+            9,
+            9,
+            10,
+            10,
+            11,
+            11,
+            12,
+            12,
+            13,
+            13,
+            14,
+            14,
+            15,
+            15,
+            16,
+            16,
+            17,
+            17,
+            18,
+            18
+          ],
+          "serial_full_history_cost_per_branch": 1048528,
+          "statevector_dimension": 262144,
+          "summary": {
+            "active_count": 592,
+            "active_fraction": 0.578125,
+            "all_branch_rms_search_proxy": 27502643.87425427,
+            "coherent_branch_rms_cost": 859457.621070446,
+            "level_count": 32,
+            "max_stopping_cost": 1048528,
+            "mean_stopping_cost": 704547.046875,
+            "n_arms": 1024,
+            "output_count": 336,
+            "output_fraction": 0.328125,
+            "predicate_source": "charged_finite_qpe_first_output_stopping",
+            "serial_full_history_cost_per_branch": 1048528,
+            "stop_code_sentinel": 32,
+            "unresolved_count": 688,
+            "variable_over_serial_per_branch": 0.8196801812354519
+          },
+          "variable_over_serial_per_branch": 0.8196801812354519
+        }
+      ],
+      "simulator_wall_seconds": 0.547867101002339,
+      "summary": {
+        "all_variable_over_serial_at_most_one": true,
+        "asymptotic_theorem_claimed": false,
+        "descriptive_loglog_slopes": {
+          "active_fraction": 0.011858509255991252,
+          "all_branch_rms_search_proxy": 5.714412267395082,
+          "coherent_branch_rms_cost": 4.714412267395084,
+          "output_fraction": 0.2549176684076151,
+          "serial_full_history_cost_per_branch": 4.7752210707184055,
+          "variable_over_serial_per_branch": -0.06080880332332201
+        },
+        "exact_state_trace_count": 4,
+        "executed_quantum_algorithm": false,
+        "interpretation": "variable-time stopping relation skeleton with exact-state compute/phase/uncompute traces",
+        "last_output_fraction": 0.328125,
+        "last_variable_over_serial_per_branch": 0.8196801812354519,
+        "m_values": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "records": 4
+      }
+    },
+    {
+      "name": "finer_stopping",
+      "parameters": {
+        "base_bits": 4,
+        "boundary_phase": 0.5,
+        "growth_period": 1,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8,
+          16
+        ],
+        "max_statevector_dimension": 262144,
+        "n_exponent": 2.0,
+        "name": "finer_stopping",
+        "near_boundary_fraction": 0.375
+      },
+      "raw_records": [
+        {
+          "active_fraction": 0.3125,
+          "all_branch_rms_search_proxy": 859.2263962425735,
+          "coherent_branch_rms_cost": 214.80659906064338,
+          "exact_state_trace": {
+            "active_probability": 0.3125,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "output_probability": 0.1875,
+            "query_counts_after_trace": {
+              "stopping:ceil_all_branch_rms_search_proxy": 3440,
+              "stopping:ceil_branch_rms_cost": 860,
+              "stopping:serial_full_history_cost_per_branch": 944,
+              "stopping_history:compute": 4,
+              "stopping_history:phase:output": 1
+            },
+            "statevector_dimension": 512,
+            "work_garbage_probability_after_phase": 0.0
+          },
+          "level_count": 4,
+          "m": 4,
+          "n_arms": 16,
+          "output_fraction": 0.1875,
+          "precision_bits_by_level": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "serial_full_history_cost_per_branch": 236,
+          "statevector_dimension": 512,
+          "summary": {
+            "active_count": 5,
+            "active_fraction": 0.3125,
+            "all_branch_rms_search_proxy": 859.2263962425735,
+            "coherent_branch_rms_cost": 214.80659906064338,
+            "level_count": 4,
+            "max_stopping_cost": 236,
+            "mean_stopping_cost": 202.375,
+            "n_arms": 16,
+            "output_count": 3,
+            "output_fraction": 0.1875,
+            "predicate_source": "charged_finite_qpe_first_output_stopping",
+            "serial_full_history_cost_per_branch": 236,
+            "stop_code_sentinel": 4,
+            "unresolved_count": 13,
+            "variable_over_serial_per_branch": 0.9101974536467939
+          },
+          "variable_over_serial_per_branch": 0.9101974536467939
+        },
+        {
+          "active_fraction": 0.28125,
+          "all_branch_rms_search_proxy": 29368.99596513303,
+          "coherent_branch_rms_cost": 3671.1244956416285,
+          "exact_state_trace": {
+            "active_probability": 0.28125,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "output_probability": 0.1875,
+            "query_counts_after_trace": {
+              "stopping:ceil_all_branch_rms_search_proxy": 117476,
+              "stopping:ceil_branch_rms_cost": 14688,
+              "stopping:serial_full_history_cost_per_branch": 16288,
+              "stopping_history:compute": 4,
+              "stopping_history:phase:output": 1
+            },
+            "statevector_dimension": 4096,
+            "work_garbage_probability_after_phase": 0.0
+          },
+          "level_count": 8,
+          "m": 8,
+          "n_arms": 64,
+          "output_fraction": 0.1875,
+          "precision_bits_by_level": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "serial_full_history_cost_per_branch": 4072,
+          "statevector_dimension": 4096,
+          "summary": {
+            "active_count": 18,
+            "active_fraction": 0.28125,
+            "all_branch_rms_search_proxy": 29368.99596513303,
+            "coherent_branch_rms_cost": 3671.1244956416285,
+            "level_count": 8,
+            "max_stopping_cost": 4072,
+            "mean_stopping_cost": 3325.125,
+            "n_arms": 64,
+            "output_count": 12,
+            "output_fraction": 0.1875,
+            "predicate_source": "charged_finite_qpe_first_output_stopping",
+            "serial_full_history_cost_per_branch": 4072,
+            "stop_code_sentinel": 8,
+            "unresolved_count": 52,
+            "variable_over_serial_per_branch": 0.9015531669060973
+          },
+          "variable_over_serial_per_branch": 0.9015531669060973
+        },
+        {
+          "active_fraction": 0.28125,
+          "all_branch_rms_search_proxy": 15122316.811969124,
+          "coherent_branch_rms_cost": 945144.8007480702,
+          "exact_state_trace": {
+            "active_probability": 0.28125,
+            "compute_uncompute_residual_l2": 0.0,
+            "executed": true,
+            "output_probability": 0.1875,
+            "query_counts_after_trace": {
+              "stopping:ceil_all_branch_rms_search_proxy": 60489268,
+              "stopping:ceil_branch_rms_cost": 3780580,
+              "stopping:serial_full_history_cost_per_branch": 4194176,
+              "stopping_history:compute": 4,
+              "stopping_history:phase:output": 1
+            },
+            "statevector_dimension": 32768,
+            "work_garbage_probability_after_phase": 0.0
+          },
+          "level_count": 16,
+          "m": 16,
+          "n_arms": 256,
+          "output_fraction": 0.1875,
+          "precision_bits_by_level": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "serial_full_history_cost_per_branch": 1048544,
+          "statevector_dimension": 32768,
+          "summary": {
+            "active_count": 72,
+            "active_fraction": 0.28125,
+            "all_branch_rms_search_proxy": 15122316.811969124,
+            "coherent_branch_rms_cost": 945144.8007480702,
+            "level_count": 16,
+            "max_stopping_cost": 1048544,
+            "mean_stopping_cost": 851964.625,
+            "n_arms": 256,
+            "output_count": 48,
+            "output_fraction": 0.1875,
+            "predicate_source": "charged_finite_qpe_first_output_stopping",
+            "serial_full_history_cost_per_branch": 1048544,
+            "stop_code_sentinel": 16,
+            "unresolved_count": 208,
+            "variable_over_serial_per_branch": 0.9013878299318581
+          },
+          "variable_over_serial_per_branch": 0.9013878299318581
+        }
+      ],
+      "simulator_wall_seconds": 0.057528327000909485,
+      "summary": {
+        "all_variable_over_serial_at_most_one": true,
+        "asymptotic_theorem_claimed": false,
+        "descriptive_loglog_slopes": {
+          "active_fraction": -0.07600154672252504,
+          "all_branch_rms_search_proxy": 7.051640671912323,
+          "coherent_branch_rms_cost": 6.051640671912326,
+          "output_fraction": -7.361162490232479e-16,
+          "serial_full_history_cost_per_branch": 6.05865646120386,
+          "variable_over_serial_per_branch": -0.00701578929153395
+        },
+        "exact_state_trace_count": 3,
+        "executed_quantum_algorithm": false,
+        "interpretation": "variable-time stopping relation skeleton with exact-state compute/phase/uncompute traces",
+        "last_output_fraction": 0.1875,
+        "last_variable_over_serial_per_branch": 0.9013878299318581,
+        "m_values": [
+          4,
+          8,
+          16
+        ],
+        "records": 3
+      }
+    }
+  ],
+  "claim_boundaries": {
+    "does_not_support": [
+      "a proved variable-time coherent transducer upper bound",
+      "a matching all-algorithms lower bound",
+      "hardware feasibility or simulator speedup"
+    ],
+    "supports": [
+      "first-output stopping relation generated from charged finite-QPE predicates",
+      "exact-state compute/phase/uncompute traces for small stopping fixtures",
+      "serial versus branch-RMS stopping-cost ledgers"
+    ]
+  },
+  "claim_status": "variable_time_stopping_transducer_skeleton_no_theorem",
+  "config_hash": "d289f1e97f078f7e28db345df1263b0ebc9d5c5369124375d241327fd137e102",
+  "experiment_name": "stopping_time_transducer_skeleton_v1",
+  "provenance": {
+    "byte_for_byte_reproduction_expected": false,
+    "git_commit": "7564881cc4b7a8c19c10d510b8cd5b7e3950c39e",
+    "git_tree": "e910319f576018b9bafc3a8afabe486e5fd7e8f7",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13 (main, Mar  3 2026, 14:59:34) [Clang 21.1.4 ]",
+    "source_status_capture": "before_stopping_transducer_execution",
+    "source_tree_dirty_at_execution": true,
+    "volatile_fields": [
+      "case_results.*.simulator_wall_seconds"
+    ]
+  },
+  "resolved_config": {
+    "cases": [
+      {
+        "base_bits": 3,
+        "boundary_phase": 0.5,
+        "growth_period": 2,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "max_statevector_dimension": 262144,
+        "n_exponent": 2.0,
+        "name": "small_exact_stopping",
+        "near_boundary_fraction": 0.5
+      },
+      {
+        "base_bits": 4,
+        "boundary_phase": 0.5,
+        "growth_period": 1,
+        "guard_band": 0.0,
+        "level_exponent": 1.0,
+        "m_values": [
+          4,
+          8,
+          16
+        ],
+        "max_statevector_dimension": 262144,
+        "n_exponent": 2.0,
+        "name": "finer_stopping",
+        "near_boundary_fraction": 0.375
+      }
+    ],
+    "experiment_name": "stopping_time_transducer_skeleton_v1",
+    "notes": [
+      "This artifact checks the reversible stopping-time relation skeleton generated from charged finite-QPE predicates.",
+      "Variable-time RMS costs are resource ledgers, not a proved upper bound.",
+      "The boundary remains supplied as a numeric phase window in this prototype."
+    ],
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "summary": {
+    "all_variable_over_serial_at_most_one": true,
+    "asymptotic_theorem_claimed": false,
+    "case_count": 2,
+    "exact_state_trace_count": 7,
+    "executed_quantum_algorithm": false,
+    "total_records": 7
+  }
+}

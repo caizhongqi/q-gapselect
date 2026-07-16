@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "experiment_name": "coherent_unknown_boundary_topk_s2_panel_v1",
+  "cases": [
+    {
+      "case_id": "on_grid_n2_k1_q3",
+      "role": "on_grid_two_arm",
+      "expected_behavior": "complete",
+      "means": [
+        0.8535533905932737,
+        0.14644660940672624
+      ],
+      "k": 1,
+      "phase_qubits": 3,
+      "cleanup_tolerance": 1e-10,
+      "max_statevector_dimension": 600000
+    },
+    {
+      "case_id": "on_grid_n3_k2_q1",
+      "role": "on_grid_three_arm",
+      "expected_behavior": "complete",
+      "means": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "k": 2,
+      "phase_qubits": 1,
+      "cleanup_tolerance": 1e-10,
+      "max_statevector_dimension": 600000
+    },
+    {
+      "case_id": "off_grid_n2_k1_q3",
+      "role": "off_grid_two_arm",
+      "expected_behavior": "entanglement_fail_closed",
+      "means": [
+        0.82,
+        0.18
+      ],
+      "k": 1,
+      "phase_qubits": 3,
+      "cleanup_tolerance": 1e-10,
+      "max_statevector_dimension": 600000
+    },
+    {
+      "case_id": "exact_tie_n2_k1_q2",
+      "role": "exact_tie",
+      "expected_behavior": "tie_fail_closed",
+      "means": [
+        0.5,
+        0.5
+      ],
+      "k": 1,
+      "phase_qubits": 2,
+      "cleanup_tolerance": 1e-10,
+      "max_statevector_dimension": 600000
+    }
+  ],
+  "notes": [
+    "The trusted harness uses means only to construct and score the canonical oracle; the algorithm receives only the oracle handle, k, and public circuit limits.",
+    "The two exact-grid cases test complete durable Top-k output and inverse cleanup under the explicit rounding promise.",
+    "The generic off-grid case must expose rank-copy entanglement and fail closed rather than silently discard garbage.",
+    "The exact boundary tie must clean but reject the non-strict Top-k relation.",
+    "This tiny exact-state panel is circuit-semantic evidence only; it is not a certificate, query-complexity separation, hardware result, new quantum advantage, or CCF-A claim."
+  ]
+}

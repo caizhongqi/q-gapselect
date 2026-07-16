@@ -1,0 +1,219 @@
+{
+  "artifact_type": "q_gapselect_proof_ledger",
+  "claim_boundaries": {
+    "does_not_support": [
+      "a completed upper-bound theorem",
+      "a completed lower-bound theorem",
+      "a CCF-A-ready quantum advantage claim"
+    ],
+    "supports": [
+      "machine-readable proof obligation tracking",
+      "separation of local facts, execution checks, proof outlines, and open proof obligations"
+    ]
+  },
+  "claim_status": "proof_ledger_started_no_quantum_advantage_theorem",
+  "ledger": {
+    "artifact_summaries": {
+      "composition_frontier": {
+        "asymptotic_theorem_claimed": false,
+        "case_count": 3,
+        "executed_quantum_algorithm": false,
+        "novelty_gate_counts": {
+          "failed_encoded_composition_match": 4,
+          "open_no_encoded_composition_match": 9
+        },
+        "open_case_count": 2,
+        "strongest_valid_baseline_counts": {
+          "loop_variable_time_rebuild": 13
+        },
+        "total_records": 13
+      },
+      "lower_bound_program": {
+        "asymptotic_lower_bound_claimed": false,
+        "case_count": 2,
+        "executed_quantum_algorithm": false,
+        "strongest_block_counts": {
+          "LB-B04": 12
+        },
+        "total_local_facts": 12,
+        "total_proof_obligations": 36,
+        "total_records": 12
+      },
+      "stopping_unitary_theorem": {
+        "all_execution_checks_passed": true,
+        "asymptotic_theorem_claimed": false,
+        "case_count": 2,
+        "check_status_counts": {
+          "passed": 25,
+          "proof_obligation": 20
+        },
+        "executed_quantum_algorithm": false,
+        "total_records": 5
+      }
+    },
+    "ccf_a_claimable": false,
+    "claim_status": "proof_ledger_started_no_quantum_advantage_theorem",
+    "entries": [
+      {
+        "activation_condition": "A written lemma proves the same identities for the compiled controlled-QPE stopping circuit.",
+        "artifact_refs": [
+          "artifacts/stopping_unitary_theorem.json"
+        ],
+        "entry_id": "ST-U-CLEANUP",
+        "evidence": "stopping_unitary_theorem artifact reports {'passed': 25, 'proof_obligation': 20} with all_execution_checks_passed=True.",
+        "missing_argument": "Lift exact-state fixture checks to a symbolic unitary over all valid basis states and workspaces.",
+        "permitted_wording": "Execution checks pass for the scaffold; no upper-bound theorem is claimed.",
+        "pillar": "upper_bound",
+        "statement": "The tested stopping relation has compute involution, phase equivalence, cleanup, and RMS ledger identities.",
+        "status": "execution_checked"
+      },
+      {
+        "activation_condition": "Manual proof of the stopping-unitary lemma.",
+        "artifact_refs": [
+          "artifacts/stopping_unitary_theorem.json"
+        ],
+        "entry_id": "ST-P01",
+        "evidence": "The stopping scaffold identifies the required registers and calls.",
+        "missing_argument": "Formal circuit map, inverse-call accounting, padding convention, and exact cleanup proof.",
+        "permitted_wording": "This is a proof outline, not a theorem.",
+        "pillar": "upper_bound",
+        "statement": "Compile a stopping-time unitary with charged QPE calls.",
+        "status": "proof_outline_started"
+      },
+      {
+        "activation_condition": "A bounded-error lemma with explicit failure budget and verifier semantics.",
+        "artifact_refs": [
+          "artifacts/stopping_unitary_theorem.json"
+        ],
+        "entry_id": "ST-P02",
+        "evidence": "The scaffold isolates deterministic predicates from proof obligations.",
+        "missing_argument": "Confidence split, correlated-error accounting, and rejection of unresolved or duplicate outputs.",
+        "permitted_wording": "Confidence composition remains open.",
+        "pillar": "upper_bound",
+        "statement": "Compose bounded-error finite-QPE predicates across levels.",
+        "status": "proof_outline_started"
+      },
+      {
+        "activation_condition": "Coherent boundary lemma plus cleanup proof.",
+        "artifact_refs": [
+          "artifacts/stopping_unitary_theorem.json"
+        ],
+        "entry_id": "ST-P03",
+        "evidence": "Current stopping fixtures still receive a numeric boundary.",
+        "missing_argument": "A boundary-localization unitary that does not leak selected/rejected membership and composes with the stopping relation.",
+        "permitted_wording": "The boundary-localization step is not solved.",
+        "pillar": "upper_bound",
+        "statement": "Localize the Top-k boundary coherently rather than supplying it.",
+        "status": "proof_obligation"
+      },
+      {
+        "activation_condition": "Every applicable published theorem is either instantiated as weaker or shown to use a strictly stronger interface.",
+        "artifact_refs": [
+          "artifacts/composition_frontier.json"
+        ],
+        "entry_id": "CF-T01",
+        "evidence": "composition_frontier artifact reports gate counts {'failed_encoded_composition_match': 4, 'open_no_encoded_composition_match': 9} and strongest baselines {'loop_variable_time_rebuild': 13}.",
+        "missing_argument": "Manual theorem-by-theorem instantiation with exact oracle, output, memory, and stopping assumptions.",
+        "permitted_wording": "The encoded frontier is a screen, not an exhaustive proof.",
+        "pillar": "composition_frontier",
+        "statement": "Known loop and variable-time composition theorems do not match the same no-free-QRAM interface.",
+        "status": "manual_instantiation_required"
+      },
+      {
+        "activation_condition": "A composition-frontier proof table in the manuscript.",
+        "artifact_refs": [
+          "artifacts/composition_frontier.json"
+        ],
+        "entry_id": "CF-T02",
+        "evidence": "The frontier artifact includes generated-predicate extraction, coarse+QBAI, independent QPE, and serial rebuild rows.",
+        "missing_argument": "Replace proxy labels with formal reductions or assumption mismatches.",
+        "permitted_wording": "The comparison is an encoded audit until manually proved.",
+        "pillar": "composition_frontier",
+        "statement": "Known k-minimum, marked extraction, and QBAI baselines do not dominate the active candidate under identical assumptions.",
+        "status": "manual_instantiation_required"
+      },
+      {
+        "activation_condition": "Use as one ingredient in a global adversary proof.",
+        "artifact_refs": [
+          "artifacts/lower_bound_program.json"
+        ],
+        "entry_id": "LB-B01",
+        "evidence": "lower_bound_program artifact reports 12 local facts.",
+        "missing_argument": "Lift the local two-state fact to the full unknown-boundary relation.",
+        "permitted_wording": "This is a local lower-bound ingredient.",
+        "pillar": "lower_bound",
+        "statement": "Boundary localization has a local angular discrimination barrier.",
+        "status": "local_fact"
+      },
+      {
+        "activation_condition": "Formal all-algorithms lower-bound proof.",
+        "artifact_refs": [
+          "artifacts/lower_bound_program.json"
+        ],
+        "entry_id": "LB-B02",
+        "evidence": "The lower-bound program records the target proxy only.",
+        "missing_argument": "Adversary matrix or polynomial relation forcing coherent history discovery across charged levels.",
+        "permitted_wording": "This lower-bound block is open.",
+        "pillar": "lower_bound",
+        "statement": "Active-history recovery has a direct-sum lower-bound component.",
+        "status": "proof_obligation"
+      },
+      {
+        "activation_condition": "Formal all-algorithms lower-bound proof.",
+        "artifact_refs": [
+          "artifacts/lower_bound_program.json"
+        ],
+        "entry_id": "LB-B03",
+        "evidence": "The lower-bound program records the target proxy only.",
+        "missing_argument": "Proof that arbitrary adaptive quantum algorithms must pay the multi-output relation cost, not only estimate-then-sort algorithms.",
+        "permitted_wording": "This lower-bound block is open.",
+        "pillar": "lower_bound",
+        "statement": "Direct multi-output extraction has an output-sensitive barrier.",
+        "status": "proof_obligation"
+      },
+      {
+        "activation_condition": "Manual composition frontier plus lower-bound theorem.",
+        "artifact_refs": [
+          "artifacts/composition_frontier.json",
+          "artifacts/lower_bound_program.json"
+        ],
+        "entry_id": "LB-B04",
+        "evidence": "The lower-bound program records 36 proof obligation rows across configured records.",
+        "missing_argument": "Show that known same-interface algorithms cannot beat the claimed lower-target relation, or revise the candidate.",
+        "permitted_wording": "Optimality is not proved.",
+        "pillar": "lower_bound",
+        "statement": "Composition-frontier exclusion is necessary for optimality.",
+        "status": "proof_obligation"
+      }
+    ],
+    "entry_count": 10,
+    "next_required_manual_proofs": [
+      "Write ST-P01 compiled stopping-unitary construction and cleanup proof.",
+      "Write ST-P02 bounded-error confidence-composition lemma.",
+      "Solve or replace ST-P03 coherent boundary localization.",
+      "Instantiate CF-T01/CF-T02 against published composition theorems.",
+      "Prove LB-B02 through LB-B04 with adversary or polynomial method."
+    ],
+    "readiness": "proof_program_structured_not_ccf_a_claimable",
+    "status_counts": {
+      "execution_checked": 1,
+      "local_fact": 1,
+      "manual_instantiation_required": 2,
+      "proof_obligation": 4,
+      "proof_outline_started": 2
+    },
+    "theorem_claimable": false
+  },
+  "provenance": {
+    "byte_for_byte_reproduction_expected": false,
+    "git_commit": "7564881cc4b7a8c19c10d510b8cd5b7e3950c39e",
+    "git_tree": "e910319f576018b9bafc3a8afabe486e5fd7e8f7",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13 (main, Mar  3 2026, 14:59:34) [Clang 21.1.4 ]",
+    "source_status_capture": "before_proof_ledger_execution",
+    "source_tree_dirty_at_execution": true,
+    "volatile_fields": []
+  },
+  "schema_version": 1
+}

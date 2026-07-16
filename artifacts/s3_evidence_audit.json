@@ -1,0 +1,136 @@
+{
+  "artifact_type": "q_gapselect_s3_integrated_evidence_audit",
+  "claim_boundary": {
+    "ccf_a_claimable": false,
+    "claim_guard_only": true,
+    "independent_theorem_verifier_available": false,
+    "independently_proves_theorems": false,
+    "quantum_advantage_claimable": false,
+    "theorem_claim_activation_locked": true
+  },
+  "claim_scope": "s3_integration_claim_guard_only_no_independent_theorem_or_advantage_proof",
+  "provenance": {
+    "git_commit": "43042ca73e75f5d597a8eef95a539702c3b97890",
+    "git_tree": "f8f793d657d258d7a40a6e7a46c19441d196f850",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13",
+    "source_status_capture": "before_s3_evidence_audit_artifact_write",
+    "source_tree_dirty_at_execution": false
+  },
+  "report": {
+    "adaptive_case_count": 5,
+    "ccf_a_claimable": false,
+    "checkpoint_count": 1,
+    "claim_gate_count": 6,
+    "claim_scope": "s3_integration_claim_guard_only_no_independent_theorem_or_advantage_proof",
+    "coherent_case_count": 5,
+    "coherent_exact_grid_complete_count": 3,
+    "coherent_executed_queries_per_case": 176,
+    "coherent_fail_closed_count": 2,
+    "coherent_record_audit_passed": true,
+    "composition_attempt_count": 486,
+    "composition_budget_violation_count": 0,
+    "composition_certified_exact_count": 59,
+    "composition_inconclusive_count": 427,
+    "composition_incorrect_certificate_count": 0,
+    "execution_audits_passed": true,
+    "finite_comparator_dominance_count": 2,
+    "finite_composition_kill_count": 0,
+    "gates": [
+      {
+        "blocker": null,
+        "claim_gate": false,
+        "evidence": "One-statevector stopping history, active-controlled later level, durable copy, replay, and runtime query reconciliation.",
+        "gate_id": "S3-C0-TINY-CIRCUIT-CHECKPOINT",
+        "satisfied": true,
+        "status": "VERIFIED_TINY_PROMISE_DOMAIN"
+      },
+      {
+        "blocker": "No independently verified generic confidence/correctness and cleanup theorem certificate.",
+        "claim_gate": true,
+        "evidence": "The current off-grid fixture exposes cleanup entanglement.",
+        "gate_id": "S3-G1-CIRCUIT-GENERIC",
+        "satisfied": false,
+        "status": "OPEN"
+      },
+      {
+        "blocker": "No preregistered candidate-versus-baseline fixture campaign, paired effect-size test, bootstrap interval, or Holm correction.",
+        "claim_gate": true,
+        "evidence": "The S3 control panel evaluates three proxy baselines only; the true-coherent candidate is not in a matched CER@Q campaign.",
+        "gate_id": "S3-G2-EMPIRICAL-CER",
+        "satisfied": false,
+        "status": "OPEN_CANDIDATE_NOT_IN_CER_PANEL"
+      },
+      {
+        "blocker": "No independently verified scalable stopping/cleanup resource lemma or new upper-bound certificate.",
+        "claim_gate": true,
+        "evidence": "Executed worst-case cost is retained; branch RMS is a target only.",
+        "gate_id": "S3-G3-VARIABLE-TIME-UPPER",
+        "satisfied": false,
+        "status": "OPEN"
+      },
+      {
+        "blocker": "No independently verified, source-faithful certificate covers the registered strongest literature reductions.",
+        "claim_gate": true,
+        "evidence": "Executable same-interface controls retain fail-closed fidelity labels.",
+        "gate_id": "S3-G4-STRONG-COMPOSITION-FIDELITY",
+        "satisfied": false,
+        "status": "OPEN"
+      },
+      {
+        "blocker": "No all-published-composition separation for the S3 candidate.",
+        "claim_gate": true,
+        "evidence": "Independent exact-grid executions show the all-arm comparator uses fewer queries than the current S3 candidate.",
+        "gate_id": "S3-G5-COMPOSITION-SEPARATION",
+        "satisfied": false,
+        "status": "OPEN_S3_FINITE_DIAGNOSTIC_DOMINATED"
+      },
+      {
+        "blocker": "No independently verified continuous-angle Johnson composition or direct-sum theorem certificate.",
+        "claim_gate": true,
+        "evidence": "Pair-hybrid and finite Johnson witnesses verify only local statements.",
+        "gate_id": "S3-G6-MATCHING-LOWER-BOUND",
+        "satisfied": false,
+        "status": "OPEN_LOCAL_WITNESSES_ONLY"
+      }
+    ],
+    "independent_theorem_verifier_available": false,
+    "johnson_witness_count": 3,
+    "open_claim_gate_count": 6,
+    "open_gate_count": 6,
+    "pair_hybrid_witness_count": 3,
+    "quantum_advantage_claimable": false,
+    "satisfied_checkpoint_count": 1,
+    "satisfied_claim_gate_count": 0,
+    "satisfied_gate_count": 1,
+    "stage": "s3_tiny_true_coherent_kernel_theorem_stack_open",
+    "theorem_claim_activation_locked": true,
+    "uncovered_required_baseline_count": 9,
+    "upstream_claims_remain_false": true,
+    "upstream_positive_claim_flags_detected": false
+  },
+  "schema_version": 1,
+  "source_artifacts": {
+    "adaptive": {
+      "artifact_type": "q_gapselect_adaptive_unknown_boundary_topk_s3_panel",
+      "path": "artifacts/adaptive_unknown_boundary_topk.json",
+      "sha256": "bd3bf8eac2f9a867d47bf9d6d2111fa201ba6bbef68b557153aaa558109120be"
+    },
+    "coherent": {
+      "artifact_type": "q_gapselect_tiny_true_coherent_stopping_history_s3_panel",
+      "path": "artifacts/coherent_adaptive_stopping_history.json",
+      "sha256": "448a7642660d5393af51e599c5681cec5ce73002e38dc9200c035a9cbac610a5"
+    },
+    "composition": {
+      "artifact_type": "q_gapselect_same_interface_strong_composition_s3",
+      "path": "artifacts/strong_composition_s3.json.gz",
+      "sha256": "f4e79b0eb9d0d2b855c33aa05e743cd8c72f9cb6cab31861b623b5a9e02907a5"
+    },
+    "frontier": {
+      "artifact_type": "q_gapselect_frontier_lower_bound_witness_s3",
+      "path": "artifacts/frontier_lower_bound_witness.json",
+      "sha256": "69461ef9e3766396ca09e75b377a6896e2b9056210478c9decbb58775e49a192"
+    }
+  }
+}
