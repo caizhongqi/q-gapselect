@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import inspect
 import math
+from dataclasses import replace
 
 import pytest
 
@@ -57,6 +58,15 @@ def _tied_boundary_oracle(seed: int = 1) -> FrozenEmpiricalCoherentOracle:
         {"a0": 0.8, "a1": 0.5, "a2": 0.5, "a3": 0.2},
         table_size=1024,
         seed=92,
+    )
+    return FrozenEmpiricalCoherentOracle(fixture, measurement_seed=seed)
+
+
+def _narrow_boundary_oracle(seed: int = 0) -> FrozenEmpiricalCoherentOracle:
+    fixture = generate_exact_count_fixture(
+        {"a0": 0.8, "a1": 0.51, "a2": 0.49, "a3": 0.2},
+        table_size=16384,
+        seed=101,
     )
     return FrozenEmpiricalCoherentOracle(fixture, measurement_seed=seed)
 
@@ -117,6 +127,76 @@ def test_selection_and_fresh_verification_ledgers_partition_actual_calls() -> No
         tag.startswith("vt_history_fresh_verify_arm_")
         for tag in snapshot.by_tag
         if tag.startswith("vt_history_fresh_verify")
+    )
+
+
+def test_boundary_adaptive_verification_refines_only_ambiguous_arms() -> None:
+    fixed = replace(
+        _config(max_levels=8),
+        verification_max_levels=1,
+        verification_max_grover_power=127,
+    )
+    adaptive = replace(fixed, verification_max_levels=4)
+
+    fixed_result = run_variable_time_coherent_activity_history(
+        _narrow_boundary_oracle(), 2, config=fixed
+    )
+    adaptive_result = run_variable_time_coherent_activity_history(
+        _narrow_boundary_oracle(), 2, config=adaptive
+    )
+
+    assert fixed_result.complete and not fixed_result.certified
+    assert adaptive_result.complete and adaptive_result.certified
+    assert adaptive_result.verification is not None
+    assert adaptive_result.verification.levels_executed == 2
+    assert adaptive_result.verification.refined_arms_by_level == (
+        (0, 1, 2, 3),
+        (1, 2),
+    )
+    assert adaptive_result.certificate is not None
+    assert (
+        adaptive_result.certificate.evidence_source
+        == "fresh_boundary_adaptive_simultaneous_confidence_intervals"
+    )
+    assert sum(
+        row["total"]
+        for row in adaptive_result.executed_resources.verification_query_counts_by_arm.values()
+    ) == adaptive_result.executed_resources.verification_query_counts["total"]
+
+
+def test_history_certificate_replays_without_fresh_verification_queries() -> None:
+    config = replace(_config(max_levels=8), certificate_mode="history")
+    result = run_variable_time_coherent_activity_history(
+        _narrow_boundary_oracle(), 2, config=config
+    )
+
+    assert result.complete and result.certified
+    assert result.verification is None
+    assert result.executed_resources.verification_query_counts["total"] == 0
+    assert result.certificate is not None
+    assert result.certificate.transcript_replay_verified
+    assert result.certificate.allocated_verification_risk == 0.0
+    assert (
+        result.certificate.evidence_source
+        == "summable_selection_history_and_verified_quota_closure"
+    )
+    assert result.status == "certified_selection_history_replay"
+
+
+def test_history_certificate_replay_rejects_a_tampered_transition() -> None:
+    core = VariableTimeCoherentActivityHistoryCore(
+        _narrow_boundary_oracle(),
+        2,
+        config=replace(_config(max_levels=8), certificate_mode="history"),
+    )
+    result = core.run()
+    tampered = replace(result.layers[0], active_before=())
+
+    assert not core._selection_history_replays(  # noqa: SLF001
+        [tampered, *result.layers[1:]],
+        extracted_selected=result.extracted_selected,
+        extracted_rejected=result.extracted_rejected,
+        unresolved=result.unresolved,
     )
 
 
@@ -313,6 +393,9 @@ def test_algorithm_never_reads_a_hidden_mean_attribute() -> None:
         ({"max_levels": 0}, ValueError),
         ({"iae_grid_points": 256}, ValueError),
         ({"verification_angular_precision": 0.0}, ValueError),
+        ({"verification_precision_decay": 1.0}, ValueError),
+        ({"verification_max_levels": 0}, ValueError),
+        ({"certificate_mode": "unknown"}, ValueError),
     ],
 )
 def test_invalid_config_is_rejected(

@@ -56,6 +56,16 @@ This directory versions machine-readable audit outputs:
   certified recovery on the clustered family despite a 0.944 exact-recovery
   envelope; even perfect certification leaves that family 0.048 behind its
   strongest baseline.
+- `ccfa_history_certificate_ablation.json.gz` keeps the frozen fixture, seed,
+  cap, information, and baseline panel but replaces redundant fresh all-arm
+  verification with a replay-checked selection-history certificate. Its
+  soundness lemma and remaining quantum-theory boundaries are recorded in
+  `docs/history_certificate_soundness.md`. At the maximum cap, candidate
+  certified-exact recovery rises from 0.6653 in the fresh-verification campaign
+  to 0.9887, including 0.966 on the clustered hard family, while verification
+  queries fall to zero. The strongest k-only reference still reaches 0.9973
+  with fewer mean queries (270,387 versus 297,543), so the advantage gate
+  remains false.
 - `uci_classifier_benchmark_diagnostic.json.gz` contains 800 matched attempts
   on the bundled real Digits classifier-selection diagnostic. Of five frozen
   label-blind shards, three have an exact k/(k+1) boundary tie and are rejected

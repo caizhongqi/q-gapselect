@@ -41,6 +41,8 @@ artifacts/*
 !artifacts/frozen_anchor_calibration.json.gz
 !artifacts/ccfa_matched_benchmark_diagnostic.json.gz
 !artifacts/ccfa_matched_failure_attribution.json
+!artifacts/ccfa_adaptive_verification_ablation.json.gz
+!artifacts/ccfa_history_certificate_ablation.json.gz
 !artifacts/uci_classifier_benchmark_diagnostic.json.gz
 paper/*.aux
 paper/*.bbl

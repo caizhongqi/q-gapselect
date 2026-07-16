@@ -153,10 +153,13 @@ def _config_document(config: VariableTimeHistoryConfig) -> dict[str, object]:
         "iae_max_grover_power": config.iae_max_grover_power,
         "iae_grid_points": config.iae_grid_points,
         "verification_angular_precision": config.verification_angular_precision,
+        "verification_precision_decay": config.verification_precision_decay,
+        "verification_max_levels": config.verification_max_levels,
         "verification_shots_per_round": config.verification_shots_per_round,
         "verification_max_rounds": config.verification_max_rounds,
         "verification_max_grover_power": config.verification_max_grover_power,
         "verification_grid_points": config.verification_grid_points,
+        "certificate_mode": config.certificate_mode,
     }
 
 

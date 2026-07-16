@@ -171,10 +171,13 @@ class VariableTimeHistoryConfig:
     iae_max_grover_power: int = 63
     iae_grid_points: int = 4097
     verification_angular_precision: float = 0.01
+    verification_precision_decay: float = 0.5
+    verification_max_levels: int = 1
     verification_shots_per_round: int = 128
     verification_max_rounds: int = 8
     verification_max_grover_power: int = 127
     verification_grid_points: int = 8193
+    certificate_mode: str = "fresh"
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "confidence", _open_unit(self.confidence, "confidence"))
@@ -206,6 +209,18 @@ class VariableTimeHistoryConfig:
         if verify >= math.pi / 2.0:
             raise ValueError("verification_angular_precision must be below pi/2")
         object.__setattr__(self, "verification_angular_precision", verify)
+        verify_decay = _open_unit(
+            self.verification_precision_decay,
+            "verification_precision_decay",
+        )
+        object.__setattr__(self, "verification_precision_decay", verify_decay)
+        object.__setattr__(
+            self,
+            "verification_max_levels",
+            _integer(self.verification_max_levels, "verification_max_levels", minimum=1),
+        )
+        if self.certificate_mode not in {"fresh", "history"}:
+            raise ValueError("certificate_mode must be 'fresh' or 'history'")
 
     def angular_precision(self, level: int) -> float:
         level = _integer(level, "level")
@@ -225,6 +240,25 @@ class VariableTimeHistoryConfig:
     def verification_call_confidence(self, n_arms: int) -> float:
         n_arms = _integer(n_arms, "n_arms", minimum=1)
         return self.confidence / (2.0 * n_arms)
+
+    def verification_level_angular_precision(self, level: int) -> float:
+        level = _integer(level, "level")
+        if level >= self.verification_max_levels:
+            raise IndexError("level is outside the configured verification history")
+        return self.verification_angular_precision * self.verification_precision_decay**level
+
+    def verification_level_call_confidence(self, level: int, n_arms: int) -> float:
+        """Summable adaptive-verification allocation bounded by delta/(2n)."""
+
+        level = _integer(level, "level")
+        n_arms = _integer(n_arms, "n_arms", minimum=1)
+        if level >= self.verification_max_levels:
+            raise IndexError("level is outside the configured verification history")
+        if self.verification_max_levels == 1:
+            return self.verification_call_confidence(n_arms)
+        return self.confidence / (
+            2.0 * n_arms * (level + 1) * (level + 2)
+        )
 
 
 @dataclass(frozen=True, slots=True)
@@ -319,6 +353,8 @@ class FreshVerificationRecord:
     query_counts: Mapping[str, int]
     passed: bool
     status: str
+    levels_executed: int = 1
+    refined_arms_by_level: tuple[tuple[int, ...], ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -332,6 +368,7 @@ class StrictTopKHistoryCertificate:
     allocated_selection_risk_upper_bound: float
     allocated_verification_risk: float
     evidence_source: str = "fresh_all_arm_simultaneous_confidence_intervals"
+    transcript_replay_verified: bool = True
 
 
 @dataclass(frozen=True, slots=True)
@@ -724,27 +761,67 @@ class VariableTimeCoherentActivityHistoryCore:
     ) -> FreshVerificationRecord:
         selected_set = frozenset(selected)
         rejected = tuple(arm for arm in range(self.n_arms) if arm not in selected_set)
-        per_arm_confidence = self.config.verification_call_confidence(self.n_arms)
         before = self.oracle.query_snapshot()
-        estimates = tuple(
-            self._estimate_arm(
-                arm,
-                angular_precision=self.config.verification_angular_precision,
-                confidence=per_arm_confidence,
-                verification=True,
-                tag=f"vt_history_fresh_verify_arm_{arm}",
+        estimates: list[HistoryArmEstimate] = []
+        by_arm: dict[int, HistoryArmEstimate] = {}
+        refined_arms_by_level: list[tuple[int, ...]] = []
+        arms_to_refine = tuple(range(self.n_arms))
+        passed = False
+        margin = float("-inf")
+        min_selected = 0.0
+        max_rejected = 1.0
+        for level in range(self.config.verification_max_levels):
+            if not arms_to_refine:
+                break
+            refined_arms_by_level.append(arms_to_refine)
+            per_call_confidence = self.config.verification_level_call_confidence(
+                level, self.n_arms
             )
-            for arm in range(self.n_arms)
-        )
-        by_arm = {record.arm: record for record in estimates}
+            precision = self.config.verification_level_angular_precision(level)
+            for arm in arms_to_refine:
+                tag = (
+                    f"vt_history_fresh_verify_arm_{arm}"
+                    if level == 0
+                    else f"vt_history_fresh_verify_level_{level}_arm_{arm}"
+                )
+                record = self._estimate_arm(
+                    arm,
+                    angular_precision=precision,
+                    confidence=per_call_confidence,
+                    verification=True,
+                    tag=tag,
+                )
+                estimates.append(record)
+                by_arm[arm] = record
+
+            min_selected = min(by_arm[arm].mean_interval[0] for arm in selected)
+            max_rejected = max(by_arm[arm].mean_interval[1] for arm in rejected)
+            margin = min_selected - max_rejected
+            passed = margin > 0.0
+            if passed:
+                break
+            ambiguous_selected = tuple(
+                arm
+                for arm in selected
+                if by_arm[arm].mean_interval[0] <= max_rejected
+            )
+            ambiguous_rejected = tuple(
+                arm
+                for arm in rejected
+                if by_arm[arm].mean_interval[1] >= min_selected
+            )
+            arms_to_refine = tuple(
+                sorted({*ambiguous_selected, *ambiguous_rejected})
+            )
+
+        per_arm_confidence = self.config.verification_call_confidence(self.n_arms)
         min_selected = min(by_arm[arm].mean_interval[0] for arm in selected)
         max_rejected = max(by_arm[arm].mean_interval[1] for arm in rejected)
         margin = min_selected - max_rejected
-        passed = margin > 0.0
         return FreshVerificationRecord(
             selected=selected,
             rejected=rejected,
-            estimates=estimates,
+            estimates=tuple(estimates),
             minimum_selected_lower=min_selected,
             maximum_rejected_upper=max_rejected,
             strict_margin=margin,
@@ -754,10 +831,55 @@ class VariableTimeCoherentActivityHistoryCore:
             ),
             passed=passed,
             status=(
-                "fresh_strict_interval_separation"
+                "fresh_adaptive_strict_interval_separation"
                 if passed
-                else "fresh_verification_not_separated"
+                else "fresh_adaptive_verification_not_separated"
             ),
+            levels_executed=len(refined_arms_by_level),
+            refined_arms_by_level=tuple(refined_arms_by_level),
+        )
+
+    def _selection_history_replays(
+        self,
+        layers: list[HistoryLayerExecution],
+        *,
+        extracted_selected: tuple[int, ...],
+        extracted_rejected: tuple[int, ...],
+        unresolved: tuple[int, ...],
+    ) -> bool:
+        """Replay every confidence decision and deterministic quota closure."""
+
+        selected: set[int] = set()
+        rejected: set[int] = set()
+        active: set[int] = set(range(self.n_arms))
+        for layer in layers:
+            if layer.active_before != tuple(sorted(active)):
+                return False
+            quota = self.k - len(selected)
+            if layer.remaining_topk_quota != quota:
+                return False
+            estimates = {record.arm: record for record in layer.estimates}
+            if set(estimates) != active:
+                return False
+            accepted, newly_rejected = self._classify(estimates, quota)
+            remaining = active - accepted - newly_rejected
+            if len(selected) + len(accepted) == self.k:
+                newly_rejected.update(remaining)
+            elif len(selected) + len(accepted) + len(remaining) == self.k:
+                accepted.update(remaining)
+            if tuple(sorted(accepted)) != layer.selected_births:
+                return False
+            if tuple(sorted(newly_rejected)) != layer.rejected_births:
+                return False
+            selected.update(accepted)
+            rejected.update(newly_rejected)
+            active.difference_update(accepted | newly_rejected)
+            if tuple(sorted(active)) != layer.active_after:
+                return False
+        return (
+            tuple(sorted(selected)) == extracted_selected
+            and tuple(sorted(rejected)) == extracted_rejected
+            and tuple(sorted(active)) == unresolved
         )
 
     def run(self) -> VariableTimeCoherentHistoryResult:
@@ -871,12 +993,22 @@ class VariableTimeCoherentActivityHistoryCore:
         extracted_rejected = tuple(sorted(rejected))
         unresolved = tuple(sorted(active))
         complete = not unresolved and len(extracted_selected) == self.k
+        history_replay_verified = self._selection_history_replays(
+            layers,
+            extracted_selected=extracted_selected,
+            extracted_rejected=extracted_rejected,
+            unresolved=unresolved,
+        )
         after_selection = self.oracle.query_snapshot()
         selection_counts = _immutable_counts(
             QueryLedger.difference(after_selection, before_run)
         )
 
-        verification = self._fresh_verify(extracted_selected) if complete else None
+        verification = (
+            self._fresh_verify(extracted_selected)
+            if complete and self.config.certificate_mode == "fresh"
+            else None
+        )
         after_run = self.oracle.query_snapshot()
         verification_counts = (
             _zero_counts() if verification is None else verification.query_counts
@@ -888,7 +1020,9 @@ class VariableTimeCoherentActivityHistoryCore:
         }
         if verification is not None:
             for record in verification.estimates:
-                verification_by_arm[record.arm] = record.query_counts
+                verification_by_arm[record.arm] = _add_counts(
+                    verification_by_arm[record.arm], record.query_counts
+                )
 
         if sum(row.get("total", 0) for row in selection_by_arm.values()) != int(
             selection_counts.get("total", 0)
@@ -912,17 +1046,38 @@ class VariableTimeCoherentActivityHistoryCore:
             if verification is None
             else self.n_arms * verification.allocated_failure_probability_per_arm
         )
-        certified = bool(complete and verification is not None and verification.passed)
+        cleanup_verified = all(layer.cleanup_passed for layer in layers)
+        certified = bool(
+            complete
+            and history_replay_verified
+            and cleanup_verified
+            and (
+                self.config.certificate_mode == "history"
+                or (verification is not None and verification.passed)
+            )
+        )
         certificate = (
             StrictTopKHistoryCertificate(
                 selected=extracted_selected,
                 rejected=extracted_rejected,
-                verification_margin=verification.strict_margin,
+                verification_margin=(
+                    0.0 if verification is None else verification.strict_margin
+                ),
                 global_failure_probability=self.config.confidence,
                 allocated_selection_risk_upper_bound=allocated_selection_risk,
                 allocated_verification_risk=allocated_verification_risk,
+                evidence_source=(
+                    "summable_selection_history_and_verified_quota_closure"
+                    if self.config.certificate_mode == "history"
+                    else (
+                        "fresh_boundary_adaptive_simultaneous_confidence_intervals"
+                        if verification is not None and verification.levels_executed > 1
+                        else "fresh_all_arm_simultaneous_confidence_intervals"
+                    )
+                ),
+                transcript_replay_verified=history_replay_verified,
             )
-            if certified and verification is not None
+            if certified
             else None
         )
         if allocated_selection_risk > self.config.confidence / 2.0 + 1e-15:
@@ -1021,9 +1176,11 @@ class VariableTimeCoherentActivityHistoryCore:
             membership_compilation=(
                 "explicit_multi_controlled_index_equalities_linear_in_births"
             ),
-            cleanup_verified=all(layer.cleanup_passed for layer in layers),
+            cleanup_verified=cleanup_verified,
         )
-        if certified:
+        if certified and self.config.certificate_mode == "history":
+            status = "certified_selection_history_replay"
+        elif certified:
             status = "certified_fresh_strict_separation"
         elif complete:
             status = "complete_extraction_fresh_verification_failed"
