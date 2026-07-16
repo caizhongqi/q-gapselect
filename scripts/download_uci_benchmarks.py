@@ -106,9 +106,27 @@ def download_dataset(dataset_id: str, output: Path) -> dict[str, object]:
     return manifest
 
 
+def _dataset_id(value: str) -> str:
+    if value not in DATASETS:
+        choices = ", ".join(map(repr, DATASETS))
+        raise argparse.ArgumentTypeError(
+            f"invalid choice: {value!r} (choose from {choices})"
+        )
+    return value
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("datasets", nargs="*", choices=tuple(DATASETS))
+    # Python 3.10 rejects an empty ``nargs='*'`` positional when ``choices``
+    # is set, even though no dataset value needs validation.  Validate only
+    # supplied values through ``type`` so ``--list`` behaves identically on
+    # every supported Python version.
+    parser.add_argument(
+        "datasets",
+        nargs="*",
+        type=_dataset_id,
+        metavar="{" + ",".join(DATASETS) + "}",
+    )
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--list", action="store_true")
     return parser
