@@ -196,6 +196,7 @@ from .lower_bound_program import (
     lower_bound_program_record,
     lower_bound_program_sweep,
 )
+from .matched_failure_analysis import analyze_matched_failure
 from .models import GapSelectConfig, GapSelectResult, IAEConfig, TopKInstance
 from .natural_oracles import (
     NaturalArmDistribution,
@@ -493,6 +494,7 @@ __all__ = [
     "make_benchmark_instance",
     "machine_readable_status_map",
     "matched_campaign_manifest_hash",
+    "analyze_matched_failure",
     "orientation_separation_record",
     "orientation_separation_sweep",
     "orientation_family_composition_record",

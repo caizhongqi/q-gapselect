@@ -47,6 +47,15 @@ This directory versions machine-readable audit outputs:
   multiple-seed, fixed-cap information-matched hard-family campaign. Every
   timeout, unresolved result, and budget failure remains in the denominator;
   its evidence gate also consumes the theorem-closure status.
+- `ccfa_matched_failure_attribution.json` decomposes the completed matched
+  campaign by family, cap, method, query phase, cleanup, and certification
+  loss. Its exact-recovery envelope is explicitly optimistic diagnostics, not
+  an executed replacement algorithm or an advantage claim. At the maximum
+  cap, the candidate ties on the equal-gap family, reaches 0.994 certified
+  exact recovery versus 1.000 on the dyadic family, and collapses to 0.002
+  certified recovery on the clustered family despite a 0.944 exact-recovery
+  envelope; even perfect certification leaves that family 0.048 behind its
+  strongest baseline.
 - `uci_classifier_benchmark_diagnostic.json.gz` contains 800 matched attempts
   on the bundled real Digits classifier-selection diagnostic. Of five frozen
   label-blind shards, three have an exact k/(k+1) boundary tie and are rejected

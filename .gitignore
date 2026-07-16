@@ -40,6 +40,7 @@ artifacts/*
 !artifacts/frozen_quantum_reference_diagnostic.json
 !artifacts/frozen_anchor_calibration.json.gz
 !artifacts/ccfa_matched_benchmark_diagnostic.json.gz
+!artifacts/ccfa_matched_failure_attribution.json
 !artifacts/uci_classifier_benchmark_diagnostic.json.gz
 paper/*.aux
 paper/*.bbl
