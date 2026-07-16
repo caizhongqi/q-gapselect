@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "experiment_name": "frontier_lower_bound_witness_s3_v1",
+  "pair_hybrid_cases": [
+    {
+      "witness_id": "pair_on_grid_n2_k1",
+      "n": 2,
+      "k": 1,
+      "low_angle": 0.39269908169872414,
+      "high_angle": 1.1780972450961724,
+      "error_probability": 0.1
+    },
+    {
+      "witness_id": "pair_extreme_n3_k2",
+      "n": 3,
+      "k": 2,
+      "low_angle": 0.0,
+      "high_angle": 1.5707963267948966,
+      "error_probability": 0.1
+    },
+    {
+      "witness_id": "pair_small_gap_n4_k2",
+      "n": 4,
+      "k": 2,
+      "low_angle": 0.45,
+      "high_angle": 0.55,
+      "error_probability": 0.05
+    }
+  ],
+  "johnson_cases": [
+    {
+      "witness_id": "johnson_n2_k1",
+      "n": 2,
+      "k": 1
+    },
+    {
+      "witness_id": "johnson_n4_k2",
+      "n": 4,
+      "k": 2
+    },
+    {
+      "witness_id": "johnson_n6_k2",
+      "n": 6,
+      "k": 2
+    }
+  ],
+  "composition_cases": [
+    {
+      "witness_id": "composition_s3_first_stop_vs_qpe_q2",
+      "means": [
+        1.0,
+        0.0
+      ],
+      "k": 1,
+      "phase_qubits": 2,
+      "match_tolerance": 1.0,
+      "cleanup_tolerance": 1e-10,
+      "max_statevector_dimension": 600000
+    },
+    {
+      "witness_id": "composition_s3_second_stop_vs_qpe_q2",
+      "means": [
+        0.5,
+        0.0
+      ],
+      "k": 1,
+      "phase_qubits": 2,
+      "match_tolerance": 1.0,
+      "cleanup_tolerance": 1e-10,
+      "max_statevector_dimension": 600000
+    }
+  ],
+  "notes": [
+    "Pair-hybrid cases are explicit local all-algorithms lower bounds in the canonical rotation oracle model.",
+    "Johnson cases numerically verify finite positive-adversary matrices only for the standard fixed-weight bit-query oracle.",
+    "The finite diagnostic independently executes the tiny true-coherent S3 ladder and the all-arm QPE rank-copy-replay comparator on one harness-owned fixture; it records 28-versus-176 query dominance but keeps composition_match and composition_kill_flag false because the full public confidence/budget interface and delta-sound output contract are absent.",
+    "No record establishes continuous-angle Johnson composition, an activity-history direct sum, a matching upper/lower theorem, strongest published-baseline coverage, quantum advantage, or CCF-A readiness."
+  ]
+}

@@ -3,6 +3,8 @@
 	coherent-statevector-history charged-history variable-time-charged \
 	stopping-transducer theorem-scaffold replay-coherent-frontier coherent-rank-baseline \
 	coherent-unknown-boundary-topk hidden-frontier-fixtures strong-composition-registry \
+	adaptive-unknown-boundary-topk coherent-adaptive-stopping-history \
+	frontier-lower-bound-witness strong-composition-s3 s3-evidence-audit \
 	composition-frontier theorem-closure-audit lower-bound proof-ledger research-gap \
 	attack attack-design \
 	frozen-selector-benchmark frozen-quantum-reference frozen-anchor-calibration \
@@ -41,6 +43,16 @@ test-quantum:
 		tests/test_hidden_frontier_fixture_manifest_script.py \
 		tests/test_strong_composition_registry.py \
 		tests/test_strong_composition_registry_script.py \
+		tests/test_adaptive_unknown_boundary_topk.py \
+		tests/test_adaptive_unknown_boundary_topk_script.py \
+		tests/test_coherent_adaptive_stopping_history.py \
+		tests/test_coherent_adaptive_stopping_history_script.py \
+		tests/test_frontier_lower_bound_witness.py \
+		tests/test_frontier_lower_bound_witness_script.py \
+		tests/test_strong_composition_s3.py \
+		tests/test_strong_composition_s3_script.py \
+		tests/test_s3_evidence_audit.py \
+		tests/test_s3_evidence_audit_script.py \
 		tests/test_composition_frontier.py \
 		tests/test_composition_frontier_script.py \
 		tests/test_lower_bound_program.py \
@@ -73,7 +85,7 @@ check: lint test
 
 experiment: scaling coherent quantum-core
 
-quantum-core: quantum unknown-boundary-grid charged-history variable-time-charged stopping-transducer theorem-scaffold replay-coherent-frontier coherent-rank-baseline coherent-unknown-boundary-topk hidden-frontier-fixtures strong-composition-registry composition-frontier lower-bound proof-ledger research-gap
+quantum-core: quantum unknown-boundary-grid charged-history variable-time-charged stopping-transducer theorem-scaffold replay-coherent-frontier coherent-rank-baseline coherent-unknown-boundary-topk hidden-frontier-fixtures strong-composition-registry adaptive-unknown-boundary-topk coherent-adaptive-stopping-history frontier-lower-bound-witness strong-composition-s3 s3-evidence-audit composition-frontier lower-bound proof-ledger research-gap
 
 scaling:
 	python scripts/run_scaling.py --output artifacts/scaling.json
@@ -113,6 +125,36 @@ strong-composition-registry:
 	python scripts/run_strong_composition_registry.py \
 		--config configs/strong_composition_registry.json \
 		--output artifacts/strong_composition_registry.json
+
+adaptive-unknown-boundary-topk:
+	python scripts/run_adaptive_unknown_boundary_topk.py \
+		--config configs/adaptive_unknown_boundary_topk.json \
+		--output artifacts/adaptive_unknown_boundary_topk.json
+
+coherent-adaptive-stopping-history:
+	python scripts/run_coherent_adaptive_stopping_history.py \
+		--config configs/coherent_adaptive_stopping_history.json \
+		--output artifacts/coherent_adaptive_stopping_history.json
+
+frontier-lower-bound-witness:
+	python scripts/run_frontier_lower_bound_witness.py \
+		--config configs/frontier_lower_bound_witness.json \
+		--output artifacts/frontier_lower_bound_witness.json
+
+strong-composition-s3:
+	python scripts/run_strong_composition_s3.py \
+		--config configs/strong_composition_s3.json \
+		--output artifacts/strong_composition_s3.json.gz
+
+s3-evidence-audit: adaptive-unknown-boundary-topk \
+	coherent-adaptive-stopping-history frontier-lower-bound-witness \
+	strong-composition-s3
+	python scripts/run_s3_evidence_audit.py \
+		--adaptive artifacts/adaptive_unknown_boundary_topk.json \
+		--coherent artifacts/coherent_adaptive_stopping_history.json \
+		--frontier artifacts/frontier_lower_bound_witness.json \
+		--composition artifacts/strong_composition_s3.json.gz \
+		--output artifacts/s3_evidence_audit.json
 
 quantum:
 	python scripts/run_quantum_benchmarks.py \

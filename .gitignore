@@ -48,6 +48,11 @@ artifacts/*
 !artifacts/coherent_unknown_boundary_topk.json
 !artifacts/hidden_frontier_fixture_manifest.json
 !artifacts/strong_composition_registry.json
+!artifacts/adaptive_unknown_boundary_topk.json
+!artifacts/coherent_adaptive_stopping_history.json
+!artifacts/frontier_lower_bound_witness.json
+!artifacts/strong_composition_s3.json.gz
+!artifacts/s3_evidence_audit.json
 !artifacts/uci_classifier_benchmark_diagnostic.json.gz
 paper/*.aux
 paper/*.bbl

@@ -220,6 +220,54 @@ Accordingly, the S2 artifact records `quantum_advantage_claimable=false` and
 `ccf_a_claimable=false`. Its positive result is a stricter executable problem
 definition and a concrete off-grid cleanup obstruction for the next algorithm.
 
+### S3 coherent stopping-history checkpoint (2026-07-16)
+
+S3 adds the first repository kernel in which two precision levels, coherent
+active/stopping history, scratch and durable membership masks, rank work, and
+query control coexist in one statevector. Every second-level oracle invocation
+is controlled by the unresolved-history flag, the complete membership mask is
+copied, and the whole computation is replayed. The runtime tag ledger derives
+one-way level costs of 28 and 60 queries and reconciles the executed full cost
+of 176 queries. The branch-RMS value is retained only as a future
+variable-time theorem target; it is not counted as an executed saving.
+
+The five-case exact-state panel has three exact-grid completions, including an
+arm-1 winner and first-/second-level stops. The tie and generic off-grid cases
+fail closed. A separate legal-subspace audit verifies that the inactive
+second-level kernel is identity when transient work is clean and includes a
+dirty-work negative control; it does not claim identity on arbitrary garbage
+states.
+
+Two additional S3 panels strengthen falsification rather than the claim:
+
+- 486 blind-interface control attempts over six non-duplicated families
+  yield 59 certified-exact strict-instance outcomes, 427 `INCONCLUSIVE`
+  outcomes, zero incorrect certificates, and zero budget violations. These
+  are fixed-phase/serial executable controls, not faithful MIQAE, QBAI,
+  k-minimum, or coherent variable-time reproductions. The stronger-information
+  `F-PUBLIC-PARTITION` family is excluded because none of these blind methods
+  consumes its partition; including it would duplicate `F-HIDDEN-FRONTIER`.
+  This is still a control calibration, not the claim-bearing P2 campaign: the
+  true-coherent candidate is absent, there are only three fixture and three
+  measurement seeds, three caps, and no paired bootstrap/Holm analysis.
+- Three canonical pair-hybrid witnesses, three finite Johnson adversary
+  matrices, and two exact-grid composition checks verify their local numeric
+  statements. Two independent executions use 28 versus 176 canonical calls
+  for the all-arm comparator and current S3 circuit, respectively, on both
+  exact-grid fixtures. Because neither implementation exposes the complete
+  `(n,k,delta,Qmax)` contract or a delta-sound certificate, this is only a
+  same-oracle-model finite diagnostic—not a composition kill, a
+  literature-fidelity result, or an asymptotic theorem.
+  Transferring the Johnson factor to the continuous rotation oracle and
+  proving an activity-history direct sum remain open.
+
+The integrated audit treats this tiny circuit as one non-claim checkpoint.
+Zero of the six paper gates pass. Thus S3 closes a real circuit-architecture
+gap but not the CCF-A theorem gate:
+generic off-grid coherent correctness/cleanup, faithful strongest
+compositions, a strictly better upper bound, and a matching continuous-oracle
+lower bound are still missing.
+
 CCF publishes a venue directory, not a mandatory dataset list. For that
 reason, `docs/ccfa_algorithm_experiment_protocol.md` defines a top-conference
 dataset protocol rather than claiming a nonexistent "CCF-A dataset." Strict
@@ -371,6 +419,11 @@ make coherent-rank-baseline
 make coherent-unknown-boundary-topk
 make hidden-frontier-fixtures
 make strong-composition-registry
+make adaptive-unknown-boundary-topk
+make coherent-adaptive-stopping-history
+make frontier-lower-bound-witness
+make strong-composition-s3
+make s3-evidence-audit
 make theorem-closure-audit
 make ccfa-matched-benchmark
 make install-datasets
@@ -418,6 +471,24 @@ python scripts/run_hidden_frontier_fixture_manifest.py \
 python scripts/run_strong_composition_registry.py \
   --config configs/strong_composition_registry.json \
   --output artifacts/strong_composition_registry.json
+python scripts/run_adaptive_unknown_boundary_topk.py \
+  --config configs/adaptive_unknown_boundary_topk.json \
+  --output artifacts/adaptive_unknown_boundary_topk.json
+python scripts/run_coherent_adaptive_stopping_history.py \
+  --config configs/coherent_adaptive_stopping_history.json \
+  --output artifacts/coherent_adaptive_stopping_history.json
+python scripts/run_frontier_lower_bound_witness.py \
+  --config configs/frontier_lower_bound_witness.json \
+  --output artifacts/frontier_lower_bound_witness.json
+python scripts/run_strong_composition_s3.py \
+  --config configs/strong_composition_s3.json \
+  --output artifacts/strong_composition_s3.json.gz
+python scripts/run_s3_evidence_audit.py \
+  --adaptive artifacts/adaptive_unknown_boundary_topk.json \
+  --coherent artifacts/coherent_adaptive_stopping_history.json \
+  --frontier artifacts/frontier_lower_bound_witness.json \
+  --composition artifacts/strong_composition_s3.json.gz \
+  --output artifacts/s3_evidence_audit.json
 python scripts/run_composition_frontier.py \
   --config configs/composition_frontier.json \
   --output artifacts/composition_frontier.json
@@ -472,7 +543,10 @@ frontier and L-07 proof obligations. The proof-ledger artifact is versioned
 because it is now the canonical theorem-stack checklist. The coherent
 unknown-boundary circuit, hidden-frontier manifest, and strong-composition
 registry artifacts are versioned as the S2 experiment-interface checkpoint;
-they are not an upper-bound or lower-bound theorem.
+they are not an upper-bound or lower-bound theorem. The adaptive diagnostic,
+true-coherent tiny stopping-history, finite lower-bound witness, and matched
+S3-control artifacts are versioned as the S3 falsification checkpoint. Their
+claim gates remain false.
 
 ## Paper-grade completion criteria
 

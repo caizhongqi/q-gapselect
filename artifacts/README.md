@@ -41,6 +41,38 @@ This directory versions machine-readable audit outputs:
   and multi-output baselines. Registry prose and self-reported test JSON are not
   trusted runtime evidence; all nine required reductions remain uncovered, so
   the strongest-composition and CCF-A gates stay false.
+- `adaptive_unknown_boundary_topk.json` records the S3 sequential precision
+  diagnostic. Each precision is an executed coherent S2 level with an exact
+  canonical-query ledger, while the stop decision is explicitly a classical
+  exact-state controller. Generic off-grid masks remain uncertified and the
+  artifact does not call this a variable-time unitary.
+- `coherent_adaptive_stopping_history.json` records the tiny true-coherent
+  two-level stopping-history unitary. Phase, active/history, scratch mask,
+  durable mask, rank work, and query control coexist in one statevector; every
+  later-level oracle call is active-controlled and the complete history is
+  replayed. The executed cost is always the reconciled 176-query worst-case
+  circuit cost. Its branch-RMS field is only a future theorem target, and
+  generic off-grid inputs fail closed.
+- `frontier_lower_bound_witness.json` contains local canonical-oracle hybrid,
+  finite Johnson-graph adversary, and exact-grid comparator-diagnostic
+  witnesses. It verifies finite numerical statements but leaves the
+  continuous-angle Johnson composition, activity-history direct sum, and
+  matching all-algorithms lower bound open.
+- `strong_composition_s3.json.gz` contains 486 blind-interface, atomic-cap
+  control attempts over six non-duplicated families. It excludes
+  `F-PUBLIC-PARTITION`, whose partition none of these methods consumes, and
+  retains every
+  `INCONCLUSIVE` result in the denominator and reports no incorrect certificate
+  or cap violation. The three implementations are executable controls, not
+  faithful reproductions of the registered MIQAE/QBAI/k-minimum/variable-time
+  literature, so they activate no strongest-baseline coverage.
+- `s3_evidence_audit.json` binds the four S3 source artifacts by SHA-256 and
+  separates one tiny promise-domain checkpoint from six conjunctive paper
+  gates. It recomputes the checkpoint from record-level ledgers; the checkpoint
+  passes but zero paper gates do. Generic off-grid correctness, a matched
+  candidate CER@Q campaign, a variable-time upper bound,
+  faithful strongest-composition coverage, composition separation, and a
+  matching lower bound remain open.
 
 - `scaling.json` evaluates declared analytic complexity proxies. It contains no
   observed quantum execution and proves no scaling theorem.
@@ -139,6 +171,24 @@ python scripts/run_hidden_frontier_fixture_manifest.py \
 python scripts/run_strong_composition_registry.py \
   --config configs/strong_composition_registry.json \
   --output artifacts/strong_composition_registry.json
+python scripts/run_adaptive_unknown_boundary_topk.py \
+  --config configs/adaptive_unknown_boundary_topk.json \
+  --output artifacts/adaptive_unknown_boundary_topk.json
+python scripts/run_coherent_adaptive_stopping_history.py \
+  --config configs/coherent_adaptive_stopping_history.json \
+  --output artifacts/coherent_adaptive_stopping_history.json
+python scripts/run_frontier_lower_bound_witness.py \
+  --config configs/frontier_lower_bound_witness.json \
+  --output artifacts/frontier_lower_bound_witness.json
+python scripts/run_strong_composition_s3.py \
+  --config configs/strong_composition_s3.json \
+  --output artifacts/strong_composition_s3.json.gz
+python scripts/run_s3_evidence_audit.py \
+  --adaptive artifacts/adaptive_unknown_boundary_topk.json \
+  --coherent artifacts/coherent_adaptive_stopping_history.json \
+  --frontier artifacts/frontier_lower_bound_witness.json \
+  --composition artifacts/strong_composition_s3.json.gz \
+  --output artifacts/s3_evidence_audit.json
 python scripts/run_composition_frontier.py \
   --config configs/composition_frontier.json \
   --output artifacts/composition_frontier.json

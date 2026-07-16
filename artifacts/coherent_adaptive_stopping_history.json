@@ -1,0 +1,1877 @@
+{
+  "aggregate_assertions": {
+    "all_assertions_passed": true,
+    "all_durable_copies_and_full_replays_executed": true,
+    "all_exact_grid_winner_cases_complete_clean_and_exact": true,
+    "all_later_level_oracles_active_controlled": true,
+    "all_preregistered_behaviors_matched": true,
+    "all_query_ledgers_reconcile_to_176": true,
+    "branch_rms_never_reported_as_executed_saving": true,
+    "exact_tie_cleans_and_fails_closed": true,
+    "inactive_clean_basis_identity_witness_passes": true,
+    "inactive_dirty_work_negative_control_activates": true,
+    "no_certificate_issued": true,
+    "no_quantum_advantage_claimed": true,
+    "off_grid_entangles_and_fails_closed": true,
+    "required_panel_roles_present_exactly_once": true,
+    "runtime_tag_ledger_reconciles_level0_28_level1_60_one_way": true
+  },
+  "artifact_type": "q_gapselect_tiny_true_coherent_stopping_history_s3_panel",
+  "claim_boundaries": {
+    "ccf_a_claimable": false,
+    "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+    "does_not_support": [
+      "generic off-grid correctness or cleanup",
+      "a confidence certificate or observable adaptive precision rule",
+      "executed query savings from the branch-RMS theorem target",
+      "a scalable heterogeneous variable-time construction",
+      "an elementary-gate decomposition, depth, or hardware resource estimate",
+      "a new query upper bound, composition separation, or matching lower bound",
+      "quantum advantage or a CCF-A publication claim"
+    ],
+    "durable_copy_and_full_replay_implemented": true,
+    "generic_off_grid_cleanup_proved": false,
+    "matching_lower_bound_proved": false,
+    "new_query_upper_bound_proved": false,
+    "quantum_advantage_claimable": false,
+    "supports": [
+      "one statevector containing phase, stop history, scratch and durable masks",
+      "active-flag control on every later-level canonical oracle invocation",
+      "scratch-to-durable direct-k copy followed by complete reverse replay",
+      "exact worst-case controlled-query ledger reconciliation",
+      "cleanup success on exact-grid promises and fail-closed off-promise behavior"
+    ],
+    "true_coherent_stopping_history_unitary_implemented": true,
+    "variable_time_query_speedup_proved": false
+  },
+  "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+  "claim_status": "tiny_true_coherent_history_copy_replay_supported_generic_off_grid_and_variable_time_theory_blocked",
+  "config_hash": "4b03a2c26be61beffb441f5ca1545a2ec98a99695ea7814e50cb812c9c80aab7",
+  "experiment_name": "tiny_true_coherent_adaptive_stopping_history_s3_v1",
+  "inactive_level_clean_dirty_subspace_audit": {
+    "clean_identity_witness_passed": true,
+    "clean_inactive_basis_identity_residual": 0.0,
+    "clean_query_counts": {
+      "classical_sample": 0,
+      "classical_total": 0,
+      "coherent_total": 60,
+      "controlled_forward": 30,
+      "controlled_inverse": 30,
+      "forward": 0,
+      "inverse": 0,
+      "total": 60
+    },
+    "clean_query_ledger_reconciled": true,
+    "dirty_negative_control_activated": true,
+    "dirty_query_counts": {
+      "classical_sample": 0,
+      "classical_total": 0,
+      "coherent_total": 60,
+      "controlled_forward": 30,
+      "controlled_inverse": 30,
+      "forward": 0,
+      "inverse": 0,
+      "total": 60
+    },
+    "dirty_query_ledger_reconciled": true,
+    "dirty_rank_work_negative_control_residual": 1.4142135623730951,
+    "excluded_dirty_subspace": "inactive flag with nonzero rank-stop work; the uncontrolled history/scratch latch is intentionally not an identity there",
+    "theorem_status": "basis_witness_only_not_a_subspace_proof",
+    "valid_identity_subspace": "history_level0=stopped and shared phase,index,reward,scratch,rank-stop,query-control work initialized to zero"
+  },
+  "method_id": "tiny_true_coherent_two_level_stopping_history_v1",
+  "notes": [
+    "The algorithm receives only an opaque two-arm canonical oracle and numerical resource caps; the two phase levels and stop rule are fixed internally.",
+    "Phase, history, scratch mask, durable mask, rank work, and active query control coexist in one exact statevector.",
+    "Every level-two oracle invocation is controlled by the coherent not-stopped flag and charged in the worst-case query ledger.",
+    "The direct scratch mask is copied to a durable output before complete reverse replay of both level kernels.",
+    "Exact-grid first-stop and second-stop fixtures must output the correct mask and clean; the exact tie and generic off-grid fixture must fail closed.",
+    "The branch-RMS value is a theorem target only, never counted as an executed saving or proved variable-time upper bound."
+  ],
+  "provenance": {
+    "config_path": "/workspace/scratch/9476d8f4ff7c/q-gapselect/configs/coherent_adaptive_stopping_history.json",
+    "config_sha256": "4b03a2c26be61beffb441f5ca1545a2ec98a99695ea7814e50cb812c9c80aab7",
+    "git_commit": "3724daafadffbdcb5b673cd4a75a322030e66345",
+    "git_tree": "45c629381939561ebe2f7e1fb063d374e0259af8",
+    "numpy_version": "2.5.1",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13",
+    "source_status_capture": "before_true_coherent_s3_artifact_write",
+    "source_tree_dirty_at_execution": false
+  },
+  "records": [
+    {
+      "algorithm_inputs": {
+        "answer_gap_boundary_family_schedule_history_supplied": false,
+        "cleanup_tolerance": 1e-10,
+        "max_statevector_dimension": 600000,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle"
+      },
+      "case_id": "exact_grid_first_stop",
+      "expected_behavior_matched": true,
+      "expected_history": "10",
+      "expected_output_status": "MASK",
+      "result": {
+        "backend": "numpy_exact_statevector_true_coherent_two_level_history",
+        "blockers": [
+          "fixed_two_level_n2_k1_exact_state_scope",
+          "generic_finite_qpe_branches_entangle_durable_output",
+          "no_observable_adaptive_precision_confidence_test",
+          "branch_rms_is_unproved_theorem_target_not_executed_saving",
+          "no_scalable_variable_time_cleanup_resource_bound",
+          "no_new_query_complexity_upper_bound",
+          "no_matching_oracle_lower_bound",
+          "no_elementary_gate_or_transpiled_depth_ledger"
+        ],
+        "budget_valid": true,
+        "certificate": {
+          "certificate_type": null,
+          "issued": false,
+          "reason": "the tiny circuit is promise-sensitive and has no generic finite-QPE correctness or confidence theorem",
+          "top_k_correctness_error_bound": null
+        },
+        "claim_boundary": {
+          "ccf_a_claimable": false,
+          "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+          "does_not_support": [
+            "generic off-grid correctness or cleanup",
+            "a confidence certificate or observable adaptive precision rule",
+            "executed query savings from the branch-RMS theorem target",
+            "a scalable heterogeneous variable-time construction",
+            "an elementary-gate decomposition, depth, or hardware resource estimate",
+            "a new query upper bound, composition separation, or matching lower bound",
+            "quantum advantage or a CCF-A publication claim"
+          ],
+          "durable_copy_and_full_replay_implemented": true,
+          "generic_off_grid_cleanup_proved": false,
+          "matching_lower_bound_proved": false,
+          "new_query_upper_bound_proved": false,
+          "quantum_advantage_claimable": false,
+          "supports": [
+            "one statevector containing phase, stop history, scratch and durable masks",
+            "active-flag control on every later-level canonical oracle invocation",
+            "scratch-to-durable direct-k copy followed by complete reverse replay",
+            "exact worst-case controlled-query ledger reconciliation",
+            "cleanup success on exact-grid promises and fail-closed off-promise behavior"
+          ],
+          "true_coherent_stopping_history_unitary_implemented": true,
+          "variable_time_query_speedup_proved": false
+        },
+        "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+        "cleanup_error_bound": 2.4424906541753444e-15,
+        "durable_output": {
+          "cleanup_passed": true,
+          "dominant_mask": 1,
+          "dominant_probability": 0.9999999999999976,
+          "full_history_replay_executed": true,
+          "membership_bits": [
+            1,
+            0
+          ],
+          "membership_mask": 1,
+          "output_mask_probabilities": {
+            "0": 5.124780677455845e-33,
+            "1": 0.9999999999999976,
+            "2": 1.5292432017295527e-63,
+            "3": 0.0
+          },
+          "scratch_to_durable_copy_executed": true,
+          "status": "MASK"
+        },
+        "fixed_expected_query_ledger_respected": true,
+        "history": {
+          "dominant_history": "10",
+          "dominant_history_probability": 0.9999999999999987,
+          "invalid_both_stopped_probability": 0.0,
+          "later_level_oracles_controlled_by_active_flag": true,
+          "probabilities": {
+            "00": 5.1247806774558673e-33,
+            "01": 3.3618810165513555e-32,
+            "10": 0.9999999999999987,
+            "11": 0.0
+          },
+          "scratch_mask_probabilities": {
+            "0": 5.1247806774558673e-33,
+            "1": 0.9999999999999987,
+            "2": 1.52924320172956e-63,
+            "3": 0.0
+          },
+          "single_statevector_history_register": true,
+          "stop_at_level_one_probability": 3.3618810165513555e-32,
+          "stop_at_level_zero_probability": 0.9999999999999987,
+          "unresolved_probability": 5.1247806774558673e-33
+        },
+        "input_interface": {
+          "activity_history_supplied": false,
+          "answer_dependent_inputs_supplied": false,
+          "boundary_supplied": false,
+          "family_label_supplied": false,
+          "forbidden_inputs": [
+            "answer_set",
+            "top_k_membership_mask",
+            "gap",
+            "boundary_value",
+            "family_label",
+            "phase_schedule",
+            "activity_history",
+            "free_qram_list"
+          ],
+          "gap_supplied": false,
+          "internally_fixed_minimum_bin_separation": 2,
+          "internally_fixed_phase_levels": [
+            2,
+            3
+          ],
+          "k": 1,
+          "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+          "schedule_supplied": false
+        },
+        "membership_bits": [
+          1,
+          0
+        ],
+        "membership_mask": 1,
+        "method_id": "tiny_true_coherent_two_level_stopping_history_v1",
+        "output_status": "MASK",
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_true_coherent_two_level_history",
+          "cleanup": {
+            "executed_transient_nonzero_probability": 2.4424906541753444e-15,
+            "history_nonzero_probability": 2.4424906541753444e-15,
+            "index_nonzero_probability": 2.4424906541753444e-15,
+            "norm_error": 1.2212453270876722e-15,
+            "output_collision_probability": 0.9999999999999951,
+            "output_reduced_purity": 0.9999999999999951,
+            "passed": true,
+            "phase_nonzero_probability": 2.4424906541753444e-15,
+            "predicted_transient_nonzero_probability": 4.884981308350689e-15,
+            "prediction_residual": 2.4424906541753444e-15,
+            "purity_residual": 0.0,
+            "query_control_nonzero_probability": 2.4424906541753444e-15,
+            "rank_work_nonzero_probability": 2.4424906541753444e-15,
+            "reward_nonzero_probability": 2.4424906541753444e-15,
+            "scratch_mask_nonzero_probability": 2.4424906541753444e-15,
+            "tolerance": 1e-10
+          },
+          "compiled_ancilla_qubits_available": false,
+          "declared_register_qubits": 19,
+          "elementary_gate_ledger_available": false,
+          "estimated_peak_complex_amplitudes": 1048640,
+          "executed_numpy_kernel_macro_counts": {
+            "active_controlled_index_load": 8,
+            "active_controlled_index_reset": 8,
+            "active_controlled_inverse_qft": 8,
+            "active_controlled_phase_hadamard": 40,
+            "active_controlled_qft": 8,
+            "active_controlled_rank_stop_relation": 8,
+            "active_controlled_reward_prepare": 8,
+            "active_controlled_reward_unprepare": 8,
+            "active_flag_negation": 4,
+            "active_phase_and_compute": 56,
+            "active_phase_and_uncompute": 56,
+            "controlled_grover_iteration": 80,
+            "history_and_scratch_latch": 4,
+            "scratch_to_durable_mask_copy": 1
+          },
+          "query_ledger": {
+            "branch_rms_full_replay_theorem_target": 55.999999999999964,
+            "branch_rms_is_executed_saving": false,
+            "branch_rms_one_way_theorem_target": 27.999999999999982,
+            "branch_rms_semantics": "history_distribution_weighted_target_for_a_future_variable_time_theorem_not_executed_query_savings_or_a_proved_bound",
+            "expected_query_counts": {
+              "classical_sample": 0,
+              "classical_total": 0,
+              "coherent_total": 176,
+              "controlled_forward": 84,
+              "controlled_inverse": 84,
+              "forward": 4,
+              "inverse": 4,
+              "qram_queries": 0,
+              "total": 176
+            },
+            "per_level_one_way_query_costs": [
+              28,
+              60
+            ],
+            "per_level_runtime_records": [
+              {
+                "derivation": "sum oracle QuerySnapshot.by_tag over both arm tags, then divide exact even counts by the two executed level-kernel invocations",
+                "expected_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 56,
+                  "controlled_forward": 24,
+                  "controlled_inverse": 24,
+                  "forward": 4,
+                  "inverse": 4,
+                  "total": 56
+                },
+                "expected_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 28,
+                  "controlled_forward": 12,
+                  "controlled_inverse": 12,
+                  "forward": 2,
+                  "inverse": 2,
+                  "total": 28
+                },
+                "full_replay_reconciled": true,
+                "kernel_invocations": 2,
+                "level": 0,
+                "one_way_reconciled": true,
+                "phase_qubits": 2,
+                "runtime_derived_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 28,
+                  "controlled_forward": 12,
+                  "controlled_inverse": 12,
+                  "forward": 2,
+                  "inverse": 2,
+                  "total": 28
+                },
+                "runtime_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 56,
+                  "controlled_forward": 24,
+                  "controlled_inverse": 24,
+                  "forward": 4,
+                  "inverse": 4,
+                  "total": 56
+                },
+                "tag_prefix": "tiny_true_coherent_history_m2_arm_"
+              },
+              {
+                "derivation": "sum oracle QuerySnapshot.by_tag over both arm tags, then divide exact even counts by the two executed level-kernel invocations",
+                "expected_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 120,
+                  "controlled_forward": 60,
+                  "controlled_inverse": 60,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 120
+                },
+                "expected_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 60,
+                  "controlled_forward": 30,
+                  "controlled_inverse": 30,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 60
+                },
+                "full_replay_reconciled": true,
+                "kernel_invocations": 2,
+                "level": 1,
+                "one_way_reconciled": true,
+                "phase_qubits": 3,
+                "runtime_derived_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 60,
+                  "controlled_forward": 30,
+                  "controlled_inverse": 30,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 60
+                },
+                "runtime_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 120,
+                  "controlled_forward": 60,
+                  "controlled_inverse": 60,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 120
+                },
+                "tag_prefix": "tiny_true_coherent_history_m3_arm_"
+              }
+            ],
+            "qram_assumed": false,
+            "query_counts": {
+              "classical_sample": 0,
+              "classical_total": 0,
+              "coherent_total": 176,
+              "controlled_forward": 84,
+              "controlled_inverse": 84,
+              "forward": 4,
+              "inverse": 4,
+              "qram_queries": 0,
+              "total": 176
+            },
+            "query_semantics": "executed_worst_case_circuit_oracle_calls_including_controlled_calls_on_zero_amplitude_active_branches",
+            "reconciled": true,
+            "worst_case_full_replay_queries": 176,
+            "worst_case_one_way_history_queries": 88
+          },
+          "register_dimensions": {
+            "active_phase_query_control": 2,
+            "compiled_index_pack": 4,
+            "durable_membership_mask": 4,
+            "rank_stop_work": 4,
+            "reward_pack": 4,
+            "scratch_membership_mask": 4,
+            "shared_phase_pack": 64,
+            "stopping_history": 4
+          },
+          "retained_statevector_dimension": 524288,
+          "transpiled_depth_available": false
+        },
+        "status": "exact_grid_promise_complete_theory_blocked"
+      },
+      "role": "exact_grid_first_stop",
+      "trusted_fixture_and_scoring": {
+        "diagnostic_mask_exact": true,
+        "means": [
+          1.0,
+          0.0
+        ],
+        "truth": {
+          "membership_mask": 1,
+          "strict_boundary": true
+        }
+      }
+    },
+    {
+      "algorithm_inputs": {
+        "answer_gap_boundary_family_schedule_history_supplied": false,
+        "cleanup_tolerance": 1e-10,
+        "max_statevector_dimension": 600000,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle"
+      },
+      "case_id": "exact_grid_second_stop",
+      "expected_behavior_matched": true,
+      "expected_history": "01",
+      "expected_output_status": "MASK",
+      "result": {
+        "backend": "numpy_exact_statevector_true_coherent_two_level_history",
+        "blockers": [
+          "fixed_two_level_n2_k1_exact_state_scope",
+          "generic_finite_qpe_branches_entangle_durable_output",
+          "no_observable_adaptive_precision_confidence_test",
+          "branch_rms_is_unproved_theorem_target_not_executed_saving",
+          "no_scalable_variable_time_cleanup_resource_bound",
+          "no_new_query_complexity_upper_bound",
+          "no_matching_oracle_lower_bound",
+          "no_elementary_gate_or_transpiled_depth_ledger"
+        ],
+        "budget_valid": true,
+        "certificate": {
+          "certificate_type": null,
+          "issued": false,
+          "reason": "the tiny circuit is promise-sensitive and has no generic finite-QPE correctness or confidence theorem",
+          "top_k_correctness_error_bound": null
+        },
+        "claim_boundary": {
+          "ccf_a_claimable": false,
+          "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+          "does_not_support": [
+            "generic off-grid correctness or cleanup",
+            "a confidence certificate or observable adaptive precision rule",
+            "executed query savings from the branch-RMS theorem target",
+            "a scalable heterogeneous variable-time construction",
+            "an elementary-gate decomposition, depth, or hardware resource estimate",
+            "a new query upper bound, composition separation, or matching lower bound",
+            "quantum advantage or a CCF-A publication claim"
+          ],
+          "durable_copy_and_full_replay_implemented": true,
+          "generic_off_grid_cleanup_proved": false,
+          "matching_lower_bound_proved": false,
+          "new_query_upper_bound_proved": false,
+          "quantum_advantage_claimable": false,
+          "supports": [
+            "one statevector containing phase, stop history, scratch and durable masks",
+            "active-flag control on every later-level canonical oracle invocation",
+            "scratch-to-durable direct-k copy followed by complete reverse replay",
+            "exact worst-case controlled-query ledger reconciliation",
+            "cleanup success on exact-grid promises and fail-closed off-promise behavior"
+          ],
+          "true_coherent_stopping_history_unitary_implemented": true,
+          "variable_time_query_speedup_proved": false
+        },
+        "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+        "cleanup_error_bound": 1.7763568394002505e-15,
+        "durable_output": {
+          "cleanup_passed": true,
+          "dominant_mask": 1,
+          "dominant_probability": 0.9999999999999982,
+          "full_history_replay_executed": true,
+          "membership_bits": [
+            1,
+            0
+          ],
+          "membership_mask": 1,
+          "output_mask_probabilities": {
+            "0": 1.0679523871916545e-30,
+            "1": 0.9999999999999982,
+            "2": 4.419531081718558e-33,
+            "3": 0.0
+          },
+          "scratch_to_durable_copy_executed": true,
+          "status": "MASK"
+        },
+        "fixed_expected_query_ledger_respected": true,
+        "history": {
+          "dominant_history": "01",
+          "dominant_history_probability": 0.9999999999999991,
+          "invalid_both_stopped_probability": 0.0,
+          "later_level_oracles_controlled_by_active_flag": true,
+          "probabilities": {
+            "00": 1.0679523871916552e-30,
+            "01": 0.9999999999999991,
+            "10": 2.752847033493653e-32,
+            "11": 0.0
+          },
+          "scratch_mask_probabilities": {
+            "0": 1.0679523871916552e-30,
+            "1": 0.9999999999999991,
+            "2": 4.4195310817185635e-33,
+            "3": 0.0
+          },
+          "single_statevector_history_register": true,
+          "stop_at_level_one_probability": 0.9999999999999991,
+          "stop_at_level_zero_probability": 2.752847033493653e-32,
+          "unresolved_probability": 1.0679523871916552e-30
+        },
+        "input_interface": {
+          "activity_history_supplied": false,
+          "answer_dependent_inputs_supplied": false,
+          "boundary_supplied": false,
+          "family_label_supplied": false,
+          "forbidden_inputs": [
+            "answer_set",
+            "top_k_membership_mask",
+            "gap",
+            "boundary_value",
+            "family_label",
+            "phase_schedule",
+            "activity_history",
+            "free_qram_list"
+          ],
+          "gap_supplied": false,
+          "internally_fixed_minimum_bin_separation": 2,
+          "internally_fixed_phase_levels": [
+            2,
+            3
+          ],
+          "k": 1,
+          "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+          "schedule_supplied": false
+        },
+        "membership_bits": [
+          1,
+          0
+        ],
+        "membership_mask": 1,
+        "method_id": "tiny_true_coherent_two_level_stopping_history_v1",
+        "output_status": "MASK",
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_true_coherent_two_level_history",
+          "cleanup": {
+            "executed_transient_nonzero_probability": 1.7763568394002505e-15,
+            "history_nonzero_probability": 1.7763568394002505e-15,
+            "index_nonzero_probability": 1.7763568394002505e-15,
+            "norm_error": 8.881784197001252e-16,
+            "output_collision_probability": 0.9999999999999964,
+            "output_reduced_purity": 0.9999999999999964,
+            "passed": true,
+            "phase_nonzero_probability": 1.7763568394002505e-15,
+            "predicted_transient_nonzero_probability": 3.552713678800501e-15,
+            "prediction_residual": 1.7763568394002505e-15,
+            "purity_residual": 0.0,
+            "query_control_nonzero_probability": 1.7763568394002505e-15,
+            "rank_work_nonzero_probability": 1.7763568394002505e-15,
+            "reward_nonzero_probability": 1.7763568394002505e-15,
+            "scratch_mask_nonzero_probability": 1.7763568394002505e-15,
+            "tolerance": 1e-10
+          },
+          "compiled_ancilla_qubits_available": false,
+          "declared_register_qubits": 19,
+          "elementary_gate_ledger_available": false,
+          "estimated_peak_complex_amplitudes": 1048640,
+          "executed_numpy_kernel_macro_counts": {
+            "active_controlled_index_load": 8,
+            "active_controlled_index_reset": 8,
+            "active_controlled_inverse_qft": 8,
+            "active_controlled_phase_hadamard": 40,
+            "active_controlled_qft": 8,
+            "active_controlled_rank_stop_relation": 8,
+            "active_controlled_reward_prepare": 8,
+            "active_controlled_reward_unprepare": 8,
+            "active_flag_negation": 4,
+            "active_phase_and_compute": 56,
+            "active_phase_and_uncompute": 56,
+            "controlled_grover_iteration": 80,
+            "history_and_scratch_latch": 4,
+            "scratch_to_durable_mask_copy": 1
+          },
+          "query_ledger": {
+            "branch_rms_full_replay_theorem_target": 175.99999999999991,
+            "branch_rms_is_executed_saving": false,
+            "branch_rms_one_way_theorem_target": 87.99999999999996,
+            "branch_rms_semantics": "history_distribution_weighted_target_for_a_future_variable_time_theorem_not_executed_query_savings_or_a_proved_bound",
+            "expected_query_counts": {
+              "classical_sample": 0,
+              "classical_total": 0,
+              "coherent_total": 176,
+              "controlled_forward": 84,
+              "controlled_inverse": 84,
+              "forward": 4,
+              "inverse": 4,
+              "qram_queries": 0,
+              "total": 176
+            },
+            "per_level_one_way_query_costs": [
+              28,
+              60
+            ],
+            "per_level_runtime_records": [
+              {
+                "derivation": "sum oracle QuerySnapshot.by_tag over both arm tags, then divide exact even counts by the two executed level-kernel invocations",
+                "expected_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 56,
+                  "controlled_forward": 24,
+                  "controlled_inverse": 24,
+                  "forward": 4,
+                  "inverse": 4,
+                  "total": 56
+                },
+                "expected_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 28,
+                  "controlled_forward": 12,
+                  "controlled_inverse": 12,
+                  "forward": 2,
+                  "inverse": 2,
+                  "total": 28
+                },
+                "full_replay_reconciled": true,
+                "kernel_invocations": 2,
+                "level": 0,
+                "one_way_reconciled": true,
+                "phase_qubits": 2,
+                "runtime_derived_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 28,
+                  "controlled_forward": 12,
+                  "controlled_inverse": 12,
+                  "forward": 2,
+                  "inverse": 2,
+                  "total": 28
+                },
+                "runtime_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 56,
+                  "controlled_forward": 24,
+                  "controlled_inverse": 24,
+                  "forward": 4,
+                  "inverse": 4,
+                  "total": 56
+                },
+                "tag_prefix": "tiny_true_coherent_history_m2_arm_"
+              },
+              {
+                "derivation": "sum oracle QuerySnapshot.by_tag over both arm tags, then divide exact even counts by the two executed level-kernel invocations",
+                "expected_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 120,
+                  "controlled_forward": 60,
+                  "controlled_inverse": 60,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 120
+                },
+                "expected_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 60,
+                  "controlled_forward": 30,
+                  "controlled_inverse": 30,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 60
+                },
+                "full_replay_reconciled": true,
+                "kernel_invocations": 2,
+                "level": 1,
+                "one_way_reconciled": true,
+                "phase_qubits": 3,
+                "runtime_derived_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 60,
+                  "controlled_forward": 30,
+                  "controlled_inverse": 30,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 60
+                },
+                "runtime_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 120,
+                  "controlled_forward": 60,
+                  "controlled_inverse": 60,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 120
+                },
+                "tag_prefix": "tiny_true_coherent_history_m3_arm_"
+              }
+            ],
+            "qram_assumed": false,
+            "query_counts": {
+              "classical_sample": 0,
+              "classical_total": 0,
+              "coherent_total": 176,
+              "controlled_forward": 84,
+              "controlled_inverse": 84,
+              "forward": 4,
+              "inverse": 4,
+              "qram_queries": 0,
+              "total": 176
+            },
+            "query_semantics": "executed_worst_case_circuit_oracle_calls_including_controlled_calls_on_zero_amplitude_active_branches",
+            "reconciled": true,
+            "worst_case_full_replay_queries": 176,
+            "worst_case_one_way_history_queries": 88
+          },
+          "register_dimensions": {
+            "active_phase_query_control": 2,
+            "compiled_index_pack": 4,
+            "durable_membership_mask": 4,
+            "rank_stop_work": 4,
+            "reward_pack": 4,
+            "scratch_membership_mask": 4,
+            "shared_phase_pack": 64,
+            "stopping_history": 4
+          },
+          "retained_statevector_dimension": 524288,
+          "transpiled_depth_available": false
+        },
+        "status": "exact_grid_promise_complete_theory_blocked"
+      },
+      "role": "exact_grid_second_stop",
+      "trusted_fixture_and_scoring": {
+        "diagnostic_mask_exact": true,
+        "means": [
+          0.5,
+          0.0
+        ],
+        "truth": {
+          "membership_mask": 1,
+          "strict_boundary": true
+        }
+      }
+    },
+    {
+      "algorithm_inputs": {
+        "answer_gap_boundary_family_schedule_history_supplied": false,
+        "cleanup_tolerance": 1e-10,
+        "max_statevector_dimension": 600000,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle"
+      },
+      "case_id": "exact_grid_arm1_second_stop",
+      "expected_behavior_matched": true,
+      "expected_history": "01",
+      "expected_output_status": "MASK",
+      "result": {
+        "backend": "numpy_exact_statevector_true_coherent_two_level_history",
+        "blockers": [
+          "fixed_two_level_n2_k1_exact_state_scope",
+          "generic_finite_qpe_branches_entangle_durable_output",
+          "no_observable_adaptive_precision_confidence_test",
+          "branch_rms_is_unproved_theorem_target_not_executed_saving",
+          "no_scalable_variable_time_cleanup_resource_bound",
+          "no_new_query_complexity_upper_bound",
+          "no_matching_oracle_lower_bound",
+          "no_elementary_gate_or_transpiled_depth_ledger"
+        ],
+        "budget_valid": true,
+        "certificate": {
+          "certificate_type": null,
+          "issued": false,
+          "reason": "the tiny circuit is promise-sensitive and has no generic finite-QPE correctness or confidence theorem",
+          "top_k_correctness_error_bound": null
+        },
+        "claim_boundary": {
+          "ccf_a_claimable": false,
+          "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+          "does_not_support": [
+            "generic off-grid correctness or cleanup",
+            "a confidence certificate or observable adaptive precision rule",
+            "executed query savings from the branch-RMS theorem target",
+            "a scalable heterogeneous variable-time construction",
+            "an elementary-gate decomposition, depth, or hardware resource estimate",
+            "a new query upper bound, composition separation, or matching lower bound",
+            "quantum advantage or a CCF-A publication claim"
+          ],
+          "durable_copy_and_full_replay_implemented": true,
+          "generic_off_grid_cleanup_proved": false,
+          "matching_lower_bound_proved": false,
+          "new_query_upper_bound_proved": false,
+          "quantum_advantage_claimable": false,
+          "supports": [
+            "one statevector containing phase, stop history, scratch and durable masks",
+            "active-flag control on every later-level canonical oracle invocation",
+            "scratch-to-durable direct-k copy followed by complete reverse replay",
+            "exact worst-case controlled-query ledger reconciliation",
+            "cleanup success on exact-grid promises and fail-closed off-promise behavior"
+          ],
+          "true_coherent_stopping_history_unitary_implemented": true,
+          "variable_time_query_speedup_proved": false
+        },
+        "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+        "cleanup_error_bound": 1.9984014443252818e-15,
+        "durable_output": {
+          "cleanup_passed": true,
+          "dominant_mask": 2,
+          "dominant_probability": 0.999999999999998,
+          "full_history_replay_executed": true,
+          "membership_bits": [
+            0,
+            1
+          ],
+          "membership_mask": 2,
+          "output_mask_probabilities": {
+            "0": 1.0293566246221716e-30,
+            "1": 3.784256082951159e-33,
+            "2": 0.999999999999998,
+            "3": 0.0
+          },
+          "scratch_to_durable_copy_executed": true,
+          "status": "MASK"
+        },
+        "fixed_expected_query_ledger_respected": true,
+        "history": {
+          "dominant_history": "01",
+          "dominant_history_probability": 0.9999999999999991,
+          "invalid_both_stopped_probability": 0.0,
+          "later_level_oracles_controlled_by_active_flag": true,
+          "probabilities": {
+            "00": 1.029356624622172e-30,
+            "01": 0.9999999999999991,
+            "10": 9.039542868819077e-33,
+            "11": 0.0
+          },
+          "scratch_mask_probabilities": {
+            "0": 1.029356624622172e-30,
+            "1": 3.784256082951164e-33,
+            "2": 0.9999999999999991,
+            "3": 0.0
+          },
+          "single_statevector_history_register": true,
+          "stop_at_level_one_probability": 0.9999999999999991,
+          "stop_at_level_zero_probability": 9.039542868819077e-33,
+          "unresolved_probability": 1.029356624622172e-30
+        },
+        "input_interface": {
+          "activity_history_supplied": false,
+          "answer_dependent_inputs_supplied": false,
+          "boundary_supplied": false,
+          "family_label_supplied": false,
+          "forbidden_inputs": [
+            "answer_set",
+            "top_k_membership_mask",
+            "gap",
+            "boundary_value",
+            "family_label",
+            "phase_schedule",
+            "activity_history",
+            "free_qram_list"
+          ],
+          "gap_supplied": false,
+          "internally_fixed_minimum_bin_separation": 2,
+          "internally_fixed_phase_levels": [
+            2,
+            3
+          ],
+          "k": 1,
+          "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+          "schedule_supplied": false
+        },
+        "membership_bits": [
+          0,
+          1
+        ],
+        "membership_mask": 2,
+        "method_id": "tiny_true_coherent_two_level_stopping_history_v1",
+        "output_status": "MASK",
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_true_coherent_two_level_history",
+          "cleanup": {
+            "executed_transient_nonzero_probability": 1.9984014443252818e-15,
+            "history_nonzero_probability": 1.9984014443252818e-15,
+            "index_nonzero_probability": 1.9984014443252818e-15,
+            "norm_error": 9.992007221626409e-16,
+            "output_collision_probability": 0.999999999999996,
+            "output_reduced_purity": 0.999999999999996,
+            "passed": true,
+            "phase_nonzero_probability": 1.9984014443252818e-15,
+            "predicted_transient_nonzero_probability": 3.9968028886505635e-15,
+            "prediction_residual": 1.9984014443252818e-15,
+            "purity_residual": 0.0,
+            "query_control_nonzero_probability": 1.9984014443252818e-15,
+            "rank_work_nonzero_probability": 1.9984014443252818e-15,
+            "reward_nonzero_probability": 1.9984014443252818e-15,
+            "scratch_mask_nonzero_probability": 1.9984014443252818e-15,
+            "tolerance": 1e-10
+          },
+          "compiled_ancilla_qubits_available": false,
+          "declared_register_qubits": 19,
+          "elementary_gate_ledger_available": false,
+          "estimated_peak_complex_amplitudes": 1048640,
+          "executed_numpy_kernel_macro_counts": {
+            "active_controlled_index_load": 8,
+            "active_controlled_index_reset": 8,
+            "active_controlled_inverse_qft": 8,
+            "active_controlled_phase_hadamard": 40,
+            "active_controlled_qft": 8,
+            "active_controlled_rank_stop_relation": 8,
+            "active_controlled_reward_prepare": 8,
+            "active_controlled_reward_unprepare": 8,
+            "active_flag_negation": 4,
+            "active_phase_and_compute": 56,
+            "active_phase_and_uncompute": 56,
+            "controlled_grover_iteration": 80,
+            "history_and_scratch_latch": 4,
+            "scratch_to_durable_mask_copy": 1
+          },
+          "query_ledger": {
+            "branch_rms_full_replay_theorem_target": 175.99999999999991,
+            "branch_rms_is_executed_saving": false,
+            "branch_rms_one_way_theorem_target": 87.99999999999996,
+            "branch_rms_semantics": "history_distribution_weighted_target_for_a_future_variable_time_theorem_not_executed_query_savings_or_a_proved_bound",
+            "expected_query_counts": {
+              "classical_sample": 0,
+              "classical_total": 0,
+              "coherent_total": 176,
+              "controlled_forward": 84,
+              "controlled_inverse": 84,
+              "forward": 4,
+              "inverse": 4,
+              "qram_queries": 0,
+              "total": 176
+            },
+            "per_level_one_way_query_costs": [
+              28,
+              60
+            ],
+            "per_level_runtime_records": [
+              {
+                "derivation": "sum oracle QuerySnapshot.by_tag over both arm tags, then divide exact even counts by the two executed level-kernel invocations",
+                "expected_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 56,
+                  "controlled_forward": 24,
+                  "controlled_inverse": 24,
+                  "forward": 4,
+                  "inverse": 4,
+                  "total": 56
+                },
+                "expected_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 28,
+                  "controlled_forward": 12,
+                  "controlled_inverse": 12,
+                  "forward": 2,
+                  "inverse": 2,
+                  "total": 28
+                },
+                "full_replay_reconciled": true,
+                "kernel_invocations": 2,
+                "level": 0,
+                "one_way_reconciled": true,
+                "phase_qubits": 2,
+                "runtime_derived_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 28,
+                  "controlled_forward": 12,
+                  "controlled_inverse": 12,
+                  "forward": 2,
+                  "inverse": 2,
+                  "total": 28
+                },
+                "runtime_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 56,
+                  "controlled_forward": 24,
+                  "controlled_inverse": 24,
+                  "forward": 4,
+                  "inverse": 4,
+                  "total": 56
+                },
+                "tag_prefix": "tiny_true_coherent_history_m2_arm_"
+              },
+              {
+                "derivation": "sum oracle QuerySnapshot.by_tag over both arm tags, then divide exact even counts by the two executed level-kernel invocations",
+                "expected_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 120,
+                  "controlled_forward": 60,
+                  "controlled_inverse": 60,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 120
+                },
+                "expected_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 60,
+                  "controlled_forward": 30,
+                  "controlled_inverse": 30,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 60
+                },
+                "full_replay_reconciled": true,
+                "kernel_invocations": 2,
+                "level": 1,
+                "one_way_reconciled": true,
+                "phase_qubits": 3,
+                "runtime_derived_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 60,
+                  "controlled_forward": 30,
+                  "controlled_inverse": 30,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 60
+                },
+                "runtime_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 120,
+                  "controlled_forward": 60,
+                  "controlled_inverse": 60,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 120
+                },
+                "tag_prefix": "tiny_true_coherent_history_m3_arm_"
+              }
+            ],
+            "qram_assumed": false,
+            "query_counts": {
+              "classical_sample": 0,
+              "classical_total": 0,
+              "coherent_total": 176,
+              "controlled_forward": 84,
+              "controlled_inverse": 84,
+              "forward": 4,
+              "inverse": 4,
+              "qram_queries": 0,
+              "total": 176
+            },
+            "query_semantics": "executed_worst_case_circuit_oracle_calls_including_controlled_calls_on_zero_amplitude_active_branches",
+            "reconciled": true,
+            "worst_case_full_replay_queries": 176,
+            "worst_case_one_way_history_queries": 88
+          },
+          "register_dimensions": {
+            "active_phase_query_control": 2,
+            "compiled_index_pack": 4,
+            "durable_membership_mask": 4,
+            "rank_stop_work": 4,
+            "reward_pack": 4,
+            "scratch_membership_mask": 4,
+            "shared_phase_pack": 64,
+            "stopping_history": 4
+          },
+          "retained_statevector_dimension": 524288,
+          "transpiled_depth_available": false
+        },
+        "status": "exact_grid_promise_complete_theory_blocked"
+      },
+      "role": "exact_grid_arm1_winner",
+      "trusted_fixture_and_scoring": {
+        "diagnostic_mask_exact": true,
+        "means": [
+          0.0,
+          0.5
+        ],
+        "truth": {
+          "membership_mask": 2,
+          "strict_boundary": true
+        }
+      }
+    },
+    {
+      "algorithm_inputs": {
+        "answer_gap_boundary_family_schedule_history_supplied": false,
+        "cleanup_tolerance": 1e-10,
+        "max_statevector_dimension": 600000,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle"
+      },
+      "case_id": "exact_grid_unresolved_tie",
+      "expected_behavior_matched": true,
+      "expected_history": "00",
+      "expected_output_status": "INCONCLUSIVE",
+      "result": {
+        "backend": "numpy_exact_statevector_true_coherent_two_level_history",
+        "blockers": [
+          "fixed_two_level_n2_k1_exact_state_scope",
+          "generic_finite_qpe_branches_entangle_durable_output",
+          "no_observable_adaptive_precision_confidence_test",
+          "branch_rms_is_unproved_theorem_target_not_executed_saving",
+          "no_scalable_variable_time_cleanup_resource_bound",
+          "no_new_query_complexity_upper_bound",
+          "no_matching_oracle_lower_bound",
+          "no_elementary_gate_or_transpiled_depth_ledger"
+        ],
+        "budget_valid": true,
+        "certificate": {
+          "certificate_type": null,
+          "issued": false,
+          "reason": "the tiny circuit is promise-sensitive and has no generic finite-QPE correctness or confidence theorem",
+          "top_k_correctness_error_bound": null
+        },
+        "claim_boundary": {
+          "ccf_a_claimable": false,
+          "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+          "does_not_support": [
+            "generic off-grid correctness or cleanup",
+            "a confidence certificate or observable adaptive precision rule",
+            "executed query savings from the branch-RMS theorem target",
+            "a scalable heterogeneous variable-time construction",
+            "an elementary-gate decomposition, depth, or hardware resource estimate",
+            "a new query upper bound, composition separation, or matching lower bound",
+            "quantum advantage or a CCF-A publication claim"
+          ],
+          "durable_copy_and_full_replay_implemented": true,
+          "generic_off_grid_cleanup_proved": false,
+          "matching_lower_bound_proved": false,
+          "new_query_upper_bound_proved": false,
+          "quantum_advantage_claimable": false,
+          "supports": [
+            "one statevector containing phase, stop history, scratch and durable masks",
+            "active-flag control on every later-level canonical oracle invocation",
+            "scratch-to-durable direct-k copy followed by complete reverse replay",
+            "exact worst-case controlled-query ledger reconciliation",
+            "cleanup success on exact-grid promises and fail-closed off-promise behavior"
+          ],
+          "true_coherent_stopping_history_unitary_implemented": true,
+          "variable_time_query_speedup_proved": false
+        },
+        "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+        "cleanup_error_bound": 0.0,
+        "durable_output": {
+          "cleanup_passed": true,
+          "dominant_mask": 0,
+          "dominant_probability": 1.0000000000000027,
+          "full_history_replay_executed": true,
+          "membership_bits": [],
+          "membership_mask": null,
+          "output_mask_probabilities": {
+            "0": 1.0000000000000027,
+            "1": 9.491296715705467e-32,
+            "2": 7.536354292322132e-32,
+            "3": 0.0
+          },
+          "scratch_to_durable_copy_executed": true,
+          "status": "INCONCLUSIVE"
+        },
+        "fixed_expected_query_ledger_respected": true,
+        "history": {
+          "dominant_history": "00",
+          "dominant_history_probability": 1.0000000000000009,
+          "invalid_both_stopped_probability": 0.0,
+          "later_level_oracles_controlled_by_active_flag": true,
+          "probabilities": {
+            "00": 1.0000000000000009,
+            "01": 1.702765100802755e-31,
+            "10": 6.241816265566665e-64,
+            "11": 0.0
+          },
+          "scratch_mask_probabilities": {
+            "0": 1.0000000000000009,
+            "1": 9.491296715705438e-32,
+            "2": 7.536354292322111e-32,
+            "3": 0.0
+          },
+          "single_statevector_history_register": true,
+          "stop_at_level_one_probability": 1.702765100802755e-31,
+          "stop_at_level_zero_probability": 6.241816265566665e-64,
+          "unresolved_probability": 1.0000000000000009
+        },
+        "input_interface": {
+          "activity_history_supplied": false,
+          "answer_dependent_inputs_supplied": false,
+          "boundary_supplied": false,
+          "family_label_supplied": false,
+          "forbidden_inputs": [
+            "answer_set",
+            "top_k_membership_mask",
+            "gap",
+            "boundary_value",
+            "family_label",
+            "phase_schedule",
+            "activity_history",
+            "free_qram_list"
+          ],
+          "gap_supplied": false,
+          "internally_fixed_minimum_bin_separation": 2,
+          "internally_fixed_phase_levels": [
+            2,
+            3
+          ],
+          "k": 1,
+          "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+          "schedule_supplied": false
+        },
+        "membership_bits": [],
+        "membership_mask": null,
+        "method_id": "tiny_true_coherent_two_level_stopping_history_v1",
+        "output_status": "INCONCLUSIVE",
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_true_coherent_two_level_history",
+          "cleanup": {
+            "executed_transient_nonzero_probability": 0.0,
+            "history_nonzero_probability": 0.0,
+            "index_nonzero_probability": 0.0,
+            "norm_error": 1.3322676295501878e-15,
+            "output_collision_probability": 1.0000000000000053,
+            "output_reduced_purity": 1.0000000000000053,
+            "passed": true,
+            "phase_nonzero_probability": 0.0,
+            "predicted_transient_nonzero_probability": 0.0,
+            "prediction_residual": 0.0,
+            "purity_residual": 0.0,
+            "query_control_nonzero_probability": 0.0,
+            "rank_work_nonzero_probability": 0.0,
+            "reward_nonzero_probability": 0.0,
+            "scratch_mask_nonzero_probability": 0.0,
+            "tolerance": 1e-10
+          },
+          "compiled_ancilla_qubits_available": false,
+          "declared_register_qubits": 19,
+          "elementary_gate_ledger_available": false,
+          "estimated_peak_complex_amplitudes": 1048640,
+          "executed_numpy_kernel_macro_counts": {
+            "active_controlled_index_load": 8,
+            "active_controlled_index_reset": 8,
+            "active_controlled_inverse_qft": 8,
+            "active_controlled_phase_hadamard": 40,
+            "active_controlled_qft": 8,
+            "active_controlled_rank_stop_relation": 8,
+            "active_controlled_reward_prepare": 8,
+            "active_controlled_reward_unprepare": 8,
+            "active_flag_negation": 4,
+            "active_phase_and_compute": 56,
+            "active_phase_and_uncompute": 56,
+            "controlled_grover_iteration": 80,
+            "history_and_scratch_latch": 4,
+            "scratch_to_durable_mask_copy": 1
+          },
+          "query_ledger": {
+            "branch_rms_full_replay_theorem_target": 176.00000000000009,
+            "branch_rms_is_executed_saving": false,
+            "branch_rms_one_way_theorem_target": 88.00000000000004,
+            "branch_rms_semantics": "history_distribution_weighted_target_for_a_future_variable_time_theorem_not_executed_query_savings_or_a_proved_bound",
+            "expected_query_counts": {
+              "classical_sample": 0,
+              "classical_total": 0,
+              "coherent_total": 176,
+              "controlled_forward": 84,
+              "controlled_inverse": 84,
+              "forward": 4,
+              "inverse": 4,
+              "qram_queries": 0,
+              "total": 176
+            },
+            "per_level_one_way_query_costs": [
+              28,
+              60
+            ],
+            "per_level_runtime_records": [
+              {
+                "derivation": "sum oracle QuerySnapshot.by_tag over both arm tags, then divide exact even counts by the two executed level-kernel invocations",
+                "expected_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 56,
+                  "controlled_forward": 24,
+                  "controlled_inverse": 24,
+                  "forward": 4,
+                  "inverse": 4,
+                  "total": 56
+                },
+                "expected_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 28,
+                  "controlled_forward": 12,
+                  "controlled_inverse": 12,
+                  "forward": 2,
+                  "inverse": 2,
+                  "total": 28
+                },
+                "full_replay_reconciled": true,
+                "kernel_invocations": 2,
+                "level": 0,
+                "one_way_reconciled": true,
+                "phase_qubits": 2,
+                "runtime_derived_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 28,
+                  "controlled_forward": 12,
+                  "controlled_inverse": 12,
+                  "forward": 2,
+                  "inverse": 2,
+                  "total": 28
+                },
+                "runtime_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 56,
+                  "controlled_forward": 24,
+                  "controlled_inverse": 24,
+                  "forward": 4,
+                  "inverse": 4,
+                  "total": 56
+                },
+                "tag_prefix": "tiny_true_coherent_history_m2_arm_"
+              },
+              {
+                "derivation": "sum oracle QuerySnapshot.by_tag over both arm tags, then divide exact even counts by the two executed level-kernel invocations",
+                "expected_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 120,
+                  "controlled_forward": 60,
+                  "controlled_inverse": 60,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 120
+                },
+                "expected_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 60,
+                  "controlled_forward": 30,
+                  "controlled_inverse": 30,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 60
+                },
+                "full_replay_reconciled": true,
+                "kernel_invocations": 2,
+                "level": 1,
+                "one_way_reconciled": true,
+                "phase_qubits": 3,
+                "runtime_derived_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 60,
+                  "controlled_forward": 30,
+                  "controlled_inverse": 30,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 60
+                },
+                "runtime_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 120,
+                  "controlled_forward": 60,
+                  "controlled_inverse": 60,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 120
+                },
+                "tag_prefix": "tiny_true_coherent_history_m3_arm_"
+              }
+            ],
+            "qram_assumed": false,
+            "query_counts": {
+              "classical_sample": 0,
+              "classical_total": 0,
+              "coherent_total": 176,
+              "controlled_forward": 84,
+              "controlled_inverse": 84,
+              "forward": 4,
+              "inverse": 4,
+              "qram_queries": 0,
+              "total": 176
+            },
+            "query_semantics": "executed_worst_case_circuit_oracle_calls_including_controlled_calls_on_zero_amplitude_active_branches",
+            "reconciled": true,
+            "worst_case_full_replay_queries": 176,
+            "worst_case_one_way_history_queries": 88
+          },
+          "register_dimensions": {
+            "active_phase_query_control": 2,
+            "compiled_index_pack": 4,
+            "durable_membership_mask": 4,
+            "rank_stop_work": 4,
+            "reward_pack": 4,
+            "scratch_membership_mask": 4,
+            "shared_phase_pack": 64,
+            "stopping_history": 4
+          },
+          "retained_statevector_dimension": 524288,
+          "transpiled_depth_available": false
+        },
+        "status": "unresolved_history_fail_closed"
+      },
+      "role": "exact_grid_tie",
+      "trusted_fixture_and_scoring": {
+        "diagnostic_mask_exact": null,
+        "means": [
+          0.5,
+          0.5
+        ],
+        "truth": {
+          "membership_mask": null,
+          "strict_boundary": false
+        }
+      }
+    },
+    {
+      "algorithm_inputs": {
+        "answer_gap_boundary_family_schedule_history_supplied": false,
+        "cleanup_tolerance": 1e-10,
+        "max_statevector_dimension": 600000,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle"
+      },
+      "case_id": "generic_off_grid_entangled",
+      "expected_behavior_matched": true,
+      "expected_history": "mixed",
+      "expected_output_status": "INCONCLUSIVE",
+      "result": {
+        "backend": "numpy_exact_statevector_true_coherent_two_level_history",
+        "blockers": [
+          "fixed_two_level_n2_k1_exact_state_scope",
+          "generic_finite_qpe_branches_entangle_durable_output",
+          "no_observable_adaptive_precision_confidence_test",
+          "branch_rms_is_unproved_theorem_target_not_executed_saving",
+          "no_scalable_variable_time_cleanup_resource_bound",
+          "no_new_query_complexity_upper_bound",
+          "no_matching_oracle_lower_bound",
+          "no_elementary_gate_or_transpiled_depth_ledger"
+        ],
+        "budget_valid": true,
+        "certificate": {
+          "certificate_type": null,
+          "issued": false,
+          "reason": "the tiny circuit is promise-sensitive and has no generic finite-QPE correctness or confidence theorem",
+          "top_k_correctness_error_bound": null
+        },
+        "claim_boundary": {
+          "ccf_a_claimable": false,
+          "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+          "does_not_support": [
+            "generic off-grid correctness or cleanup",
+            "a confidence certificate or observable adaptive precision rule",
+            "executed query savings from the branch-RMS theorem target",
+            "a scalable heterogeneous variable-time construction",
+            "an elementary-gate decomposition, depth, or hardware resource estimate",
+            "a new query upper bound, composition separation, or matching lower bound",
+            "quantum advantage or a CCF-A publication claim"
+          ],
+          "durable_copy_and_full_replay_implemented": true,
+          "generic_off_grid_cleanup_proved": false,
+          "matching_lower_bound_proved": false,
+          "new_query_upper_bound_proved": false,
+          "quantum_advantage_claimable": false,
+          "supports": [
+            "one statevector containing phase, stop history, scratch and durable masks",
+            "active-flag control on every later-level canonical oracle invocation",
+            "scratch-to-durable direct-k copy followed by complete reverse replay",
+            "exact worst-case controlled-query ledger reconciliation",
+            "cleanup success on exact-grid promises and fail-closed off-promise behavior"
+          ],
+          "true_coherent_stopping_history_unitary_implemented": true,
+          "variable_time_query_speedup_proved": false
+        },
+        "claim_scope": "tiny_exact_grid_promise_true_coherent_history_and_replay_no_generic_off_grid_theorem_no_variable_time_speedup_branch_rms_target_only_no_new_upper_or_lower_bound",
+        "cleanup_error_bound": 0.26185723968409447,
+        "durable_output": {
+          "cleanup_passed": false,
+          "dominant_mask": 1,
+          "dominant_probability": 0.846659769631283,
+          "full_history_replay_executed": true,
+          "membership_bits": [],
+          "membership_mask": null,
+          "output_mask_probabilities": {
+            "0": 0.14578372339229276,
+            "1": 0.846659769631283,
+            "2": 0.007556506976420402,
+            "3": 0.0
+          },
+          "scratch_to_durable_copy_executed": true,
+          "status": "INCONCLUSIVE"
+        },
+        "fixed_expected_query_ledger_respected": true,
+        "history": {
+          "dominant_history": "01",
+          "dominant_history_probability": 0.7359704582397051,
+          "invalid_both_stopped_probability": 0.0,
+          "later_level_oracles_controlled_by_active_flag": true,
+          "probabilities": {
+            "00": 0.14578372339229315,
+            "01": 0.7359704582397051,
+            "10": 0.11824581836799988,
+            "11": 0.0
+          },
+          "scratch_mask_probabilities": {
+            "0": 0.14578372339229315,
+            "1": 0.8466597696312846,
+            "2": 0.0075565069764204065,
+            "3": 0.0
+          },
+          "single_statevector_history_register": true,
+          "stop_at_level_one_probability": 0.7359704582397051,
+          "stop_at_level_zero_probability": 0.11824581836799988,
+          "unresolved_probability": 0.14578372339229315
+        },
+        "input_interface": {
+          "activity_history_supplied": false,
+          "answer_dependent_inputs_supplied": false,
+          "boundary_supplied": false,
+          "family_label_supplied": false,
+          "forbidden_inputs": [
+            "answer_set",
+            "top_k_membership_mask",
+            "gap",
+            "boundary_value",
+            "family_label",
+            "phase_schedule",
+            "activity_history",
+            "free_qram_list"
+          ],
+          "gap_supplied": false,
+          "internally_fixed_minimum_bin_separation": 2,
+          "internally_fixed_phase_levels": [
+            2,
+            3
+          ],
+          "k": 1,
+          "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+          "schedule_supplied": false
+        },
+        "membership_bits": [],
+        "membership_mask": null,
+        "method_id": "tiny_true_coherent_two_level_stopping_history_v1",
+        "output_status": "INCONCLUSIVE",
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_true_coherent_two_level_history",
+          "cleanup": {
+            "executed_transient_nonzero_probability": 0.26185723968409447,
+            "history_nonzero_probability": 0.08840510230158316,
+            "index_nonzero_probability": 3.6637359812630166e-15,
+            "norm_error": 1.887379141862766e-15,
+            "output_collision_probability": 0.7381427603159024,
+            "output_reduced_purity": 0.7381427603159024,
+            "passed": false,
+            "phase_nonzero_probability": 0.2551573471405242,
+            "predicted_transient_nonzero_probability": 0.2618572396840976,
+            "prediction_residual": 3.1086244689504383e-15,
+            "purity_residual": 0.0,
+            "query_control_nonzero_probability": 3.6637359812630166e-15,
+            "rank_work_nonzero_probability": 3.6637359812630166e-15,
+            "reward_nonzero_probability": 0.18687312761338315,
+            "scratch_mask_nonzero_probability": 0.08840510230158316,
+            "tolerance": 1e-10
+          },
+          "compiled_ancilla_qubits_available": false,
+          "declared_register_qubits": 19,
+          "elementary_gate_ledger_available": false,
+          "estimated_peak_complex_amplitudes": 1048640,
+          "executed_numpy_kernel_macro_counts": {
+            "active_controlled_index_load": 8,
+            "active_controlled_index_reset": 8,
+            "active_controlled_inverse_qft": 8,
+            "active_controlled_phase_hadamard": 40,
+            "active_controlled_qft": 8,
+            "active_controlled_rank_stop_relation": 8,
+            "active_controlled_reward_prepare": 8,
+            "active_controlled_reward_unprepare": 8,
+            "active_flag_negation": 4,
+            "active_phase_and_compute": 56,
+            "active_phase_and_uncompute": 56,
+            "controlled_grover_iteration": 80,
+            "history_and_scratch_latch": 4,
+            "scratch_to_durable_mask_copy": 1
+          },
+          "query_ledger": {
+            "branch_rms_full_replay_theorem_target": 166.38520492109515,
+            "branch_rms_is_executed_saving": false,
+            "branch_rms_one_way_theorem_target": 83.19260246054758,
+            "branch_rms_semantics": "history_distribution_weighted_target_for_a_future_variable_time_theorem_not_executed_query_savings_or_a_proved_bound",
+            "expected_query_counts": {
+              "classical_sample": 0,
+              "classical_total": 0,
+              "coherent_total": 176,
+              "controlled_forward": 84,
+              "controlled_inverse": 84,
+              "forward": 4,
+              "inverse": 4,
+              "qram_queries": 0,
+              "total": 176
+            },
+            "per_level_one_way_query_costs": [
+              28,
+              60
+            ],
+            "per_level_runtime_records": [
+              {
+                "derivation": "sum oracle QuerySnapshot.by_tag over both arm tags, then divide exact even counts by the two executed level-kernel invocations",
+                "expected_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 56,
+                  "controlled_forward": 24,
+                  "controlled_inverse": 24,
+                  "forward": 4,
+                  "inverse": 4,
+                  "total": 56
+                },
+                "expected_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 28,
+                  "controlled_forward": 12,
+                  "controlled_inverse": 12,
+                  "forward": 2,
+                  "inverse": 2,
+                  "total": 28
+                },
+                "full_replay_reconciled": true,
+                "kernel_invocations": 2,
+                "level": 0,
+                "one_way_reconciled": true,
+                "phase_qubits": 2,
+                "runtime_derived_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 28,
+                  "controlled_forward": 12,
+                  "controlled_inverse": 12,
+                  "forward": 2,
+                  "inverse": 2,
+                  "total": 28
+                },
+                "runtime_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 56,
+                  "controlled_forward": 24,
+                  "controlled_inverse": 24,
+                  "forward": 4,
+                  "inverse": 4,
+                  "total": 56
+                },
+                "tag_prefix": "tiny_true_coherent_history_m2_arm_"
+              },
+              {
+                "derivation": "sum oracle QuerySnapshot.by_tag over both arm tags, then divide exact even counts by the two executed level-kernel invocations",
+                "expected_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 120,
+                  "controlled_forward": 60,
+                  "controlled_inverse": 60,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 120
+                },
+                "expected_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 60,
+                  "controlled_forward": 30,
+                  "controlled_inverse": 30,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 60
+                },
+                "full_replay_reconciled": true,
+                "kernel_invocations": 2,
+                "level": 1,
+                "one_way_reconciled": true,
+                "phase_qubits": 3,
+                "runtime_derived_one_way_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 60,
+                  "controlled_forward": 30,
+                  "controlled_inverse": 30,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 60
+                },
+                "runtime_full_replay_counts": {
+                  "classical_sample": 0,
+                  "classical_total": 0,
+                  "coherent_total": 120,
+                  "controlled_forward": 60,
+                  "controlled_inverse": 60,
+                  "forward": 0,
+                  "inverse": 0,
+                  "total": 120
+                },
+                "tag_prefix": "tiny_true_coherent_history_m3_arm_"
+              }
+            ],
+            "qram_assumed": false,
+            "query_counts": {
+              "classical_sample": 0,
+              "classical_total": 0,
+              "coherent_total": 176,
+              "controlled_forward": 84,
+              "controlled_inverse": 84,
+              "forward": 4,
+              "inverse": 4,
+              "qram_queries": 0,
+              "total": 176
+            },
+            "query_semantics": "executed_worst_case_circuit_oracle_calls_including_controlled_calls_on_zero_amplitude_active_branches",
+            "reconciled": true,
+            "worst_case_full_replay_queries": 176,
+            "worst_case_one_way_history_queries": 88
+          },
+          "register_dimensions": {
+            "active_phase_query_control": 2,
+            "compiled_index_pack": 4,
+            "durable_membership_mask": 4,
+            "rank_stop_work": 4,
+            "reward_pack": 4,
+            "scratch_membership_mask": 4,
+            "shared_phase_pack": 64,
+            "stopping_history": 4
+          },
+          "retained_statevector_dimension": 524288,
+          "transpiled_depth_available": false
+        },
+        "status": "durable_output_entanglement_cleanup_fail_closed"
+      },
+      "role": "off_grid_fail_closed",
+      "trusted_fixture_and_scoring": {
+        "diagnostic_mask_exact": null,
+        "means": [
+          0.82,
+          0.18
+        ],
+        "truth": {
+          "membership_mask": 1,
+          "strict_boundary": true
+        }
+      }
+    }
+  ],
+  "resolved_config": {
+    "algorithm_parameters": {
+      "cleanup_tolerance": 1e-10,
+      "max_statevector_dimension": 600000
+    },
+    "cases": [
+      {
+        "case_id": "exact_grid_first_stop",
+        "expected_history": "10",
+        "expected_output_status": "MASK",
+        "means": [
+          1.0,
+          0.0
+        ],
+        "role": "exact_grid_first_stop"
+      },
+      {
+        "case_id": "exact_grid_second_stop",
+        "expected_history": "01",
+        "expected_output_status": "MASK",
+        "means": [
+          0.5,
+          0.0
+        ],
+        "role": "exact_grid_second_stop"
+      },
+      {
+        "case_id": "exact_grid_arm1_second_stop",
+        "expected_history": "01",
+        "expected_output_status": "MASK",
+        "means": [
+          0.0,
+          0.5
+        ],
+        "role": "exact_grid_arm1_winner"
+      },
+      {
+        "case_id": "exact_grid_unresolved_tie",
+        "expected_history": "00",
+        "expected_output_status": "INCONCLUSIVE",
+        "means": [
+          0.5,
+          0.5
+        ],
+        "role": "exact_grid_tie"
+      },
+      {
+        "case_id": "generic_off_grid_entangled",
+        "expected_history": "mixed",
+        "expected_output_status": "INCONCLUSIVE",
+        "means": [
+          0.82,
+          0.18
+        ],
+        "role": "off_grid_fail_closed"
+      }
+    ],
+    "experiment_name": "tiny_true_coherent_adaptive_stopping_history_s3_v1",
+    "notes": [
+      "The algorithm receives only an opaque two-arm canonical oracle and numerical resource caps; the two phase levels and stop rule are fixed internally.",
+      "Phase, history, scratch mask, durable mask, rank work, and active query control coexist in one exact statevector.",
+      "Every level-two oracle invocation is controlled by the coherent not-stopped flag and charged in the worst-case query ledger.",
+      "The direct scratch mask is copied to a durable output before complete reverse replay of both level kernels.",
+      "Exact-grid first-stop and second-stop fixtures must output the correct mask and clean; the exact tie and generic off-grid fixture must fail closed.",
+      "The branch-RMS value is a theorem target only, never counted as an executed saving or proved variable-time upper bound."
+    ],
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "summary": {
+    "branch_rms_is_theorem_target_only": true,
+    "case_count": 5,
+    "ccf_a_claimable": false,
+    "durable_copy_and_full_replay_implemented": true,
+    "exact_grid_complete_count": 3,
+    "executed_queries_per_case": 176,
+    "fail_closed_count": 2,
+    "generic_off_grid_cleanup_proved": false,
+    "later_level_active_control_implemented": true,
+    "matching_lower_bound_proved": false,
+    "new_query_upper_bound_proved": false,
+    "quantum_advantage_claimable": false,
+    "runtime_tag_derived_one_way_level_queries": [
+      28,
+      60
+    ],
+    "true_coherent_stopping_history_unitary_implemented": true,
+    "variable_time_query_speedup_proved": false
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "experiment_name": "adaptive_unknown_boundary_topk_s3_panel_v1",
+  "algorithm_parameters": {
+    "minimum_phase_qubits": 1,
+    "maximum_phase_qubits": 4,
+    "target_diagnostic_error_probability": 0.04,
+    "numerical_cleanup_tolerance": 1e-10,
+    "max_statevector_dimension": 600000
+  },
+  "cases": [
+    {
+      "case_id": "on_grid_fast_n2_k1",
+      "role": "on_grid_fast",
+      "means": [
+        1.0,
+        0.0
+      ],
+      "k": 1,
+      "max_canonical_oracle_queries": 1000,
+      "expected_output_status": "DIAGNOSTIC_MASK",
+      "expected_selected_phase_qubits": 1
+    },
+    {
+      "case_id": "off_grid_mid_n2_k1",
+      "role": "off_grid_mid_precision",
+      "means": [
+        0.82,
+        0.18
+      ],
+      "k": 1,
+      "max_canonical_oracle_queries": 1000,
+      "expected_output_status": "DIAGNOSTIC_MASK",
+      "expected_selected_phase_qubits": 3
+    },
+    {
+      "case_id": "off_grid_deep_n2_k1",
+      "role": "off_grid_deep_precision",
+      "means": [
+        0.7,
+        0.3
+      ],
+      "k": 1,
+      "max_canonical_oracle_queries": 1000,
+      "expected_output_status": "DIAGNOSTIC_MASK",
+      "expected_selected_phase_qubits": 4
+    },
+    {
+      "case_id": "exact_tie_n2_k1",
+      "role": "exact_tie",
+      "means": [
+        0.5,
+        0.5
+      ],
+      "k": 1,
+      "max_canonical_oracle_queries": 1000,
+      "expected_output_status": "INCONCLUSIVE",
+      "expected_selected_phase_qubits": null
+    },
+    {
+      "case_id": "off_grid_budget_cap_n2_k1",
+      "role": "query_cap",
+      "means": [
+        0.82,
+        0.18
+      ],
+      "k": 1,
+      "max_canonical_oracle_queries": 40,
+      "expected_output_status": "INCONCLUSIVE",
+      "expected_selected_phase_qubits": null
+    }
+  ],
+  "notes": [
+    "All non-budget-ablation cases share one public error target and consecutive precision policy; no per-instance gap or phase schedule is supplied.",
+    "Means remain in the trusted fixture harness only and are used to construct the opaque canonical oracle and score outputs.",
+    "Each precision level executes the S2 coherent rank-copy-uncompute circuit and reconciles its canonical query ledger.",
+    "The adaptive stop decision reads exact statevector diagnostics in classical simulation; it is not a coherent variable-time controller or free observable.",
+    "MASK is diagnostic output with certificate withheld; ties, exhausted hard caps, and unaccepted levels fail closed as INCONCLUSIVE.",
+    "This panel supports implementation auditing only, not a new upper bound, matching lower bound, quantum advantage, or CCF-A claim."
+  ]
+}

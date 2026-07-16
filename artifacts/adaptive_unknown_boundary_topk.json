@@ -1,0 +1,1903 @@
+{
+  "aggregate_assertions": {
+    "all_assertions_passed": true,
+    "all_controllers_explicitly_classical": true,
+    "all_executed_query_ledgers_reconciled": true,
+    "all_hard_caps_respected": true,
+    "all_preregistered_behaviors_matched": true,
+    "no_answer_gap_boundary_family_schedule_history_input": true,
+    "no_certificate_issued": true,
+    "no_qram_assumed": true,
+    "no_quantum_advantage_claimed": true,
+    "no_single_coherent_variable_time_unitary_claimed": true,
+    "off_grid_deep_stops_at_phase_four": true,
+    "off_grid_mid_stops_at_phase_three": true,
+    "required_panel_roles_present_exactly_once": true,
+    "tie_and_query_cap_fail_closed": true
+  },
+  "artifact_type": "q_gapselect_adaptive_unknown_boundary_topk_s3_panel",
+  "claim_boundaries": {
+    "ccf_a_claimable": false,
+    "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+    "does_not_support": [
+      "a single coherent variable-time stopping unitary",
+      "a physically retained coherent stopping-history register",
+      "free observation of exact output probabilities or garbage mass",
+      "a Top-k correctness or confidence certificate",
+      "generic off-grid correctness under finite QPE",
+      "a cleanup/resource theorem for coherent stopping-history replay",
+      "a new query-complexity upper bound or composition separation",
+      "a matching oracle lower bound",
+      "hardware evidence, quantum advantage, or a CCF-A publication claim"
+    ],
+    "generic_off_grid_correctness_proved": false,
+    "matching_lower_bound_proved": false,
+    "new_query_upper_bound_proved": false,
+    "quantum_advantage_claimable": false,
+    "single_coherent_variable_time_unitary_implemented": false,
+    "supports": [
+      "sequential execution of tiny coherent unknown-boundary level unitaries",
+      "consecutive precision construction without an instance schedule input",
+      "exact per-level and cumulative canonical-oracle query reconciliation",
+      "hard-cap checks before every executed precision",
+      "durable direct-k membership-register and cleanup diagnostics",
+      "fail-closed output when the diagnostic predicate or budget fails"
+    ]
+  },
+  "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+  "claim_status": "adaptive_exact_state_diagnostic_supported_coherent_variable_time_unitary_and_theory_not_implemented",
+  "config_hash": "accb76c46511bed4a9530023b42acdc4e3301fce9c1d3b7ee82ee1fc07e2f76c",
+  "experiment_name": "adaptive_unknown_boundary_topk_s3_panel_v1",
+  "method_id": "adaptive_unknown_boundary_topk_exact_state_diagnostic_v1",
+  "notes": [
+    "All non-budget-ablation cases share one public error target and consecutive precision policy; no per-instance gap or phase schedule is supplied.",
+    "Means remain in the trusted fixture harness only and are used to construct the opaque canonical oracle and score outputs.",
+    "Each precision level executes the S2 coherent rank-copy-uncompute circuit and reconciles its canonical query ledger.",
+    "The adaptive stop decision reads exact statevector diagnostics in classical simulation; it is not a coherent variable-time controller or free observable.",
+    "MASK is diagnostic output with certificate withheld; ties, exhausted hard caps, and unaccepted levels fail closed as INCONCLUSIVE.",
+    "This panel supports implementation auditing only, not a new upper bound, matching lower bound, quantum advantage, or CCF-A claim."
+  ],
+  "provenance": {
+    "config_path": "/workspace/scratch/9476d8f4ff7c/q-gapselect/configs/adaptive_unknown_boundary_topk.json",
+    "config_sha256": "accb76c46511bed4a9530023b42acdc4e3301fce9c1d3b7ee82ee1fc07e2f76c",
+    "git_commit": "e7928b991fa60755fc785769011aa257af3e40db",
+    "git_tree": "5def5d43a41096ae98eb5b55a579958b62eb89fb",
+    "numpy_version": "2.5.1",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13",
+    "source_status_capture": "before_s3_artifact_write",
+    "source_tree_dirty_at_execution": false
+  },
+  "records": [
+    {
+      "algorithm_inputs": {
+        "answer_gap_boundary_family_schedule_history_supplied": false,
+        "k": 1,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+        "public_canonical_query_hard_cap": 1000,
+        "public_numerical_cleanup_tolerance": 1e-10,
+        "public_precision_bounds": [
+          1,
+          4
+        ],
+        "public_statevector_dimension_cap": 600000,
+        "public_target_diagnostic_error_probability": 0.04
+      },
+      "case_id": "on_grid_fast_n2_k1",
+      "expected_behavior_matched": true,
+      "expected_output_status": "DIAGNOSTIC_MASK",
+      "expected_selected_phase_qubits": 1,
+      "result": {
+        "backend": "numpy_sequential_coherent_levels_classical_adaptive_controller",
+        "blockers": [
+          "adaptive_controller_reads_exact_statevector_diagnostics",
+          "no_single_coherent_variable_time_stopping_unitary",
+          "no_physically_retained_coherent_history_register",
+          "no_observable_charged_acceptance_estimator",
+          "no_generic_off_grid_top_k_correctness_certificate",
+          "no_coherent_history_cleanup_resource_bound",
+          "no_new_query_complexity_upper_bound",
+          "no_same_interface_composition_separation",
+          "no_matching_oracle_lower_bound",
+          "tiny_exact_state_simulation_not_hardware_evidence"
+        ],
+        "budget_valid": true,
+        "certificate": {
+          "certificate_type": null,
+          "diagnostic_error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+          "exact_statevector_diagnostic_error_bound": 1.3322676295501878e-15,
+          "issued": false,
+          "reason": "the stop predicate reads exact simulator probabilities and cleanup mass; an observable charged estimator and correctness theorem are not implemented",
+          "top_k_correctness_error_bound": null
+        },
+        "claim_boundary": {
+          "ccf_a_claimable": false,
+          "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+          "does_not_support": [
+            "a single coherent variable-time stopping unitary",
+            "a physically retained coherent stopping-history register",
+            "free observation of exact output probabilities or garbage mass",
+            "a Top-k correctness or confidence certificate",
+            "generic off-grid correctness under finite QPE",
+            "a cleanup/resource theorem for coherent stopping-history replay",
+            "a new query-complexity upper bound or composition separation",
+            "a matching oracle lower bound",
+            "hardware evidence, quantum advantage, or a CCF-A publication claim"
+          ],
+          "generic_off_grid_correctness_proved": false,
+          "matching_lower_bound_proved": false,
+          "new_query_upper_bound_proved": false,
+          "quantum_advantage_claimable": false,
+          "single_coherent_variable_time_unitary_implemented": false,
+          "supports": [
+            "sequential execution of tiny coherent unknown-boundary level unitaries",
+            "consecutive precision construction without an instance schedule input",
+            "exact per-level and cumulative canonical-oracle query reconciliation",
+            "hard-cap checks before every executed precision",
+            "durable direct-k membership-register and cleanup diagnostics",
+            "fail-closed output when the diagnostic predicate or budget fails"
+          ]
+        },
+        "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+        "cleanup": {
+          "available": true,
+          "cleanup_prediction_residual": 1.3322676295501878e-15,
+          "diagnostic_acceptance_bound_passed": true,
+          "diagnostic_error_bound": 1.3322676295501878e-15,
+          "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+          "exact_numerical_cleanup_passed": true,
+          "executed_transient_nonzero_probability": 1.3322676295501878e-15,
+          "nonstrict_boundary_mass": 6.661338147750939e-16,
+          "predicted_transient_nonzero_probability": 2.6645352591003757e-15,
+          "statevector_output_disagreement_mass": 1.3322676295501878e-15,
+          "target_diagnostic_error_probability": 0.04,
+          "top_k_correctness_error_bound": null
+        },
+        "durable_output": {
+          "approximate_cleanup_bound_passed": true,
+          "direct_k_membership_register_used": true,
+          "dominant_mask_selected_by_statevector_introspection": true,
+          "exact_transient_cleanup_passed": true,
+          "membership_bits": [
+            1,
+            0
+          ],
+          "membership_mask": 1,
+          "output_disagreement_mass": 1.3322676295501878e-15,
+          "phase_estimation_inverted": true,
+          "physical_measurement_performed": false,
+          "rank_relation_computed_and_uncomputed": true,
+          "selected_phase_qubits": 1,
+          "status": "DIAGNOSTIC_MASK",
+          "transient_nonzero_probability": 1.3322676295501878e-15
+        },
+        "hard_cap_respected": true,
+        "input_interface": {
+          "activity_history_supplied": false,
+          "answer_dependent_inputs_supplied": false,
+          "boundary_supplied": false,
+          "family_label_supplied": false,
+          "forbidden_inputs": [
+            "answer_set",
+            "top_k_membership_mask",
+            "gap",
+            "boundary_value",
+            "family_label",
+            "precision_schedule",
+            "activity_schedule",
+            "activity_history",
+            "free_qram_list"
+          ],
+          "gap_supplied": false,
+          "internally_constructed_precision_policy": "all_consecutive_integer_precisions_within_public_bounds",
+          "k": 1,
+          "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+          "precision_schedule_supplied": false,
+          "public_canonical_query_hard_cap": 1000,
+          "public_numerical_cleanup_tolerance": 1e-10,
+          "public_precision_bounds": [
+            1,
+            4
+          ],
+          "public_statevector_dimension_cap": 600000,
+          "public_target_diagnostic_error_probability": 0.04
+        },
+        "membership_bits": [
+          1,
+          0
+        ],
+        "membership_mask": 1,
+        "method_id": "adaptive_unknown_boundary_topk_exact_state_diagnostic_v1",
+        "output_status": "DIAGNOSTIC_MASK",
+        "quantum_advantage_claimable": false,
+        "query_budget": {
+          "aggregate_reconciled": true,
+          "all_executed_levels_reconciled": true,
+          "blocked_before_phase_qubits": null,
+          "blocked_next_level_query_cost": null,
+          "budget_valid": true,
+          "expected_query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 12,
+            "controlled_forward": 4,
+            "controlled_inverse": 4,
+            "forward": 2,
+            "inverse": 2,
+            "qram_queries": 0,
+            "total": 12
+          },
+          "hard_cap_queries": 1000,
+          "hard_cap_respected": true,
+          "qram_assumed": false,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 12,
+            "controlled_forward": 4,
+            "controlled_inverse": 4,
+            "forward": 2,
+            "inverse": 2,
+            "qram_queries": 0,
+            "total": 12
+          },
+          "query_formula": "Q_m = 2*n*(2^(m+1)-1) per executed precision m"
+        },
+        "status": "diagnostic_mask_selected_certificate_withheld",
+        "stopping_history": {
+          "coherent_history_cleanup_proved": false,
+          "coherent_history_register_physically_retained": false,
+          "controller_is_classical": true,
+          "emulated_history_bits": [
+            1
+          ],
+          "first_stop_level_index": 0,
+          "first_stop_phase_qubits": 1,
+          "independently_coherent_level_unitaries_executed": true,
+          "levels": [
+            {
+              "cleanup_prediction_residual": 1.3322676295501878e-15,
+              "cumulative_coherent_queries": 12,
+              "diagnostic_acceptance_bound_passed": true,
+              "diagnostic_error_bound": 1.3322676295501878e-15,
+              "dominant_mask": 1,
+              "dominant_mask_bit_count": 1,
+              "dominant_probability": 0.9999999999999987,
+              "emulated_stop_bit": 1,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": true,
+              "executed_transient_nonzero_probability": 1.3322676295501878e-15,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 12,
+                "controlled_forward": 4,
+                "controlled_inverse": 4,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 12
+              },
+              "level_index": 0,
+              "level_status": "diagnostic_stop_latched_certificate_withheld",
+              "nonstrict_boundary_mass": 6.661338147750939e-16,
+              "output_collision_probability": 0.9999999999999973,
+              "output_reduced_purity": 0.9999999999999973,
+              "phase_bins": 2,
+              "phase_qubits": 1,
+              "predicted_transient_nonzero_probability": 2.6645352591003757e-15,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 12,
+                "controlled_forward": 4,
+                "controlled_inverse": 4,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 12
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 2048,
+              "statevector_output_disagreement_mass": 1.3322676295501878e-15,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": true,
+              "strict_boundary_probability": 0.9999999999999993
+            }
+          ],
+          "semantics": "classical_exact_state_diagnostic_history_over_independently_executed_coherent_level_unitaries_not_a_single_variable_time_unitary",
+          "single_coherent_variable_time_unitary_implemented": false
+        }
+      },
+      "role": "on_grid_fast",
+      "trusted_fixture_and_scoring": {
+        "diagnostic_mask_exact_on_strict_relation": true,
+        "means": [
+          1.0,
+          0.0
+        ],
+        "truth": {
+          "membership_mask": 1,
+          "strict_boundary": true,
+          "top_k_indices": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "algorithm_inputs": {
+        "answer_gap_boundary_family_schedule_history_supplied": false,
+        "k": 1,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+        "public_canonical_query_hard_cap": 1000,
+        "public_numerical_cleanup_tolerance": 1e-10,
+        "public_precision_bounds": [
+          1,
+          4
+        ],
+        "public_statevector_dimension_cap": 600000,
+        "public_target_diagnostic_error_probability": 0.04
+      },
+      "case_id": "off_grid_mid_n2_k1",
+      "expected_behavior_matched": true,
+      "expected_output_status": "DIAGNOSTIC_MASK",
+      "expected_selected_phase_qubits": 3,
+      "result": {
+        "backend": "numpy_sequential_coherent_levels_classical_adaptive_controller",
+        "blockers": [
+          "adaptive_controller_reads_exact_statevector_diagnostics",
+          "no_single_coherent_variable_time_stopping_unitary",
+          "no_physically_retained_coherent_history_register",
+          "no_observable_charged_acceptance_estimator",
+          "no_generic_off_grid_top_k_correctness_certificate",
+          "no_coherent_history_cleanup_resource_bound",
+          "no_new_query_complexity_upper_bound",
+          "no_same_interface_composition_separation",
+          "no_matching_oracle_lower_bound",
+          "tiny_exact_state_simulation_not_hardware_evidence"
+        ],
+        "budget_valid": true,
+        "certificate": {
+          "certificate_type": null,
+          "diagnostic_error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+          "exact_statevector_diagnostic_error_bound": 0.034769713197007945,
+          "issued": false,
+          "reason": "the stop predicate reads exact simulator probabilities and cleanup mass; an observable charged estimator and correctness theorem are not implemented",
+          "top_k_correctness_error_bound": null
+        },
+        "claim_boundary": {
+          "ccf_a_claimable": false,
+          "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+          "does_not_support": [
+            "a single coherent variable-time stopping unitary",
+            "a physically retained coherent stopping-history register",
+            "free observation of exact output probabilities or garbage mass",
+            "a Top-k correctness or confidence certificate",
+            "generic off-grid correctness under finite QPE",
+            "a cleanup/resource theorem for coherent stopping-history replay",
+            "a new query-complexity upper bound or composition separation",
+            "a matching oracle lower bound",
+            "hardware evidence, quantum advantage, or a CCF-A publication claim"
+          ],
+          "generic_off_grid_correctness_proved": false,
+          "matching_lower_bound_proved": false,
+          "new_query_upper_bound_proved": false,
+          "quantum_advantage_claimable": false,
+          "single_coherent_variable_time_unitary_implemented": false,
+          "supports": [
+            "sequential execution of tiny coherent unknown-boundary level unitaries",
+            "consecutive precision construction without an instance schedule input",
+            "exact per-level and cumulative canonical-oracle query reconciliation",
+            "hard-cap checks before every executed precision",
+            "durable direct-k membership-register and cleanup diagnostics",
+            "fail-closed output when the diagnostic predicate or budget fails"
+          ]
+        },
+        "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+        "cleanup": {
+          "available": true,
+          "cleanup_prediction_residual": 1.5543122344752192e-15,
+          "diagnostic_acceptance_bound_passed": true,
+          "diagnostic_error_bound": 0.034769713197007945,
+          "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+          "exact_numerical_cleanup_passed": false,
+          "executed_transient_nonzero_probability": 0.034769713197007945,
+          "nonstrict_boundary_mass": 0.01258656948699255,
+          "predicted_transient_nonzero_probability": 0.0347697131970095,
+          "statevector_output_disagreement_mass": 0.017632244914860706,
+          "target_diagnostic_error_probability": 0.04,
+          "top_k_correctness_error_bound": null
+        },
+        "durable_output": {
+          "approximate_cleanup_bound_passed": true,
+          "direct_k_membership_register_used": true,
+          "dominant_mask_selected_by_statevector_introspection": true,
+          "exact_transient_cleanup_passed": false,
+          "membership_bits": [
+            1,
+            0
+          ],
+          "membership_mask": 1,
+          "output_disagreement_mass": 0.017632244914860706,
+          "phase_estimation_inverted": true,
+          "physical_measurement_performed": false,
+          "rank_relation_computed_and_uncomputed": true,
+          "selected_phase_qubits": 3,
+          "status": "DIAGNOSTIC_MASK",
+          "transient_nonzero_probability": 0.034769713197007945
+        },
+        "hard_cap_respected": true,
+        "input_interface": {
+          "activity_history_supplied": false,
+          "answer_dependent_inputs_supplied": false,
+          "boundary_supplied": false,
+          "family_label_supplied": false,
+          "forbidden_inputs": [
+            "answer_set",
+            "top_k_membership_mask",
+            "gap",
+            "boundary_value",
+            "family_label",
+            "precision_schedule",
+            "activity_schedule",
+            "activity_history",
+            "free_qram_list"
+          ],
+          "gap_supplied": false,
+          "internally_constructed_precision_policy": "all_consecutive_integer_precisions_within_public_bounds",
+          "k": 1,
+          "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+          "precision_schedule_supplied": false,
+          "public_canonical_query_hard_cap": 1000,
+          "public_numerical_cleanup_tolerance": 1e-10,
+          "public_precision_bounds": [
+            1,
+            4
+          ],
+          "public_statevector_dimension_cap": 600000,
+          "public_target_diagnostic_error_probability": 0.04
+        },
+        "membership_bits": [
+          1,
+          0
+        ],
+        "membership_mask": 1,
+        "method_id": "adaptive_unknown_boundary_topk_exact_state_diagnostic_v1",
+        "output_status": "DIAGNOSTIC_MASK",
+        "quantum_advantage_claimable": false,
+        "query_budget": {
+          "aggregate_reconciled": true,
+          "all_executed_levels_reconciled": true,
+          "blocked_before_phase_qubits": null,
+          "blocked_next_level_query_cost": null,
+          "budget_valid": true,
+          "expected_query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 100,
+            "controlled_forward": 44,
+            "controlled_inverse": 44,
+            "forward": 6,
+            "inverse": 6,
+            "qram_queries": 0,
+            "total": 100
+          },
+          "hard_cap_queries": 1000,
+          "hard_cap_respected": true,
+          "qram_assumed": false,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 100,
+            "controlled_forward": 44,
+            "controlled_inverse": 44,
+            "forward": 6,
+            "inverse": 6,
+            "qram_queries": 0,
+            "total": 100
+          },
+          "query_formula": "Q_m = 2*n*(2^(m+1)-1) per executed precision m"
+        },
+        "status": "diagnostic_mask_selected_certificate_withheld",
+        "stopping_history": {
+          "coherent_history_cleanup_proved": false,
+          "coherent_history_register_physically_retained": false,
+          "controller_is_classical": true,
+          "emulated_history_bits": [
+            0,
+            0,
+            1
+          ],
+          "first_stop_level_index": 2,
+          "first_stop_phase_qubits": 3,
+          "independently_coherent_level_unitaries_executed": true,
+          "levels": [
+            {
+              "cleanup_prediction_residual": 4.440892098500626e-16,
+              "cumulative_coherent_queries": 12,
+              "diagnostic_acceptance_bound_passed": false,
+              "diagnostic_error_bound": 0.45968544000000033,
+              "dominant_mask": 1,
+              "dominant_mask_bit_count": 1,
+              "dominant_probability": 0.6723999999999996,
+              "emulated_stop_bit": 0,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": false,
+              "executed_transient_nonzero_probability": 0.45968544000000033,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 12,
+                "controlled_forward": 4,
+                "controlled_inverse": 4,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 12
+              },
+              "level_index": 0,
+              "level_status": "continue_to_finer_precision",
+              "nonstrict_boundary_mass": 0.29520000000000046,
+              "output_collision_probability": 0.5403145599999992,
+              "output_reduced_purity": 0.5403145599999992,
+              "phase_bins": 2,
+              "phase_qubits": 1,
+              "predicted_transient_nonzero_probability": 0.4596854400000008,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 12,
+                "controlled_forward": 4,
+                "controlled_inverse": 4,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 12
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 2048,
+              "statevector_output_disagreement_mass": 0.32760000000000045,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": false,
+              "strict_boundary_probability": 0.7047999999999995
+            },
+            {
+              "cleanup_prediction_residual": 4.440892098500626e-16,
+              "cumulative_coherent_queries": 40,
+              "diagnostic_acceptance_bound_passed": false,
+              "diagnostic_error_bound": 0.5734663104766322,
+              "dominant_mask": 1,
+              "dominant_mask_bit_count": 1,
+              "dominant_probability": 0.5094076579839995,
+              "emulated_stop_bit": 0,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": false,
+              "executed_transient_nonzero_probability": 0.5734663104766322,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 28,
+                "controlled_forward": 12,
+                "controlled_inverse": 12,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 28
+              },
+              "level_index": 1,
+              "level_status": "continue_to_finer_precision",
+              "nonstrict_boundary_mass": 0.39809850163200033,
+              "output_collision_probability": 0.4265336895233673,
+              "output_reduced_purity": 0.4265336895233673,
+              "phase_bins": 4,
+              "phase_qubits": 2,
+              "predicted_transient_nonzero_probability": 0.5734663104766327,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 28,
+                "controlled_forward": 12,
+                "controlled_inverse": 12,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 28
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 8192,
+              "statevector_output_disagreement_mass": 0.49059234201600055,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": false,
+              "strict_boundary_probability": 0.6019014983679997
+            },
+            {
+              "cleanup_prediction_residual": 1.5543122344752192e-15,
+              "cumulative_coherent_queries": 100,
+              "diagnostic_acceptance_bound_passed": true,
+              "diagnostic_error_bound": 0.034769713197007945,
+              "dominant_mask": 1,
+              "dominant_mask_bit_count": 1,
+              "dominant_probability": 0.9823677550851393,
+              "emulated_stop_bit": 1,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": false,
+              "executed_transient_nonzero_probability": 0.034769713197007945,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 60,
+                "controlled_forward": 28,
+                "controlled_inverse": 28,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 60
+              },
+              "level_index": 2,
+              "level_status": "diagnostic_stop_latched_certificate_withheld",
+              "nonstrict_boundary_mass": 0.01258656948699255,
+              "output_collision_probability": 0.9652302868029905,
+              "output_reduced_purity": 0.9652302868029905,
+              "phase_bins": 8,
+              "phase_qubits": 3,
+              "predicted_transient_nonzero_probability": 0.0347697131970095,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 60,
+                "controlled_forward": 28,
+                "controlled_inverse": 28,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 60
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 32768,
+              "statevector_output_disagreement_mass": 0.017632244914860706,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": true,
+              "strict_boundary_probability": 0.9874134305130075
+            }
+          ],
+          "semantics": "classical_exact_state_diagnostic_history_over_independently_executed_coherent_level_unitaries_not_a_single_variable_time_unitary",
+          "single_coherent_variable_time_unitary_implemented": false
+        }
+      },
+      "role": "off_grid_mid_precision",
+      "trusted_fixture_and_scoring": {
+        "diagnostic_mask_exact_on_strict_relation": true,
+        "means": [
+          0.82,
+          0.18
+        ],
+        "truth": {
+          "membership_mask": 1,
+          "strict_boundary": true,
+          "top_k_indices": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "algorithm_inputs": {
+        "answer_gap_boundary_family_schedule_history_supplied": false,
+        "k": 1,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+        "public_canonical_query_hard_cap": 1000,
+        "public_numerical_cleanup_tolerance": 1e-10,
+        "public_precision_bounds": [
+          1,
+          4
+        ],
+        "public_statevector_dimension_cap": 600000,
+        "public_target_diagnostic_error_probability": 0.04
+      },
+      "case_id": "off_grid_deep_n2_k1",
+      "expected_behavior_matched": true,
+      "expected_output_status": "DIAGNOSTIC_MASK",
+      "expected_selected_phase_qubits": 4,
+      "result": {
+        "backend": "numpy_sequential_coherent_levels_classical_adaptive_controller",
+        "blockers": [
+          "adaptive_controller_reads_exact_statevector_diagnostics",
+          "no_single_coherent_variable_time_stopping_unitary",
+          "no_physically_retained_coherent_history_register",
+          "no_observable_charged_acceptance_estimator",
+          "no_generic_off_grid_top_k_correctness_certificate",
+          "no_coherent_history_cleanup_resource_bound",
+          "no_new_query_complexity_upper_bound",
+          "no_same_interface_composition_separation",
+          "no_matching_oracle_lower_bound",
+          "tiny_exact_state_simulation_not_hardware_evidence"
+        ],
+        "budget_valid": true,
+        "certificate": {
+          "certificate_type": null,
+          "diagnostic_error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+          "exact_statevector_diagnostic_error_bound": 0.005699294330581028,
+          "issued": false,
+          "reason": "the stop predicate reads exact simulator probabilities and cleanup mass; an observable charged estimator and correctness theorem are not implemented",
+          "top_k_correctness_error_bound": null
+        },
+        "claim_boundary": {
+          "ccf_a_claimable": false,
+          "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+          "does_not_support": [
+            "a single coherent variable-time stopping unitary",
+            "a physically retained coherent stopping-history register",
+            "free observation of exact output probabilities or garbage mass",
+            "a Top-k correctness or confidence certificate",
+            "generic off-grid correctness under finite QPE",
+            "a cleanup/resource theorem for coherent stopping-history replay",
+            "a new query-complexity upper bound or composition separation",
+            "a matching oracle lower bound",
+            "hardware evidence, quantum advantage, or a CCF-A publication claim"
+          ],
+          "generic_off_grid_correctness_proved": false,
+          "matching_lower_bound_proved": false,
+          "new_query_upper_bound_proved": false,
+          "quantum_advantage_claimable": false,
+          "single_coherent_variable_time_unitary_implemented": false,
+          "supports": [
+            "sequential execution of tiny coherent unknown-boundary level unitaries",
+            "consecutive precision construction without an instance schedule input",
+            "exact per-level and cumulative canonical-oracle query reconciliation",
+            "hard-cap checks before every executed precision",
+            "durable direct-k membership-register and cleanup diagnostics",
+            "fail-closed output when the diagnostic predicate or budget fails"
+          ]
+        },
+        "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+        "cleanup": {
+          "available": true,
+          "cleanup_prediction_residual": 3.3306690738754696e-16,
+          "diagnostic_acceptance_bound_passed": true,
+          "diagnostic_error_bound": 0.005699294330581028,
+          "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+          "exact_numerical_cleanup_passed": false,
+          "executed_transient_nonzero_probability": 0.005699294330581028,
+          "nonstrict_boundary_mass": 0.001320542248218426,
+          "predicted_transient_nonzero_probability": 0.005699294330580695,
+          "statevector_output_disagreement_mass": 0.002855775277650574,
+          "target_diagnostic_error_probability": 0.04,
+          "top_k_correctness_error_bound": null
+        },
+        "durable_output": {
+          "approximate_cleanup_bound_passed": true,
+          "direct_k_membership_register_used": true,
+          "dominant_mask_selected_by_statevector_introspection": true,
+          "exact_transient_cleanup_passed": false,
+          "membership_bits": [
+            1,
+            0
+          ],
+          "membership_mask": 1,
+          "output_disagreement_mass": 0.002855775277650574,
+          "phase_estimation_inverted": true,
+          "physical_measurement_performed": false,
+          "rank_relation_computed_and_uncomputed": true,
+          "selected_phase_qubits": 4,
+          "status": "DIAGNOSTIC_MASK",
+          "transient_nonzero_probability": 0.005699294330581028
+        },
+        "hard_cap_respected": true,
+        "input_interface": {
+          "activity_history_supplied": false,
+          "answer_dependent_inputs_supplied": false,
+          "boundary_supplied": false,
+          "family_label_supplied": false,
+          "forbidden_inputs": [
+            "answer_set",
+            "top_k_membership_mask",
+            "gap",
+            "boundary_value",
+            "family_label",
+            "precision_schedule",
+            "activity_schedule",
+            "activity_history",
+            "free_qram_list"
+          ],
+          "gap_supplied": false,
+          "internally_constructed_precision_policy": "all_consecutive_integer_precisions_within_public_bounds",
+          "k": 1,
+          "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+          "precision_schedule_supplied": false,
+          "public_canonical_query_hard_cap": 1000,
+          "public_numerical_cleanup_tolerance": 1e-10,
+          "public_precision_bounds": [
+            1,
+            4
+          ],
+          "public_statevector_dimension_cap": 600000,
+          "public_target_diagnostic_error_probability": 0.04
+        },
+        "membership_bits": [
+          1,
+          0
+        ],
+        "membership_mask": 1,
+        "method_id": "adaptive_unknown_boundary_topk_exact_state_diagnostic_v1",
+        "output_status": "DIAGNOSTIC_MASK",
+        "quantum_advantage_claimable": false,
+        "query_budget": {
+          "aggregate_reconciled": true,
+          "all_executed_levels_reconciled": true,
+          "blocked_before_phase_qubits": null,
+          "blocked_next_level_query_cost": null,
+          "budget_valid": true,
+          "expected_query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 224,
+            "controlled_forward": 104,
+            "controlled_inverse": 104,
+            "forward": 8,
+            "inverse": 8,
+            "qram_queries": 0,
+            "total": 224
+          },
+          "hard_cap_queries": 1000,
+          "hard_cap_respected": true,
+          "qram_assumed": false,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 224,
+            "controlled_forward": 104,
+            "controlled_inverse": 104,
+            "forward": 8,
+            "inverse": 8,
+            "qram_queries": 0,
+            "total": 224
+          },
+          "query_formula": "Q_m = 2*n*(2^(m+1)-1) per executed precision m"
+        },
+        "status": "diagnostic_mask_selected_certificate_withheld",
+        "stopping_history": {
+          "coherent_history_cleanup_proved": false,
+          "coherent_history_register_physically_retained": false,
+          "controller_is_classical": true,
+          "emulated_history_bits": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "first_stop_level_index": 3,
+          "first_stop_phase_qubits": 4,
+          "independently_coherent_level_unitaries_executed": true,
+          "levels": [
+            {
+              "cleanup_prediction_residual": 4.440892098500626e-16,
+              "cumulative_coherent_queries": 12,
+              "diagnostic_acceptance_bound_passed": false,
+              "diagnostic_error_bound": 0.5754000000000005,
+              "dominant_mask": 1,
+              "dominant_mask_bit_count": 1,
+              "dominant_probability": 0.48999999999999955,
+              "emulated_stop_bit": 0,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": false,
+              "executed_transient_nonzero_probability": 0.5754000000000005,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 12,
+                "controlled_forward": 4,
+                "controlled_inverse": 4,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 12
+              },
+              "level_index": 0,
+              "level_status": "continue_to_finer_precision",
+              "nonstrict_boundary_mass": 0.4200000000000004,
+              "output_collision_probability": 0.4245999999999991,
+              "output_reduced_purity": 0.4245999999999991,
+              "phase_bins": 2,
+              "phase_qubits": 1,
+              "predicted_transient_nonzero_probability": 0.5754000000000009,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 12,
+                "controlled_forward": 4,
+                "controlled_inverse": 4,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 12
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 2048,
+              "statevector_output_disagreement_mass": 0.5100000000000005,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": false,
+              "strict_boundary_probability": 0.5799999999999996
+            },
+            {
+              "cleanup_prediction_residual": 0.0,
+              "cumulative_coherent_queries": 40,
+              "diagnostic_acceptance_bound_passed": false,
+              "diagnostic_error_bound": 0.7163520000000001,
+              "dominant_mask": 0,
+              "dominant_mask_bit_count": 0,
+              "dominant_probability": 0.7163519999999998,
+              "emulated_stop_bit": 0,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": false,
+              "executed_transient_nonzero_probability": 0.4396780093440005,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 28,
+                "controlled_forward": 12,
+                "controlled_inverse": 12,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 28
+              },
+              "level_index": 1,
+              "level_status": "continue_to_finer_precision",
+              "nonstrict_boundary_mass": 0.7163520000000001,
+              "output_collision_probability": 0.5603219906559995,
+              "output_reduced_purity": 0.5603219906559995,
+              "phase_bins": 4,
+              "phase_qubits": 2,
+              "predicted_transient_nonzero_probability": 0.4396780093440005,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 28,
+                "controlled_forward": 12,
+                "controlled_inverse": 12,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 28
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 8192,
+              "statevector_output_disagreement_mass": 0.28364800000000023,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": false,
+              "strict_boundary_probability": 0.28364799999999984
+            },
+            {
+              "cleanup_prediction_residual": 8.881784197001252e-16,
+              "cumulative_coherent_queries": 100,
+              "diagnostic_acceptance_bound_passed": false,
+              "diagnostic_error_bound": 0.4699218140524636,
+              "dominant_mask": 1,
+              "dominant_mask_bit_count": 1,
+              "dominant_probability": 0.6890012962234962,
+              "emulated_stop_bit": 0,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": false,
+              "executed_transient_nonzero_probability": 0.4699218140524636,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 60,
+                "controlled_forward": 28,
+                "controlled_inverse": 28,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 60
+              },
+              "level_index": 2,
+              "level_status": "continue_to_finer_precision",
+              "nonstrict_boundary_mass": 0.21464029741056068,
+              "output_collision_probability": 0.5300781859475355,
+              "output_reduced_purity": 0.5300781859475355,
+              "phase_bins": 8,
+              "phase_qubits": 3,
+              "predicted_transient_nonzero_probability": 0.46992181405246447,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 60,
+                "controlled_forward": 28,
+                "controlled_inverse": 28,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 60
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 32768,
+              "statevector_output_disagreement_mass": 0.31099870377650385,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": false,
+              "strict_boundary_probability": 0.7853597025894393
+            },
+            {
+              "cleanup_prediction_residual": 3.3306690738754696e-16,
+              "cumulative_coherent_queries": 224,
+              "diagnostic_acceptance_bound_passed": true,
+              "diagnostic_error_bound": 0.005699294330581028,
+              "dominant_mask": 1,
+              "dominant_mask_bit_count": 1,
+              "dominant_probability": 0.9971442247223494,
+              "emulated_stop_bit": 1,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": false,
+              "executed_transient_nonzero_probability": 0.005699294330581028,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 124,
+                "controlled_forward": 60,
+                "controlled_inverse": 60,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 124
+              },
+              "level_index": 3,
+              "level_status": "diagnostic_stop_latched_certificate_withheld",
+              "nonstrict_boundary_mass": 0.001320542248218426,
+              "output_collision_probability": 0.9943007056694193,
+              "output_reduced_purity": 0.9943007056694194,
+              "phase_bins": 16,
+              "phase_qubits": 4,
+              "predicted_transient_nonzero_probability": 0.005699294330580695,
+              "purity_residual": 1.1102230246251565e-16,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 124,
+                "controlled_forward": 60,
+                "controlled_inverse": 60,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 124
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 131072,
+              "statevector_output_disagreement_mass": 0.002855775277650574,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": true,
+              "strict_boundary_probability": 0.9986794577517816
+            }
+          ],
+          "semantics": "classical_exact_state_diagnostic_history_over_independently_executed_coherent_level_unitaries_not_a_single_variable_time_unitary",
+          "single_coherent_variable_time_unitary_implemented": false
+        }
+      },
+      "role": "off_grid_deep_precision",
+      "trusted_fixture_and_scoring": {
+        "diagnostic_mask_exact_on_strict_relation": true,
+        "means": [
+          0.7,
+          0.3
+        ],
+        "truth": {
+          "membership_mask": 1,
+          "strict_boundary": true,
+          "top_k_indices": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "algorithm_inputs": {
+        "answer_gap_boundary_family_schedule_history_supplied": false,
+        "k": 1,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+        "public_canonical_query_hard_cap": 1000,
+        "public_numerical_cleanup_tolerance": 1e-10,
+        "public_precision_bounds": [
+          1,
+          4
+        ],
+        "public_statevector_dimension_cap": 600000,
+        "public_target_diagnostic_error_probability": 0.04
+      },
+      "case_id": "exact_tie_n2_k1",
+      "expected_behavior_matched": true,
+      "expected_output_status": "INCONCLUSIVE",
+      "expected_selected_phase_qubits": null,
+      "result": {
+        "backend": "numpy_sequential_coherent_levels_classical_adaptive_controller",
+        "blockers": [
+          "adaptive_controller_reads_exact_statevector_diagnostics",
+          "no_single_coherent_variable_time_stopping_unitary",
+          "no_physically_retained_coherent_history_register",
+          "no_observable_charged_acceptance_estimator",
+          "no_generic_off_grid_top_k_correctness_certificate",
+          "no_coherent_history_cleanup_resource_bound",
+          "no_new_query_complexity_upper_bound",
+          "no_same_interface_composition_separation",
+          "no_matching_oracle_lower_bound",
+          "tiny_exact_state_simulation_not_hardware_evidence"
+        ],
+        "budget_valid": true,
+        "certificate": {
+          "certificate_type": null,
+          "diagnostic_error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+          "exact_statevector_diagnostic_error_bound": null,
+          "issued": false,
+          "reason": "the stop predicate reads exact simulator probabilities and cleanup mass; an observable charged estimator and correctness theorem are not implemented",
+          "top_k_correctness_error_bound": null
+        },
+        "claim_boundary": {
+          "ccf_a_claimable": false,
+          "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+          "does_not_support": [
+            "a single coherent variable-time stopping unitary",
+            "a physically retained coherent stopping-history register",
+            "free observation of exact output probabilities or garbage mass",
+            "a Top-k correctness or confidence certificate",
+            "generic off-grid correctness under finite QPE",
+            "a cleanup/resource theorem for coherent stopping-history replay",
+            "a new query-complexity upper bound or composition separation",
+            "a matching oracle lower bound",
+            "hardware evidence, quantum advantage, or a CCF-A publication claim"
+          ],
+          "generic_off_grid_correctness_proved": false,
+          "matching_lower_bound_proved": false,
+          "new_query_upper_bound_proved": false,
+          "quantum_advantage_claimable": false,
+          "single_coherent_variable_time_unitary_implemented": false,
+          "supports": [
+            "sequential execution of tiny coherent unknown-boundary level unitaries",
+            "consecutive precision construction without an instance schedule input",
+            "exact per-level and cumulative canonical-oracle query reconciliation",
+            "hard-cap checks before every executed precision",
+            "durable direct-k membership-register and cleanup diagnostics",
+            "fail-closed output when the diagnostic predicate or budget fails"
+          ]
+        },
+        "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+        "cleanup": {
+          "available": true,
+          "cleanup_prediction_residual": 0.0,
+          "diagnostic_acceptance_bound_passed": false,
+          "diagnostic_error_bound": 1.0,
+          "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+          "exact_numerical_cleanup_passed": true,
+          "executed_transient_nonzero_probability": 0.0,
+          "nonstrict_boundary_mass": 1.0,
+          "predicted_transient_nonzero_probability": 0.0,
+          "statevector_output_disagreement_mass": 0.0,
+          "target_diagnostic_error_probability": 0.04,
+          "top_k_correctness_error_bound": null
+        },
+        "durable_output": {
+          "approximate_cleanup_bound_passed": false,
+          "direct_k_membership_register_used": false,
+          "dominant_mask_selected_by_statevector_introspection": false,
+          "exact_transient_cleanup_passed": false,
+          "membership_bits": [],
+          "membership_mask": null,
+          "output_disagreement_mass": null,
+          "phase_estimation_inverted": false,
+          "physical_measurement_performed": false,
+          "rank_relation_computed_and_uncomputed": false,
+          "selected_phase_qubits": null,
+          "status": "INCONCLUSIVE",
+          "transient_nonzero_probability": null
+        },
+        "hard_cap_respected": true,
+        "input_interface": {
+          "activity_history_supplied": false,
+          "answer_dependent_inputs_supplied": false,
+          "boundary_supplied": false,
+          "family_label_supplied": false,
+          "forbidden_inputs": [
+            "answer_set",
+            "top_k_membership_mask",
+            "gap",
+            "boundary_value",
+            "family_label",
+            "precision_schedule",
+            "activity_schedule",
+            "activity_history",
+            "free_qram_list"
+          ],
+          "gap_supplied": false,
+          "internally_constructed_precision_policy": "all_consecutive_integer_precisions_within_public_bounds",
+          "k": 1,
+          "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+          "precision_schedule_supplied": false,
+          "public_canonical_query_hard_cap": 1000,
+          "public_numerical_cleanup_tolerance": 1e-10,
+          "public_precision_bounds": [
+            1,
+            4
+          ],
+          "public_statevector_dimension_cap": 600000,
+          "public_target_diagnostic_error_probability": 0.04
+        },
+        "membership_bits": [],
+        "membership_mask": null,
+        "method_id": "adaptive_unknown_boundary_topk_exact_state_diagnostic_v1",
+        "output_status": "INCONCLUSIVE",
+        "quantum_advantage_claimable": false,
+        "query_budget": {
+          "aggregate_reconciled": true,
+          "all_executed_levels_reconciled": true,
+          "blocked_before_phase_qubits": null,
+          "blocked_next_level_query_cost": null,
+          "budget_valid": true,
+          "expected_query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 224,
+            "controlled_forward": 104,
+            "controlled_inverse": 104,
+            "forward": 8,
+            "inverse": 8,
+            "qram_queries": 0,
+            "total": 224
+          },
+          "hard_cap_queries": 1000,
+          "hard_cap_respected": true,
+          "qram_assumed": false,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 224,
+            "controlled_forward": 104,
+            "controlled_inverse": 104,
+            "forward": 8,
+            "inverse": 8,
+            "qram_queries": 0,
+            "total": 224
+          },
+          "query_formula": "Q_m = 2*n*(2^(m+1)-1) per executed precision m"
+        },
+        "status": "inconclusive_fail_closed",
+        "stopping_history": {
+          "coherent_history_cleanup_proved": false,
+          "coherent_history_register_physically_retained": false,
+          "controller_is_classical": true,
+          "emulated_history_bits": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "first_stop_level_index": null,
+          "first_stop_phase_qubits": null,
+          "independently_coherent_level_unitaries_executed": true,
+          "levels": [
+            {
+              "cleanup_prediction_residual": 0.0,
+              "cumulative_coherent_queries": 12,
+              "diagnostic_acceptance_bound_passed": false,
+              "diagnostic_error_bound": 0.625,
+              "dominant_mask": 0,
+              "dominant_mask_bit_count": 0,
+              "dominant_probability": 0.5,
+              "emulated_stop_bit": 0,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": false,
+              "executed_transient_nonzero_probability": 0.625,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 12,
+                "controlled_forward": 4,
+                "controlled_inverse": 4,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 12
+              },
+              "level_index": 0,
+              "level_status": "continue_to_finer_precision",
+              "nonstrict_boundary_mass": 0.4999999999999999,
+              "output_collision_probability": 0.37500000000000006,
+              "output_reduced_purity": 0.37500000000000006,
+              "phase_bins": 2,
+              "phase_qubits": 1,
+              "predicted_transient_nonzero_probability": 0.625,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 12,
+                "controlled_forward": 4,
+                "controlled_inverse": 4,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 12
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 2048,
+              "statevector_output_disagreement_mass": 0.5,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": false,
+              "strict_boundary_probability": 0.5000000000000001
+            },
+            {
+              "cleanup_prediction_residual": 0.0,
+              "cumulative_coherent_queries": 40,
+              "diagnostic_acceptance_bound_passed": false,
+              "diagnostic_error_bound": 1.0,
+              "dominant_mask": 0,
+              "dominant_mask_bit_count": 0,
+              "dominant_probability": 1.0000000000000009,
+              "emulated_stop_bit": 0,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": true,
+              "executed_transient_nonzero_probability": 0.0,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 28,
+                "controlled_forward": 12,
+                "controlled_inverse": 12,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 28
+              },
+              "level_index": 1,
+              "level_status": "continue_to_finer_precision",
+              "nonstrict_boundary_mass": 1.0,
+              "output_collision_probability": 1.0000000000000018,
+              "output_reduced_purity": 1.0000000000000018,
+              "phase_bins": 4,
+              "phase_qubits": 2,
+              "predicted_transient_nonzero_probability": 0.0,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 28,
+                "controlled_forward": 12,
+                "controlled_inverse": 12,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 28
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 8192,
+              "statevector_output_disagreement_mass": 0.0,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": false,
+              "strict_boundary_probability": 6.624423340138902e-32
+            },
+            {
+              "cleanup_prediction_residual": 0.0,
+              "cumulative_coherent_queries": 100,
+              "diagnostic_acceptance_bound_passed": false,
+              "diagnostic_error_bound": 1.0,
+              "dominant_mask": 0,
+              "dominant_mask_bit_count": 0,
+              "dominant_probability": 1.0000000000000004,
+              "emulated_stop_bit": 0,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": true,
+              "executed_transient_nonzero_probability": 0.0,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 60,
+                "controlled_forward": 28,
+                "controlled_inverse": 28,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 60
+              },
+              "level_index": 2,
+              "level_status": "continue_to_finer_precision",
+              "nonstrict_boundary_mass": 1.0,
+              "output_collision_probability": 1.0000000000000009,
+              "output_reduced_purity": 1.0000000000000009,
+              "phase_bins": 8,
+              "phase_qubits": 3,
+              "predicted_transient_nonzero_probability": 0.0,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 60,
+                "controlled_forward": 28,
+                "controlled_inverse": 28,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 60
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 32768,
+              "statevector_output_disagreement_mass": 0.0,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": false,
+              "strict_boundary_probability": 1.068687166407546e-30
+            },
+            {
+              "cleanup_prediction_residual": 0.0,
+              "cumulative_coherent_queries": 224,
+              "diagnostic_acceptance_bound_passed": false,
+              "diagnostic_error_bound": 1.0,
+              "dominant_mask": 0,
+              "dominant_mask_bit_count": 0,
+              "dominant_probability": 1.0000000000000049,
+              "emulated_stop_bit": 0,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": true,
+              "executed_transient_nonzero_probability": 0.0,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 124,
+                "controlled_forward": 60,
+                "controlled_inverse": 60,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 124
+              },
+              "level_index": 3,
+              "level_status": "continue_to_finer_precision",
+              "nonstrict_boundary_mass": 1.0,
+              "output_collision_probability": 1.0000000000000098,
+              "output_reduced_purity": 1.0000000000000098,
+              "phase_bins": 16,
+              "phase_qubits": 4,
+              "predicted_transient_nonzero_probability": 0.0,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 124,
+                "controlled_forward": 60,
+                "controlled_inverse": 60,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 124
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 131072,
+              "statevector_output_disagreement_mass": 0.0,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": false,
+              "strict_boundary_probability": 6.613055592605448e-30
+            }
+          ],
+          "semantics": "classical_exact_state_diagnostic_history_over_independently_executed_coherent_level_unitaries_not_a_single_variable_time_unitary",
+          "single_coherent_variable_time_unitary_implemented": false
+        }
+      },
+      "role": "exact_tie",
+      "trusted_fixture_and_scoring": {
+        "diagnostic_mask_exact_on_strict_relation": null,
+        "means": [
+          0.5,
+          0.5
+        ],
+        "truth": {
+          "membership_mask": null,
+          "strict_boundary": false,
+          "top_k_indices": null
+        }
+      }
+    },
+    {
+      "algorithm_inputs": {
+        "answer_gap_boundary_family_schedule_history_supplied": false,
+        "k": 1,
+        "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+        "public_canonical_query_hard_cap": 40,
+        "public_numerical_cleanup_tolerance": 1e-10,
+        "public_precision_bounds": [
+          1,
+          4
+        ],
+        "public_statevector_dimension_cap": 600000,
+        "public_target_diagnostic_error_probability": 0.04
+      },
+      "case_id": "off_grid_budget_cap_n2_k1",
+      "expected_behavior_matched": true,
+      "expected_output_status": "INCONCLUSIVE",
+      "expected_selected_phase_qubits": null,
+      "result": {
+        "backend": "numpy_sequential_coherent_levels_classical_adaptive_controller",
+        "blockers": [
+          "adaptive_controller_reads_exact_statevector_diagnostics",
+          "no_single_coherent_variable_time_stopping_unitary",
+          "no_physically_retained_coherent_history_register",
+          "no_observable_charged_acceptance_estimator",
+          "no_generic_off_grid_top_k_correctness_certificate",
+          "no_coherent_history_cleanup_resource_bound",
+          "no_new_query_complexity_upper_bound",
+          "no_same_interface_composition_separation",
+          "no_matching_oracle_lower_bound",
+          "tiny_exact_state_simulation_not_hardware_evidence"
+        ],
+        "budget_valid": true,
+        "certificate": {
+          "certificate_type": null,
+          "diagnostic_error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+          "exact_statevector_diagnostic_error_bound": null,
+          "issued": false,
+          "reason": "the stop predicate reads exact simulator probabilities and cleanup mass; an observable charged estimator and correctness theorem are not implemented",
+          "top_k_correctness_error_bound": null
+        },
+        "claim_boundary": {
+          "ccf_a_claimable": false,
+          "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+          "does_not_support": [
+            "a single coherent variable-time stopping unitary",
+            "a physically retained coherent stopping-history register",
+            "free observation of exact output probabilities or garbage mass",
+            "a Top-k correctness or confidence certificate",
+            "generic off-grid correctness under finite QPE",
+            "a cleanup/resource theorem for coherent stopping-history replay",
+            "a new query-complexity upper bound or composition separation",
+            "a matching oracle lower bound",
+            "hardware evidence, quantum advantage, or a CCF-A publication claim"
+          ],
+          "generic_off_grid_correctness_proved": false,
+          "matching_lower_bound_proved": false,
+          "new_query_upper_bound_proved": false,
+          "quantum_advantage_claimable": false,
+          "single_coherent_variable_time_unitary_implemented": false,
+          "supports": [
+            "sequential execution of tiny coherent unknown-boundary level unitaries",
+            "consecutive precision construction without an instance schedule input",
+            "exact per-level and cumulative canonical-oracle query reconciliation",
+            "hard-cap checks before every executed precision",
+            "durable direct-k membership-register and cleanup diagnostics",
+            "fail-closed output when the diagnostic predicate or budget fails"
+          ]
+        },
+        "claim_scope": "adaptive_off_grid_exact_state_diagnostic_with_exact_queries_no_coherent_variable_time_controller_no_correctness_certificate_no_new_upper_bound_no_lower_bound_no_quantum_advantage",
+        "cleanup": {
+          "available": true,
+          "cleanup_prediction_residual": 4.440892098500626e-16,
+          "diagnostic_acceptance_bound_passed": false,
+          "diagnostic_error_bound": 0.5734663104766322,
+          "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+          "exact_numerical_cleanup_passed": false,
+          "executed_transient_nonzero_probability": 0.5734663104766322,
+          "nonstrict_boundary_mass": 0.39809850163200033,
+          "predicted_transient_nonzero_probability": 0.5734663104766327,
+          "statevector_output_disagreement_mass": 0.49059234201600055,
+          "target_diagnostic_error_probability": 0.04,
+          "top_k_correctness_error_bound": null
+        },
+        "durable_output": {
+          "approximate_cleanup_bound_passed": false,
+          "direct_k_membership_register_used": false,
+          "dominant_mask_selected_by_statevector_introspection": false,
+          "exact_transient_cleanup_passed": false,
+          "membership_bits": [],
+          "membership_mask": null,
+          "output_disagreement_mass": null,
+          "phase_estimation_inverted": false,
+          "physical_measurement_performed": false,
+          "rank_relation_computed_and_uncomputed": false,
+          "selected_phase_qubits": null,
+          "status": "INCONCLUSIVE",
+          "transient_nonzero_probability": null
+        },
+        "hard_cap_respected": true,
+        "input_interface": {
+          "activity_history_supplied": false,
+          "answer_dependent_inputs_supplied": false,
+          "boundary_supplied": false,
+          "family_label_supplied": false,
+          "forbidden_inputs": [
+            "answer_set",
+            "top_k_membership_mask",
+            "gap",
+            "boundary_value",
+            "family_label",
+            "precision_schedule",
+            "activity_schedule",
+            "activity_history",
+            "free_qram_list"
+          ],
+          "gap_supplied": false,
+          "internally_constructed_precision_policy": "all_consecutive_integer_precisions_within_public_bounds",
+          "k": 1,
+          "oracle": "opaque_canonical_ry_statevector_oracle_handle",
+          "precision_schedule_supplied": false,
+          "public_canonical_query_hard_cap": 40,
+          "public_numerical_cleanup_tolerance": 1e-10,
+          "public_precision_bounds": [
+            1,
+            4
+          ],
+          "public_statevector_dimension_cap": 600000,
+          "public_target_diagnostic_error_probability": 0.04
+        },
+        "membership_bits": [],
+        "membership_mask": null,
+        "method_id": "adaptive_unknown_boundary_topk_exact_state_diagnostic_v1",
+        "output_status": "INCONCLUSIVE",
+        "quantum_advantage_claimable": false,
+        "query_budget": {
+          "aggregate_reconciled": true,
+          "all_executed_levels_reconciled": true,
+          "blocked_before_phase_qubits": 3,
+          "blocked_next_level_query_cost": 60,
+          "budget_valid": true,
+          "expected_query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 40,
+            "controlled_forward": 16,
+            "controlled_inverse": 16,
+            "forward": 4,
+            "inverse": 4,
+            "qram_queries": 0,
+            "total": 40
+          },
+          "hard_cap_queries": 40,
+          "hard_cap_respected": true,
+          "qram_assumed": false,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 40,
+            "controlled_forward": 16,
+            "controlled_inverse": 16,
+            "forward": 4,
+            "inverse": 4,
+            "qram_queries": 0,
+            "total": 40
+          },
+          "query_formula": "Q_m = 2*n*(2^(m+1)-1) per executed precision m"
+        },
+        "status": "inconclusive_fail_closed",
+        "stopping_history": {
+          "coherent_history_cleanup_proved": false,
+          "coherent_history_register_physically_retained": false,
+          "controller_is_classical": true,
+          "emulated_history_bits": [
+            0,
+            0
+          ],
+          "first_stop_level_index": null,
+          "first_stop_phase_qubits": null,
+          "independently_coherent_level_unitaries_executed": true,
+          "levels": [
+            {
+              "cleanup_prediction_residual": 4.440892098500626e-16,
+              "cumulative_coherent_queries": 12,
+              "diagnostic_acceptance_bound_passed": false,
+              "diagnostic_error_bound": 0.45968544000000033,
+              "dominant_mask": 1,
+              "dominant_mask_bit_count": 1,
+              "dominant_probability": 0.6723999999999996,
+              "emulated_stop_bit": 0,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": false,
+              "executed_transient_nonzero_probability": 0.45968544000000033,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 12,
+                "controlled_forward": 4,
+                "controlled_inverse": 4,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 12
+              },
+              "level_index": 0,
+              "level_status": "continue_to_finer_precision",
+              "nonstrict_boundary_mass": 0.29520000000000046,
+              "output_collision_probability": 0.5403145599999992,
+              "output_reduced_purity": 0.5403145599999992,
+              "phase_bins": 2,
+              "phase_qubits": 1,
+              "predicted_transient_nonzero_probability": 0.4596854400000008,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 12,
+                "controlled_forward": 4,
+                "controlled_inverse": 4,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 12
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 2048,
+              "statevector_output_disagreement_mass": 0.32760000000000045,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": false,
+              "strict_boundary_probability": 0.7047999999999995
+            },
+            {
+              "cleanup_prediction_residual": 4.440892098500626e-16,
+              "cumulative_coherent_queries": 40,
+              "diagnostic_acceptance_bound_passed": false,
+              "diagnostic_error_bound": 0.5734663104766322,
+              "dominant_mask": 1,
+              "dominant_mask_bit_count": 1,
+              "dominant_probability": 0.5094076579839995,
+              "emulated_stop_bit": 0,
+              "error_bound_scope": "exact_simulator_mass_relative_to_the_dominant_durable_mask_not_a_top_k_correctness_or_confidence_bound",
+              "exact_numerical_cleanup_passed": false,
+              "executed_transient_nonzero_probability": 0.5734663104766322,
+              "expected_query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 28,
+                "controlled_forward": 12,
+                "controlled_inverse": 12,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 28
+              },
+              "level_index": 1,
+              "level_status": "continue_to_finer_precision",
+              "nonstrict_boundary_mass": 0.39809850163200033,
+              "output_collision_probability": 0.4265336895233673,
+              "output_reduced_purity": 0.4265336895233673,
+              "phase_bins": 4,
+              "phase_qubits": 2,
+              "predicted_transient_nonzero_probability": 0.5734663104766327,
+              "purity_residual": 0.0,
+              "query_counts": {
+                "classical_sample": 0,
+                "classical_total": 0,
+                "coherent_total": 28,
+                "controlled_forward": 12,
+                "controlled_inverse": 12,
+                "forward": 2,
+                "inverse": 2,
+                "qram_queries": 0,
+                "total": 28
+              },
+              "query_formula_reconciled": true,
+              "retained_statevector_dimension": 8192,
+              "statevector_output_disagreement_mass": 0.49059234201600055,
+              "stop_decision_source": "exact_statevector_introspection_not_an_observable_free_oracle_output",
+              "stop_latched_after_level": false,
+              "strict_boundary_probability": 0.6019014983679997
+            }
+          ],
+          "semantics": "classical_exact_state_diagnostic_history_over_independently_executed_coherent_level_unitaries_not_a_single_variable_time_unitary",
+          "single_coherent_variable_time_unitary_implemented": false
+        }
+      },
+      "role": "query_cap",
+      "trusted_fixture_and_scoring": {
+        "diagnostic_mask_exact_on_strict_relation": null,
+        "means": [
+          0.82,
+          0.18
+        ],
+        "truth": {
+          "membership_mask": 1,
+          "strict_boundary": true,
+          "top_k_indices": [
+            0
+          ]
+        }
+      }
+    }
+  ],
+  "resolved_config": {
+    "algorithm_parameters": {
+      "max_statevector_dimension": 600000,
+      "maximum_phase_qubits": 4,
+      "minimum_phase_qubits": 1,
+      "numerical_cleanup_tolerance": 1e-10,
+      "target_diagnostic_error_probability": 0.04
+    },
+    "cases": [
+      {
+        "case_id": "on_grid_fast_n2_k1",
+        "expected_output_status": "DIAGNOSTIC_MASK",
+        "expected_selected_phase_qubits": 1,
+        "k": 1,
+        "max_canonical_oracle_queries": 1000,
+        "means": [
+          1.0,
+          0.0
+        ],
+        "role": "on_grid_fast"
+      },
+      {
+        "case_id": "off_grid_mid_n2_k1",
+        "expected_output_status": "DIAGNOSTIC_MASK",
+        "expected_selected_phase_qubits": 3,
+        "k": 1,
+        "max_canonical_oracle_queries": 1000,
+        "means": [
+          0.82,
+          0.18
+        ],
+        "role": "off_grid_mid_precision"
+      },
+      {
+        "case_id": "off_grid_deep_n2_k1",
+        "expected_output_status": "DIAGNOSTIC_MASK",
+        "expected_selected_phase_qubits": 4,
+        "k": 1,
+        "max_canonical_oracle_queries": 1000,
+        "means": [
+          0.7,
+          0.3
+        ],
+        "role": "off_grid_deep_precision"
+      },
+      {
+        "case_id": "exact_tie_n2_k1",
+        "expected_output_status": "INCONCLUSIVE",
+        "expected_selected_phase_qubits": null,
+        "k": 1,
+        "max_canonical_oracle_queries": 1000,
+        "means": [
+          0.5,
+          0.5
+        ],
+        "role": "exact_tie"
+      },
+      {
+        "case_id": "off_grid_budget_cap_n2_k1",
+        "expected_output_status": "INCONCLUSIVE",
+        "expected_selected_phase_qubits": null,
+        "k": 1,
+        "max_canonical_oracle_queries": 40,
+        "means": [
+          0.82,
+          0.18
+        ],
+        "role": "query_cap"
+      }
+    ],
+    "experiment_name": "adaptive_unknown_boundary_topk_s3_panel_v1",
+    "notes": [
+      "All non-budget-ablation cases share one public error target and consecutive precision policy; no per-instance gap or phase schedule is supplied.",
+      "Means remain in the trusted fixture harness only and are used to construct the opaque canonical oracle and score outputs.",
+      "Each precision level executes the S2 coherent rank-copy-uncompute circuit and reconciles its canonical query ledger.",
+      "The adaptive stop decision reads exact statevector diagnostics in classical simulation; it is not a coherent variable-time controller or free observable.",
+      "MASK is diagnostic output with certificate withheld; ties, exhausted hard caps, and unaccepted levels fail closed as INCONCLUSIVE.",
+      "This panel supports implementation auditing only, not a new upper bound, matching lower bound, quantum advantage, or CCF-A claim."
+    ],
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "summary": {
+    "all_mask_outputs_exact_under_trusted_scoring": true,
+    "case_count": 5,
+    "ccf_a_claimable": false,
+    "certificate_issued_count": 0,
+    "coherent_history_cleanup_proved": false,
+    "diagnostic_mask_count": 3,
+    "generic_off_grid_correctness_proved": false,
+    "inconclusive_count": 2,
+    "independently_coherent_level_unitaries_executed": true,
+    "matching_lower_bound_proved": false,
+    "new_query_upper_bound_proved": false,
+    "observable_stop_estimator_implemented": false,
+    "off_grid_diagnostic_mask_count": 2,
+    "quantum_advantage_claimable": false,
+    "single_coherent_variable_time_unitary_implemented": false
+  }
+}
