@@ -1,7 +1,7 @@
 .PHONY: install install-datasets install-uv test test-quantum lint check experiment quantum-core \
 	scaling reference coherent quantum quantum-history unknown-boundary-grid \
 	coherent-statevector-history charged-history variable-time-charged \
-	stopping-transducer theorem-scaffold replay-coherent-frontier \
+	stopping-transducer theorem-scaffold replay-coherent-frontier coherent-rank-baseline \
 	composition-frontier theorem-closure-audit lower-bound proof-ledger research-gap \
 	attack attack-design \
 	frozen-selector-benchmark frozen-quantum-reference frozen-anchor-calibration \
@@ -32,6 +32,8 @@ test-quantum:
 		tests/test_stopping_unitary_theorem_script.py \
 		tests/test_replay_coherent_frontier.py \
 		tests/test_replay_coherent_frontier_script.py \
+		tests/test_coherent_rank_baseline.py \
+		tests/test_coherent_rank_baseline_script.py \
 		tests/test_composition_frontier.py \
 		tests/test_composition_frontier_script.py \
 		tests/test_lower_bound_program.py \
@@ -64,7 +66,7 @@ check: lint test
 
 experiment: scaling coherent quantum-core
 
-quantum-core: quantum unknown-boundary-grid charged-history variable-time-charged stopping-transducer theorem-scaffold replay-coherent-frontier composition-frontier lower-bound proof-ledger research-gap
+quantum-core: quantum unknown-boundary-grid charged-history variable-time-charged stopping-transducer theorem-scaffold replay-coherent-frontier coherent-rank-baseline composition-frontier lower-bound proof-ledger research-gap
 
 scaling:
 	python scripts/run_scaling.py --output artifacts/scaling.json
@@ -84,6 +86,11 @@ replay-coherent-frontier:
 	python scripts/run_replay_coherent_frontier.py \
 		--config configs/replay_coherent_frontier.json \
 		--output artifacts/replay_coherent_frontier.json
+
+coherent-rank-baseline:
+	python scripts/run_coherent_rank_baseline.py \
+		--config configs/coherent_rank_baseline.json \
+		--output artifacts/coherent_rank_baseline.json
 
 quantum:
 	python scripts/run_quantum_benchmarks.py \

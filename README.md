@@ -174,6 +174,12 @@ proxy. Hiding the partition invalidates that comparator, but the corresponding
 candidate discovery/cleanup upper bound and weighted matching lower bound are
 unproved. Therefore the machine-readable CCF-A quantum-advantage gate is false.
 
+`docs/coherent_unknown_boundary_experiment_protocol.md` freezes the next
+algorithm-only campaign: a charged unknown-boundary constructor, complete
+durable Top-k output, replay cleanup, strongest same-interface composition
+baselines, fixture-cluster statistics, and explicit empirical/theorem
+falsification gates. Supplied schedules remain regression controls only.
+
 CCF publishes a venue directory, not a mandatory dataset list. For that
 reason, `docs/ccfa_algorithm_experiment_protocol.md` defines a top-conference
 dataset protocol rather than claiming a nonexistent "CCF-A dataset." Strict
@@ -321,6 +327,7 @@ make frozen-selector-benchmark
 make frozen-quantum-reference
 make coherent-statevector-history
 make replay-coherent-frontier
+make coherent-rank-baseline
 make theorem-closure-audit
 make ccfa-matched-benchmark
 make install-datasets

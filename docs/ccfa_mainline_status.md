@@ -46,6 +46,29 @@ algorithmic blockers are now:
 5. state preparation, gates, depth, qubits, and cleanup are not closed at the
    scalable level.
 
+## Unknown-boundary protocol and legal semantic baseline
+
+The next campaign is frozen in
+`docs/coherent_unknown_boundary_experiment_protocol.md`. It separates exact
+circuit semantics, matched fixed-cap performance, resource scaling, published
+composition instantiation, and the matching lower-bound proof into independent
+gates. Supplied schedules are now stronger-information regression controls.
+
+The first new legal semantic comparator is a measured-QPE exhaustive rank
+baseline. It receives only the canonical oracle, `k`, and public precision and
+shot limits. In the clean-provenance 26-record panel, all 22 strict-boundary
+attempts return the exact complete membership mask and all four tie controls
+fail closed. Query formulas and rank cleanup reconcile exactly, with no QRAM.
+Its certified-exact rate is nevertheless zero: per-arm measurement/reset is
+not end-to-end coherent and the modal finite-shot rank has no confidence
+theorem. It is therefore a correctness baseline, not evidence for the proposed
+advantage.
+
+The mandatory composition frontier now explicitly includes MIQAE per-arm
+sort, coherent estimation with a rounding-promise audit, approximate
+`k`-minimum, repeated QBAI, optimal unknown-time search, loop/transducer
+composition, Tunable VTAA, and generated-predicate all-marked extraction.
+
 ## Next theorem target
 
 The next core object is a replay-preserving coherent frontier unitary. For each

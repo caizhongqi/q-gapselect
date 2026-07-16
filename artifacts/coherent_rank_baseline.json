@@ -1,0 +1,4212 @@
+{
+  "artifact_type": "q_gapselect_measured_qpe_direct_topk_semantic_baseline",
+  "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+  "experiment_name": "measured_qpe_direct_topk_semantic_baseline_v1",
+  "notes": [
+    "The trusted fixture builder knows means only to construct and score the oracle; the algorithm receives only the canonical oracle, k, and public precision/shot limits.",
+    "The baseline executes charged measured QPE per arm, a complete direct membership relation, and rank compute-copy-uncompute without QRAM.",
+    "The tie fixture must fail closed; no arbitrary tie-breaking counts as strict exact Top-k success.",
+    "This panel validates a legal semantic comparator, not a coherent unknown-boundary advantage algorithm."
+  ],
+  "provenance": {
+    "git_commit": "dfb497501a281f10e0ed9847f9547e5ab9d0d047",
+    "git_tree": "768dd81874e68158eee5f2261b4602940e4e391c",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_version": "3.12.13",
+    "source_tree_dirty_at_execution": false
+  },
+  "records": [
+    {
+      "case_id": "grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 0,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 4,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 20,
+        "estimates": [
+          {
+            "amplitude_estimate": 1.0,
+            "arm": 0,
+            "folded_bin_counts": {
+              "4": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 4,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 21084,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 11103757538200753200,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 1,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 4,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 20,
+        "estimates": [
+          {
+            "amplitude_estimate": 1.0,
+            "arm": 0,
+            "folded_bin_counts": {
+              "4": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 4,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 21084,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 9255560636182763556,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 2,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 4,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 20,
+        "estimates": [
+          {
+            "amplitude_estimate": 1.0,
+            "arm": 0,
+            "folded_bin_counts": {
+              "4": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 4,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 21084,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 9433602597049829001,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 3,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 4,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 20,
+        "estimates": [
+          {
+            "amplitude_estimate": 1.0,
+            "arm": 0,
+            "folded_bin_counts": {
+              "4": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 4,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 21084,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 6399732789715423970,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "grid_n3_k2",
+      "certified_exact": false,
+      "k": 2,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 0,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 1,
+          "inside_folded_bin": 2,
+          "outside_arm": 2,
+          "outside_folded_bin": 0,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 20,
+        "estimates": [
+          {
+            "amplitude_estimate": 1.0,
+            "arm": 0,
+            "folded_bin_counts": {
+              "4": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 4,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [
+          1,
+          1,
+          0
+        ],
+        "membership_mask": 3,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 40540,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 38912,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 5777297165691610422,
+      "truth_strict": true,
+      "truth_top_k": [
+        0,
+        1
+      ]
+    },
+    {
+      "case_id": "grid_n3_k2",
+      "certified_exact": false,
+      "k": 2,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 1,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 1,
+          "inside_folded_bin": 2,
+          "outside_arm": 2,
+          "outside_folded_bin": 0,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 20,
+        "estimates": [
+          {
+            "amplitude_estimate": 1.0,
+            "arm": 0,
+            "folded_bin_counts": {
+              "4": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 4,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [
+          1,
+          1,
+          0
+        ],
+        "membership_mask": 3,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 40540,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 38912,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 13698387988015625298,
+      "truth_strict": true,
+      "truth_top_k": [
+        0,
+        1
+      ]
+    },
+    {
+      "case_id": "grid_n3_k2",
+      "certified_exact": false,
+      "k": 2,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 2,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 1,
+          "inside_folded_bin": 2,
+          "outside_arm": 2,
+          "outside_folded_bin": 0,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 20,
+        "estimates": [
+          {
+            "amplitude_estimate": 1.0,
+            "arm": 0,
+            "folded_bin_counts": {
+              "4": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 4,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [
+          1,
+          1,
+          0
+        ],
+        "membership_mask": 3,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 40540,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 38912,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 11156516408198296048,
+      "truth_strict": true,
+      "truth_top_k": [
+        0,
+        1
+      ]
+    },
+    {
+      "case_id": "grid_n3_k2",
+      "certified_exact": false,
+      "k": 2,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 3,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 1,
+          "inside_folded_bin": 2,
+          "outside_arm": 2,
+          "outside_folded_bin": 0,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 20,
+        "estimates": [
+          {
+            "amplitude_estimate": 1.0,
+            "arm": 0,
+            "folded_bin_counts": {
+              "4": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 4,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [
+          1,
+          1,
+          0
+        ],
+        "membership_mask": 3,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 40540,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 38912,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 14906672378920139096,
+      "truth_strict": true,
+      "truth_top_k": [
+        0,
+        1
+      ]
+    },
+    {
+      "case_id": "grid_n4_k2",
+      "certified_exact": false,
+      "k": 2,
+      "n": 4,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 0,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 1,
+          "inside_folded_bin": 2,
+          "outside_arm": 2,
+          "outside_folded_bin": 1,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 84,
+        "estimates": [
+          {
+            "amplitude_estimate": 1.0,
+            "arm": 0,
+            "folded_bin_counts": {
+              "4": 4
+            },
+            "modal_count": 4,
+            "modal_folded_bin": 4,
+            "modal_unique": true,
+            "shots": 4
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 4
+            },
+            "modal_count": 4,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 4
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "1": 4
+            },
+            "modal_count": 4,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 4
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 3,
+            "folded_bin_counts": {
+              "0": 4
+            },
+            "modal_count": 4,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 4
+          }
+        ],
+        "membership_bits": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 3,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 16,
+            "phase_reward_resets": 16,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 410704,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 12,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 8192,
+            "controlled_global_phase": 112,
+            "controlled_good_reflection": 112,
+            "controlled_reward_oracle_forward": 112,
+            "controlled_reward_oracle_inverse": 112,
+            "controlled_zero_reflection": 112,
+            "destructive_phase_reward_reset": 64,
+            "durable_membership_cnot": 4,
+            "inverse_qft": 16,
+            "no_ancilla_multicontrolled_rank_primitives": 409600,
+            "phase_control_compute": 112,
+            "phase_control_uncompute": 112,
+            "phase_hadamard": 48,
+            "phase_measurement": 48,
+            "reward_oracle_forward": 16
+          },
+          "peak_statevector_dimension": 2097152,
+          "qram_assumed": false,
+          "qubits": 21,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 240,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 112,
+            "controlled_inverse": 112,
+            "destructive_phase_measurements": 16,
+            "forward": 16,
+            "inverse": 0,
+            "phase_reward_resets": 16,
+            "qram_queries": 0,
+            "total": 240
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 4096,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 16,
+            "estimate_pack": 4096,
+            "membership_work": 16
+          },
+          "retained_statevector_dimension": 2097152
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 1410051965439612795,
+      "truth_strict": true,
+      "truth_top_k": [
+        0,
+        1
+      ]
+    },
+    {
+      "case_id": "grid_n4_k2",
+      "certified_exact": false,
+      "k": 2,
+      "n": 4,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 1,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 1,
+          "inside_folded_bin": 2,
+          "outside_arm": 2,
+          "outside_folded_bin": 1,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 84,
+        "estimates": [
+          {
+            "amplitude_estimate": 1.0,
+            "arm": 0,
+            "folded_bin_counts": {
+              "4": 4
+            },
+            "modal_count": 4,
+            "modal_folded_bin": 4,
+            "modal_unique": true,
+            "shots": 4
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 4
+            },
+            "modal_count": 4,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 4
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "1": 4
+            },
+            "modal_count": 4,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 4
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 3,
+            "folded_bin_counts": {
+              "0": 4
+            },
+            "modal_count": 4,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 4
+          }
+        ],
+        "membership_bits": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 3,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 16,
+            "phase_reward_resets": 16,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 410704,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 12,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 8192,
+            "controlled_global_phase": 112,
+            "controlled_good_reflection": 112,
+            "controlled_reward_oracle_forward": 112,
+            "controlled_reward_oracle_inverse": 112,
+            "controlled_zero_reflection": 112,
+            "destructive_phase_reward_reset": 64,
+            "durable_membership_cnot": 4,
+            "inverse_qft": 16,
+            "no_ancilla_multicontrolled_rank_primitives": 409600,
+            "phase_control_compute": 112,
+            "phase_control_uncompute": 112,
+            "phase_hadamard": 48,
+            "phase_measurement": 48,
+            "reward_oracle_forward": 16
+          },
+          "peak_statevector_dimension": 2097152,
+          "qram_assumed": false,
+          "qubits": 21,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 240,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 112,
+            "controlled_inverse": 112,
+            "destructive_phase_measurements": 16,
+            "forward": 16,
+            "inverse": 0,
+            "phase_reward_resets": 16,
+            "qram_queries": 0,
+            "total": 240
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 4096,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 16,
+            "estimate_pack": 4096,
+            "membership_work": 16
+          },
+          "retained_statevector_dimension": 2097152
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 136703341609739748,
+      "truth_strict": true,
+      "truth_top_k": [
+        0,
+        1
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 0,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "2": 1,
+              "3": 26,
+              "4": 5
+            },
+            "modal_count": 26,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "1": 31,
+              "3": 1
+            },
+            "modal_count": 31,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 11773184020937269501,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 1,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "2": 1,
+              "3": 29,
+              "4": 2
+            },
+            "modal_count": 29,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "1": 31,
+              "4": 1
+            },
+            "modal_count": 31,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 9098367637568763823,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 2,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "1": 3,
+              "2": 1,
+              "3": 28
+            },
+            "modal_count": 28,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 1,
+              "1": 29,
+              "2": 2
+            },
+            "modal_count": 29,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 15637210044212006101,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 3,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 28,
+              "4": 1
+            },
+            "modal_count": 28,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 1,
+              "1": 29,
+              "2": 1,
+              "3": 1
+            },
+            "modal_count": 29,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 5194459724959032870,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 4,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "0": 1,
+              "2": 1,
+              "3": 28,
+              "4": 2
+            },
+            "modal_count": 28,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 2,
+              "1": 29,
+              "3": 1
+            },
+            "modal_count": 29,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 7814522602332279565,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 5,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "2": 2,
+              "3": 29,
+              "4": 1
+            },
+            "modal_count": 29,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "1": 30,
+              "2": 1,
+              "3": 1
+            },
+            "modal_count": 30,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 13350086956307801591,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 6,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "2": 2,
+              "3": 30
+            },
+            "modal_count": 30,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 2,
+              "1": 28,
+              "2": 1,
+              "3": 1
+            },
+            "modal_count": 28,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 13733997253183132080,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 7,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "1": 1,
+              "3": 29,
+              "4": 2
+            },
+            "modal_count": 29,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 1,
+              "1": 28,
+              "2": 1,
+              "3": 2
+            },
+            "modal_count": 28,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 4307174013152948927,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 8,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "2": 2,
+              "3": 27,
+              "4": 3
+            },
+            "modal_count": 27,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 1,
+              "1": 30,
+              "3": 1
+            },
+            "modal_count": 30,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 8463194680858071740,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 9,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "3": 29,
+              "4": 3
+            },
+            "modal_count": 29,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "1": 29,
+              "2": 2,
+              "3": 1
+            },
+            "modal_count": 29,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 7868415355864939070,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 10,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "2": 1,
+              "3": 30,
+              "4": 1
+            },
+            "modal_count": 30,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 2,
+              "1": 28,
+              "3": 2
+            },
+            "modal_count": 28,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 9211442065639373974,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": true,
+      "query_formula_reconciled": true,
+      "repetition": 11,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 3,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "strict_measured_discrete_boundary_no_confidence_theorem",
+          "strict": true
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": true,
+        "estimate_register_code": 83,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.8535533905932737,
+            "arm": 0,
+            "folded_bin_counts": {
+              "2": 2,
+              "3": 28,
+              "4": 2
+            },
+            "modal_count": 28,
+            "modal_folded_bin": 3,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 32
+            },
+            "modal_count": 32,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 32
+          },
+          {
+            "amplitude_estimate": 0.14644660940672624,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 1,
+              "1": 29,
+              "2": 2
+            },
+            "modal_count": 29,
+            "modal_folded_bin": 1,
+            "modal_unique": true,
+            "shots": 32
+          }
+        ],
+        "membership_bits": [
+          1,
+          0,
+          0
+        ],
+        "membership_mask": 1,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 96,
+            "phase_reward_resets": 96,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 25932,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 64,
+            "compiled_index_basis_x": 64,
+            "compiled_rank_truth_table_rows": 1024,
+            "controlled_global_phase": 672,
+            "controlled_good_reflection": 672,
+            "controlled_reward_oracle_forward": 672,
+            "controlled_reward_oracle_inverse": 672,
+            "controlled_zero_reflection": 672,
+            "destructive_phase_reward_reset": 384,
+            "durable_membership_cnot": 3,
+            "inverse_qft": 96,
+            "no_ancilla_multicontrolled_rank_primitives": 19456,
+            "phase_control_compute": 672,
+            "phase_control_uncompute": 672,
+            "phase_hadamard": 288,
+            "phase_measurement": 288,
+            "reward_oracle_forward": 96
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 1440,
+            "compiled_rank_relation_calls": 2,
+            "controlled_forward": 672,
+            "controlled_inverse": 672,
+            "destructive_phase_measurements": 96,
+            "forward": 96,
+            "inverse": 0,
+            "phase_reward_resets": 96,
+            "qram_queries": 0,
+            "total": 1440
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_direct_membership_baseline_complete_theorem_blocked"
+      },
+      "seed": 7295202447128388854,
+      "truth_strict": true,
+      "truth_top_k": [
+        0
+      ]
+    },
+    {
+      "case_id": "tie_negative_control",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": false,
+      "query_formula_reconciled": true,
+      "repetition": 0,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound",
+          "measured_top_k_boundary_tie_fail_closed"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 2,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "ambiguous_measured_discrete_boundary_fail_closed",
+          "strict": false
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": false,
+        "estimate_register_code": 18,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 0,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [],
+        "membership_mask": null,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 1625,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 0,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 0,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 0,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 0,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_rank_baseline_ambiguous_or_cleanup_failed"
+      },
+      "seed": 14823131147392072939,
+      "truth_strict": false,
+      "truth_top_k": null
+    },
+    {
+      "case_id": "tie_negative_control",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": false,
+      "query_formula_reconciled": true,
+      "repetition": 1,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound",
+          "measured_top_k_boundary_tie_fail_closed"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 2,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "ambiguous_measured_discrete_boundary_fail_closed",
+          "strict": false
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": false,
+        "estimate_register_code": 18,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 0,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [],
+        "membership_mask": null,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 1625,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 0,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 0,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 0,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 0,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_rank_baseline_ambiguous_or_cleanup_failed"
+      },
+      "seed": 17273589730338858656,
+      "truth_strict": false,
+      "truth_top_k": null
+    },
+    {
+      "case_id": "tie_negative_control",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": false,
+      "query_formula_reconciled": true,
+      "repetition": 2,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound",
+          "measured_top_k_boundary_tie_fail_closed"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 2,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "ambiguous_measured_discrete_boundary_fail_closed",
+          "strict": false
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": false,
+        "estimate_register_code": 18,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 0,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [],
+        "membership_mask": null,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 1625,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 0,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 0,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 0,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 0,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_rank_baseline_ambiguous_or_cleanup_failed"
+      },
+      "seed": 14460934225801137885,
+      "truth_strict": false,
+      "truth_top_k": null
+    },
+    {
+      "case_id": "tie_negative_control",
+      "certified_exact": false,
+      "k": 1,
+      "n": 3,
+      "output_exact": false,
+      "query_formula_reconciled": true,
+      "repetition": 3,
+      "result": {
+        "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+        "blockers": [
+          "qpe_measurement_and_reset_breaks_end_to_end_coherence",
+          "per_arm_classical_loop_is_not_a_coherent_index_superposition",
+          "finite_shot_modal_rank_has_no_confidence_theorem",
+          "exhaustive_all_arm_qpe_is_a_legal_baseline_not_a_variable_time_speedup",
+          "exhaustive_rank_relation_has_exponential_compilation_cost",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound",
+          "measured_top_k_boundary_tie_fail_closed"
+        ],
+        "boundary": {
+          "finite_sample_confidence_proved": false,
+          "information_source": "per_arm_measured_qpe_modal_bins",
+          "inside_arm": 0,
+          "inside_folded_bin": 2,
+          "outside_arm": 1,
+          "outside_folded_bin": 2,
+          "status": "ambiguous_measured_discrete_boundary_fail_closed",
+          "strict": false
+        },
+        "certificate_issued": false,
+        "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+        "direct_multi_output_complete": false,
+        "estimate_register_code": 18,
+        "estimates": [
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 0,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.4999999999999999,
+            "arm": 1,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 2,
+            "modal_unique": true,
+            "shots": 8
+          },
+          {
+            "amplitude_estimate": 0.0,
+            "arm": 2,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_count": 8,
+            "modal_folded_bin": 0,
+            "modal_unique": true,
+            "shots": 8
+          }
+        ],
+        "membership_bits": [],
+        "membership_mask": null,
+        "quantum_advantage_claimable": false,
+        "ranking": [
+          0,
+          1,
+          2
+        ],
+        "resources": {
+          "backend": "numpy_exact_statevector_measured_qpe_exhaustive_rank_baseline",
+          "claim_scope": "legal_tiny_baseline_no_end_to_end_coherence_no_confidence_theorem_no_query_advantage",
+          "cleanup": {
+            "comparator_nonzero_probability": 0.0,
+            "end_to_end_unitary_cleanup_proved": false,
+            "expected_output_residual_l2": 0.0,
+            "measurement_reset_charged": true,
+            "membership_work_nonzero_probability": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "phase_measurements": 24,
+            "phase_reward_resets": 24,
+            "rank_unitary_cleanup_passed": true,
+            "tolerance": 1e-12
+          },
+          "depth": 1625,
+          "depth_semantics": "fully_serial_logical_upper_bound",
+          "gate_count_semantics": "logical_no_ancilla_multicontrolled_upper_bound",
+          "gate_counts": {
+            "classical_estimate_register_load": 9,
+            "compiled_index_basis_reset_x": 16,
+            "compiled_index_basis_x": 16,
+            "compiled_rank_truth_table_rows": 0,
+            "controlled_global_phase": 168,
+            "controlled_good_reflection": 168,
+            "controlled_reward_oracle_forward": 168,
+            "controlled_reward_oracle_inverse": 168,
+            "controlled_zero_reflection": 168,
+            "destructive_phase_reward_reset": 96,
+            "durable_membership_cnot": 0,
+            "inverse_qft": 24,
+            "no_ancilla_multicontrolled_rank_primitives": 0,
+            "phase_control_compute": 168,
+            "phase_control_uncompute": 168,
+            "phase_hadamard": 72,
+            "phase_measurement": 72,
+            "reward_oracle_forward": 24
+          },
+          "peak_statevector_dimension": 65536,
+          "qram_assumed": false,
+          "qubits": 16,
+          "query_count_semantics": "executed_canonical_oracle_calls_plus_explicit_nonoracle_charges",
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 360,
+            "compiled_rank_relation_calls": 0,
+            "controlled_forward": 168,
+            "controlled_inverse": 168,
+            "destructive_phase_measurements": 24,
+            "forward": 24,
+            "inverse": 0,
+            "phase_reward_resets": 24,
+            "qram_queries": 0,
+            "total": 360
+          },
+          "rank_compilation_model": "exhaustive_multicontrolled_rank_relation_no_qram",
+          "rank_truth_table_rows": 512,
+          "register_dimensions": {
+            "comparator": 2,
+            "durable_membership_output": 8,
+            "estimate_pack": 512,
+            "membership_work": 8
+          },
+          "retained_statevector_dimension": 65536
+        },
+        "status": "legal_rank_baseline_ambiguous_or_cleanup_failed"
+      },
+      "seed": 5877335512940245695,
+      "truth_strict": false,
+      "truth_top_k": null
+    }
+  ],
+  "resolved_config": {
+    "cases": [
+      {
+        "case_id": "grid_n3_k1",
+        "cleanup_tolerance": 1e-12,
+        "k": 1,
+        "max_statevector_dimension": 8388608,
+        "means": [
+          1.0,
+          0.5,
+          0.0
+        ],
+        "phase_qubits": 3,
+        "repetitions": 4,
+        "shots_per_arm": 8
+      },
+      {
+        "case_id": "grid_n3_k2",
+        "cleanup_tolerance": 1e-12,
+        "k": 2,
+        "max_statevector_dimension": 8388608,
+        "means": [
+          1.0,
+          0.5,
+          0.0
+        ],
+        "phase_qubits": 3,
+        "repetitions": 4,
+        "shots_per_arm": 8
+      },
+      {
+        "case_id": "grid_n4_k2",
+        "cleanup_tolerance": 1e-12,
+        "k": 2,
+        "max_statevector_dimension": 3000000,
+        "means": [
+          1.0,
+          0.5,
+          0.14644660940672624,
+          0.0
+        ],
+        "phase_qubits": 3,
+        "repetitions": 2,
+        "shots_per_arm": 4
+      },
+      {
+        "case_id": "off_grid_n3_k1",
+        "cleanup_tolerance": 1e-12,
+        "k": 1,
+        "max_statevector_dimension": 8388608,
+        "means": [
+          0.9,
+          0.5,
+          0.1
+        ],
+        "phase_qubits": 3,
+        "repetitions": 12,
+        "shots_per_arm": 32
+      },
+      {
+        "case_id": "tie_negative_control",
+        "cleanup_tolerance": 1e-12,
+        "k": 1,
+        "max_statevector_dimension": 8388608,
+        "means": [
+          0.5,
+          0.5,
+          0.0
+        ],
+        "phase_qubits": 3,
+        "repetitions": 4,
+        "shots_per_arm": 8
+      }
+    ],
+    "experiment_name": "measured_qpe_direct_topk_semantic_baseline_v1",
+    "master_seed": 20260716,
+    "notes": [
+      "The trusted fixture builder knows means only to construct and score the oracle; the algorithm receives only the canonical oracle, k, and public precision/shot limits.",
+      "The baseline executes charged measured QPE per arm, a complete direct membership relation, and rank compute-copy-uncompute without QRAM.",
+      "The tie fixture must fail closed; no arbitrary tie-breaking counts as strict exact Top-k success.",
+      "This panel validates a legal semantic comparator, not a coherent unknown-boundary advantage algorithm."
+    ],
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "summary": {
+    "all_query_formulas_reconciled": true,
+    "all_rank_cleanup_passed": true,
+    "certified_exact_rate_on_strict": 0.0,
+    "direct_multi_output_complete_rate_on_strict": 1.0,
+    "end_to_end_coherent": false,
+    "exact_output_rate_on_strict": 1.0,
+    "finite_sample_confidence_proved": false,
+    "qram_assumed": false,
+    "quantum_advantage_claimable": false,
+    "record_count": 26,
+    "strict_attempt_count": 22,
+    "tie_fail_closed_rate": 1.0,
+    "tie_negative_control_count": 4
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "experiment_name": "measured_qpe_direct_topk_semantic_baseline_v1",
+  "master_seed": 20260716,
+  "cases": [
+    {
+      "case_id": "grid_n3_k1",
+      "means": [1.0, 0.5, 0.0],
+      "k": 1,
+      "phase_qubits": 3,
+      "shots_per_arm": 8,
+      "repetitions": 4
+    },
+    {
+      "case_id": "grid_n3_k2",
+      "means": [1.0, 0.5, 0.0],
+      "k": 2,
+      "phase_qubits": 3,
+      "shots_per_arm": 8,
+      "repetitions": 4
+    },
+    {
+      "case_id": "grid_n4_k2",
+      "means": [1.0, 0.5, 0.14644660940672624, 0.0],
+      "k": 2,
+      "phase_qubits": 3,
+      "shots_per_arm": 4,
+      "repetitions": 2,
+      "max_statevector_dimension": 3000000
+    },
+    {
+      "case_id": "off_grid_n3_k1",
+      "means": [0.9, 0.5, 0.1],
+      "k": 1,
+      "phase_qubits": 3,
+      "shots_per_arm": 32,
+      "repetitions": 12
+    },
+    {
+      "case_id": "tie_negative_control",
+      "means": [0.5, 0.5, 0.0],
+      "k": 1,
+      "phase_qubits": 3,
+      "shots_per_arm": 8,
+      "repetitions": 4
+    }
+  ],
+  "notes": [
+    "The trusted fixture builder knows means only to construct and score the oracle; the algorithm receives only the canonical oracle, k, and public precision/shot limits.",
+    "The baseline executes charged measured QPE per arm, a complete direct membership relation, and rank compute-copy-uncompute without QRAM.",
+    "The tie fixture must fail closed; no arbitrary tie-breaking counts as strict exact Top-k success.",
+    "This panel validates a legal semantic comparator, not a coherent unknown-boundary advantage algorithm."
+  ]
+}

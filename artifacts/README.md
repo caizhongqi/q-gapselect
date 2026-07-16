@@ -8,6 +8,18 @@ This directory versions machine-readable audit outputs:
   schedule and assumes no QRAM. The schedules remain public fixtures, so the
   artifact is circuit-semantics evidence rather than coherent boundary
   discovery, a new variable-time upper bound, or quantum-advantage evidence.
+- `coherent_rank_baseline.json` records the tiny legal measured-QPE direct
+  Top-k semantic comparator. It receives no numeric boundary, truth set, or
+  hidden mean accessor; charges every canonical-oracle call, destructive phase
+  measurement/reset, and exhaustive no-QRAM rank compilation; writes the full
+  membership mask; and fail-closes on ties. Because it uses a classical
+  per-arm loop and measurement/reset and has no finite-shot confidence theorem,
+  it is a baseline/semantic control rather than an end-to-end coherent
+  advantage algorithm. The clean-provenance panel contains 26 records: all 22
+  strict-boundary attempts return the exact complete Top-k mask, all four tie
+  controls reject, and every query formula and rank cleanup ledger reconciles.
+  Certified-exact recovery remains zero because finite-shot confidence and
+  end-to-end coherent cleanup are deliberately not claimed.
 
 - `scaling.json` evaluates declared analytic complexity proxies. It contains no
   observed quantum execution and proves no scaling theorem.
