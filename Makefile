@@ -2,6 +2,7 @@
 	scaling reference coherent quantum quantum-history unknown-boundary-grid \
 	coherent-statevector-history charged-history variable-time-charged \
 	stopping-transducer theorem-scaffold replay-coherent-frontier coherent-rank-baseline \
+	coherent-unknown-boundary-topk hidden-frontier-fixtures strong-composition-registry \
 	composition-frontier theorem-closure-audit lower-bound proof-ledger research-gap \
 	attack attack-design \
 	frozen-selector-benchmark frozen-quantum-reference frozen-anchor-calibration \
@@ -34,6 +35,12 @@ test-quantum:
 		tests/test_replay_coherent_frontier_script.py \
 		tests/test_coherent_rank_baseline.py \
 		tests/test_coherent_rank_baseline_script.py \
+		tests/test_coherent_unknown_boundary_topk.py \
+		tests/test_coherent_unknown_boundary_topk_script.py \
+		tests/test_hidden_frontier_fixtures.py \
+		tests/test_hidden_frontier_fixture_manifest_script.py \
+		tests/test_strong_composition_registry.py \
+		tests/test_strong_composition_registry_script.py \
 		tests/test_composition_frontier.py \
 		tests/test_composition_frontier_script.py \
 		tests/test_lower_bound_program.py \
@@ -66,7 +73,7 @@ check: lint test
 
 experiment: scaling coherent quantum-core
 
-quantum-core: quantum unknown-boundary-grid charged-history variable-time-charged stopping-transducer theorem-scaffold replay-coherent-frontier coherent-rank-baseline composition-frontier lower-bound proof-ledger research-gap
+quantum-core: quantum unknown-boundary-grid charged-history variable-time-charged stopping-transducer theorem-scaffold replay-coherent-frontier coherent-rank-baseline coherent-unknown-boundary-topk hidden-frontier-fixtures strong-composition-registry composition-frontier lower-bound proof-ledger research-gap
 
 scaling:
 	python scripts/run_scaling.py --output artifacts/scaling.json
@@ -91,6 +98,21 @@ coherent-rank-baseline:
 	python scripts/run_coherent_rank_baseline.py \
 		--config configs/coherent_rank_baseline.json \
 		--output artifacts/coherent_rank_baseline.json
+
+coherent-unknown-boundary-topk:
+	python scripts/run_coherent_unknown_boundary_topk.py \
+		--config configs/coherent_unknown_boundary_topk.json \
+		--output artifacts/coherent_unknown_boundary_topk.json
+
+hidden-frontier-fixtures:
+	python scripts/run_hidden_frontier_fixture_manifest.py \
+		--config configs/hidden_frontier_fixture_manifest.json \
+		--output artifacts/hidden_frontier_fixture_manifest.json
+
+strong-composition-registry:
+	python scripts/run_strong_composition_registry.py \
+		--config configs/strong_composition_registry.json \
+		--output artifacts/strong_composition_registry.json
 
 quantum:
 	python scripts/run_quantum_benchmarks.py \

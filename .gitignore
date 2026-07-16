@@ -45,6 +45,9 @@ artifacts/*
 !artifacts/ccfa_history_certificate_ablation.json.gz
 !artifacts/replay_coherent_frontier.json
 !artifacts/coherent_rank_baseline.json
+!artifacts/coherent_unknown_boundary_topk.json
+!artifacts/hidden_frontier_fixture_manifest.json
+!artifacts/strong_composition_registry.json
 !artifacts/uci_classifier_benchmark_diagnostic.json.gz
 paper/*.aux
 paper/*.bbl

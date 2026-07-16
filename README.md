@@ -130,6 +130,21 @@ separately throughout the repository.
   instances and 15,000 method runs, with paired inference and strict
   certificate semantics. It records logical coherent query ledgers, not
   hardware resources.
+- A tiny end-to-end coherent unknown-boundary Top-k reference unitary. It
+  receives only the charged canonical oracle, `k`, and public precision/resource
+  limits; runs coherent QPE, an exhaustive reversible rank relation, complete
+  membership-mask copy, and inverse-QPE cleanup; and records the exact
+  rank-copy identity `P_garbage = 1 - sum_y p_y^2`. Exact-grid cases are circuit
+  sanity checks, while generic off-grid entanglement fails closed.
+- A deterministic hidden-frontier fixture generator with seven registered
+  positive and negative-control families. It separates method-visible blind or
+  public-partition interfaces from trusted truth, hides the numeric gap and
+  activity history, supports exact replay, and deduplicates permutation orbits.
+- A primary-source identity and version-locator inventory of the strongest estimation, QBAI,
+  approximate-k-minimum, variable-time, loop-composition, tunable-VTAA, and
+  all-marked baselines. Declarative rows and self-reported test JSON never
+  count as trusted runtime evidence; uncovered reductions keep the advantage
+  gate false.
 - Tests, continuous integration, a research protocol, claim matrix, and manuscript
   scaffold.
 
@@ -179,6 +194,31 @@ algorithm-only campaign: a charged unknown-boundary constructor, complete
 durable Top-k output, replay cleanup, strongest same-interface composition
 baselines, fixture-cluster statistics, and explicit empirical/theorem
 falsification gates. Supplied schedules remain regression controls only.
+
+### S2 unknown-boundary checkpoint (2026-07-16)
+
+The executable S2 checkpoint closes circuit semantics, fixture isolation, and
+fail-closed baseline inventory—not the new upper/lower-bound theorem:
+
+- Four exact-state cases reconcile all canonical-oracle queries. Both exact-grid
+  strict controls write the complete Top-k mask and clean; the generic off-grid
+  control leaves `0.034769713197` transient probability, matches
+  `1 - sum_y p_y^2`, and rejects; the exact tie cleans and rejects.
+- The backend reports exact queries, executed NumPy kernel macros, undecomposed
+  logical macros, and rank-structure proxies separately. It deliberately
+  reports no elementary-gate ledger, transpiled depth, or compiled ancilla count.
+- The frozen manifest contains 21 fixtures across seven families and three
+  seeds. It has 18 raw geometric orbits but 21 algorithmic
+  `(orbit_hash, interface_id)` keys, so hidden and public-partition controls are
+  never collapsed.
+- The version-locator inventory contains ten strong baselines; nine require
+  trusted implementations and remain uncovered. Even nine structurally valid
+  self-reports cannot activate coverage because a trusted attestation pipeline
+  is not implemented.
+
+Accordingly, the S2 artifact records `quantum_advantage_claimable=false` and
+`ccf_a_claimable=false`. Its positive result is a stricter executable problem
+definition and a concrete off-grid cleanup obstruction for the next algorithm.
 
 CCF publishes a venue directory, not a mandatory dataset list. For that
 reason, `docs/ccfa_algorithm_experiment_protocol.md` defines a top-conference
@@ -328,6 +368,9 @@ make frozen-quantum-reference
 make coherent-statevector-history
 make replay-coherent-frontier
 make coherent-rank-baseline
+make coherent-unknown-boundary-topk
+make hidden-frontier-fixtures
+make strong-composition-registry
 make theorem-closure-audit
 make ccfa-matched-benchmark
 make install-datasets
@@ -366,6 +409,15 @@ python scripts/run_stopping_unitary_theorem.py \
   --config configs/stopping_unitary_theorem.json \
   --output artifacts/stopping_unitary_theorem.json \
   --markdown docs/stopping_unitary_theorem.md
+python scripts/run_coherent_unknown_boundary_topk.py \
+  --config configs/coherent_unknown_boundary_topk.json \
+  --output artifacts/coherent_unknown_boundary_topk.json
+python scripts/run_hidden_frontier_fixture_manifest.py \
+  --config configs/hidden_frontier_fixture_manifest.json \
+  --output artifacts/hidden_frontier_fixture_manifest.json
+python scripts/run_strong_composition_registry.py \
+  --config configs/strong_composition_registry.json \
+  --output artifacts/strong_composition_registry.json
 python scripts/run_composition_frontier.py \
   --config configs/composition_frontier.json \
   --output artifacts/composition_frontier.json
@@ -417,7 +469,10 @@ stopping-unitary theorem-scaffold artifacts are also versioned because they are
 P0-U08 construction checkpoints. The composition-frontier and lower-bound
 program artifacts are versioned because they define the current prior-work
 frontier and L-07 proof obligations. The proof-ledger artifact is versioned
-because it is now the canonical theorem-stack checklist.
+because it is now the canonical theorem-stack checklist. The coherent
+unknown-boundary circuit, hidden-frontier manifest, and strong-composition
+registry artifacts are versioned as the S2 experiment-interface checkpoint;
+they are not an upper-bound or lower-bound theorem.
 
 ## Paper-grade completion criteria
 

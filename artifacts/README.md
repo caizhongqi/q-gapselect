@@ -20,6 +20,27 @@ This directory versions machine-readable audit outputs:
   controls reject, and every query formula and rank cleanup ledger reconciles.
   Certified-exact recovery remains zero because finite-shot confidence and
   end-to-end coherent cleanup are deliberately not claimed.
+- `coherent_unknown_boundary_topk.json` records the tiny end-to-end coherent
+  S2 circuit panel. The constructor receives no boundary, truth, schedule, or
+  hidden mean accessor. Every canonical forward/inverse and controlled call is
+  charged, the complete membership mask is copied, and inverse-QPE cleanup is
+  checked against `P_garbage = 1 - sum_y p_y^2`. Exact-grid completion is a
+  rounding-promise circuit check; off-grid residuals fail closed, and no
+  certificate or advantage is claimed. It reports no elementary-gate count,
+  transpiled depth, or compiled-ancilla estimate.
+- `hidden_frontier_fixture_manifest.json` freezes the algorithm-only hard-family
+  campaign inputs. Seven families have replayable trusted manifests and
+  method-visible views that hide numeric gaps, centers, rankings, memberships,
+  schedules, seeds, permutations, and stopping times. The public-partition
+  control exposes only an unordered static partition on a distinct interface.
+  Raw grouping has 18 geometric orbits, while interface-aware deduplication
+  retains all 21 algorithmic fixtures.
+- `strong_composition_registry.json` inventories source-identity and explicit
+  version-locator entries for estimation,
+  QBAI, approximate-k-minimum, variable-time, loop-composition, tunable-VTAA,
+  and multi-output baselines. Registry prose and self-reported test JSON are not
+  trusted runtime evidence; all nine required reductions remain uncovered, so
+  the strongest-composition and CCF-A gates stay false.
 
 - `scaling.json` evaluates declared analytic complexity proxies. It contains no
   observed quantum execution and proves no scaling theorem.
@@ -109,6 +130,15 @@ python scripts/run_direct_search.py \
 python scripts/run_quantum_benchmarks.py \
   --config configs/quantum_benchmarks.json \
   --output artifacts/quantum_benchmark_diagnostic.json
+python scripts/run_coherent_unknown_boundary_topk.py \
+  --config configs/coherent_unknown_boundary_topk.json \
+  --output artifacts/coherent_unknown_boundary_topk.json
+python scripts/run_hidden_frontier_fixture_manifest.py \
+  --config configs/hidden_frontier_fixture_manifest.json \
+  --output artifacts/hidden_frontier_fixture_manifest.json
+python scripts/run_strong_composition_registry.py \
+  --config configs/strong_composition_registry.json \
+  --output artifacts/strong_composition_registry.json
 python scripts/run_composition_frontier.py \
   --config configs/composition_frontier.json \
   --output artifacts/composition_frontier.json
