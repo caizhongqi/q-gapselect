@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "experiment_name": "stopping_unitary_theorem_scaffold_v1",
+  "cases": [
+    {
+      "name": "canonical_output_phase",
+      "m_values": [4, 8, 16],
+      "n_exponent": 2.0,
+      "level_exponent": 1.0,
+      "boundary_phase": 0.5,
+      "near_boundary_fraction": 0.5,
+      "base_bits": 3,
+      "growth_period": 2,
+      "guard_band": 0.0,
+      "phase_on": "output"
+    },
+    {
+      "name": "active_phase_cleanup",
+      "m_values": [4, 8],
+      "n_exponent": 2.0,
+      "level_exponent": 1.0,
+      "boundary_phase": 0.5,
+      "near_boundary_fraction": 0.375,
+      "base_bits": 4,
+      "growth_period": 1,
+      "guard_band": 0.0,
+      "phase_on": "active"
+    }
+  ],
+  "notes": [
+    "This artifact is a theorem scaffold: executable checks may pass while proof obligations remain.",
+    "The supplied boundary and deterministic finite-phase fixtures mean this is not yet the final unknown-boundary theorem.",
+    "The next manual proof should promote ST-P01 through ST-P04."
+  ]
+}

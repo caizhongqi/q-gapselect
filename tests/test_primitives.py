@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import math
+
 import numpy as np
 import pytest
 
@@ -191,6 +193,54 @@ def test_integer_budgets_are_not_silently_truncated(factory) -> None:
     oracle = CanonicalRyStatevectorOracle([0.9, 0.1])
     with pytest.raises(TypeError, match="integer"):
         factory(oracle)
+
+
+def test_qboundary_can_refine_until_a_resource_requested_angular_margin() -> None:
+    default = QBoundaryEstimator(
+        CanonicalRyStatevectorOracle([1.0, 0.0], seed=1),
+        1,
+        confidence=0.1,
+        shots_per_round=32,
+        max_rounds=2,
+        seed=2,
+    ).run()
+    refined = QBoundaryEstimator(
+        CanonicalRyStatevectorOracle([1.0, 0.0], seed=1),
+        1,
+        confidence=0.1,
+        shots_per_round=32,
+        max_rounds=2,
+        minimum_angular_margin=0.5,
+        seed=2,
+    ).run()
+
+    assert default.complete and len(default.rounds) == 1
+    assert refined.complete and len(refined.rounds) == 2
+    assert refined.minimum_angular_margin == pytest.approx(0.5)
+    assert refined.certificate is not None
+    assert refined.certificate.angular_margin >= 0.5
+
+
+@pytest.mark.parametrize(
+    ("value", "error"),
+    [
+        (True, TypeError),
+        ("bad", TypeError),
+        (-0.1, ValueError),
+        (math.inf, ValueError),
+        (math.pi, ValueError),
+    ],
+)
+def test_qboundary_rejects_invalid_minimum_angular_margin(
+    value: object, error: type[Exception]
+) -> None:
+    oracle = CanonicalRyStatevectorOracle([1.0, 0.0])
+    with pytest.raises(error):
+        QBoundaryEstimator(
+            oracle,
+            1,
+            minimum_angular_margin=value,  # type: ignore[arg-type]
+        )
 
 
 def test_batch_integer_arguments_are_not_silently_truncated() -> None:

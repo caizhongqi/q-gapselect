@@ -1,0 +1,5026 @@
+{
+  "artifact_type": "q_gapselect_exact_state_coherent_activity_history",
+  "claim_status": "exact_state_code_sanity_only_no_new_algorithm_no_hardware_no_query_advantage_theorem",
+  "experiment_name": "q-gapselect-exact-state-coherent-history-v1",
+  "provenance": {
+    "git_commit": "7564881cc4b7a8c19c10d510b8cd5b7e3950c39e",
+    "git_tree": "e910319f576018b9bafc3a8afabe486e5fd7e8f7",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_version": "3.12.13",
+    "source_tree_dirty_at_execution": true
+  },
+  "records": [
+    {
+      "active_probability": 3.2686414817548405e-32,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 20
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 20
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 11
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 11
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 17
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 17
+          }
+        ],
+        "center": 0.75,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.75,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 0.75
+      },
+      "case_id": "on_grid_heterogeneous_stop",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.33333333333333354,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.6666666666666667,
+          "norm_error": 1.1102230246251565e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 2.790205152544371e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        },
+        {
+          "active_probability_after": 3.2686414817548405e-32,
+          "active_probability_before": 0.33333333333333354,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 129,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 6,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 14,
+            "controlled_good_reflection": 14,
+            "controlled_reward_oracle_forward": 15,
+            "controlled_reward_oracle_inverse": 15,
+            "controlled_zero_reflection": 14,
+            "grover_control_compute": 14,
+            "grover_control_uncompute": 14,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 1,
+          "newly_stopped_probability": 0.33333333333333354,
+          "norm_error": 0.0,
+          "phase_qubits": 3,
+          "phase_reward_workspace_residual": 7.021453866605054e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 30,
+            "controlled_forward": 15,
+            "controlled_inverse": 15,
+            "forward": 0,
+            "inverse": 0,
+            "total": 30
+          }
+        }
+      ],
+      "measurement_seed": 10323093753641076382,
+      "output_mask_probabilities": [
+        0.666666666666667,
+        0.33333333333333315,
+        1.648948498355628e-32,
+        0.0,
+        1.2497998188848805e-33,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 0,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 3122,
+        "gate_counts": {
+          "active_inverse_qft": 50,
+          "active_phase_hadamard": 154,
+          "active_qft": 2,
+          "active_stop_update": 2,
+          "activity_and_phase_control_compute": 52,
+          "activity_and_phase_control_uncompute": 52,
+          "activity_history_write": 2,
+          "coherent_branch_output_mask_xor": 2,
+          "controlled_global_phase": 356,
+          "controlled_good_reflection": 356,
+          "controlled_reward_oracle_forward": 406,
+          "controlled_reward_oracle_inverse": 358,
+          "controlled_zero_reflection": 356,
+          "grover_control_compute": 356,
+          "grover_control_uncompute": 356,
+          "phase_predicate_compute": 2,
+          "phase_predicate_uncompute": 2,
+          "predicate_copy_stop_code": 2,
+          "selected_phase_kickback": 2
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 44,
+          "controlled_forward": 22,
+          "controlled_inverse": 22,
+          "forward": 0,
+          "inverse": 0,
+          "total": 44
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 764,
+          "controlled_forward": 406,
+          "controlled_inverse": 358,
+          "forward": 0,
+          "inverse": 0,
+          "total": 764
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_complete_certificate_refused",
+      "stop_probabilities": [
+        3.2686414817548405e-32,
+        0.6666666666666663,
+        0.3333333333333338
+      ]
+    },
+    {
+      "active_probability": 3.2686414817548405e-32,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 21
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 21
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 13
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 13
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 14
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 14
+          }
+        ],
+        "center": 0.75,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.75,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 0.75
+      },
+      "case_id": "on_grid_heterogeneous_stop",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.33333333333333354,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.6666666666666667,
+          "norm_error": 1.1102230246251565e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 2.790205152544371e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        },
+        {
+          "active_probability_after": 3.2686414817548405e-32,
+          "active_probability_before": 0.33333333333333354,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 129,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 6,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 14,
+            "controlled_good_reflection": 14,
+            "controlled_reward_oracle_forward": 15,
+            "controlled_reward_oracle_inverse": 15,
+            "controlled_zero_reflection": 14,
+            "grover_control_compute": 14,
+            "grover_control_uncompute": 14,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 1,
+          "newly_stopped_probability": 0.33333333333333354,
+          "norm_error": 0.0,
+          "phase_qubits": 3,
+          "phase_reward_workspace_residual": 7.021453866605054e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 30,
+            "controlled_forward": 15,
+            "controlled_inverse": 15,
+            "forward": 0,
+            "inverse": 0,
+            "total": 30
+          }
+        }
+      ],
+      "measurement_seed": 16307900749893620746,
+      "output_mask_probabilities": [
+        0.666666666666667,
+        0.33333333333333315,
+        1.648948498355628e-32,
+        0.0,
+        1.2497998188848805e-33,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 1,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 3122,
+        "gate_counts": {
+          "active_inverse_qft": 50,
+          "active_phase_hadamard": 154,
+          "active_qft": 2,
+          "active_stop_update": 2,
+          "activity_and_phase_control_compute": 52,
+          "activity_and_phase_control_uncompute": 52,
+          "activity_history_write": 2,
+          "coherent_branch_output_mask_xor": 2,
+          "controlled_global_phase": 356,
+          "controlled_good_reflection": 356,
+          "controlled_reward_oracle_forward": 406,
+          "controlled_reward_oracle_inverse": 358,
+          "controlled_zero_reflection": 356,
+          "grover_control_compute": 356,
+          "grover_control_uncompute": 356,
+          "phase_predicate_compute": 2,
+          "phase_predicate_uncompute": 2,
+          "predicate_copy_stop_code": 2,
+          "selected_phase_kickback": 2
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 44,
+          "controlled_forward": 22,
+          "controlled_inverse": 22,
+          "forward": 0,
+          "inverse": 0,
+          "total": 44
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 764,
+          "controlled_forward": 406,
+          "controlled_inverse": 358,
+          "forward": 0,
+          "inverse": 0,
+          "total": 764
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_complete_certificate_refused",
+      "stop_probabilities": [
+        3.2686414817548405e-32,
+        0.6666666666666663,
+        0.3333333333333338
+      ]
+    },
+    {
+      "active_probability": 3.2686414817548405e-32,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 21
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 21
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 12
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 12
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 15
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 15
+          }
+        ],
+        "center": 0.75,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.75,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 0.75
+      },
+      "case_id": "on_grid_heterogeneous_stop",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.33333333333333354,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.6666666666666667,
+          "norm_error": 1.1102230246251565e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 2.790205152544371e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        },
+        {
+          "active_probability_after": 3.2686414817548405e-32,
+          "active_probability_before": 0.33333333333333354,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 129,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 6,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 14,
+            "controlled_good_reflection": 14,
+            "controlled_reward_oracle_forward": 15,
+            "controlled_reward_oracle_inverse": 15,
+            "controlled_zero_reflection": 14,
+            "grover_control_compute": 14,
+            "grover_control_uncompute": 14,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 1,
+          "newly_stopped_probability": 0.33333333333333354,
+          "norm_error": 0.0,
+          "phase_qubits": 3,
+          "phase_reward_workspace_residual": 7.021453866605054e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 30,
+            "controlled_forward": 15,
+            "controlled_inverse": 15,
+            "forward": 0,
+            "inverse": 0,
+            "total": 30
+          }
+        }
+      ],
+      "measurement_seed": 17501676746050894214,
+      "output_mask_probabilities": [
+        0.666666666666667,
+        0.33333333333333315,
+        1.648948498355628e-32,
+        0.0,
+        1.2497998188848805e-33,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 2,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 3122,
+        "gate_counts": {
+          "active_inverse_qft": 50,
+          "active_phase_hadamard": 154,
+          "active_qft": 2,
+          "active_stop_update": 2,
+          "activity_and_phase_control_compute": 52,
+          "activity_and_phase_control_uncompute": 52,
+          "activity_history_write": 2,
+          "coherent_branch_output_mask_xor": 2,
+          "controlled_global_phase": 356,
+          "controlled_good_reflection": 356,
+          "controlled_reward_oracle_forward": 406,
+          "controlled_reward_oracle_inverse": 358,
+          "controlled_zero_reflection": 356,
+          "grover_control_compute": 356,
+          "grover_control_uncompute": 356,
+          "phase_predicate_compute": 2,
+          "phase_predicate_uncompute": 2,
+          "predicate_copy_stop_code": 2,
+          "selected_phase_kickback": 2
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 44,
+          "controlled_forward": 22,
+          "controlled_inverse": 22,
+          "forward": 0,
+          "inverse": 0,
+          "total": 44
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 764,
+          "controlled_forward": 406,
+          "controlled_inverse": 358,
+          "forward": 0,
+          "inverse": 0,
+          "total": 764
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_complete_certificate_refused",
+      "stop_probabilities": [
+        3.2686414817548405e-32,
+        0.6666666666666663,
+        0.3333333333333338
+      ]
+    },
+    {
+      "active_probability": 3.2686414817548405e-32,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 13
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 13
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 15
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 15
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 20
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 20
+          }
+        ],
+        "center": 0.75,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.75,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 0.75
+      },
+      "case_id": "on_grid_heterogeneous_stop",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.33333333333333354,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.6666666666666667,
+          "norm_error": 1.1102230246251565e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 2.790205152544371e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        },
+        {
+          "active_probability_after": 3.2686414817548405e-32,
+          "active_probability_before": 0.33333333333333354,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 129,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 6,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 14,
+            "controlled_good_reflection": 14,
+            "controlled_reward_oracle_forward": 15,
+            "controlled_reward_oracle_inverse": 15,
+            "controlled_zero_reflection": 14,
+            "grover_control_compute": 14,
+            "grover_control_uncompute": 14,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 1,
+          "newly_stopped_probability": 0.33333333333333354,
+          "norm_error": 0.0,
+          "phase_qubits": 3,
+          "phase_reward_workspace_residual": 7.021453866605054e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 30,
+            "controlled_forward": 15,
+            "controlled_inverse": 15,
+            "forward": 0,
+            "inverse": 0,
+            "total": 30
+          }
+        }
+      ],
+      "measurement_seed": 13855666492166090282,
+      "output_mask_probabilities": [
+        0.666666666666667,
+        0.33333333333333315,
+        1.648948498355628e-32,
+        0.0,
+        1.2497998188848805e-33,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 3,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 3122,
+        "gate_counts": {
+          "active_inverse_qft": 50,
+          "active_phase_hadamard": 154,
+          "active_qft": 2,
+          "active_stop_update": 2,
+          "activity_and_phase_control_compute": 52,
+          "activity_and_phase_control_uncompute": 52,
+          "activity_history_write": 2,
+          "coherent_branch_output_mask_xor": 2,
+          "controlled_global_phase": 356,
+          "controlled_good_reflection": 356,
+          "controlled_reward_oracle_forward": 406,
+          "controlled_reward_oracle_inverse": 358,
+          "controlled_zero_reflection": 356,
+          "grover_control_compute": 356,
+          "grover_control_uncompute": 356,
+          "phase_predicate_compute": 2,
+          "phase_predicate_uncompute": 2,
+          "predicate_copy_stop_code": 2,
+          "selected_phase_kickback": 2
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 44,
+          "controlled_forward": 22,
+          "controlled_inverse": 22,
+          "forward": 0,
+          "inverse": 0,
+          "total": 44
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 764,
+          "controlled_forward": 406,
+          "controlled_inverse": 358,
+          "forward": 0,
+          "inverse": 0,
+          "total": 764
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_complete_certificate_refused",
+      "stop_probabilities": [
+        3.2686414817548405e-32,
+        0.6666666666666663,
+        0.3333333333333338
+      ]
+    },
+    {
+      "active_probability": 3.2686414817548405e-32,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 13
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 13
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 14
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 14
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 21
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 21
+          }
+        ],
+        "center": 0.75,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.75,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 0.75
+      },
+      "case_id": "on_grid_heterogeneous_stop",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.33333333333333354,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.6666666666666667,
+          "norm_error": 1.1102230246251565e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 2.790205152544371e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        },
+        {
+          "active_probability_after": 3.2686414817548405e-32,
+          "active_probability_before": 0.33333333333333354,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 129,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 6,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 14,
+            "controlled_good_reflection": 14,
+            "controlled_reward_oracle_forward": 15,
+            "controlled_reward_oracle_inverse": 15,
+            "controlled_zero_reflection": 14,
+            "grover_control_compute": 14,
+            "grover_control_uncompute": 14,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 1,
+          "newly_stopped_probability": 0.33333333333333354,
+          "norm_error": 0.0,
+          "phase_qubits": 3,
+          "phase_reward_workspace_residual": 7.021453866605054e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 30,
+            "controlled_forward": 15,
+            "controlled_inverse": 15,
+            "forward": 0,
+            "inverse": 0,
+            "total": 30
+          }
+        }
+      ],
+      "measurement_seed": 16165098748381107217,
+      "output_mask_probabilities": [
+        0.666666666666667,
+        0.33333333333333315,
+        1.648948498355628e-32,
+        0.0,
+        1.2497998188848805e-33,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 4,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 3122,
+        "gate_counts": {
+          "active_inverse_qft": 50,
+          "active_phase_hadamard": 154,
+          "active_qft": 2,
+          "active_stop_update": 2,
+          "activity_and_phase_control_compute": 52,
+          "activity_and_phase_control_uncompute": 52,
+          "activity_history_write": 2,
+          "coherent_branch_output_mask_xor": 2,
+          "controlled_global_phase": 356,
+          "controlled_good_reflection": 356,
+          "controlled_reward_oracle_forward": 406,
+          "controlled_reward_oracle_inverse": 358,
+          "controlled_zero_reflection": 356,
+          "grover_control_compute": 356,
+          "grover_control_uncompute": 356,
+          "phase_predicate_compute": 2,
+          "phase_predicate_uncompute": 2,
+          "predicate_copy_stop_code": 2,
+          "selected_phase_kickback": 2
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 44,
+          "controlled_forward": 22,
+          "controlled_inverse": 22,
+          "forward": 0,
+          "inverse": 0,
+          "total": 44
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 764,
+          "controlled_forward": 406,
+          "controlled_inverse": 358,
+          "forward": 0,
+          "inverse": 0,
+          "total": 764
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_complete_certificate_refused",
+      "stop_probabilities": [
+        3.2686414817548405e-32,
+        0.6666666666666663,
+        0.3333333333333338
+      ]
+    },
+    {
+      "active_probability": 3.2686414817548405e-32,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 16
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 16
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 14
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 14
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 18
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 18
+          }
+        ],
+        "center": 0.75,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.75,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 0.75
+      },
+      "case_id": "on_grid_heterogeneous_stop",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.33333333333333354,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.6666666666666667,
+          "norm_error": 1.1102230246251565e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 2.790205152544371e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        },
+        {
+          "active_probability_after": 3.2686414817548405e-32,
+          "active_probability_before": 0.33333333333333354,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 129,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 6,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 14,
+            "controlled_good_reflection": 14,
+            "controlled_reward_oracle_forward": 15,
+            "controlled_reward_oracle_inverse": 15,
+            "controlled_zero_reflection": 14,
+            "grover_control_compute": 14,
+            "grover_control_uncompute": 14,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 1,
+          "newly_stopped_probability": 0.33333333333333354,
+          "norm_error": 0.0,
+          "phase_qubits": 3,
+          "phase_reward_workspace_residual": 7.021453866605054e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 30,
+            "controlled_forward": 15,
+            "controlled_inverse": 15,
+            "forward": 0,
+            "inverse": 0,
+            "total": 30
+          }
+        }
+      ],
+      "measurement_seed": 7762431199802586918,
+      "output_mask_probabilities": [
+        0.666666666666667,
+        0.33333333333333315,
+        1.648948498355628e-32,
+        0.0,
+        1.2497998188848805e-33,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 5,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 3122,
+        "gate_counts": {
+          "active_inverse_qft": 50,
+          "active_phase_hadamard": 154,
+          "active_qft": 2,
+          "active_stop_update": 2,
+          "activity_and_phase_control_compute": 52,
+          "activity_and_phase_control_uncompute": 52,
+          "activity_history_write": 2,
+          "coherent_branch_output_mask_xor": 2,
+          "controlled_global_phase": 356,
+          "controlled_good_reflection": 356,
+          "controlled_reward_oracle_forward": 406,
+          "controlled_reward_oracle_inverse": 358,
+          "controlled_zero_reflection": 356,
+          "grover_control_compute": 356,
+          "grover_control_uncompute": 356,
+          "phase_predicate_compute": 2,
+          "phase_predicate_uncompute": 2,
+          "predicate_copy_stop_code": 2,
+          "selected_phase_kickback": 2
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 44,
+          "controlled_forward": 22,
+          "controlled_inverse": 22,
+          "forward": 0,
+          "inverse": 0,
+          "total": 44
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 764,
+          "controlled_forward": 406,
+          "controlled_inverse": 358,
+          "forward": 0,
+          "inverse": 0,
+          "total": 764
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_complete_certificate_refused",
+      "stop_probabilities": [
+        3.2686414817548405e-32,
+        0.6666666666666663,
+        0.3333333333333338
+      ]
+    },
+    {
+      "active_probability": 3.2686414817548405e-32,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 15
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 15
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 16
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 16
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 17
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 17
+          }
+        ],
+        "center": 0.75,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.75,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 0.75
+      },
+      "case_id": "on_grid_heterogeneous_stop",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.33333333333333354,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.6666666666666667,
+          "norm_error": 1.1102230246251565e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 2.790205152544371e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        },
+        {
+          "active_probability_after": 3.2686414817548405e-32,
+          "active_probability_before": 0.33333333333333354,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 129,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 6,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 14,
+            "controlled_good_reflection": 14,
+            "controlled_reward_oracle_forward": 15,
+            "controlled_reward_oracle_inverse": 15,
+            "controlled_zero_reflection": 14,
+            "grover_control_compute": 14,
+            "grover_control_uncompute": 14,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 1,
+          "newly_stopped_probability": 0.33333333333333354,
+          "norm_error": 0.0,
+          "phase_qubits": 3,
+          "phase_reward_workspace_residual": 7.021453866605054e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 30,
+            "controlled_forward": 15,
+            "controlled_inverse": 15,
+            "forward": 0,
+            "inverse": 0,
+            "total": 30
+          }
+        }
+      ],
+      "measurement_seed": 1401906098569920846,
+      "output_mask_probabilities": [
+        0.666666666666667,
+        0.33333333333333315,
+        1.648948498355628e-32,
+        0.0,
+        1.2497998188848805e-33,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 6,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 3122,
+        "gate_counts": {
+          "active_inverse_qft": 50,
+          "active_phase_hadamard": 154,
+          "active_qft": 2,
+          "active_stop_update": 2,
+          "activity_and_phase_control_compute": 52,
+          "activity_and_phase_control_uncompute": 52,
+          "activity_history_write": 2,
+          "coherent_branch_output_mask_xor": 2,
+          "controlled_global_phase": 356,
+          "controlled_good_reflection": 356,
+          "controlled_reward_oracle_forward": 406,
+          "controlled_reward_oracle_inverse": 358,
+          "controlled_zero_reflection": 356,
+          "grover_control_compute": 356,
+          "grover_control_uncompute": 356,
+          "phase_predicate_compute": 2,
+          "phase_predicate_uncompute": 2,
+          "predicate_copy_stop_code": 2,
+          "selected_phase_kickback": 2
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 44,
+          "controlled_forward": 22,
+          "controlled_inverse": 22,
+          "forward": 0,
+          "inverse": 0,
+          "total": 44
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 764,
+          "controlled_forward": 406,
+          "controlled_inverse": 358,
+          "forward": 0,
+          "inverse": 0,
+          "total": 764
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_complete_certificate_refused",
+      "stop_probabilities": [
+        3.2686414817548405e-32,
+        0.6666666666666663,
+        0.3333333333333338
+      ]
+    },
+    {
+      "active_probability": 3.2686414817548405e-32,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 17
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 17
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 17
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 17
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 14
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 14
+          }
+        ],
+        "center": 0.75,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.75,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 0.75
+      },
+      "case_id": "on_grid_heterogeneous_stop",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.33333333333333354,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.6666666666666667,
+          "norm_error": 1.1102230246251565e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 2.790205152544371e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        },
+        {
+          "active_probability_after": 3.2686414817548405e-32,
+          "active_probability_before": 0.33333333333333354,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 129,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 6,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 14,
+            "controlled_good_reflection": 14,
+            "controlled_reward_oracle_forward": 15,
+            "controlled_reward_oracle_inverse": 15,
+            "controlled_zero_reflection": 14,
+            "grover_control_compute": 14,
+            "grover_control_uncompute": 14,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 1,
+          "newly_stopped_probability": 0.33333333333333354,
+          "norm_error": 0.0,
+          "phase_qubits": 3,
+          "phase_reward_workspace_residual": 7.021453866605054e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 30,
+            "controlled_forward": 15,
+            "controlled_inverse": 15,
+            "forward": 0,
+            "inverse": 0,
+            "total": 30
+          }
+        }
+      ],
+      "measurement_seed": 7159572310177295624,
+      "output_mask_probabilities": [
+        0.666666666666667,
+        0.33333333333333315,
+        1.648948498355628e-32,
+        0.0,
+        1.2497998188848805e-33,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 7,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 3122,
+        "gate_counts": {
+          "active_inverse_qft": 50,
+          "active_phase_hadamard": 154,
+          "active_qft": 2,
+          "active_stop_update": 2,
+          "activity_and_phase_control_compute": 52,
+          "activity_and_phase_control_uncompute": 52,
+          "activity_history_write": 2,
+          "coherent_branch_output_mask_xor": 2,
+          "controlled_global_phase": 356,
+          "controlled_good_reflection": 356,
+          "controlled_reward_oracle_forward": 406,
+          "controlled_reward_oracle_inverse": 358,
+          "controlled_zero_reflection": 356,
+          "grover_control_compute": 356,
+          "grover_control_uncompute": 356,
+          "phase_predicate_compute": 2,
+          "phase_predicate_uncompute": 2,
+          "predicate_copy_stop_code": 2,
+          "selected_phase_kickback": 2
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 44,
+          "controlled_forward": 22,
+          "controlled_inverse": 22,
+          "forward": 0,
+          "inverse": 0,
+          "total": 44
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 764,
+          "controlled_forward": 406,
+          "controlled_inverse": 358,
+          "forward": 0,
+          "inverse": 0,
+          "total": 764
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_complete_certificate_refused",
+      "stop_probabilities": [
+        3.2686414817548405e-32,
+        0.6666666666666663,
+        0.3333333333333338
+      ]
+    },
+    {
+      "active_probability": 1.0,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "measured_boundary_tie_fail_closed",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 10
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 10
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 12
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 12
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 14
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 14
+          },
+          {
+            "arm": 3,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 12
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 12
+          }
+        ],
+        "center": null,
+        "complete": false,
+        "finite_sample_confidence_proved": false,
+        "lower": null,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_boundary_tie_fail_closed",
+        "upper": null
+      },
+      "case_id": "tied_boundary_negative_control",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": false,
+      "layers": [],
+      "measurement_seed": 14195044944544443200,
+      "output_mask_probabilities": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 0,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2928,
+        "gate_counts": {
+          "active_inverse_qft": 48,
+          "active_phase_hadamard": 144,
+          "activity_and_phase_control_compute": 48,
+          "activity_and_phase_control_uncompute": 48,
+          "controlled_global_phase": 336,
+          "controlled_good_reflection": 336,
+          "controlled_reward_oracle_forward": 384,
+          "controlled_reward_oracle_inverse": 336,
+          "controlled_zero_reflection": 336,
+          "grover_control_compute": 336,
+          "grover_control_uncompute": 336
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 0,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 0,
+          "inverse": 0,
+          "total": 0
+        },
+        "peak_statevector_dimension": 131072,
+        "qubits": 17,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 16,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 131072
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 1.0,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "measured_boundary_tie_fail_closed",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 15
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 15
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 10
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 10
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 16
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 16
+          },
+          {
+            "arm": 3,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 7
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 7
+          }
+        ],
+        "center": null,
+        "complete": false,
+        "finite_sample_confidence_proved": false,
+        "lower": null,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_boundary_tie_fail_closed",
+        "upper": null
+      },
+      "case_id": "tied_boundary_negative_control",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": false,
+      "layers": [],
+      "measurement_seed": 14617808652959311805,
+      "output_mask_probabilities": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 1,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2928,
+        "gate_counts": {
+          "active_inverse_qft": 48,
+          "active_phase_hadamard": 144,
+          "activity_and_phase_control_compute": 48,
+          "activity_and_phase_control_uncompute": 48,
+          "controlled_global_phase": 336,
+          "controlled_good_reflection": 336,
+          "controlled_reward_oracle_forward": 384,
+          "controlled_reward_oracle_inverse": 336,
+          "controlled_zero_reflection": 336,
+          "grover_control_compute": 336,
+          "grover_control_uncompute": 336
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 0,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 0,
+          "inverse": 0,
+          "total": 0
+        },
+        "peak_statevector_dimension": 131072,
+        "qubits": 17,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 16,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 131072
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 1.0,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "measured_boundary_tie_fail_closed",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 17
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 17
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 12
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 12
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 12
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 12
+          },
+          {
+            "arm": 3,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 7
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 7
+          }
+        ],
+        "center": null,
+        "complete": false,
+        "finite_sample_confidence_proved": false,
+        "lower": null,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_boundary_tie_fail_closed",
+        "upper": null
+      },
+      "case_id": "tied_boundary_negative_control",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": false,
+      "layers": [],
+      "measurement_seed": 3397934830863647909,
+      "output_mask_probabilities": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 2,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2928,
+        "gate_counts": {
+          "active_inverse_qft": 48,
+          "active_phase_hadamard": 144,
+          "activity_and_phase_control_compute": 48,
+          "activity_and_phase_control_uncompute": 48,
+          "controlled_global_phase": 336,
+          "controlled_good_reflection": 336,
+          "controlled_reward_oracle_forward": 384,
+          "controlled_reward_oracle_inverse": 336,
+          "controlled_zero_reflection": 336,
+          "grover_control_compute": 336,
+          "grover_control_uncompute": 336
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 0,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 0,
+          "inverse": 0,
+          "total": 0
+        },
+        "peak_statevector_dimension": 131072,
+        "qubits": 17,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 16,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 131072
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 1.0,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "measured_boundary_tie_fail_closed",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 13
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 13
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 9
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 9
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 13
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 13
+          },
+          {
+            "arm": 3,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 13
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 13
+          }
+        ],
+        "center": null,
+        "complete": false,
+        "finite_sample_confidence_proved": false,
+        "lower": null,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_boundary_tie_fail_closed",
+        "upper": null
+      },
+      "case_id": "tied_boundary_negative_control",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": false,
+      "layers": [],
+      "measurement_seed": 10804882806869759593,
+      "output_mask_probabilities": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 3,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2928,
+        "gate_counts": {
+          "active_inverse_qft": 48,
+          "active_phase_hadamard": 144,
+          "activity_and_phase_control_compute": 48,
+          "activity_and_phase_control_uncompute": 48,
+          "controlled_global_phase": 336,
+          "controlled_good_reflection": 336,
+          "controlled_reward_oracle_forward": 384,
+          "controlled_reward_oracle_inverse": 336,
+          "controlled_zero_reflection": 336,
+          "grover_control_compute": 336,
+          "grover_control_uncompute": 336
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 0,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 0,
+          "inverse": 0,
+          "total": 0
+        },
+        "peak_statevector_dimension": 131072,
+        "qubits": 17,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 16,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 131072
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 1.0,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "measured_boundary_tie_fail_closed",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 14
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 14
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 10
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 10
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 11
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 11
+          },
+          {
+            "arm": 3,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 13
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 13
+          }
+        ],
+        "center": null,
+        "complete": false,
+        "finite_sample_confidence_proved": false,
+        "lower": null,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_boundary_tie_fail_closed",
+        "upper": null
+      },
+      "case_id": "tied_boundary_negative_control",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": false,
+      "layers": [],
+      "measurement_seed": 5532176665550972067,
+      "output_mask_probabilities": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 4,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2928,
+        "gate_counts": {
+          "active_inverse_qft": 48,
+          "active_phase_hadamard": 144,
+          "activity_and_phase_control_compute": 48,
+          "activity_and_phase_control_uncompute": 48,
+          "controlled_global_phase": 336,
+          "controlled_good_reflection": 336,
+          "controlled_reward_oracle_forward": 384,
+          "controlled_reward_oracle_inverse": 336,
+          "controlled_zero_reflection": 336,
+          "grover_control_compute": 336,
+          "grover_control_uncompute": 336
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 0,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 0,
+          "inverse": 0,
+          "total": 0
+        },
+        "peak_statevector_dimension": 131072,
+        "qubits": 17,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 16,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 131072
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 1.0,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "measured_boundary_tie_fail_closed",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 10
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 10
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 18
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 18
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 8
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 8
+          },
+          {
+            "arm": 3,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 12
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 12
+          }
+        ],
+        "center": null,
+        "complete": false,
+        "finite_sample_confidence_proved": false,
+        "lower": null,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_boundary_tie_fail_closed",
+        "upper": null
+      },
+      "case_id": "tied_boundary_negative_control",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": false,
+      "layers": [],
+      "measurement_seed": 17315937822871178490,
+      "output_mask_probabilities": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 5,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2928,
+        "gate_counts": {
+          "active_inverse_qft": 48,
+          "active_phase_hadamard": 144,
+          "activity_and_phase_control_compute": 48,
+          "activity_and_phase_control_uncompute": 48,
+          "controlled_global_phase": 336,
+          "controlled_good_reflection": 336,
+          "controlled_reward_oracle_forward": 384,
+          "controlled_reward_oracle_inverse": 336,
+          "controlled_zero_reflection": 336,
+          "grover_control_compute": 336,
+          "grover_control_uncompute": 336
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 0,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 0,
+          "inverse": 0,
+          "total": 0
+        },
+        "peak_statevector_dimension": 131072,
+        "qubits": 17,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 16,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 131072
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 1.0,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "measured_boundary_tie_fail_closed",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 13
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 13
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 11
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 11
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 16
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 16
+          },
+          {
+            "arm": 3,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 8
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 8
+          }
+        ],
+        "center": null,
+        "complete": false,
+        "finite_sample_confidence_proved": false,
+        "lower": null,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_boundary_tie_fail_closed",
+        "upper": null
+      },
+      "case_id": "tied_boundary_negative_control",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": false,
+      "layers": [],
+      "measurement_seed": 17687411958752653373,
+      "output_mask_probabilities": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 6,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2928,
+        "gate_counts": {
+          "active_inverse_qft": 48,
+          "active_phase_hadamard": 144,
+          "activity_and_phase_control_compute": 48,
+          "activity_and_phase_control_uncompute": 48,
+          "controlled_global_phase": 336,
+          "controlled_good_reflection": 336,
+          "controlled_reward_oracle_forward": 384,
+          "controlled_reward_oracle_inverse": 336,
+          "controlled_zero_reflection": 336,
+          "grover_control_compute": 336,
+          "grover_control_uncompute": 336
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 0,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 0,
+          "inverse": 0,
+          "total": 0
+        },
+        "peak_statevector_dimension": 131072,
+        "qubits": 17,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 16,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 131072
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 1.0,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "measured_boundary_tie_fail_closed",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "4": 12
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 12
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 11
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 11
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 12
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 12
+          },
+          {
+            "arm": 3,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "0": 13
+            },
+            "modal_amplitude": 0.0,
+            "modal_folded_bin": 0,
+            "samples": 13
+          }
+        ],
+        "center": null,
+        "complete": false,
+        "finite_sample_confidence_proved": false,
+        "lower": null,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_boundary_tie_fail_closed",
+        "upper": null
+      },
+      "case_id": "tied_boundary_negative_control",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": false,
+      "layers": [],
+      "measurement_seed": 10912544361398833505,
+      "output_mask_probabilities": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 7,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2928,
+        "gate_counts": {
+          "active_inverse_qft": 48,
+          "active_phase_hadamard": 144,
+          "activity_and_phase_control_compute": 48,
+          "activity_and_phase_control_uncompute": 48,
+          "controlled_global_phase": 336,
+          "controlled_good_reflection": 336,
+          "controlled_reward_oracle_forward": 384,
+          "controlled_reward_oracle_inverse": 336,
+          "controlled_zero_reflection": 336,
+          "grover_control_compute": 336,
+          "grover_control_uncompute": 336
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 0,
+          "controlled_forward": 0,
+          "controlled_inverse": 0,
+          "forward": 0,
+          "inverse": 0,
+          "total": 0
+        },
+        "peak_statevector_dimension": 131072,
+        "qubits": 17,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 16,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 131072
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 0.7284999999999998,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "workspace_cleanup_or_stopped_branch_invariance_failed",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.35355339059327384,
+            "folded_bin_counts": {
+              "2": 1,
+              "3": 9,
+              "4": 5
+            },
+            "modal_amplitude": 0.8535533905932737,
+            "modal_folded_bin": 3,
+            "samples": 15
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 12
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 12
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.3535533905932736,
+            "folded_bin_counts": {
+              "0": 2,
+              "1": 17,
+              "2": 2
+            },
+            "modal_amplitude": 0.14644660940672624,
+            "modal_folded_bin": 1,
+            "samples": 21
+          }
+        ],
+        "center": 0.6767766952966368,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.49999999999999983,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 0.8535533905932737
+      },
+      "case_id": "off_grid_cleanup_stress",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.7284999999999998,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": false,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.2715000000000004,
+          "norm_error": 3.3306690738754696e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 0.38358766924915594,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        }
+      ],
+      "measurement_seed": 13821795967234655221,
+      "output_mask_probabilities": [
+        0.9999999999999993,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 0,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2993,
+        "gate_counts": {
+          "active_inverse_qft": 49,
+          "active_phase_hadamard": 148,
+          "active_qft": 1,
+          "active_stop_update": 1,
+          "activity_and_phase_control_compute": 50,
+          "activity_and_phase_control_uncompute": 50,
+          "activity_history_write": 1,
+          "coherent_branch_output_mask_xor": 1,
+          "controlled_global_phase": 342,
+          "controlled_good_reflection": 342,
+          "controlled_reward_oracle_forward": 391,
+          "controlled_reward_oracle_inverse": 343,
+          "controlled_zero_reflection": 342,
+          "grover_control_compute": 342,
+          "grover_control_uncompute": 342,
+          "phase_predicate_compute": 1,
+          "phase_predicate_uncompute": 1,
+          "predicate_copy_stop_code": 1,
+          "selected_phase_kickback": 1
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 14,
+          "controlled_forward": 7,
+          "controlled_inverse": 7,
+          "forward": 0,
+          "inverse": 0,
+          "total": 14
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 734,
+          "controlled_forward": 391,
+          "controlled_inverse": 343,
+          "forward": 0,
+          "inverse": 0,
+          "total": 734
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        0.7284999999999998,
+        0.27149999999999974,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 0.7284999999999998,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "workspace_cleanup_or_stopped_branch_invariance_failed",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.8535533905932737,
+            "folded_bin_counts": {
+              "1": 1,
+              "3": 7,
+              "4": 8
+            },
+            "modal_amplitude": 1.0,
+            "modal_folded_bin": 4,
+            "samples": 16
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.35355339059327384,
+            "folded_bin_counts": {
+              "2": 16,
+              "3": 1
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 17
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.7071067811865475,
+            "folded_bin_counts": {
+              "0": 5,
+              "1": 9,
+              "3": 1
+            },
+            "modal_amplitude": 0.14644660940672624,
+            "modal_folded_bin": 1,
+            "samples": 15
+          }
+        ],
+        "center": 0.75,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.14644660940672627,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 1.0
+      },
+      "case_id": "off_grid_cleanup_stress",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.7284999999999998,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": false,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.2715000000000004,
+          "norm_error": 3.3306690738754696e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 0.38358766924915594,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        }
+      ],
+      "measurement_seed": 7673416540228167967,
+      "output_mask_probabilities": [
+        0.9999999999999993,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 1,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2993,
+        "gate_counts": {
+          "active_inverse_qft": 49,
+          "active_phase_hadamard": 148,
+          "active_qft": 1,
+          "active_stop_update": 1,
+          "activity_and_phase_control_compute": 50,
+          "activity_and_phase_control_uncompute": 50,
+          "activity_history_write": 1,
+          "coherent_branch_output_mask_xor": 1,
+          "controlled_global_phase": 342,
+          "controlled_good_reflection": 342,
+          "controlled_reward_oracle_forward": 391,
+          "controlled_reward_oracle_inverse": 343,
+          "controlled_zero_reflection": 342,
+          "grover_control_compute": 342,
+          "grover_control_uncompute": 342,
+          "phase_predicate_compute": 1,
+          "phase_predicate_uncompute": 1,
+          "predicate_copy_stop_code": 1,
+          "selected_phase_kickback": 1
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 14,
+          "controlled_forward": 7,
+          "controlled_inverse": 7,
+          "forward": 0,
+          "inverse": 0,
+          "total": 14
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 734,
+          "controlled_forward": 391,
+          "controlled_inverse": 343,
+          "forward": 0,
+          "inverse": 0,
+          "total": 734
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        0.7284999999999998,
+        0.27149999999999974,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 0.7284999999999998,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "workspace_cleanup_or_stopped_branch_invariance_failed",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.7071067811865475,
+            "folded_bin_counts": {
+              "1": 1,
+              "2": 1,
+              "3": 10,
+              "4": 4
+            },
+            "modal_amplitude": 0.8535533905932737,
+            "modal_folded_bin": 3,
+            "samples": 16
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 15
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 15
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.7071067811865475,
+            "folded_bin_counts": {
+              "0": 7,
+              "1": 8,
+              "3": 2
+            },
+            "modal_amplitude": 0.14644660940672624,
+            "modal_folded_bin": 1,
+            "samples": 17
+          }
+        ],
+        "center": 0.6767766952966368,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.323223304703363,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 1.0
+      },
+      "case_id": "off_grid_cleanup_stress",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.7284999999999998,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": false,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.2715000000000004,
+          "norm_error": 3.3306690738754696e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 0.38358766924915594,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        }
+      ],
+      "measurement_seed": 2143969009717431984,
+      "output_mask_probabilities": [
+        0.9999999999999993,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 2,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2993,
+        "gate_counts": {
+          "active_inverse_qft": 49,
+          "active_phase_hadamard": 148,
+          "active_qft": 1,
+          "active_stop_update": 1,
+          "activity_and_phase_control_compute": 50,
+          "activity_and_phase_control_uncompute": 50,
+          "activity_history_write": 1,
+          "coherent_branch_output_mask_xor": 1,
+          "controlled_global_phase": 342,
+          "controlled_good_reflection": 342,
+          "controlled_reward_oracle_forward": 391,
+          "controlled_reward_oracle_inverse": 343,
+          "controlled_zero_reflection": 342,
+          "grover_control_compute": 342,
+          "grover_control_uncompute": 342,
+          "phase_predicate_compute": 1,
+          "phase_predicate_uncompute": 1,
+          "predicate_copy_stop_code": 1,
+          "selected_phase_kickback": 1
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 14,
+          "controlled_forward": 7,
+          "controlled_inverse": 7,
+          "forward": 0,
+          "inverse": 0,
+          "total": 14
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 734,
+          "controlled_forward": 391,
+          "controlled_inverse": 343,
+          "forward": 0,
+          "inverse": 0,
+          "total": 734
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        0.7284999999999998,
+        0.27149999999999974,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 0.7284999999999998,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "workspace_cleanup_or_stopped_branch_invariance_failed",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.35355339059327384,
+            "folded_bin_counts": {
+              "2": 1,
+              "3": 11,
+              "4": 5
+            },
+            "modal_amplitude": 0.8535533905932737,
+            "modal_folded_bin": 3,
+            "samples": 17
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 15
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 15
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.7071067811865475,
+            "folded_bin_counts": {
+              "0": 3,
+              "1": 10,
+              "2": 2,
+              "3": 1
+            },
+            "modal_amplitude": 0.14644660940672624,
+            "modal_folded_bin": 1,
+            "samples": 16
+          }
+        ],
+        "center": 0.6767766952966368,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.49999999999999983,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 0.8535533905932737
+      },
+      "case_id": "off_grid_cleanup_stress",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.7284999999999998,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": false,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.2715000000000004,
+          "norm_error": 3.3306690738754696e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 0.38358766924915594,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        }
+      ],
+      "measurement_seed": 12681580620469245136,
+      "output_mask_probabilities": [
+        0.9999999999999993,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 3,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2993,
+        "gate_counts": {
+          "active_inverse_qft": 49,
+          "active_phase_hadamard": 148,
+          "active_qft": 1,
+          "active_stop_update": 1,
+          "activity_and_phase_control_compute": 50,
+          "activity_and_phase_control_uncompute": 50,
+          "activity_history_write": 1,
+          "coherent_branch_output_mask_xor": 1,
+          "controlled_global_phase": 342,
+          "controlled_good_reflection": 342,
+          "controlled_reward_oracle_forward": 391,
+          "controlled_reward_oracle_inverse": 343,
+          "controlled_zero_reflection": 342,
+          "grover_control_compute": 342,
+          "grover_control_uncompute": 342,
+          "phase_predicate_compute": 1,
+          "phase_predicate_uncompute": 1,
+          "predicate_copy_stop_code": 1,
+          "selected_phase_kickback": 1
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 14,
+          "controlled_forward": 7,
+          "controlled_inverse": 7,
+          "forward": 0,
+          "inverse": 0,
+          "total": 14
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 734,
+          "controlled_forward": 391,
+          "controlled_inverse": 343,
+          "forward": 0,
+          "inverse": 0,
+          "total": 734
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        0.7284999999999998,
+        0.27149999999999974,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 0.7284999999999998,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "workspace_cleanup_or_stopped_branch_invariance_failed",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.7071067811865475,
+            "folded_bin_counts": {
+              "1": 1,
+              "2": 3,
+              "3": 10,
+              "4": 7
+            },
+            "modal_amplitude": 0.8535533905932737,
+            "modal_folded_bin": 3,
+            "samples": 21
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 17
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 17
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.7071067811865475,
+            "folded_bin_counts": {
+              "0": 2,
+              "1": 7,
+              "3": 1
+            },
+            "modal_amplitude": 0.14644660940672624,
+            "modal_folded_bin": 1,
+            "samples": 10
+          }
+        ],
+        "center": 0.6767766952966368,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.323223304703363,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 1.0
+      },
+      "case_id": "off_grid_cleanup_stress",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.7284999999999998,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": false,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.2715000000000004,
+          "norm_error": 3.3306690738754696e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 0.38358766924915594,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        }
+      ],
+      "measurement_seed": 1499069852862678992,
+      "output_mask_probabilities": [
+        0.9999999999999993,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 4,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2993,
+        "gate_counts": {
+          "active_inverse_qft": 49,
+          "active_phase_hadamard": 148,
+          "active_qft": 1,
+          "active_stop_update": 1,
+          "activity_and_phase_control_compute": 50,
+          "activity_and_phase_control_uncompute": 50,
+          "activity_history_write": 1,
+          "coherent_branch_output_mask_xor": 1,
+          "controlled_global_phase": 342,
+          "controlled_good_reflection": 342,
+          "controlled_reward_oracle_forward": 391,
+          "controlled_reward_oracle_inverse": 343,
+          "controlled_zero_reflection": 342,
+          "grover_control_compute": 342,
+          "grover_control_uncompute": 342,
+          "phase_predicate_compute": 1,
+          "phase_predicate_uncompute": 1,
+          "predicate_copy_stop_code": 1,
+          "selected_phase_kickback": 1
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 14,
+          "controlled_forward": 7,
+          "controlled_inverse": 7,
+          "forward": 0,
+          "inverse": 0,
+          "total": 14
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 734,
+          "controlled_forward": 391,
+          "controlled_inverse": 343,
+          "forward": 0,
+          "inverse": 0,
+          "total": 734
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        0.7284999999999998,
+        0.27149999999999974,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 0.894771399999998,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "workspace_cleanup_or_stopped_branch_invariance_failed",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.7071067811865475,
+            "folded_bin_counts": {
+              "1": 1,
+              "2": 1,
+              "3": 7,
+              "4": 4
+            },
+            "modal_amplitude": 0.8535533905932737,
+            "modal_folded_bin": 3,
+            "samples": 13
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.35355339059327384,
+            "folded_bin_counts": {
+              "2": 19,
+              "3": 1
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 20
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.8535533905932737,
+            "folded_bin_counts": {
+              "0": 2,
+              "1": 12,
+              "4": 1
+            },
+            "modal_amplitude": 0.14644660940672624,
+            "modal_folded_bin": 1,
+            "samples": 15
+          }
+        ],
+        "center": 0.6767766952966368,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.14644660940672605,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 1.0
+      },
+      "case_id": "off_grid_cleanup_stress",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.9999999999999993,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 8.881784197001252e-16,
+          "norm_error": 3.3306690738754696e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 2.1220175971960376e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        },
+        {
+          "active_probability_after": 0.894771399999998,
+          "active_probability_before": 0.9999999999999993,
+          "cleanup_passed": false,
+          "control_workspace_residual": 0.0,
+          "depth": 129,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 6,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 14,
+            "controlled_good_reflection": 14,
+            "controlled_reward_oracle_forward": 15,
+            "controlled_reward_oracle_inverse": 15,
+            "controlled_zero_reflection": 14,
+            "grover_control_compute": 14,
+            "grover_control_uncompute": 14,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 1,
+          "newly_stopped_probability": 0.10522860000000134,
+          "norm_error": 1.3322676295501878e-15,
+          "phase_qubits": 3,
+          "phase_reward_workspace_residual": 0.38981157661608673,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 30,
+            "controlled_forward": 15,
+            "controlled_inverse": 15,
+            "forward": 0,
+            "inverse": 0,
+            "total": 30
+          }
+        }
+      ],
+      "measurement_seed": 10203734710503953772,
+      "output_mask_probabilities": [
+        0.9999999999999976,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 5,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 3122,
+        "gate_counts": {
+          "active_inverse_qft": 50,
+          "active_phase_hadamard": 154,
+          "active_qft": 2,
+          "active_stop_update": 2,
+          "activity_and_phase_control_compute": 52,
+          "activity_and_phase_control_uncompute": 52,
+          "activity_history_write": 2,
+          "coherent_branch_output_mask_xor": 2,
+          "controlled_global_phase": 356,
+          "controlled_good_reflection": 356,
+          "controlled_reward_oracle_forward": 406,
+          "controlled_reward_oracle_inverse": 358,
+          "controlled_zero_reflection": 356,
+          "grover_control_compute": 356,
+          "grover_control_uncompute": 356,
+          "phase_predicate_compute": 2,
+          "phase_predicate_uncompute": 2,
+          "predicate_copy_stop_code": 2,
+          "selected_phase_kickback": 2
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 44,
+          "controlled_forward": 22,
+          "controlled_inverse": 22,
+          "forward": 0,
+          "inverse": 0,
+          "total": 44
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 764,
+          "controlled_forward": 406,
+          "controlled_inverse": 358,
+          "forward": 0,
+          "inverse": 0,
+          "total": 764
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        0.894771399999998,
+        0.0,
+        0.10522859999999949
+      ]
+    },
+    {
+      "active_probability": 0.7284999999999998,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "workspace_cleanup_or_stopped_branch_invariance_failed",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.35355339059327384,
+            "folded_bin_counts": {
+              "2": 2,
+              "3": 11,
+              "4": 3
+            },
+            "modal_amplitude": 0.8535533905932737,
+            "modal_folded_bin": 3,
+            "samples": 16
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.0,
+            "folded_bin_counts": {
+              "2": 16
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 16
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.3535533905932736,
+            "folded_bin_counts": {
+              "0": 2,
+              "1": 10,
+              "2": 4
+            },
+            "modal_amplitude": 0.14644660940672624,
+            "modal_folded_bin": 1,
+            "samples": 16
+          }
+        ],
+        "center": 0.6767766952966368,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.49999999999999983,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 0.8535533905932737
+      },
+      "case_id": "off_grid_cleanup_stress",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.7284999999999998,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": false,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 0.2715000000000004,
+          "norm_error": 3.3306690738754696e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 0.38358766924915594,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        }
+      ],
+      "measurement_seed": 14974373131511898736,
+      "output_mask_probabilities": [
+        0.9999999999999993,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 6,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 2993,
+        "gate_counts": {
+          "active_inverse_qft": 49,
+          "active_phase_hadamard": 148,
+          "active_qft": 1,
+          "active_stop_update": 1,
+          "activity_and_phase_control_compute": 50,
+          "activity_and_phase_control_uncompute": 50,
+          "activity_history_write": 1,
+          "coherent_branch_output_mask_xor": 1,
+          "controlled_global_phase": 342,
+          "controlled_good_reflection": 342,
+          "controlled_reward_oracle_forward": 391,
+          "controlled_reward_oracle_inverse": 343,
+          "controlled_zero_reflection": 342,
+          "grover_control_compute": 342,
+          "grover_control_uncompute": 342,
+          "phase_predicate_compute": 1,
+          "phase_predicate_uncompute": 1,
+          "predicate_copy_stop_code": 1,
+          "selected_phase_kickback": 1
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 14,
+          "controlled_forward": 7,
+          "controlled_inverse": 7,
+          "forward": 0,
+          "inverse": 0,
+          "total": 14
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 734,
+          "controlled_forward": 391,
+          "controlled_inverse": 343,
+          "forward": 0,
+          "inverse": 0,
+          "total": 734
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        0.7284999999999998,
+        0.27149999999999974,
+        0.0
+      ]
+    },
+    {
+      "active_probability": 0.894771399999998,
+      "blockers": [
+        "measured_boundary_histogram_has_no_finite_sample_confidence_theorem",
+        "branch_local_output_mask_is_not_complete_direct_multi_output_extraction",
+        "workspace_cleanup_or_stopped_branch_invariance_failed",
+        "no_variable_time_query_upper_bound",
+        "no_matching_same_interface_lower_bound"
+      ],
+      "boundary": {
+        "arm_histograms": [
+          {
+            "arm": 0,
+            "empirical_radius": 0.7071067811865475,
+            "folded_bin_counts": {
+              "1": 5,
+              "2": 3,
+              "3": 6,
+              "4": 6
+            },
+            "modal_amplitude": 0.8535533905932737,
+            "modal_folded_bin": 3,
+            "samples": 20
+          },
+          {
+            "arm": 1,
+            "empirical_radius": 0.35355339059327384,
+            "folded_bin_counts": {
+              "2": 16,
+              "3": 1
+            },
+            "modal_amplitude": 0.4999999999999999,
+            "modal_folded_bin": 2,
+            "samples": 17
+          },
+          {
+            "arm": 2,
+            "empirical_radius": 0.7071067811865475,
+            "folded_bin_counts": {
+              "0": 2,
+              "1": 8,
+              "3": 1
+            },
+            "modal_amplitude": 0.14644660940672624,
+            "modal_folded_bin": 1,
+            "samples": 11
+          }
+        ],
+        "center": 0.6767766952966368,
+        "complete": true,
+        "finite_sample_confidence_proved": false,
+        "lower": 0.14644660940672605,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "status": "measured_histogram_bracket_no_confidence_theorem",
+        "upper": 1.0
+      },
+      "case_id": "off_grid_cleanup_stress",
+      "certificate_issued": false,
+      "direct_multi_output_complete": false,
+      "direct_output_write_executed": true,
+      "layers": [
+        {
+          "active_probability_after": 0.9999999999999993,
+          "active_probability_before": 1.0000000000000002,
+          "cleanup_passed": true,
+          "control_workspace_residual": 0.0,
+          "depth": 65,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 4,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 6,
+            "controlled_good_reflection": 6,
+            "controlled_reward_oracle_forward": 7,
+            "controlled_reward_oracle_inverse": 7,
+            "controlled_zero_reflection": 6,
+            "grover_control_compute": 6,
+            "grover_control_uncompute": 6,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 0,
+          "newly_stopped_probability": 8.881784197001252e-16,
+          "norm_error": 3.3306690738754696e-16,
+          "phase_qubits": 2,
+          "phase_reward_workspace_residual": 2.1220175971960376e-16,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 14,
+            "controlled_forward": 7,
+            "controlled_inverse": 7,
+            "forward": 0,
+            "inverse": 0,
+            "total": 14
+          }
+        },
+        {
+          "active_probability_after": 0.894771399999998,
+          "active_probability_before": 0.9999999999999993,
+          "cleanup_passed": false,
+          "control_workspace_residual": 0.0,
+          "depth": 129,
+          "existing_stopped_branch_residual": 0.0,
+          "gate_counts": {
+            "active_inverse_qft": 1,
+            "active_phase_hadamard": 6,
+            "active_qft": 1,
+            "active_stop_update": 1,
+            "activity_and_phase_control_compute": 2,
+            "activity_and_phase_control_uncompute": 2,
+            "activity_history_write": 1,
+            "coherent_branch_output_mask_xor": 1,
+            "controlled_global_phase": 14,
+            "controlled_good_reflection": 14,
+            "controlled_reward_oracle_forward": 15,
+            "controlled_reward_oracle_inverse": 15,
+            "controlled_zero_reflection": 14,
+            "grover_control_compute": 14,
+            "grover_control_uncompute": 14,
+            "phase_predicate_compute": 1,
+            "phase_predicate_uncompute": 1,
+            "predicate_copy_stop_code": 1,
+            "selected_phase_kickback": 1
+          },
+          "level": 1,
+          "newly_stopped_probability": 0.10522860000000134,
+          "norm_error": 1.3322676295501878e-15,
+          "phase_qubits": 3,
+          "phase_reward_workspace_residual": 0.38981157661608673,
+          "predicate_workspace_residual": 0.0,
+          "query_counts": {
+            "classical_sample": 0,
+            "classical_total": 0,
+            "coherent_total": 30,
+            "controlled_forward": 15,
+            "controlled_inverse": 15,
+            "forward": 0,
+            "inverse": 0,
+            "total": 30
+          }
+        }
+      ],
+      "measurement_seed": 12751182887552701966,
+      "output_mask_probabilities": [
+        0.9999999999999976,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quantum_advantage_claimable": false,
+      "repetition": 7,
+      "resources": {
+        "boundary_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 720,
+          "controlled_forward": 384,
+          "controlled_inverse": 336,
+          "forward": 0,
+          "inverse": 0,
+          "total": 720
+        },
+        "depth": 3122,
+        "gate_counts": {
+          "active_inverse_qft": 50,
+          "active_phase_hadamard": 154,
+          "active_qft": 2,
+          "active_stop_update": 2,
+          "activity_and_phase_control_compute": 52,
+          "activity_and_phase_control_uncompute": 52,
+          "activity_history_write": 2,
+          "coherent_branch_output_mask_xor": 2,
+          "controlled_global_phase": 356,
+          "controlled_good_reflection": 356,
+          "controlled_reward_oracle_forward": 406,
+          "controlled_reward_oracle_inverse": 358,
+          "controlled_zero_reflection": 356,
+          "grover_control_compute": 356,
+          "grover_control_uncompute": 356,
+          "phase_predicate_compute": 2,
+          "phase_predicate_uncompute": 2,
+          "predicate_copy_stop_code": 2,
+          "selected_phase_kickback": 2
+        },
+        "history_query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 44,
+          "controlled_forward": 22,
+          "controlled_inverse": 22,
+          "forward": 0,
+          "inverse": 0,
+          "total": 44
+        },
+        "peak_statevector_dimension": 65536,
+        "qubits": 16,
+        "query_counts": {
+          "classical_sample": 0,
+          "classical_total": 0,
+          "coherent_total": 764,
+          "controlled_forward": 406,
+          "controlled_inverse": 358,
+          "forward": 0,
+          "inverse": 0,
+          "total": 764
+        },
+        "register_dimensions": {
+          "active": 2,
+          "history": 4,
+          "index": 4,
+          "output": 8,
+          "phase": 8,
+          "predicate": 2,
+          "reward": 2,
+          "stop": 4,
+          "workspace_control": 2
+        },
+        "retained_statevector_dimension": 65536
+      },
+      "status": "exact_state_execution_incomplete_fail_closed",
+      "stop_probabilities": [
+        0.894771399999998,
+        0.0,
+        0.10522859999999949
+      ]
+    }
+  ],
+  "resolved_config": {
+    "boundary_phase_qubits": 3,
+    "boundary_shots": 48,
+    "cases": [
+      {
+        "case_id": "on_grid_heterogeneous_stop",
+        "k": 1,
+        "means": [
+          1.0,
+          0.5,
+          0.0
+        ]
+      },
+      {
+        "case_id": "tied_boundary_negative_control",
+        "k": 2,
+        "means": [
+          1.0,
+          0.5,
+          0.5,
+          0.0
+        ]
+      },
+      {
+        "case_id": "off_grid_cleanup_stress",
+        "k": 1,
+        "means": [
+          0.95,
+          0.55,
+          0.05
+        ]
+      }
+    ],
+    "cleanup_tolerance": 1e-09,
+    "experiment_name": "q-gapselect-exact-state-coherent-history-v1",
+    "master_seed": 20260715,
+    "max_statevector_dimension": 500000,
+    "minimum_boundary_samples_per_arm": 2,
+    "notes": [
+      "The kernel applies controlled canonical reward-oracle unitaries to an index superposition; it does not call analytic per-arm IAE.",
+      "The unknown boundary is inferred only from measured joint index-phase histograms.",
+      "A branch-local coherent output-mask XOR is executed, but complete direct Top-k union extraction remains unproved and no certificate is issued.",
+      "This tiny exact-state panel is circuit-semantics evidence, not a query-advantage or hardware result."
+    ],
+    "phase_qubits_by_level": [
+      2,
+      3
+    ],
+    "repetitions": 8,
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "summary": {
+    "actual_coherent_index_execution_performed": true,
+    "all_executed_layers_cleanup_passed": false,
+    "analytic_per_arm_iae_used": false,
+    "boundary_complete_count": 16,
+    "certificate_count": 0,
+    "complete_direct_multi_output_count": 0,
+    "direct_output_write_executed": true,
+    "executed_history_layer_count": 26,
+    "hardware_execution_performed": false,
+    "llm_execution_performed": false,
+    "quantum_advantage_claimable": false,
+    "record_count": 24
+  }
+}

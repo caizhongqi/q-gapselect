@@ -1,12 +1,12 @@
 # Q-GapSelect Research Protocol
 
-Version: audited protocol, 2026-07-14
+Version: audited protocol, 2026-07-15
 
 ## 1. Purpose and non-claims
 
-Q-GapSelect is a research program for exact, fixed-confidence Top-k identification with unknown heterogeneous reward amplitudes. The potential contribution is a constructive quantum algorithm and matching lower bound whose complexity adapts to angular boundary gaps and to the cheaper of two verifiable output orientations.
+Q-GapSelect is a research program for exact, fixed-confidence Top-k identification with unknown heterogeneous reward amplitudes. The original orientation-aware candidate has been falsified as a novelty core. The active theory target is now an unknown-boundary, no-free-QRAM, coherent activity-history transducer with a constructive quantum algorithm and matching lower bound.
 
-Nothing in the current repository proves that contribution. The current artifact is an analytic sanity harness for a clean canonical oracle. It is not a coherent batch algorithm, a natural-sampler implementation, a proof of asymptotic advantage, or evidence of an LLM quantum advantage.
+Nothing in the current repository proves that contribution. The current artifact is an analytic sanity harness for a clean canonical oracle. It is not a coherent batch algorithm, a natural-sampler implementation, a proof of asymptotic advantage, or evidence for any application-domain quantum advantage.
 
 The protocol uses the following status vocabulary:
 
@@ -54,7 +54,7 @@ Thus
     B_μ |i>|0> = |i>(sqrt(1-μ_i)|0> + sqrt(μ_i)|1>),
     B_μ |i>|1> = |i>(-sqrt(μ_i)|0> + sqrt(1-μ_i)|1>).
 
-Layer C supplies B_μ and B_μ dagger. Controlled calls are available only when a theorem or experiment declares and counts them. This model is appropriate for analytic calculations, canonical hard instances, and lower-bound subclasses. It is not silently identified with a reversible LLM generator.
+Layer C supplies B_μ and B_μ dagger. Controlled calls are available only when a theorem or experiment declares and counts them. This model is appropriate for analytic calculations, canonical hard instances, and lower-bound subclasses. It is not silently identified with a reversible domain generator.
 
 ### 3.2 Layer P: natural purification sampler
 
@@ -106,11 +106,33 @@ Required theorem: this dovetail must be correct and cost at most a constant or p
 
 ## 5. Main candidate theorem
 
-The canonical upper-bound candidate is
+The original canonical upper-bound candidate was
 
     queries = soft-O(H_orient polylog(n, 1/δ, 1/γ_min)).
 
-This is a CONJECTURE. A proof must provide an implementable algorithm, not just add the costs of named primitives. It must include:
+This remains useful notation, but it is no longer a sufficient novelty core.
+The n=3m separation family has been falsified by coarse grouping plus
+strong-oracle BAI, and the outer multi-output structure is matched by known
+marked-extraction/composition baselines under the same relation.
+
+The active successor candidate is:
+
+    unknown boundary + coherent activity history + no free QRAM.
+
+Its configured audit family has n=m^3 arms, m precision epochs, m hidden
+active arms per epoch, one new required output per epoch, and minimum angular
+gap gamma=m^-2.  The candidate proxy is
+
+    boundary-localization
+      + coherent-activity-history
+      + direct multi-output quadrature.
+
+The current suite records that no encoded valid baseline matches this proxy
+under the configured tolerance.  That is only a research opening.  It does not
+prove a quantum advantage.
+
+A proof must provide an implementable algorithm, not just add the costs of
+named primitives. It must include:
 
 1. approximate boundary acquisition at each angular scale;
 2. a reversible three-way classifier: certified in, certified out, unresolved;
@@ -119,7 +141,9 @@ This is a CONJECTURE. A proof must provide an implementable algorithm, not just 
 5. reversible activity filtering with history access charged;
 6. independent cross-boundary certificate verification;
 7. orientation dovetail and full confidence accounting;
-8. uncomputation, QROM, arithmetic, precision, gates, depth, and qubits.
+8. a no-free-QRAM activity-history unitary that does not scan the inactive sea
+   at every level;
+9. uncomputation, QROM, arithmetic, precision, gates, depth, and qubits.
 
 The Layer-P transport candidate asks for the same reward-query expression using A, A dagger, and the good projector, plus explicit generator/checker resource costs. It is a separate CONJECTURE and may fail even if the Layer-C theorem is true.
 
@@ -219,26 +243,39 @@ Only after WP2 and WP4 survive, study maximum-mean matroid basis identification.
 
 Exit gate: recover the audited uniform-matroid theorem as a special case and prove direct-sum behavior for independent partition groups. A global square root over independently required outputs is a rejection condition.
 
-### WP6: code-LLM attack application
+### WP6: Q-GapAttack application protocol and transport
 
-This package starts only after the algorithmic gates make its quantum interpretation meaningful. The task is attack-portfolio selection over complete semantics-preserving variants, not additive composition of atomic edits.
+The attack experiment design is active in parallel with the theorem work so
+that candidate generation, splits, baselines, endpoints, and budgets can be
+frozen before test access. The current implementation provides an offline replay
+contract and a machine-readable preregistration; it does not provide real attack
+evidence or a reversible LLM reward sampler.
 
-For variant e and task/seed randomness w, define reward one only when generated code is functionally correct and exploit-confirmed vulnerable. A reversible source model prepares a natural Layer-P sampler containing w, generated code, test outcomes, vulnerability outcomes, and the reward bit. Proprietary victims receive only measured classical prompts and are never modeled as coherent oracles.
+Deliverables are the frozen-candidate selector track, INSEC/XOXO/CodeLMSec/
+DeceptPrompt end-to-end comparisons, task/repository/CWE/model-family held-out
+transfer, clustered uncertainty, separate source/victim/checker/resource
+ledgers, and a Layer-P construction with cleanup and generator/checker cost.
 
-No genuine LLM quantum advantage may be claimed before WP3 and a credible reversible resource analysis are complete.
+Classical replay and authorized local-model experiments may validate attack
+utility while the theorem work proceeds, but they must be labeled application
+experiments or quantum-selector emulation. No genuine application-domain
+quantum advantage may be claimed before Layer-P transport and credible
+reversible resource analysis are complete.
 
 ## 8. Experimental protocol
 
 ### 8.1 Current artifact disclosure
 
-The repository contains four distinct current pipelines:
+The repository contains the following distinct current pipelines:
 
 - run_scaling evaluates five deterministic mean-space equal/geometric analytic-proxy regimes. Its trials configuration field is retained in provenance but is not used to repeat the deterministic calculations.
 - run_reference executes four fixed mean-vector instances over a configurable number of derived seeds. It uses trials in the scenario/seed loop and samples the analytic measurement law of every requested Grover experiment. It emits per-trial executed-query records separately from conjectural layer charges.
 - run_direct_search executes the charged canonical QPE threshold reflection and full-workspace BBHT on fixed scenarios, with joint decoding and fresh measured verification.
 - run_quantum_benchmarks executes a finite-size audit over random complex states, exact/off-grid QPE, verifier calibration, four seeded angular instance families, both threshold orientations, BBHT scheduler settings, direct and per-arm baselines, the Top-k boundary-only negative control, diffusion ablation, and explicit failure cases. Its analytic iterative-AE records form a separate backend and resource unit.
+- run_frozen_selector_benchmarks executes six classical selectors on identical blind frozen reward/cost tensors with independent cursors, hard query/cost budgets, post-selection truth access, and Wilson intervals. It is a synthetic algorithm baseline campaign and performs no LLM execution.
+- run_frozen_quantum_reference_benchmarks executes Q-GapSelect's all-active analytic-IAE reference, a separately labelled gap-aided independent-IAE reference, and a stronger-information known-threshold control on non-isomorphic exact-count frozen empirical Layer-C oracles. It enforces permutation-invariant difficulty diversity, strict certificates, full-pair McNemar/bootstrap/resource analysis, and Holm correction. It charges logical coherent calls but no state preparation, gates, depth, qubits, QROM, or hardware execution.
 
-The reference pipeline is stochastic at the analytic measurement-sampling level. It is not a coherent index-register batch circuit, does not generate random problem instances, and does not implement QBoundary, coherent batch extraction, orientation dovetail, Layer P, or an LLM attack. The versioned reference_diagnostic artifact contains four trials for each of four fixed scenarios, for 16 raw records. The frozen configuration schedules 500 trials per fixed scenario, but no artifact from that default 500-trial run is committed.
+The reference pipeline is stochastic at the analytic measurement-sampling level. It is not a coherent index-register batch circuit, does not generate random problem instances, and does not implement QBoundary, coherent batch extraction, orientation dovetail, Layer P, or an application-domain study. The versioned reference_diagnostic artifact contains four trials for each of four fixed scenarios, for 16 raw records. The frozen configuration schedules 500 trials per fixed scenario, but no artifact from that default 500-trial run is committed.
 
 Reference success fields have strict, non-interchangeable semantics:
 
@@ -249,7 +286,7 @@ Raw records and aggregates report both fields separately, along with interval_re
 
 Current outputs may be labeled only CODE-SANITY, analytic proxy, or analytic-measurement regression as applicable. Logical calls recorded by the simulator are not physical quantum execution and must not be described as a measured quantum speedup.
 
-The quantum-core runner additionally reports conservative simultaneous NumPy allocations for the retained state, transient comparator state, and dense QFT matrix. Its gate/depth fields are logical circuit-IR counts, not compiled hardware resources. Fixed-parameter and paired same-logical-call-cap controls are both retained; neither is an accuracy-matched advantage theorem. Boundary-only is a negative control because its certificate already contains the complete Top-k membership.
+The quantum-core runner additionally reports analytic simultaneous-array-size proxies for the retained state, transient comparator state, and dense QFT matrix. These proxies omit NumPy temporaries and allocator overhead and are not measured peak memory or hard memory caps. Its gate/depth fields are logical circuit-IR counts, not compiled hardware resources. Fixed-parameter and paired same-logical-call-cap controls are both retained; neither is an accuracy-matched advantage theorem. Boundary-only is a negative control because its certificate already contains the complete Top-k membership.
 
 ### 8.2 Pre-registered future synthetic campaign
 
@@ -318,17 +355,19 @@ Finite scaling slopes are empirical diagnostics. They cannot prove a polynomial 
 
 For every fixed-confidence plot or table, the numerator for success is certified_exact_recovery. Heuristic-inclusive recovery must never be substituted, pooled with certified recovery, or used to exclude timeout failures.
 
-## 9. LLM threat model and endpoints
+## 9. Preregistered Q-GapAttack endpoints
 
-The source side uses authorized local open-source models or explicitly permitted endpoints. The victim side is held out by task, repository, CWE, and model family. Repeated generations from one task remain in one split. Victim outputs stay sealed until variants, selector, baselines, primary Q, and analysis code are frozen.
+The application protocol is specified in
+`docs/qgapattack_experiment_protocol.md` and its machine-readable matrix is
+`configs/qgapattack_experiments.json`. It separates quantum-core correctness,
+fixed-candidate selector quality, end-to-end code-security attacks, and held-out
+transfer. The primary application event is paired clean-safe to
+attack-functional-vulnerable boundary crossing at a frozen query budget.
 
-Primary application metrics are:
-
-- ASR@Q: fraction of tasks with at least one attack-predicate success in Q victim queries;
-- FV-ASR@Q: fraction with at least one functionally correct, exploit-confirmed vulnerable completion;
-- Delta-FV-ASR@Q: attacked FV-ASR@Q minus clean FV-ASR@Q.
-
-Also report functionality retention, fresh-seed success, source-to-victim transfer, query-to-first-success, timeouts and indeterminate outcomes, and separate source/victim/checker budgets. Use paired task-level intervals and a pre-registered functionality non-inferiority gate. Unconfirmed static warnings are not exploit-confirmed successes.
+The design audit is active, but every real application panel remains
+EMPIRICAL-PENDING. The bundled synthetic attack fixture is excluded from paper
+results. Passing application experiments cannot substitute for the quantum
+upper bound, composition separation, lower bound, or Layer-P transport theorem.
 
 ## 10. Claim activation and termination rules
 
@@ -340,10 +379,13 @@ A new quantum algorithm claim requires all of the following:
 4. a proved orientation dovetail and certificate verifier;
 5. charged filtering, state preparation, QROM, arithmetic, precision, gates, depth, and qubits.
 
-An LLM quantum advantage claim additionally requires Layer-P transport and credible reversible generator/checker resource accounting.
+An application-domain quantum advantage claim additionally requires Layer-P
+transport and credible reversible generator/checker resource accounting.
 
 Terminate or reframe the new-algorithm claim if the final upper bound collapses to a known composition, the lower bound cannot match it, the result depends on a fixed smaller-side rule, mean gaps are used outside an interior promise, or purification garbage cannot be handled without losing the claimed advantage.
 
 ## 11. Safety
 
-Run generated code and exploit checks only in authorized network-isolated containers. Do not target third-party systems, accounts, infrastructure, or live repositories. Privately disclose newly found vulnerabilities. Redact operational payloads when publication would materially enable abuse. Do not automate deployment, persistence, credential theft, or lateral movement.
+Current experiments are pure algorithmic audits over synthetic or canonical
+oracles.  Any future application-domain experiment must be authorized,
+isolated, and separately reviewed before execution.

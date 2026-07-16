@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "experiment_name": "q-gapselect-frozen-selector-algorithm-diagnostic-v1",
+  "master_seed": 20260715,
+  "trials": 64,
+  "k": 4,
+  "samples_per_candidate": 1024,
+  "selector_ids": [
+    "random",
+    "uniform",
+    "successive_halving",
+    "cost_aware_racing",
+    "clucb_style",
+    "gcgs"
+  ],
+  "budgets": [
+    {"budget_id": "q64", "max_queries": 64, "max_cost": 96.0},
+    {"budget_id": "q128", "max_queries": 128, "max_cost": 192.0},
+    {"budget_id": "q256", "max_queries": 256, "max_cost": 384.0},
+    {"budget_id": "q512", "max_queries": 512, "max_cost": 768.0},
+    {"budget_id": "q1024", "max_queries": 1024, "max_cost": 1536.0}
+  ],
+  "cases": [
+    {
+      "name": "gap_025_ring",
+      "family": "rank_gap_ring",
+      "gap": 0.25,
+      "cost_profile": "unit",
+      "cost_jitter": 0.0
+    },
+    {
+      "name": "gap_008_ring",
+      "family": "rank_gap_ring",
+      "gap": 0.08,
+      "cost_profile": "unit",
+      "cost_jitter": 0.0
+    },
+    {
+      "name": "gap_004_ring",
+      "family": "rank_gap_ring",
+      "gap": 0.04,
+      "cost_profile": "unit",
+      "cost_jitter": 0.0
+    },
+    {
+      "name": "gap_002_ring",
+      "family": "rank_gap_ring",
+      "gap": 0.02,
+      "cost_profile": "unit",
+      "cost_jitter": 0.0
+    },
+    {
+      "name": "independent_cost_ring",
+      "family": "rank_gap_ring",
+      "gap": 0.04,
+      "cost_profile": "independent",
+      "cost_jitter": 0.1
+    },
+    {
+      "name": "boundary_expensive_ring",
+      "family": "rank_gap_ring",
+      "gap": 0.04,
+      "cost_profile": "boundary_expensive",
+      "cost_jitter": 0.1
+    },
+    {
+      "name": "smooth_grid",
+      "family": "smooth_grid"
+    },
+    {
+      "name": "disconnected_multipeak",
+      "family": "disconnected_multipeak"
+    }
+  ],
+  "notes": [
+    "This is an algorithm-only synthetic campaign; it does not execute an LLM or a commercial API.",
+    "Every selector receives a fresh cursor over the same frozen reward/cost tensor within a panel.",
+    "The rank permutation prevents candidate order from revealing the latent Top-k set.",
+    "The four gap cases must be reported together; selecting only the easiest gap is forbidden.",
+    "The independent-cost and boundary-expensive cases stress heterogeneous variable-time behavior.",
+    "The smooth and disconnected graphs test graph-local search and seeded restart behavior.",
+    "Sixty-four repetitions are a committed diagnostic, not the preregistered 500-instance paper campaign."
+  ]
+}

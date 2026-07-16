@@ -10,6 +10,11 @@ htmlcov/
 venv/
 dist/
 build/
+data/
+
+# Local patch backups used while reconciling research branches.
+q-gapselect-full-from-origin-main.patch
+q-gapselect-unknown-boundary.patch
 
 # Generated experiment and paper artefacts. Four audited code-sanity outputs
 # are versioned; all other generated results remain ignored.
@@ -19,8 +24,23 @@ artifacts/*
 !artifacts/reference_diagnostic.json
 !artifacts/direct_search_diagnostic.json
 !artifacts/quantum_benchmark_diagnostic.json
+!artifacts/coherent_statevector_history.json
+!artifacts/unknown_boundary_grid.json
+!artifacts/charged_activity_history.json
+!artifacts/variable_time_charged_history.json
+!artifacts/stopping_time_transducer.json
+!artifacts/stopping_unitary_theorem.json
+!artifacts/composition_frontier.json
+!artifacts/theorem_closure_audit.json
+!artifacts/lower_bound_program.json
+!artifacts/proof_ledger.json
+!artifacts/research_gap_audit.json
+!artifacts/qgapattack_experiment_design.json
 !artifacts/frozen_selector_benchmark_diagnostic.json
 !artifacts/frozen_quantum_reference_diagnostic.json
+!artifacts/frozen_anchor_calibration.json.gz
+!artifacts/ccfa_matched_benchmark_diagnostic.json.gz
+!artifacts/uci_classifier_benchmark_diagnostic.json.gz
 paper/*.aux
 paper/*.bbl
 paper/*.blg

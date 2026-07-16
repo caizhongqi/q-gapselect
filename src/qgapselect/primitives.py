@@ -217,6 +217,7 @@ class BoundaryResult:
     complete: bool
     rounds: tuple[BoundaryRound, ...]
     resources: PrimitiveResources
+    minimum_angular_margin: float = 0.0
     backend: str = BACKEND_NAME
     claim_status: str = CLAIM_STATUS
 
@@ -239,6 +240,7 @@ class QBoundaryEstimator:
         confidence: float = 0.05,
         shots_per_round: int = 32,
         max_rounds: int = 8,
+        minimum_angular_margin: float = 0.0,
         seed: int | None = None,
         tag: str = "qboundary",
     ) -> None:
@@ -253,12 +255,28 @@ class QBoundaryEstimator:
             raise ValueError("shots_per_round must be positive")
         if max_rounds <= 0:
             raise ValueError("max_rounds must be positive")
+        if isinstance(minimum_angular_margin, bool):
+            raise TypeError("minimum_angular_margin must be a real number")
+        try:
+            minimum_angular_margin = float(minimum_angular_margin)
+        except (TypeError, ValueError) as error:
+            raise TypeError(
+                "minimum_angular_margin must be a real number"
+            ) from error
+        if (
+            not math.isfinite(minimum_angular_margin)
+            or not 0.0 <= minimum_angular_margin <= math.pi / 2.0
+        ):
+            raise ValueError(
+                "minimum_angular_margin must lie in [0, pi/2]"
+            )
 
         self.oracle = oracle
         self.k = k
         self.confidence = float(confidence)
         self.shots_per_round = shots_per_round
         self.max_rounds = max_rounds
+        self.minimum_angular_margin = minimum_angular_margin
         self.tag = str(tag)
         self._rng = np.random.default_rng(seed)
         self._successes = np.zeros(oracle.n_arms, dtype=np.int64)
@@ -266,6 +284,10 @@ class QBoundaryEstimator:
         self._rounds: list[BoundaryRound] = []
         self._certificate: BoundaryCertificate | None = None
         self._before_queries = oracle.query_snapshot()
+        # Count only calls made inside this estimator.  A live difference from
+        # the construction snapshot would incorrectly absorb later searches
+        # or other users of the shared oracle between resumptions.
+        self._owned_queries: Counter[str] = Counter()
         self._gates = _GateCounter()
         self._gates.observe_registers(
             oracle.contract.index_qubits
@@ -377,7 +399,11 @@ class QBoundaryEstimator:
         rejected_angle_ceiling = max(
             intervals[arm].angular_upper for arm in rejected
         )
-        if selected_mean_floor <= rejected_mean_ceiling:
+        angular_margin = selected_angle_floor - rejected_angle_ceiling
+        if (
+            selected_mean_floor <= rejected_mean_ceiling
+            or angular_margin < self.minimum_angular_margin
+        ):
             return selected, rejected, None
 
         return (
@@ -391,7 +417,7 @@ class QBoundaryEstimator:
                 angular_threshold=0.5
                 * (selected_angle_floor + rejected_angle_ceiling),
                 mean_margin=selected_mean_floor - rejected_mean_ceiling,
-                angular_margin=selected_angle_floor - rejected_angle_ceiling,
+                angular_margin=angular_margin,
                 confidence=self.confidence,
             ),
         )
@@ -401,6 +427,7 @@ class QBoundaryEstimator:
 
         if self.exhausted:
             return self.result()
+        before_step = self.oracle.query_snapshot()
         round_index = len(self._rounds) + 1
         target_shots = self.shots_per_round * (2 ** (round_index - 1))
         for arm in range(self.oracle.n_arms):
@@ -408,6 +435,11 @@ class QBoundaryEstimator:
             for _ in range(additional):
                 self._successes[arm] += self._measure_arm_once(arm, round_index)
             self._shots[arm] += additional
+        step_delta = QueryLedger.difference(
+            self.oracle.query_snapshot(), before_step
+        )
+        for kind in QueryKind:
+            self._owned_queries[kind.value] += int(step_delta[kind.value])
 
         intervals = self._intervals()
         selected, rejected, certificate = self._classify(intervals)
@@ -450,9 +482,23 @@ class QBoundaryEstimator:
             (interval.angular_upper for interval in intervals),
             reverse=True,
         )[self.k - 1]
-        query_counts = QueryLedger.difference(
-            self.oracle.query_snapshot(),
-            self._before_queries,
+        query_counts = {
+            kind.value: int(self._owned_queries[kind.value]) for kind in QueryKind
+        }
+        query_counts["coherent_total"] = sum(
+            query_counts[kind.value]
+            for kind in (
+                QueryKind.FORWARD,
+                QueryKind.INVERSE,
+                QueryKind.CONTROLLED_FORWARD,
+                QueryKind.CONTROLLED_INVERSE,
+            )
+        )
+        query_counts["classical_total"] = query_counts[
+            QueryKind.CLASSICAL_SAMPLE.value
+        ]
+        query_counts["total"] = (
+            query_counts["coherent_total"] + query_counts["classical_total"]
         )
         return BoundaryResult(
             k=self.k,
@@ -465,6 +511,7 @@ class QBoundaryEstimator:
             complete=certificate is not None,
             rounds=tuple(self._rounds),
             resources=self._gates.resources(query_counts),
+            minimum_angular_margin=self.minimum_angular_margin,
         )
 
 
@@ -475,6 +522,7 @@ def qboundary(
     confidence: float = 0.05,
     shots_per_round: int = 32,
     max_rounds: int = 8,
+    minimum_angular_margin: float = 0.0,
     seed: int | None = None,
     tag: str = "qboundary",
 ) -> BoundaryResult:
@@ -486,6 +534,7 @@ def qboundary(
         confidence=confidence,
         shots_per_round=shots_per_round,
         max_rounds=max_rounds,
+        minimum_angular_margin=minimum_angular_margin,
         seed=seed,
         tag=tag,
     ).run()

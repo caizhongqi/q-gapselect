@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "experiment_name": "composition_frontier_mainline_2026_07_15",
+  "notes": [
+    "Composition-frontier audit for the no-free-QRAM unknown-boundary candidate.",
+    "Passing an encoded frontier is not a novelty theorem; it only records that the currently encoded known-composition baselines did not match the candidate under the declared tolerance."
+  ],
+  "cases": [
+    {
+      "name": "default_mainline_frontier",
+      "m_values": [16, 32, 64, 128, 256],
+      "n_exponent": 2.0,
+      "level_exponent": 0.5,
+      "active_exponent": 0.5,
+      "gamma_exponent": 0.5,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 1.0,
+      "activity_decay_exponent": 0.0,
+      "predicate_cost_exponent": 0.0,
+      "precision_multiplier": 2.0,
+      "min_precision_bits": 1,
+      "max_precision_bits": null,
+      "baseline_match_tolerance": 1.2
+    },
+    {
+      "name": "decaying_activity_frontier",
+      "m_values": [32, 64, 128, 256],
+      "n_exponent": 2.0,
+      "level_exponent": 0.5,
+      "active_exponent": 0.65,
+      "gamma_exponent": 0.5,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 1.0,
+      "activity_decay_exponent": 0.25,
+      "predicate_cost_exponent": 0.0,
+      "precision_multiplier": 2.0,
+      "min_precision_bits": 1,
+      "max_precision_bits": null,
+      "baseline_match_tolerance": 1.2
+    },
+    {
+      "name": "loose_gate_negative_control",
+      "m_values": [8, 16, 32, 64],
+      "n_exponent": 2.0,
+      "level_exponent": 0.5,
+      "active_exponent": 0.5,
+      "gamma_exponent": 0.5,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 1.0,
+      "activity_decay_exponent": 0.0,
+      "predicate_cost_exponent": 0.0,
+      "precision_multiplier": 2.0,
+      "min_precision_bits": 1,
+      "max_precision_bits": null,
+      "baseline_match_tolerance": 10.0
+    }
+  ]
+}

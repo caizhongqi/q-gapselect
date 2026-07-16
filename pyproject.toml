@@ -28,6 +28,9 @@ Repository = "https://github.com/caizhongqi/q-gapselect"
 plots = [
   "matplotlib>=3.7",
 ]
+datasets = [
+  "scikit-learn>=1.4,<2",
+]
 dev = [
   "pytest>=7.4",
   "pytest-cov>=4.1",

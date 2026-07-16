@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "experiment_name": "lower_bound_program_mainline_2026_07_15",
+  "notes": [
+    "Symbolic lower-bound proof program for the no-free-QRAM unknown-boundary candidate.",
+    "The artifact records hard-family blocks and proof obligations; it does not claim an adversary or polynomial-method lower bound."
+  ],
+  "cases": [
+    {
+      "name": "default_lower_bound_program",
+      "m_values": [8, 16, 32, 64, 128, 256],
+      "n_exponent": 2.0,
+      "level_exponent": 0.5,
+      "active_exponent": 0.5,
+      "gamma_exponent": 0.5,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 1.0,
+      "activity_decay_exponent": 0.0,
+      "predicate_cost_exponent": 0.0,
+      "precision_multiplier": 2.0,
+      "min_precision_bits": 1,
+      "max_precision_bits": null,
+      "baseline_match_tolerance": 1.2
+    },
+    {
+      "name": "decaying_activity_lower_bound_program",
+      "m_values": [8, 16, 32, 64, 128, 256],
+      "n_exponent": 2.0,
+      "level_exponent": 0.5,
+      "active_exponent": 0.65,
+      "gamma_exponent": 0.5,
+      "output_births_per_level": 1,
+      "epsilon_growth_exponent": 1.0,
+      "activity_decay_exponent": 0.25,
+      "predicate_cost_exponent": 0.0,
+      "precision_multiplier": 2.0,
+      "min_precision_bits": 1,
+      "max_precision_bits": null,
+      "baseline_match_tolerance": 1.2
+    }
+  ]
+}

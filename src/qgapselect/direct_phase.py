@@ -30,9 +30,9 @@ ComplexState = NDArray[np.complex128]
 BACKEND = "numpy_exact_statevector_small_scale"
 CLAIM_STATUS = "direct_charged_qpe_threshold_reflection_no_complexity_theorem"
 RESOURCE_SEMANTICS = (
-    "simulator memory dimensions count complex entries and the estimated peak "
-    "counts conservatively simultaneous live entries; query, gate, and depth "
-    "counts are logical circuit-IR resources, not compiled hardware resources"
+    "memory dimensions are analytic live-array-size proxies and do not include "
+    "all NumPy temporaries or allocator overhead; query, gate, and depth counts "
+    "are logical circuit-IR resources, not compiled hardware resources"
 )
 # The phase predicate is defined in angular space.  Mirrored QPE bins must be
 # classified identically, including when a grid point lies exactly on the
@@ -276,12 +276,13 @@ class DirectAmplitudeThresholdFlag:
 
     @property
     def estimated_peak_complex_amplitudes(self) -> int:
-        """Conservative peak for this exact-state NumPy implementation.
+        """Analytic simultaneous-array proxy for the exact-state backend.
 
         Comparator kickback keeps the retained source (``S``) live beside its
         expanded flag state (``2S``).  Dense QFT keeps its ``M x M`` matrix,
         input (``S``), and output (``S``) live together.  This is a count of
-        complex entries, not a hardware-qubit or byte-memory claim.
+        complex entries, not a measured NumPy peak, memory cap, or hardware
+        resource claim.  NumPy may materialize additional QFT temporaries.
         """
 
         retained = self.statevector_dimension

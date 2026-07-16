@@ -1,0 +1,810 @@
+{
+  "artifact_type": "q_gapselect_lower_bound_program",
+  "case_results": [
+    {
+      "name": "default_lower_bound_program",
+      "parameters": {
+        "active_exponent": 0.5,
+        "activity_decay_exponent": 0.0,
+        "baseline_match_tolerance": 1.2,
+        "epsilon_growth_exponent": 1.0,
+        "gamma_exponent": 0.5,
+        "level_exponent": 0.5,
+        "m_values": [
+          8,
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "max_precision_bits": null,
+        "min_precision_bits": 1,
+        "n_exponent": 2.0,
+        "name": "default_lower_bound_program",
+        "output_births_per_level": 1,
+        "precision_multiplier": 2.0,
+        "predicate_cost_exponent": 0.0
+      },
+      "raw_records": [
+        {
+          "adversary_target_proxy": 22.62741699796952,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 22.62741699796952,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 13.30413469565007,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 18.81488772222678,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 61.44916598294886,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 54.74643941584637,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.3535533905932738,
+          "k": 3,
+          "level_count": 3,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 8,
+          "n": 64,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 61.44916598294886,
+          "target_over_candidate": 0.41331303440749445
+        },
+        {
+          "adversary_target_proxy": 64.0,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 64.0,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 16.492422502470642,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 23.323807579381203,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 131.93938001976514,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 103.81623008185184,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.25,
+          "k": 4,
+          "level_count": 4,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 16,
+          "n": 256,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 131.93938001976514,
+          "target_over_candidate": 0.6164739361999609
+        },
+        {
+          "adversary_target_proxy": 181.01933598375615,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 181.01933598375615,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 42.567593307585526,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 60.199667773169644,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 556.1007103034485,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 283.78659706451134,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.1767766952966369,
+          "k": 6,
+          "level_count": 6,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 32,
+          "n": 1024,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 556.1007103034485,
+          "target_over_candidate": 0.6378713366177974
+        },
+        {
+          "adversary_target_proxy": 512.0,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 512.0,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 53.665631459994955,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 75.8946638440411,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 1214.3146215046577,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 641.5602953040361,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.125,
+          "k": 8,
+          "level_count": 8,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 64,
+          "n": 4096,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 1214.3146215046577,
+          "target_over_candidate": 0.7980543742305042
+        },
+        {
+          "adversary_target_proxy": 1448.1546878700492,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 1448.1546878700492,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 129.05812643921342,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 182.51575274479734,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 4768.751618610472,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 1759.72856705406,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.08838834764831845,
+          "k": 12,
+          "level_count": 12,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 128,
+          "n": 16384,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 4768.751618610472,
+          "target_over_candidate": 0.8229420803768545
+        },
+        {
+          "adversary_target_proxy": 4096.0,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 4096.0,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 163.95121225535357,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 231.862027939031,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 10492.877584342628,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 4491.813240194384,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.0625,
+          "k": 16,
+          "level_count": 16,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 256,
+          "n": 65536,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 10492.877584342628,
+          "target_over_candidate": 0.9118811893930713
+        }
+      ],
+      "simulator_wall_seconds": 0.001037592999637127,
+      "summary": {
+        "asymptotic_lower_bound_claimed": false,
+        "descriptive_loglog_slopes": {
+          "adversary_target_proxy": 1.4999999999999998,
+          "candidate_proxy": 1.2919562972061795,
+          "strongest_block_proxy": 1.5352206818929972
+        },
+        "executed_quantum_algorithm": false,
+        "interpretation": "symbolic lower-bound proof program; blocks identify what an adversary or polynomial-method proof still has to establish",
+        "last_point_strongest_block_id": "LB-B04",
+        "last_point_target_over_candidate": 0.9118811893930713,
+        "local_facts_count": 6,
+        "m_values": [
+          8,
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "proof_obligation_count": 18,
+        "records": 6,
+        "strongest_block_counts": {
+          "LB-B04": 6
+        }
+      }
+    },
+    {
+      "name": "decaying_activity_lower_bound_program",
+      "parameters": {
+        "active_exponent": 0.65,
+        "activity_decay_exponent": 0.25,
+        "baseline_match_tolerance": 1.2,
+        "epsilon_growth_exponent": 1.0,
+        "gamma_exponent": 0.5,
+        "level_exponent": 0.5,
+        "m_values": [
+          8,
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "max_precision_bits": null,
+        "min_precision_bits": 1,
+        "n_exponent": 2.0,
+        "name": "decaying_activity_lower_bound_program",
+        "output_births_per_level": 1,
+        "precision_multiplier": 2.0,
+        "predicate_cost_exponent": 0.0
+      },
+      "raw_records": [
+        {
+          "adversary_target_proxy": 22.62741699796952,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 22.62741699796952,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 15.362291495737216,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 21.72556098240043,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 61.44916598294886,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 59.71526947610717,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.3535533905932738,
+          "k": 3,
+          "level_count": 3,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 8,
+          "n": 64,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 61.44916598294886,
+          "target_over_candidate": 0.37892179331155884
+        },
+        {
+          "adversary_target_proxy": 64.0,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 64.0,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 21.354156504062622,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 30.199337741083,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 131.93938001976514,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 115.55349424514561,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.25,
+          "k": 4,
+          "level_count": 4,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 16,
+          "n": 256,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 131.93938001976514,
+          "target_over_candidate": 0.5538560336758369
+        },
+        {
+          "adversary_target_proxy": 181.01933598375615,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 181.01933598375615,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 53.898051912847464,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 76.22335600063802,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 556.1007103034485,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 311.14074389724163,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.1767766952966369,
+          "k": 6,
+          "level_count": 6,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 32,
+          "n": 1024,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 556.1007103034485,
+          "target_over_candidate": 0.581792450954415
+        },
+        {
+          "adversary_target_proxy": 512.0,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 512.0,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 70.61869440877535,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 99.86991538997117,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 1214.3146215046577,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 682.4886097987466,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.125,
+          "k": 8,
+          "level_count": 8,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 64,
+          "n": 4096,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 1214.3146215046577,
+          "target_over_candidate": 0.7501956701533516
+        },
+        {
+          "adversary_target_proxy": 1448.1546878700492,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 1448.1546878700492,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 176.6097392557953,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 249.7638885027217,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 4768.751618610472,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 1874.5283156285664,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.08838834764831845,
+          "k": 12,
+          "level_count": 12,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 128,
+          "n": 16384,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 4768.751618610472,
+          "target_over_candidate": 0.7725435117710955
+        },
+        {
+          "adversary_target_proxy": 4096.0,
+          "blocks": [
+            {
+              "block_id": "LB-B01",
+              "description": "Boundary localization by angular discrimination near the Top-k cut.",
+              "missing_argument": "Lift local two-state discrimination to the unknown-boundary multi-output relation.",
+              "proof_status": "local_fact_available",
+              "proxy": 4096.0,
+              "target_role": "local angular boundary barrier"
+            },
+            {
+              "block_id": "LB-B02",
+              "description": "Direct active-history recovery barrier over charged levels.",
+              "missing_argument": "Construct adversary matrix or polynomial relation forcing coherent active-history discovery.",
+              "proof_status": "proof_obligation",
+              "proxy": 235.8940440112891,
+              "target_role": "history direct-sum component"
+            },
+            {
+              "block_id": "LB-B03",
+              "description": "Direct multi-output extraction barrier from active history.",
+              "missing_argument": "Show all adaptive quantum algorithms must pay the charged multi-output relation cost, not only estimate-then-sort.",
+              "proof_status": "proof_obligation",
+              "proxy": 333.6045563238008,
+              "target_role": "output-sensitive extraction component"
+            },
+            {
+              "block_id": "LB-B04",
+              "description": "Composition-frontier exclusion barrier.",
+              "missing_argument": "Prove known loop, k-minimum, QBAI, and variable-time theorems do not imply a matching same-interface upper bound.",
+              "proof_status": "proof_obligation",
+              "proxy": 10492.877584342628,
+              "target_role": "prior-composition separation requirement"
+            }
+          ],
+          "candidate_proxy": 4665.49860033509,
+          "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+          "gamma": 0.0625,
+          "k": 16,
+          "level_count": 16,
+          "local_facts_count": 1,
+          "lower_bound_claim_status": "symbolic_program_started_proof_obligations_remain",
+          "m": 256,
+          "n": 65536,
+          "proof_obligation_count": 3,
+          "strongest_block_id": "LB-B04",
+          "strongest_block_proxy": 10492.877584342628,
+          "target_over_candidate": 0.8779340325395903
+        }
+      ],
+      "simulator_wall_seconds": 0.0006700689991703257,
+      "summary": {
+        "asymptotic_lower_bound_claimed": false,
+        "descriptive_loglog_slopes": {
+          "adversary_target_proxy": 1.4999999999999998,
+          "candidate_proxy": 1.27519600015379,
+          "strongest_block_proxy": 1.5352206818929972
+        },
+        "executed_quantum_algorithm": false,
+        "interpretation": "symbolic lower-bound proof program; blocks identify what an adversary or polynomial-method proof still has to establish",
+        "last_point_strongest_block_id": "LB-B04",
+        "last_point_target_over_candidate": 0.8779340325395903,
+        "local_facts_count": 6,
+        "m_values": [
+          8,
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "proof_obligation_count": 18,
+        "records": 6,
+        "strongest_block_counts": {
+          "LB-B04": 6
+        }
+      }
+    }
+  ],
+  "claim_boundaries": {
+    "does_not_support": [
+      "a proved adversary lower bound",
+      "a proved polynomial-method lower bound",
+      "a CCF-A-ready optimality theorem"
+    ],
+    "supports": [
+      "paper-facing enumeration of lower-bound hard-family blocks",
+      "explicit separation between local facts and open proof obligations"
+    ]
+  },
+  "claim_status": "lower_bound_program_scaffold_no_adversary_proof",
+  "config_hash": "1ee28010ad20e247aee7af594b88b3a16ed1cd7fc9ed18f2793e9418d308f82f",
+  "experiment_name": "lower_bound_program_mainline_2026_07_15",
+  "provenance": {
+    "byte_for_byte_reproduction_expected": false,
+    "git_commit": "7564881cc4b7a8c19c10d510b8cd5b7e3950c39e",
+    "git_tree": "e910319f576018b9bafc3a8afabe486e5fd7e8f7",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13 (main, Mar  3 2026, 14:59:34) [Clang 21.1.4 ]",
+    "source_status_capture": "before_lower_bound_program_execution",
+    "source_tree_dirty_at_execution": true,
+    "volatile_fields": [
+      "case_results.*.simulator_wall_seconds"
+    ]
+  },
+  "resolved_config": {
+    "cases": [
+      {
+        "active_exponent": 0.5,
+        "activity_decay_exponent": 0.0,
+        "baseline_match_tolerance": 1.2,
+        "epsilon_growth_exponent": 1.0,
+        "gamma_exponent": 0.5,
+        "level_exponent": 0.5,
+        "m_values": [
+          8,
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "max_precision_bits": null,
+        "min_precision_bits": 1,
+        "n_exponent": 2.0,
+        "name": "default_lower_bound_program",
+        "output_births_per_level": 1,
+        "precision_multiplier": 2.0,
+        "predicate_cost_exponent": 0.0
+      },
+      {
+        "active_exponent": 0.65,
+        "activity_decay_exponent": 0.25,
+        "baseline_match_tolerance": 1.2,
+        "epsilon_growth_exponent": 1.0,
+        "gamma_exponent": 0.5,
+        "level_exponent": 0.5,
+        "m_values": [
+          8,
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "max_precision_bits": null,
+        "min_precision_bits": 1,
+        "n_exponent": 2.0,
+        "name": "decaying_activity_lower_bound_program",
+        "output_births_per_level": 1,
+        "precision_multiplier": 2.0,
+        "predicate_cost_exponent": 0.0
+      }
+    ],
+    "experiment_name": "lower_bound_program_mainline_2026_07_15",
+    "notes": [
+      "Symbolic lower-bound proof program for the no-free-QRAM unknown-boundary candidate.",
+      "The artifact records hard-family blocks and proof obligations; it does not claim an adversary or polynomial-method lower bound."
+    ],
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "summary": {
+    "asymptotic_lower_bound_claimed": false,
+    "case_count": 2,
+    "executed_quantum_algorithm": false,
+    "strongest_block_counts": {
+      "LB-B04": 12
+    },
+    "total_local_facts": 12,
+    "total_proof_obligations": 36,
+    "total_records": 12
+  }
+}

@@ -1,0 +1,1218 @@
+{
+  "artifact_type": "q_gapselect_composition_frontier",
+  "case_results": [
+    {
+      "name": "default_mainline_frontier",
+      "parameters": {
+        "active_exponent": 0.5,
+        "activity_decay_exponent": 0.0,
+        "baseline_match_tolerance": 1.2,
+        "epsilon_growth_exponent": 1.0,
+        "gamma_exponent": 0.5,
+        "level_exponent": 0.5,
+        "m_values": [
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "max_precision_bits": null,
+        "min_precision_bits": 1,
+        "n_exponent": 2.0,
+        "name": "default_mainline_frontier",
+        "output_births_per_level": 1,
+        "precision_multiplier": 2.0,
+        "predicate_cost_exponent": 0.0
+      },
+      "raw_records": [
+        {
+          "baseline_match_tolerance": 1.2,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": false,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 1.270893577196361,
+              "proxy": 131.93938001976514,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": false,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 4.315317553399726,
+              "proxy": 448.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": false,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 2.157658776699863,
+              "proxy": 224.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 17.261270213598905,
+              "proxy": 1792.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 34.52254042719781,
+              "proxy": 3584.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.22466436665049397,
+              "proxy": 23.323807579381203,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 103.81623008185184,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": false,
+          "gamma": 0.25,
+          "k": 4,
+          "level_count": 4,
+          "m": 16,
+          "n": 256,
+          "novelty_gate": "open_no_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 1.270893577196361,
+          "strongest_valid_baseline_proxy": 131.93938001976514
+        },
+        {
+          "baseline_match_tolerance": 1.2,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": false,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 1.9595735529998755,
+              "proxy": 556.1007103034485,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": false,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 8.83860450971116,
+              "proxy": 2508.2774966099737,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": false,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 4.1430958639271065,
+              "proxy": 1175.7550765359254,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 54.12517771763658,
+              "proxy": 15360.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 115.4670457976247,
+              "proxy": 32768.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.21213005968525303,
+              "proxy": 60.199667773169644,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 283.78659706451134,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": false,
+          "gamma": 0.1767766952966369,
+          "k": 6,
+          "level_count": 6,
+          "m": 32,
+          "n": 1024,
+          "novelty_gate": "open_no_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 1.9595735529998755,
+          "strongest_valid_baseline_proxy": 556.1007103034485
+        },
+        {
+          "baseline_match_tolerance": 1.2,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": false,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 1.8927521394215843,
+              "proxy": 1214.3146215046577,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": false,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 11.8505028552535,
+              "proxy": 7602.8121113177585,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": false,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 4.232322448304822,
+              "proxy": 2715.2900397563426,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 95.7665249076605,
+              "proxy": 61440.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 268.1462697414494,
+              "proxy": 172032.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.11829700871384902,
+              "proxy": 75.8946638440411,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 641.5602953040361,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": false,
+          "gamma": 0.125,
+          "k": 8,
+          "level_count": 8,
+          "m": 64,
+          "n": 4096,
+          "novelty_gate": "open_no_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 1.8927521394215843,
+          "strongest_valid_baseline_proxy": 1214.3146215046577
+        },
+        {
+          "baseline_match_tolerance": 1.2,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": false,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 2.7099359002813603,
+              "proxy": 4768.751618610472,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": false,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 21.66972298646837,
+              "proxy": 38132.830579436406,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": false,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 7.81117921605255,
+              "proxy": 13745.55520886661,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 288.6263310768864,
+              "proxy": 507904.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 800.7053055681364,
+              "proxy": 1409024.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.10371812798967327,
+              "proxy": 182.51575274479734,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 1759.72856705406,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": false,
+          "gamma": 0.08838834764831845,
+          "k": 12,
+          "level_count": 12,
+          "m": 128,
+          "n": 16384,
+          "novelty_gate": "open_no_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 2.7099359002813603,
+          "strongest_valid_baseline_proxy": 4768.751618610472
+        },
+        {
+          "baseline_match_tolerance": 1.2,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": false,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 2.33600041302887,
+              "proxy": 10492.877584342628,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": false,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 25.98861389770253,
+              "proxy": 116736.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": false,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 7.067079217796302,
+              "proxy": 31744.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 452.29306993896336,
+              "proxy": 2031616.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 1663.2712894529618,
+              "proxy": 7471104.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.05161880415335281,
+              "proxy": 231.862027939031,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 4491.813240194384,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": false,
+          "gamma": 0.0625,
+          "k": 16,
+          "level_count": 16,
+          "m": 256,
+          "n": 65536,
+          "novelty_gate": "open_no_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 2.33600041302887,
+          "strongest_valid_baseline_proxy": 10492.877584342628
+        }
+      ],
+      "simulator_wall_seconds": 0.0009899209981085733,
+      "summary": {
+        "all_points_open": true,
+        "asymptotic_theorem_claimed": false,
+        "descriptive_loglog_slopes": {
+          "candidate_proxy": 1.3502862625569851,
+          "strongest_valid_baseline_proxy": 1.5726976233042385
+        },
+        "encoded_match_count": 0,
+        "executed_quantum_algorithm": false,
+        "forbidden_baseline_rows": 5,
+        "interpretation": "known-composition frontier audit; open gates remain proof obligations and failed gates reject the candidate setting",
+        "last_point_strongest_valid_baseline_over_candidate": 2.33600041302887,
+        "m_values": [
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "novelty_gate_counts": {
+          "open_no_encoded_composition_match": 5
+        },
+        "records": 5,
+        "strongest_valid_baseline_counts": {
+          "loop_variable_time_rebuild": 5
+        }
+      }
+    },
+    {
+      "name": "decaying_activity_frontier",
+      "parameters": {
+        "active_exponent": 0.65,
+        "activity_decay_exponent": 0.25,
+        "baseline_match_tolerance": 1.2,
+        "epsilon_growth_exponent": 1.0,
+        "gamma_exponent": 0.5,
+        "level_exponent": 0.5,
+        "m_values": [
+          32,
+          64,
+          128,
+          256
+        ],
+        "max_precision_bits": null,
+        "min_precision_bits": 1,
+        "n_exponent": 2.0,
+        "name": "decaying_activity_frontier",
+        "output_births_per_level": 1,
+        "precision_multiplier": 2.0,
+        "predicate_cost_exponent": 0.0
+      },
+      "raw_records": [
+        {
+          "baseline_match_tolerance": 1.2,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": false,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 1.787296332000505,
+              "proxy": 556.1007103034485,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": false,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 9.872083656336558,
+              "proxy": 3071.607452648358,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": false,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 3.778852816924016,
+              "proxy": 1175.7550765359254,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 49.36672647756105,
+              "proxy": 15360.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 105.31568315213023,
+              "proxy": 32768.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.24498031034409237,
+              "proxy": 76.22335600063802,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 311.14074389724163,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": false,
+          "gamma": 0.1767766952966369,
+          "k": 6,
+          "level_count": 6,
+          "m": 32,
+          "n": 1024,
+          "novelty_gate": "open_no_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 1.787296332000505,
+          "strongest_valid_baseline_proxy": 556.1007103034485
+        },
+        {
+          "baseline_match_tolerance": 1.2,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": false,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 1.7792452563607426,
+              "proxy": 1214.3146215046577,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": false,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 14.015130671807734,
+              "proxy": 9565.167048349833,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": false,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 3.9785133418666607,
+              "proxy": 2715.2900397563426,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 90.0234804184022,
+              "proxy": 61440.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 252.06574517152615,
+              "proxy": 172032.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.14633198848464443,
+              "proxy": 99.86991538997117,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 682.4886097987466,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": false,
+          "gamma": 0.125,
+          "k": 8,
+          "level_count": 8,
+          "m": 64,
+          "n": 4096,
+          "novelty_gate": "open_no_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 1.7792452563607426,
+          "strongest_valid_baseline_proxy": 1214.3146215046577
+        },
+        {
+          "baseline_match_tolerance": 1.2,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": false,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 2.543974171449854,
+              "proxy": 4768.751618610472,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": false,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 26.040804688460366,
+              "proxy": 48814.22575027208,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": false,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 7.332807455755852,
+              "proxy": 13745.55520886661,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 270.95029494376547,
+              "proxy": 507904.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 751.6685601665753,
+              "proxy": 1409024.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.13324092595473594,
+              "proxy": 249.7638885027217,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 1874.5283156285664,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": false,
+          "gamma": 0.08838834764831845,
+          "k": 12,
+          "level_count": 12,
+          "m": 128,
+          "n": 16384,
+          "novelty_gate": "open_no_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 2.543974171449854,
+          "strongest_valid_baseline_proxy": 4768.751618610472
+        },
+        {
+          "baseline_match_tolerance": 1.2,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": false,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 2.2490367017983885,
+              "proxy": 10492.877584342628,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": false,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 33.31055570685176,
+              "proxy": 155410.3510267009,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": false,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 6.803988752181826,
+              "proxy": 31744.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 435.45528013963684,
+              "proxy": 2031616.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 1601.3516753522129,
+              "proxy": 7471104.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.07150458823411508,
+              "proxy": 333.6045563238008,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 4665.49860033509,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": false,
+          "gamma": 0.0625,
+          "k": 16,
+          "level_count": 16,
+          "m": 256,
+          "n": 65536,
+          "novelty_gate": "open_no_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 2.2490367017983885,
+          "strongest_valid_baseline_proxy": 10492.877584342628
+        }
+      ],
+      "simulator_wall_seconds": 0.0004934829994454049,
+      "summary": {
+        "all_points_open": true,
+        "asymptotic_theorem_claimed": false,
+        "descriptive_loglog_slopes": {
+          "candidate_proxy": 1.3176826853447485,
+          "strongest_valid_baseline_proxy": 1.4687230545635863
+        },
+        "encoded_match_count": 0,
+        "executed_quantum_algorithm": false,
+        "forbidden_baseline_rows": 4,
+        "interpretation": "known-composition frontier audit; open gates remain proof obligations and failed gates reject the candidate setting",
+        "last_point_strongest_valid_baseline_over_candidate": 2.2490367017983885,
+        "m_values": [
+          32,
+          64,
+          128,
+          256
+        ],
+        "novelty_gate_counts": {
+          "open_no_encoded_composition_match": 4
+        },
+        "records": 4,
+        "strongest_valid_baseline_counts": {
+          "loop_variable_time_rebuild": 4
+        }
+      }
+    },
+    {
+      "name": "loose_gate_negative_control",
+      "parameters": {
+        "active_exponent": 0.5,
+        "activity_decay_exponent": 0.0,
+        "baseline_match_tolerance": 10.0,
+        "epsilon_growth_exponent": 1.0,
+        "gamma_exponent": 0.5,
+        "level_exponent": 0.5,
+        "m_values": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "max_precision_bits": null,
+        "min_precision_bits": 1,
+        "n_exponent": 2.0,
+        "name": "loose_gate_negative_control",
+        "output_births_per_level": 1,
+        "precision_multiplier": 2.0,
+        "predicate_cost_exponent": 0.0
+      },
+      "raw_records": [
+        {
+          "baseline_match_tolerance": 10.0,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": true,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 1.1224321917301234,
+              "proxy": 61.44916598294886,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": true,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 2.784116605434308,
+              "proxy": 152.4204710660612,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": true,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 1.7717105670945597,
+              "proxy": 96.99484522385713,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": true,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 8.183180582705189,
+              "proxy": 448.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 12.85928377282244,
+              "proxy": 704.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.3436732675765724,
+              "proxy": 18.81488772222678,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 54.74643941584637,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": true,
+          "gamma": 0.3535533905932738,
+          "k": 3,
+          "level_count": 3,
+          "m": 8,
+          "n": 64,
+          "novelty_gate": "failed_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 1.1224321917301234,
+          "strongest_valid_baseline_proxy": 61.44916598294886
+        },
+        {
+          "baseline_match_tolerance": 10.0,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": true,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 1.270893577196361,
+              "proxy": 131.93938001976514,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": true,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 4.315317553399726,
+              "proxy": 448.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": true,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 2.157658776699863,
+              "proxy": 224.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 17.261270213598905,
+              "proxy": 1792.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 34.52254042719781,
+              "proxy": 3584.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.22466436665049397,
+              "proxy": 23.323807579381203,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 103.81623008185184,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": true,
+          "gamma": 0.25,
+          "k": 4,
+          "level_count": 4,
+          "m": 16,
+          "n": 256,
+          "novelty_gate": "failed_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 1.270893577196361,
+          "strongest_valid_baseline_proxy": 131.93938001976514
+        },
+        {
+          "baseline_match_tolerance": 10.0,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": true,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 1.9595735529998755,
+              "proxy": 556.1007103034485,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": true,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 8.83860450971116,
+              "proxy": 2508.2774966099737,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": true,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 4.1430958639271065,
+              "proxy": 1175.7550765359254,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 54.12517771763658,
+              "proxy": 15360.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 115.4670457976247,
+              "proxy": 32768.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.21213005968525303,
+              "proxy": 60.199667773169644,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 283.78659706451134,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": true,
+          "gamma": 0.1767766952966369,
+          "k": 6,
+          "level_count": 6,
+          "m": 32,
+          "n": 1024,
+          "novelty_gate": "failed_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 1.9595735529998755,
+          "strongest_valid_baseline_proxy": 556.1007103034485
+        },
+        {
+          "baseline_match_tolerance": 10.0,
+          "baselines": [
+            {
+              "assumption": "Rebuilds charged history through variable-time RMS composition.",
+              "limitation": "Valid same-interface comparator; it pays inactive-sea rebuild cost.",
+              "matches_candidate": true,
+              "name": "loop_variable_time_rebuild",
+              "over_candidate": 1.8927521394215843,
+              "proxy": 1214.3146215046577,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Uses generated activity predicates and all-marked extraction per level.",
+              "limitation": "Does not get free active lists; must charge predicate generation.",
+              "matches_candidate": false,
+              "name": "all_marked_extraction_generated_predicate",
+              "over_candidate": 11.8505028552535,
+              "proxy": 7602.8121113177585,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Coarse partition followed by quantum best-arm identification proxy.",
+              "limitation": "Only valid when the coarse partition exposes a same-output relation.",
+              "matches_candidate": true,
+              "name": "coarse_partition_plus_qbai",
+              "over_candidate": 4.232322448304822,
+              "proxy": 2715.2900397563426,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Runs charged finite-QPE precision on every arm independently.",
+              "limitation": "Baseline is intentionally strong but loses active-history adaptivity.",
+              "matches_candidate": false,
+              "name": "independent_all_arm_qpe",
+              "over_candidate": 95.7665249076605,
+              "proxy": 61440.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Scans every arm at every charged level.",
+              "limitation": "Valid but usually much larger than variable-time rebuild RMS.",
+              "matches_candidate": false,
+              "name": "serial_rebuild_scan",
+              "over_candidate": 268.1462697414494,
+              "proxy": 172032.0,
+              "valid_same_interface": true
+            },
+            {
+              "assumption": "Assumes active histories are already materialized.",
+              "limitation": "Invalid under no-free-QRAM interface; tracked as a forbidden collapse.",
+              "matches_candidate": false,
+              "name": "free_history_qram_layered",
+              "over_candidate": 0.11829700871384902,
+              "proxy": 75.8946638440411,
+              "valid_same_interface": false
+            }
+          ],
+          "candidate_proxy": 641.5602953040361,
+          "claim_status": "composition_frontier_audit_no_novelty_theorem",
+          "encoded_match_found": true,
+          "gamma": 0.125,
+          "k": 8,
+          "level_count": 8,
+          "m": 64,
+          "n": 4096,
+          "novelty_gate": "failed_encoded_composition_match",
+          "proof_obligation": "Instantiate published loop composition, exact/approximate k-minimum, QBAI, and variable-time search theorems with formal assumptions.",
+          "strongest_valid_baseline_name": "loop_variable_time_rebuild",
+          "strongest_valid_baseline_over_candidate": 1.8927521394215843,
+          "strongest_valid_baseline_proxy": 1214.3146215046577
+        }
+      ],
+      "simulator_wall_seconds": 0.0004071729999850504,
+      "summary": {
+        "all_points_open": false,
+        "asymptotic_theorem_claimed": false,
+        "descriptive_loglog_slopes": {
+          "candidate_proxy": 1.210301789801219,
+          "strongest_valid_baseline_proxy": 1.4989286019489114
+        },
+        "encoded_match_count": 4,
+        "executed_quantum_algorithm": false,
+        "forbidden_baseline_rows": 4,
+        "interpretation": "known-composition frontier audit; open gates remain proof obligations and failed gates reject the candidate setting",
+        "last_point_strongest_valid_baseline_over_candidate": 1.8927521394215843,
+        "m_values": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "novelty_gate_counts": {
+          "failed_encoded_composition_match": 4
+        },
+        "records": 4,
+        "strongest_valid_baseline_counts": {
+          "loop_variable_time_rebuild": 4
+        }
+      }
+    }
+  ],
+  "claim_boundaries": {
+    "does_not_support": [
+      "a novelty theorem against all published quantum compositions",
+      "a matching lower bound",
+      "hardware feasibility or simulator speedup"
+    ],
+    "supports": [
+      "same-interface audit of encoded known-composition baselines",
+      "explicit rejection of free-history QRAM baselines under the declared no-free-QRAM interface"
+    ]
+  },
+  "claim_status": "composition_frontier_audit_no_novelty_theorem",
+  "config_hash": "d3aa562447b1081c767346cd1b479c68b87b947e791180a17307d8b62aa69a46",
+  "experiment_name": "composition_frontier_mainline_2026_07_15",
+  "provenance": {
+    "byte_for_byte_reproduction_expected": false,
+    "git_commit": "7564881cc4b7a8c19c10d510b8cd5b7e3950c39e",
+    "git_tree": "e910319f576018b9bafc3a8afabe486e5fd7e8f7",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13 (main, Mar  3 2026, 14:59:34) [Clang 21.1.4 ]",
+    "source_status_capture": "before_composition_frontier_execution",
+    "source_tree_dirty_at_execution": true,
+    "volatile_fields": [
+      "case_results.*.simulator_wall_seconds"
+    ]
+  },
+  "resolved_config": {
+    "cases": [
+      {
+        "active_exponent": 0.5,
+        "activity_decay_exponent": 0.0,
+        "baseline_match_tolerance": 1.2,
+        "epsilon_growth_exponent": 1.0,
+        "gamma_exponent": 0.5,
+        "level_exponent": 0.5,
+        "m_values": [
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "max_precision_bits": null,
+        "min_precision_bits": 1,
+        "n_exponent": 2.0,
+        "name": "default_mainline_frontier",
+        "output_births_per_level": 1,
+        "precision_multiplier": 2.0,
+        "predicate_cost_exponent": 0.0
+      },
+      {
+        "active_exponent": 0.65,
+        "activity_decay_exponent": 0.25,
+        "baseline_match_tolerance": 1.2,
+        "epsilon_growth_exponent": 1.0,
+        "gamma_exponent": 0.5,
+        "level_exponent": 0.5,
+        "m_values": [
+          32,
+          64,
+          128,
+          256
+        ],
+        "max_precision_bits": null,
+        "min_precision_bits": 1,
+        "n_exponent": 2.0,
+        "name": "decaying_activity_frontier",
+        "output_births_per_level": 1,
+        "precision_multiplier": 2.0,
+        "predicate_cost_exponent": 0.0
+      },
+      {
+        "active_exponent": 0.5,
+        "activity_decay_exponent": 0.0,
+        "baseline_match_tolerance": 10.0,
+        "epsilon_growth_exponent": 1.0,
+        "gamma_exponent": 0.5,
+        "level_exponent": 0.5,
+        "m_values": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "max_precision_bits": null,
+        "min_precision_bits": 1,
+        "n_exponent": 2.0,
+        "name": "loose_gate_negative_control",
+        "output_births_per_level": 1,
+        "precision_multiplier": 2.0,
+        "predicate_cost_exponent": 0.0
+      }
+    ],
+    "experiment_name": "composition_frontier_mainline_2026_07_15",
+    "notes": [
+      "Composition-frontier audit for the no-free-QRAM unknown-boundary candidate.",
+      "Passing an encoded frontier is not a novelty theorem; it only records that the currently encoded known-composition baselines did not match the candidate under the declared tolerance."
+    ],
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "summary": {
+    "asymptotic_theorem_claimed": false,
+    "case_count": 3,
+    "executed_quantum_algorithm": false,
+    "novelty_gate_counts": {
+      "failed_encoded_composition_match": 4,
+      "open_no_encoded_composition_match": 9
+    },
+    "open_case_count": 2,
+    "strongest_valid_baseline_counts": {
+      "loop_variable_time_rebuild": 13
+    },
+    "total_records": 13
+  }
+}

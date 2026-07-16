@@ -3,10 +3,13 @@
 Q-GapSelect is a research codebase for **heterogeneous-discrimination-gap, multi-output quantum
 pure exploration**. Its immediate objective is to determine whether Top-$k$ and
 matroid best-basis identification admit a relation-aware quantum query complexity
-that is both algorithmically attainable and matched by a lower bound. The intended
-security application is semantic combinatorial intervention search against code
-LLMs, but the quantum identification problem is developed and tested independently
-of that application.
+that is both algorithmically attainable and matched by a lower bound.
+
+The active research program has two explicitly separated layers. The quantum
+core is an unknown-boundary, coherent-activity-history, no-free-QRAM multi-output
+selection problem. The application layer, Q-GapAttack, uses that selector to
+choose transferable attacks against code LLMs from an authorized local surrogate.
+The previous orientation-aware candidate has been falsified as a novelty core.
 
 The project starts from a strict claim boundary: standard amplitude estimation,
 amplitude amplification, quantum best-arm identification, and classical
@@ -24,9 +27,12 @@ separately throughout the repository.
    ($k=\Theta(n)$)?
 3. Which parts extend from uniform Top-$k$ constraints to partition and general
    matroids?
-4. Can the resulting selector reduce source-model oracle calls when searching for
-   semantics-preserving LLM interventions that cross a functional-vulnerability
-   boundary?
+4. Can the unknown-boundary activity-history interface support a new upper bound
+   and matching all-algorithms lower bound that known loop/variable-time
+   compositions do not already match?
+5. On a frozen semantic-transformation graph, can the selector find a stronger
+   transferable attack portfolio than XOXO-GCGS, INSEC, classical racing, and
+   independent quantum estimation under matched budgets?
 
 ## What is implemented
 
@@ -36,7 +42,7 @@ separately throughout the repository.
   query ledger without a public mean/amplitude accessor.
 - A natural-purification statevector oracle with explicit work garbage and a
   deterministic full-unitary Householder completion. The completion is a simulator
-  convention, not a unit-cost reversible LLM compiler.
+  convention, not a unit-cost reversible domain compiler.
 - A direct, charged amplitude-threshold reflection for the canonical oracle. It
   constructs QPE from embedded controlled reward-oracle calls, compares phase bins,
   applies phase kickback, and uncomputes on the complete phase/index/reward space.
@@ -71,11 +77,59 @@ separately throughout the repository.
   comparator, Top-k boundary-only negative control, invalid index-only diffusion,
   and explicit failure semantics. Dense NumPy QFT and comparator peak allocations
   are reported separately from logical query/gate/depth counts.
-- An authorization-scoped offline LLM attack-study pipeline: typed local-model and
-  validator adapters, strict JSONL replay, source-only portfolio selection,
-  held-out-victim isolation, paired clean/attack seeds, and task-level `ASR@Q`,
-  `FV-ASR@Q`, paired-seed `Delta-FV-ASR@Q`, paired-counterfactual ASR, functionality retention,
-  query-to-first-success, timeout, and indeterminate metrics.
+- A composition-falsification audit showing that the original `n=3m`
+  orientation witness is matched by coarse grouping plus strong-oracle BAI.
+- A new unknown-boundary history audit harness that tracks candidate cost,
+  legal encoded baselines, invalid free-history baselines, lower-target proxies,
+  and novelty gates under a no-free-QRAM interface.
+- A charged finite-phase activity-history prototype. Unlike the first toy
+  transducer, it derives active/output flags from finite-QPE phase windows and
+  records exact compute--phase--uncompute traces plus charged classifier query
+  units. It is code-sanity for the no-free-QRAM construction, not an upper-bound
+  theorem.
+- A variable-time charged history alignment audit that moves the charged
+  predicate costs back onto the main unknown-boundary candidate. It compares the
+  charged candidate proxy with serial rebuild, variable-time rebuild,
+  Grover-activity, independent scan, and coarse+BAI proxies under the same
+  finite-QPE level costs.
+- A variable-time stopping transducer skeleton. It adds an explicit stop-level
+  register, XOR compute/uncompute semantics, output phase kickback, and serial
+  versus branch-RMS stopping-cost ledgers for the charged finite-QPE relation.
+- A stopping-unitary theorem scaffold that separates execution-checked
+  identities from remaining proof obligations. It records passed checks for
+  involution, phase equivalence, cleanup, and RMS accounting, while keeping
+  circuit synthesis, confidence composition, coherent boundary localization,
+  and composition dominance open.
+- A composition-frontier audit for the active no-free-QRAM candidate. It encodes
+  loop variable-time rebuild, generated-predicate extraction, coarse+QBAI,
+  independent QPE, serial rebuild, and forbidden free-history QRAM comparators
+  under the same proxy interface.
+- A lower-bound proof program for the active candidate. It records the boundary
+  localization local fact plus open active-history, direct multi-output, and
+  composition-exclusion proof blocks. This is a scaffold for L-07, not an
+  adversary or polynomial-method proof.
+- A proof ledger that ties the upper-bound scaffold, composition-frontier audit,
+  and lower-bound program into one machine-readable theorem-stack checkpoint.
+  It marks local facts, execution checks, proof outlines, manual instantiation
+  requirements, and open proof obligations separately.
+- An authorization-scoped offline attack replay layer with source/victim
+  separation, paired clean/attack seeds, ASR@Q, FV-ASR@Q,
+  paired-counterfactual-ASR@Q, and a certificate-checked Q-GapSelect result
+  adapter. Its bundled fixture is pipeline testing only, not attack evidence.
+- A machine-readable Q-GapAttack experiment matrix covering 38 quantum,
+  selector, attack, control, and diagnostic baselines across 11 preregistered
+  panels. The design audit is valid but explicitly records
+  `empirical_ready=false` and `ccf_a_claimable=false`.
+- A blind frozen-source oracle and six budget-accounted classical selector
+  baselines: random, uniform, successive halving, cost-aware racing, internal
+  CLUCB-style Top-k, and GCGS-style graph search. The committed synthetic
+  campaign contains 15,360 runs and no LLM execution.
+- An exact-count frozen empirical Layer-C benchmark for the all-active
+  Q-GapSelect reference, gap-aided independent IAE Top-k, and a known-threshold
+  stronger-information control. Its powered panel contains 5,000 non-isomorphic
+  instances and 15,000 method runs, with paired inference and strict
+  certificate semantics. It records logical coherent query ledgers, not
+  hardware resources.
 - Tests, continuous integration, a research protocol, claim matrix, and manuscript
   scaffold.
 
@@ -87,54 +141,150 @@ The direct threshold path fixes the earlier semantic flaw in which the coherent
 flag merely encoded an already known answer. It is nevertheless a careful
 composition of amplitude estimation and unknown-success amplitude amplification,
 not yet the proposed new heterogeneous-gap quantum algorithm. Only a strictly
-stronger unknown-gap procedure with a matching lower bound could activate that
-claim. Likewise, the repository does not compile an LLM generator into a reversible
-circuit; it supplies the natural oracle contract and finite exact-state reference
-implementations.
+stronger unknown-boundary procedure with a matching lower bound could activate
+that claim. Likewise, the repository does not compile any application-domain
+generator into a reversible circuit; it supplies the natural oracle contract and
+finite exact-state reference implementations.
 
 ## Current measured status
 
-The versioned quantum-core diagnostic was executed from source commit
-`eeed49c2ce9d845a374967085a078b317984410d`. It contains 688 primary records and
-288 additional paired same-logical-query-cap records across all ten configured
-suites. The most important finite-size results are:
+### Strict matched-evidence checkpoint (2026-07-15)
 
-- all 18 random-complex-state compute/inverse and reflection-involution checks
-  passed; the largest residual was `8.08e-15`;
-- all 134 exact phase-grid predicate checks agreed with their expected
-  classification up to a maximum absolute error of `7.55e-15`;
-- the measured verifier made 2 wrong resolved decisions in 320 trials, and the
-  minimum per-cell empirical interval coverage was `0.90`; these small cells are
-  calibration diagnostics, not evidence of nominal-coverage certification;
-- on the 96 fixed-parameter random instances per method, direct BBHT returned an
-  exact complete answer in 85 cases, independent QPE scan in 84, and the classical
-  scan in 58, at mean logical-query counts `9668`, `8949`, and `2464`, respectively;
-- direct BBHT and independent QPE each completed the finite-QPE predicate in 86
-  cases, but only 85 and 84 of those outputs matched the true-mean threshold target.
-  Predicate completion is therefore never reported as true-mean correctness;
-- under a per-instance query cap copied from the paired direct run, the exact
-  counts were 85/96 for direct, 82/96 for independent QPE, and 79/96 for the
-  classical scan. This is not an accuracy-matched advantage result;
-- the analytic iterative-AE comparator completed exactly on 32/32 diagnostic
-  cases with a mean of 4,642 analytic oracle calls, but its measurement-law
-  backend is deliberately not mixed with exact-state gate or qubit resources;
-- all 24 calibrated direct Top-k trials stopped with
-  `phase_resolution_insufficient`, while the boundary-only negative control was
-  exact in 24/24 trials only because its certificate already contains the full
-  membership answer. It is forbidden evidence for quantum discovery.
+The repository now separates three experiment tiers that must not be pooled:
 
-These results validate important implementation invariants and expose current
-failure modes. They do **not** demonstrate a quantum query advantage, a new quantum
-algorithm, hardware feasibility, or a leading LLM attack result. No local LLM or
-attack reward oracle was run in this diagnostic. The bundled attack fixture remains
-synthetic state-only data used to test metric and split semantics; its rates are not
-empirical LLM evidence.
+1. `artifacts/coherent_statevector_history.json` executes a genuine
+   coherent-index exact-state activity-history kernel on 24 small trials. It
+   records controlled forward/inverse queries and explicit work/history/stop
+   registers, but obtains zero complete direct multi-output Top-k certificates.
+2. `artifacts/ccfa_matched_benchmark_diagnostic.json.gz` is the scalable
+   fixed-fixture x multi-seed, fixed-logical-cap panel. Its candidate is still
+   the analytic finite-state IR reference, so the artifact's implementation
+   gate remains blocked even if a finite cell were favorable.
+3. `artifacts/uci_classifier_benchmark_diagnostic.json.gz` is public-data
+   external-validity evidence. The committed offline Digits run has 24 arms,
+   `k=8`, five label-blind shards, 20 seeds, four caps, and five matched
+   methods. Three shards tie exactly at the Top-k boundary and are retained as
+   fail-closed exclusions. On the two executable shards at cap 524,288, the
+   candidate reaches 0.825 certified-exact recovery, below both k-only
+   adaptive references at 1.000 and coarse+BAI at 0.975.
+
+The unified audit in `artifacts/theorem_closure_audit.json` also records that a
+legal public-partition composition matches or beats the current candidate
+proxy. Hiding the partition invalidates that comparator, but the corresponding
+candidate discovery/cleanup upper bound and weighted matching lower bound are
+unproved. Therefore the machine-readable CCF-A quantum-advantage gate is false.
+
+CCF publishes a venue directory, not a mandatory dataset list. For that
+reason, `docs/ccfa_algorithm_experiment_protocol.md` defines a top-conference
+dataset protocol rather than claiming a nonexistent "CCF-A dataset." Strict
+local loaders and source-hash manifests are implemented for UCI Letter,
+Optdigits, and Covertype. Their official confirmatory campaigns remain
+unexecuted until the official files are present; scikit-learn Digits is clearly
+labelled as a non-official diagnostic fallback.
+
+The versioned quantum-core diagnostic
+`artifacts/quantum_benchmark_diagnostic.json` is a v4 audit with 13 configured
+suites and 778 raw records. It adds the `unknown_boundary_history` suite while
+retaining the negative composition audit for the rejected orientation witness.
+
+Key v4 results:
+
+- the old orientation-family novelty gate fails: 6/6 composition-audit records
+  are `failed_explicit_family`;
+- the new unknown-boundary history suite remains open on 6/6 default sweep
+  points under the encoded legal baselines;
+- the strongest encoded legal baseline for that suite is
+  `variable_time_rebuild_rms`;
+- at the largest default point, baseline/candidate is about `5.36`;
+- the default candidate finite-family slope is about `3.42`, and the recorded
+  lower-target proxy slope is about `3.50`;
+- the artifact explicitly marks the result as finite exact-state and analytic
+  diagnostics only, not an asymptotic theorem.
+
+The additional grid artifact `artifacts/unknown_boundary_grid.json` sweeps
+multiple unknown-boundary-history families. It is designed to find candidate
+families that remain open, and to expose parameter choices that collapse under
+encoded baselines. Open gates are proof obligations, not theorem claims.
+
+The algorithm-only frozen selector campaign reports that no one classical
+baseline dominates all gap, graph, and heterogeneous-cost cells. In the
+Layer-C reference campaign, every one of the ten cells contains 500
+non-isomorphic exact-count fixtures and passes a 100%-unique,
+permutation-invariant difficulty-fingerprint audit. All three methods certify
+500/500 fixtures in the easy cells. At the `n=32, k=16, gap≈pi/128` stress
+cell, Q-GapSelect certifies 447/500, gap-aided independent IAE 401/500, and the
+stronger-information threshold control 411/500. The paired Q-GapSelect versus
+independent-IAE risk difference is 9.2 percentage points (fixture-pair
+bootstrap 95% CI 5.8--12.6; Holm-adjusted `p≈3.32e-6`). Q-GapSelect also uses
+about 33,123 more logical calls on average in that cell. At `gap≈pi/256`, all
+three certify 0/500 and Q-GapSelect spends about 3.5 times the independent-IAE
+calls. The methods are neither information- nor query-matched, so these are
+finite algorithm diagnostics, not fixed-confidence or quantum-advantage
+claims.
+
+The charged predicate-generation artifact
+`artifacts/charged_activity_history.json` is the next P0-U08 implementation
+checkpoint. It removes supplied active/output predicate rows from the toy
+relation fixture: predicates are generated from normalized phase values,
+finite-QPE precision levels, and a boundary window. This strengthens the
+constructive evidence chain, but it still does not localize the unknown Top-k
+boundary or prove a variable-time coherent-search bound.
+
+The mainline alignment artifact
+`artifacts/variable_time_charged_history.json` inserts those finite-QPE charged
+costs into the unknown-boundary history proxy. It contains 16 records: two
+configured charged families stay open against the encoded proxy baselines, while
+the loose-gate negative control fails as intended. The strongest encoded valid
+baseline in this audit is `variable_time_rebuild_rms`. This is stronger
+evidence that the current direction is coherent, but it is still a proof target,
+not a theorem.
+
+The stopping skeleton artifact `artifacts/stopping_time_transducer.json`
+contains 7 exact-state records. It verifies stop-register
+compute--phase--uncompute traces and records branch-RMS stopping costs no larger
+than serial full-history costs on the configured fixtures. This is the closest
+current artifact to a circuit-shape construction, but it still uses a supplied
+phase boundary and is not a variable-time theorem.
+
+The theorem scaffold artifact `artifacts/stopping_unitary_theorem.json` contains
+5 records. All executable checks pass (`25` passed checks total), but it also
+records `20` proof-obligation entries. The accompanying
+`docs/stopping_unitary_theorem.md` is the current proof checklist for the
+stopping-unitary lemma.
+
+The composition-frontier artifact `artifacts/composition_frontier.json` contains
+13 records. Two configured families remain open under the encoded
+same-interface baselines, while the loose-gate negative control fails. The
+strongest encoded valid baseline is `loop_variable_time_rebuild`. This screens
+the current candidate against the baselines we encoded; it is not a theorem
+against all published compositions.
+
+The lower-bound program artifact `artifacts/lower_bound_program.json` contains
+12 records. It records `12` local boundary facts and `36` open proof-obligation
+blocks. The accompanying `docs/lower_bound_program.md` states the current L-07
+proof scaffold. It does not prove an all-algorithms lower bound.
+
+The proof-ledger artifact `artifacts/proof_ledger.json` contains 10 theorem-stack
+entries: 1 execution-checked scaffold item, 2 proof outlines, 2 manual
+composition-instantiation requirements, 1 local lower-bound fact, and 4 open
+proof obligations. Its Markdown rendering is `docs/proof_ledger.md`. It
+explicitly records `ccf_a_claimable=false`.
+
+The planning artifact `artifacts/research_gap_audit.json` and its Markdown
+rendering `docs/research_gap_audit.md` summarize the current paper-readiness
+state. The current stage is `active_unknown_boundary_history_candidate_no_theorem`;
+the readiness label is `pre_theorem_not_ccf_a_ready`.
+
+These results validate implementation invariants, record negative novelty
+evidence for the old candidate, and start the new no-free-QRAM candidate audit.
+They do **not** demonstrate a quantum query advantage, a new quantum algorithm,
+hardware feasibility, or an application-domain result.
 
 ## Repository layout
 
 ```text
-src/qgapselect/       oracles, coherent primitives, selectors, attack metrics
-scripts/              analytic, exact-state, and offline attack-study entry points
+src/qgapselect/       oracles, coherent primitives, selectors, audit proxies
+scripts/              analytic, exact-state, and unknown-boundary audit entry points
 tests/                unit, invariant, and special-case regression tests
 configs/              checked-in experiment configurations
 paper/                LaTeX manuscript and bibliography
@@ -145,10 +295,46 @@ docs/                 research protocol and claim-level evidence matrix
 ## Reproduce
 
 ```bash
-python -m venv .venv
+python -m venv --copies .venv
 . .venv/bin/activate
-python -m pip install -e '.[dev,plots]'
+python -m pip install -e '.[dev,plots,datasets]'
 pytest
+make quantum-core
+```
+
+The same setup is encoded in the Makefile:
+
+```bash
+make install
+make test-quantum
+make unknown-boundary-grid
+make charged-history
+make variable-time-charged
+make stopping-transducer
+make theorem-scaffold
+make composition-frontier
+make lower-bound
+make proof-ledger
+make research-gap
+make attack-design
+make frozen-selector-benchmark
+make frozen-quantum-reference
+make coherent-statevector-history
+make theorem-closure-audit
+make ccfa-matched-benchmark
+make install-datasets
+make uci-classifier-benchmark
+make quantum-history
+make quantum-core
+```
+
+`make install-uv` uses the checked-in lockfile when `uv` works in the host
+environment. If a sandbox has broken interpreter symlinks, prefer the `venv
+--copies` command above.
+
+Longer optional diagnostics:
+
+```bash
 python scripts/run_scaling.py --output artifacts/scaling.json
 python scripts/run_reference.py --output artifacts/reference_results.json
 python scripts/run_coherent.py --output artifacts/coherent_results.json
@@ -156,24 +342,74 @@ python scripts/run_direct_search.py --output artifacts/direct_search_results.jso
 python scripts/run_quantum_benchmarks.py \
   --config configs/quantum_benchmarks.json \
   --output artifacts/quantum_benchmark_diagnostic.json
-python scripts/run_attack_study.py \
-  --config configs/attack_study.json \
-  --output artifacts/attack_study_results.json \
-  --raw-output artifacts/attack_study_raw.jsonl
+python scripts/run_unknown_boundary_grid.py \
+  --config configs/unknown_boundary_grid.json \
+  --output artifacts/unknown_boundary_grid.json
+python scripts/run_charged_activity_history.py \
+  --config configs/charged_activity_history.json \
+  --output artifacts/charged_activity_history.json
+python scripts/run_variable_time_charged_history.py \
+  --config configs/variable_time_charged_history.json \
+  --output artifacts/variable_time_charged_history.json
+python scripts/run_stopping_time_transducer.py \
+  --config configs/stopping_time_transducer.json \
+  --output artifacts/stopping_time_transducer.json
+python scripts/run_stopping_unitary_theorem.py \
+  --config configs/stopping_unitary_theorem.json \
+  --output artifacts/stopping_unitary_theorem.json \
+  --markdown docs/stopping_unitary_theorem.md
+python scripts/run_composition_frontier.py \
+  --config configs/composition_frontier.json \
+  --output artifacts/composition_frontier.json
+python scripts/run_lower_bound_program.py \
+  --config configs/lower_bound_program.json \
+  --output artifacts/lower_bound_program.json \
+  --markdown docs/lower_bound_program.md
+python scripts/run_proof_ledger.py \
+  --stopping-artifact artifacts/stopping_unitary_theorem.json \
+  --composition-artifact artifacts/composition_frontier.json \
+  --lower-bound-artifact artifacts/lower_bound_program.json \
+  --output artifacts/proof_ledger.json \
+  --markdown docs/proof_ledger.md
+python scripts/run_qgapattack_experiment_design.py \
+  --config configs/qgapattack_experiments.json \
+  --output artifacts/qgapattack_experiment_design.json \
+  --markdown docs/qgapattack_experiment_design_audit.md \
+  --strict-design
+python scripts/run_frozen_selector_benchmarks.py \
+  --config configs/frozen_selector_benchmarks.json \
+  --output artifacts/frozen_selector_benchmark_diagnostic.json
+python scripts/run_frozen_quantum_reference_benchmarks.py \
+  --config configs/frozen_quantum_reference_benchmarks.json \
+  --output artifacts/frozen_quantum_reference_diagnostic.json
+python scripts/run_ccfa_matched_benchmarks.py \
+  --config configs/ccfa_matched_benchmarks.json \
+  --mixture-artifact artifacts/frozen_quantum_reference_diagnostic.json \
+  --theory-artifact artifacts/theorem_closure_audit.json \
+  --output artifacts/ccfa_matched_benchmark_diagnostic.json.gz
+python scripts/run_uci_classifier_benchmarks.py \
+  --config configs/uci_classifier_benchmarks.json \
+  --data-root data/uci \
+  --theory-artifact artifacts/theorem_closure_audit.json \
+  --output artifacts/uci_classifier_benchmark_diagnostic.json.gz
 ```
 
 Use each script's `--help` option for experiment controls. The quantum-core
 runner supports `--suite`, `--trials`, and `--seed`; its default configuration
-runs no local LLM and records exact-state and analytic-measurement evidence in
-separate resource classes. The reference
+records exact-state and analytic-measurement evidence in separate resource
+classes. The reference
 configuration schedules 500 repetitions per scenario; an explicit `--trials`
 override is recorded in the resolved configuration and hash. Generated data are
-written beneath `artifacts/`. The repository versions four audited diagnostics:
-the analytic scaling table, the 4-trial-per-scenario reference run, the direct-search
-run, and the full quantum-core run. Other outputs stay ignored until a recorded run
-is intentionally promoted. The default attack command runs only the clearly
-labelled, non-empirical state fixture; pass authorized offline JSONL through
-`--replay` for an actual study.
+written beneath `artifacts/`. The repository versions the analytic scaling table,
+the 4-trial-per-scenario reference run, the direct-search run, the full
+quantum-core run, and the unknown-boundary parameter grid. Other outputs stay
+ignored until a recorded run is intentionally promoted. The charged
+activity-history, variable-time alignment, stopping-transducer, and
+stopping-unitary theorem-scaffold artifacts are also versioned because they are
+P0-U08 construction checkpoints. The composition-frontier and lower-bound
+program artifacts are versioned because they define the current prior-work
+frontier and L-07 proof obligations. The proof-ledger artifact is versioned
+because it is now the canonical theorem-stack checklist.
 
 ## Paper-grade completion criteria
 
@@ -189,16 +425,17 @@ all of the following hold:
   $\Omega(n/\gamma)$ angular-gap dense-output target (hence $\Omega(n)$ at
   constant $\gamma$) and additive partition direct sums;
 - ablations against independent amplitude estimation and unstructured search;
-- LLM experiments that measure functional-vulnerability ASR under a fixed query
-  budget, with semantic validity and transfer evaluated separately;
-- release of seeds, raw outputs, validators, and negative results.
+- a reversible unknown-boundary activity-history transducer without free QRAM;
+- a manual composition-frontier proof showing that known loop/k-minimum/QBAI
+  compositions do not match the same interface, or a candidate revision if they do;
+- release of seeds, raw outputs, configs, and negative results.
 
 No repository structure, benchmark table, or simulated curve by itself establishes
 a CCF-A-level contribution or guarantees acceptance.
 
 ## Responsible-use boundary
 
-The LLM-security portion is for controlled evaluation of models and code generators
-that the experimenter owns or is authorized to test. This repository does not ship
-real-service exploitation, credential handling, persistence, malware, or automated
-deployment of vulnerable code. See [SECURITY.md](SECURITY.md).
+The repository currently runs quantum-core audits and a non-executing attack
+experiment-design audit. Any real application-domain experiment must be
+separately authorized, isolated, and reviewed before execution. See
+[SECURITY.md](SECURITY.md).
