@@ -43,6 +43,7 @@ artifacts/*
 !artifacts/ccfa_matched_failure_attribution.json
 !artifacts/ccfa_adaptive_verification_ablation.json.gz
 !artifacts/ccfa_history_certificate_ablation.json.gz
+!artifacts/replay_coherent_frontier.json
 !artifacts/uci_classifier_benchmark_diagnostic.json.gz
 paper/*.aux
 paper/*.bbl

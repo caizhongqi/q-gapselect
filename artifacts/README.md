@@ -2,6 +2,13 @@
 
 This directory versions machine-readable audit outputs:
 
+- `replay_coherent_frontier.json` records exact-state
+  `compute -> durable output copy -> replay uncompute` checks over explicit
+  index/history/stop/output/work registers. It charges a linear compiled SELECT
+  schedule and assumes no QRAM. The schedules remain public fixtures, so the
+  artifact is circuit-semantics evidence rather than coherent boundary
+  discovery, a new variable-time upper bound, or quantum-advantage evidence.
+
 - `scaling.json` evaluates declared analytic complexity proxies. It contains no
   observed quantum execution and proves no scaling theorem.
 - `reference_diagnostic.json` contains four simulator trials for each of four

@@ -1,0 +1,2967 @@
+{
+  "artifact_type": "q_gapselect_replay_preserving_coherent_frontier",
+  "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+  "config_hash": "2c4dc8eff9d1eda3e13b55bb21718b105cbf0b2b58d3e589b12935ba69730ba4",
+  "experiment_name": "replay_preserving_coherent_frontier_v1",
+  "notes": [
+    "Every record executes an explicit index/history/stop/output/work statevector permutation.",
+    "The durable output is copied before strict replay uncomputation of all transient registers.",
+    "Schedule access is charged as an unoptimised linear compiled SELECT; QRAM is never assumed.",
+    "Schedules are public fixtures, so this artifact does not establish coherent boundary discovery or a quantum advantage theorem."
+  ],
+  "provenance": {
+    "git_commit": "a28034bbcbe0b3b24b93a6eb7555b573220db371",
+    "git_tree": "f609f93648ddaaaa36aa246da7d990d0019b6401",
+    "platform": "Linux-6.12.47-x86_64-with-glibc2.39",
+    "python_version": "3.12.13",
+    "source_tree_dirty_at_execution": false
+  },
+  "records": [
+    {
+      "case_id": "four_arm_heterogeneous_stop",
+      "level_count": 3,
+      "n_arms": 4,
+      "prefix_levels": 1,
+      "result": {
+        "backend": "numpy_exact_statevector_replay_coherent_frontier",
+        "blockers": [
+          "frontier_schedule_is_a_supplied_public_fixture_not_coherently_discovered",
+          "compiled_linear_schedule_scan_is_charged_and_not_a_variable_time_upper_bound",
+          "branch_output_qubit_is_not_complete_direct_multi_output_aggregation",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+        "durable_output_copy_executed": true,
+        "durable_output_probability": 0.25,
+        "execution_trace": [
+          {
+            "charged_schedule_cells": 12,
+            "inverse": false,
+            "operation": "compute_scheduled_prefix",
+            "ordinal": 0,
+            "prefix_levels": 1,
+            "relation_digest": "d02d3480c8333c44897f1a785239e2c20ef45fa3622336967cada18d6531575e",
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+          },
+          {
+            "charged_schedule_cells": 0,
+            "inverse": false,
+            "operation": "copy_durable_output_from_work_selected_bit",
+            "ordinal": 1,
+            "prefix_levels": 1,
+            "relation_digest": "d02d3480c8333c44897f1a785239e2c20ef45fa3622336967cada18d6531575e",
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+          },
+          {
+            "charged_schedule_cells": 12,
+            "inverse": true,
+            "operation": "uncompute_scheduled_prefix_by_replay",
+            "ordinal": 2,
+            "prefix_levels": 1,
+            "relation_digest": "d02d3480c8333c44897f1a785239e2c20ef45fa3622336967cada18d6531575e",
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+          }
+        ],
+        "invariants": {
+          "all_transcripts_replayed": true,
+          "history_matches_active_prefix": true,
+          "output_matches_select_event": true,
+          "passed": true,
+          "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+          "stop_is_first_terminal_event": true,
+          "stopped_branches_remain_inactive": true,
+          "unresolved_matches_final_frontier": true
+        },
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_replay_coherent_frontier",
+          "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+          "cleanup": {
+            "all_transcripts_replayed": true,
+            "execution_trace_replayed": true,
+            "expected_durable_output_residual_l2": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "tolerance": 1e-12,
+            "transient_nonzero_probability": 0.0
+          },
+          "depth": 165,
+          "depth_semantics": "fully_serial_sum_of_charged_logical_gates_upper_bound",
+          "gate_count_semantics": "unoptimised_compiled_select_logical_upper_bound",
+          "gate_counts": {
+            "charged_schedule_cell_selects": 24,
+            "compiled_index_equality_primitives": 120,
+            "durable_output_cnot": 1,
+            "history_controlled_xor": 8,
+            "stop_controlled_xor": 2,
+            "work_controlled_xor": 10
+          },
+          "qram_assumed": false,
+          "qubits": 8,
+          "query_count_semantics": "logical_charges_not_physical_oracle_equivalence",
+          "query_counts": {
+            "compiled_schedule_cell_accesses": 24,
+            "frontier_relation_calls": 2,
+            "qram_queries": 0,
+            "reward_oracle_queries": 0
+          },
+          "register_dimensions": {
+            "history": 2,
+            "index": 4,
+            "output": 2,
+            "stop": 2,
+            "work": 8
+          },
+          "schedule_loading_model": "charged_unoptimised_linear_compiled_select_no_qram",
+          "schedule_storage_bits": 28,
+          "statevector_dimension": 256
+        },
+        "status": "code_sanity_passed_theorem_blocked",
+        "transcripts": [
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "b919ce16cfe244cbd69341e50c223679292ce34690da8e28188585a6dc44eec7",
+            "events": [
+              "select"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 0,
+            "output_bit": 1,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "f2fd79b033a0ab417ef01b418af63cf8cff39ab911304e03481f08b620dcac35",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 1,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "c8b3f334b11cf84c9f21f0e3b2ede77a944230089fa0c64dba2ef9804d74101c",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 2,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "faa12e686892296135ae3075848d11f0edbc7fa606db58150514db034b306054",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 3,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          }
+        ]
+      },
+      "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+    },
+    {
+      "case_id": "four_arm_heterogeneous_stop",
+      "level_count": 3,
+      "n_arms": 4,
+      "prefix_levels": 2,
+      "result": {
+        "backend": "numpy_exact_statevector_replay_coherent_frontier",
+        "blockers": [
+          "frontier_schedule_is_a_supplied_public_fixture_not_coherently_discovered",
+          "compiled_linear_schedule_scan_is_charged_and_not_a_variable_time_upper_bound",
+          "branch_output_qubit_is_not_complete_direct_multi_output_aggregation",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+        "durable_output_copy_executed": true,
+        "durable_output_probability": 0.5,
+        "execution_trace": [
+          {
+            "charged_schedule_cells": 24,
+            "inverse": false,
+            "operation": "compute_scheduled_prefix",
+            "ordinal": 0,
+            "prefix_levels": 2,
+            "relation_digest": "78da6f1474845df9f5b34d14088e955a130ac1f3257621c75fe973387a28216a",
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+          },
+          {
+            "charged_schedule_cells": 0,
+            "inverse": false,
+            "operation": "copy_durable_output_from_work_selected_bit",
+            "ordinal": 1,
+            "prefix_levels": 2,
+            "relation_digest": "78da6f1474845df9f5b34d14088e955a130ac1f3257621c75fe973387a28216a",
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+          },
+          {
+            "charged_schedule_cells": 24,
+            "inverse": true,
+            "operation": "uncompute_scheduled_prefix_by_replay",
+            "ordinal": 2,
+            "prefix_levels": 2,
+            "relation_digest": "78da6f1474845df9f5b34d14088e955a130ac1f3257621c75fe973387a28216a",
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+          }
+        ],
+        "invariants": {
+          "all_transcripts_replayed": true,
+          "history_matches_active_prefix": true,
+          "output_matches_select_event": true,
+          "passed": true,
+          "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+          "stop_is_first_terminal_event": true,
+          "stopped_branches_remain_inactive": true,
+          "unresolved_matches_final_frontier": true
+        },
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_replay_coherent_frontier",
+          "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+          "cleanup": {
+            "all_transcripts_replayed": true,
+            "execution_trace_replayed": true,
+            "expected_durable_output_residual_l2": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "tolerance": 1e-12,
+            "transient_nonzero_probability": 0.0
+          },
+          "depth": 319,
+          "depth_semantics": "fully_serial_sum_of_charged_logical_gates_upper_bound",
+          "gate_count_semantics": "unoptimised_compiled_select_logical_upper_bound",
+          "gate_counts": {
+            "charged_schedule_cell_selects": 48,
+            "compiled_index_equality_primitives": 240,
+            "durable_output_cnot": 1,
+            "history_controlled_xor": 14,
+            "stop_controlled_xor": 4,
+            "work_controlled_xor": 12
+          },
+          "qram_assumed": false,
+          "qubits": 10,
+          "query_count_semantics": "logical_charges_not_physical_oracle_equivalence",
+          "query_counts": {
+            "compiled_schedule_cell_accesses": 48,
+            "frontier_relation_calls": 2,
+            "qram_queries": 0,
+            "reward_oracle_queries": 0
+          },
+          "register_dimensions": {
+            "history": 4,
+            "index": 4,
+            "output": 2,
+            "stop": 4,
+            "work": 8
+          },
+          "schedule_loading_model": "charged_unoptimised_linear_compiled_select_no_qram",
+          "schedule_storage_bits": 28,
+          "statevector_dimension": 1024
+        },
+        "status": "code_sanity_passed_theorem_blocked",
+        "transcripts": [
+          {
+            "active_bits": [
+              true,
+              false
+            ],
+            "digest": "1cd2961397307457f057bf5bad166335fe51758be01ec3240517c2055537d2a9",
+            "events": [
+              "select",
+              "inactive"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 0,
+            "output_bit": 1,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "b728fed989d85df9cf6bc024ef9a71623d516ff3bfb9d46139e7ed3d40120b0c",
+            "events": [
+              "continue",
+              "select"
+            ],
+            "first_stop_level": 1,
+            "history_mask": 3,
+            "index": 1,
+            "output_bit": 1,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": 1,
+            "stop_code": 2,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "59bc9d8e0621cc72014b2e0d08990bd625192a64687d9e8135ba46edfc195c67",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 2,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "a73d2420e015fde3c1a70b60cae2440bda7f42bafb295314857f0514f11f2dc0",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 3,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          }
+        ]
+      },
+      "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+    },
+    {
+      "case_id": "four_arm_heterogeneous_stop",
+      "level_count": 3,
+      "n_arms": 4,
+      "prefix_levels": 3,
+      "result": {
+        "backend": "numpy_exact_statevector_replay_coherent_frontier",
+        "blockers": [
+          "frontier_schedule_is_a_supplied_public_fixture_not_coherently_discovered",
+          "compiled_linear_schedule_scan_is_charged_and_not_a_variable_time_upper_bound",
+          "branch_output_qubit_is_not_complete_direct_multi_output_aggregation",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+        "durable_output_copy_executed": true,
+        "durable_output_probability": 0.5,
+        "execution_trace": [
+          {
+            "charged_schedule_cells": 36,
+            "inverse": false,
+            "operation": "compute_scheduled_prefix",
+            "ordinal": 0,
+            "prefix_levels": 3,
+            "relation_digest": "fe5f0a5ac761d77254d4d847de861c0a2695ed4f2c0cdc1ac9414daa16cd6477",
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+          },
+          {
+            "charged_schedule_cells": 0,
+            "inverse": false,
+            "operation": "copy_durable_output_from_work_selected_bit",
+            "ordinal": 1,
+            "prefix_levels": 3,
+            "relation_digest": "fe5f0a5ac761d77254d4d847de861c0a2695ed4f2c0cdc1ac9414daa16cd6477",
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+          },
+          {
+            "charged_schedule_cells": 36,
+            "inverse": true,
+            "operation": "uncompute_scheduled_prefix_by_replay",
+            "ordinal": 2,
+            "prefix_levels": 3,
+            "relation_digest": "fe5f0a5ac761d77254d4d847de861c0a2695ed4f2c0cdc1ac9414daa16cd6477",
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+          }
+        ],
+        "invariants": {
+          "all_transcripts_replayed": true,
+          "history_matches_active_prefix": true,
+          "output_matches_select_event": true,
+          "passed": true,
+          "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+          "stop_is_first_terminal_event": true,
+          "stopped_branches_remain_inactive": true,
+          "unresolved_matches_final_frontier": true
+        },
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_replay_coherent_frontier",
+          "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+          "cleanup": {
+            "all_transcripts_replayed": true,
+            "execution_trace_replayed": true,
+            "expected_durable_output_residual_l2": 0.0,
+            "norm_error": 0.0,
+            "passed": true,
+            "tolerance": 1e-12,
+            "transient_nonzero_probability": 0.0
+          },
+          "depth": 471,
+          "depth_semantics": "fully_serial_sum_of_charged_logical_gates_upper_bound",
+          "gate_count_semantics": "unoptimised_compiled_select_logical_upper_bound",
+          "gate_counts": {
+            "charged_schedule_cell_selects": 72,
+            "compiled_index_equality_primitives": 360,
+            "durable_output_cnot": 1,
+            "history_controlled_xor": 18,
+            "stop_controlled_xor": 8,
+            "work_controlled_xor": 12
+          },
+          "qram_assumed": false,
+          "qubits": 11,
+          "query_count_semantics": "logical_charges_not_physical_oracle_equivalence",
+          "query_counts": {
+            "compiled_schedule_cell_accesses": 72,
+            "frontier_relation_calls": 2,
+            "qram_queries": 0,
+            "reward_oracle_queries": 0
+          },
+          "register_dimensions": {
+            "history": 8,
+            "index": 4,
+            "output": 2,
+            "stop": 4,
+            "work": 8
+          },
+          "schedule_loading_model": "charged_unoptimised_linear_compiled_select_no_qram",
+          "schedule_storage_bits": 28,
+          "statevector_dimension": 2048
+        },
+        "status": "code_sanity_passed_theorem_blocked",
+        "transcripts": [
+          {
+            "active_bits": [
+              true,
+              false,
+              false
+            ],
+            "digest": "795123a95f4a3efc7cf6340cfe4e581268d7abc5a5ee76eb70385b135cbdd594",
+            "events": [
+              "select",
+              "inactive",
+              "inactive"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 0,
+            "output_bit": 1,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              false
+            ],
+            "digest": "d95f0f2de9a219c3499930f150ebabc33f1e0b3a8c0fea33f830aa5e5c878f1d",
+            "events": [
+              "continue",
+              "select",
+              "inactive"
+            ],
+            "first_stop_level": 1,
+            "history_mask": 3,
+            "index": 1,
+            "output_bit": 1,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": 1,
+            "stop_code": 2,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "9e1f6c7ade464e0286a3f562832e03a0957b491e41630127201f79e03f59d82c",
+            "events": [
+              "continue",
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 7,
+            "index": 2,
+            "output_bit": 0,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "5da083cc35e1450155452ec43215b39d19162eee2ef9796c2ac4e8c48edfb7b9",
+            "events": [
+              "continue",
+              "continue",
+              "reject"
+            ],
+            "first_stop_level": 2,
+            "history_mask": 7,
+            "index": 3,
+            "output_bit": 0,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c",
+            "selected_level": null,
+            "stop_code": 3,
+            "work_code": 2
+          }
+        ]
+      },
+      "schedule_fingerprint": "9d4cf45495d39e722f93aedd5d906e12c3eaa9922e704d5e26f99e186c33fa1c"
+    },
+    {
+      "case_id": "eight_arm_deep_frontier",
+      "level_count": 4,
+      "n_arms": 8,
+      "prefix_levels": 1,
+      "result": {
+        "backend": "numpy_exact_statevector_replay_coherent_frontier",
+        "blockers": [
+          "frontier_schedule_is_a_supplied_public_fixture_not_coherently_discovered",
+          "compiled_linear_schedule_scan_is_charged_and_not_a_variable_time_upper_bound",
+          "branch_output_qubit_is_not_complete_direct_multi_output_aggregation",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+        "durable_output_copy_executed": true,
+        "durable_output_probability": 0.12499999999999997,
+        "execution_trace": [
+          {
+            "charged_schedule_cells": 24,
+            "inverse": false,
+            "operation": "compute_scheduled_prefix",
+            "ordinal": 0,
+            "prefix_levels": 1,
+            "relation_digest": "6aea876af0be3e6c04972fe26a7e9a13c086e1e390397a01f7f936cf95da06d3",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          },
+          {
+            "charged_schedule_cells": 0,
+            "inverse": false,
+            "operation": "copy_durable_output_from_work_selected_bit",
+            "ordinal": 1,
+            "prefix_levels": 1,
+            "relation_digest": "6aea876af0be3e6c04972fe26a7e9a13c086e1e390397a01f7f936cf95da06d3",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          },
+          {
+            "charged_schedule_cells": 24,
+            "inverse": true,
+            "operation": "uncompute_scheduled_prefix_by_replay",
+            "ordinal": 2,
+            "prefix_levels": 1,
+            "relation_digest": "6aea876af0be3e6c04972fe26a7e9a13c086e1e390397a01f7f936cf95da06d3",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          }
+        ],
+        "invariants": {
+          "all_transcripts_replayed": true,
+          "history_matches_active_prefix": true,
+          "output_matches_select_event": true,
+          "passed": true,
+          "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+          "stop_is_first_terminal_event": true,
+          "stopped_branches_remain_inactive": true,
+          "unresolved_matches_final_frontier": true
+        },
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_replay_coherent_frontier",
+          "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+          "cleanup": {
+            "all_transcripts_replayed": true,
+            "execution_trace_replayed": true,
+            "expected_durable_output_residual_l2": 0.0,
+            "norm_error": 1.1102230246251565e-16,
+            "passed": true,
+            "tolerance": 1e-12,
+            "transient_nonzero_probability": 2.220446049250313e-16
+          },
+          "depth": 421,
+          "depth_semantics": "fully_serial_sum_of_charged_logical_gates_upper_bound",
+          "gate_count_semantics": "unoptimised_compiled_select_logical_upper_bound",
+          "gate_counts": {
+            "charged_schedule_cell_selects": 48,
+            "compiled_index_equality_primitives": 336,
+            "durable_output_cnot": 1,
+            "history_controlled_xor": 16,
+            "stop_controlled_xor": 2,
+            "work_controlled_xor": 18
+          },
+          "qram_assumed": false,
+          "qubits": 9,
+          "query_count_semantics": "logical_charges_not_physical_oracle_equivalence",
+          "query_counts": {
+            "compiled_schedule_cell_accesses": 48,
+            "frontier_relation_calls": 2,
+            "qram_queries": 0,
+            "reward_oracle_queries": 0
+          },
+          "register_dimensions": {
+            "history": 2,
+            "index": 8,
+            "output": 2,
+            "stop": 2,
+            "work": 8
+          },
+          "schedule_loading_model": "charged_unoptimised_linear_compiled_select_no_qram",
+          "schedule_storage_bits": 72,
+          "statevector_dimension": 512
+        },
+        "status": "code_sanity_passed_theorem_blocked",
+        "transcripts": [
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "56b40544a76aa5ddf4761dd195459404811dea187c5d837d22835341987a7b3c",
+            "events": [
+              "select"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 0,
+            "output_bit": 1,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "97ed966e5d00fdb6f9d7c3c9a01a57c0d08f93e525c0ca3840f7a137cb39f59e",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 1,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "af53183f14f530d8958a0c08a0d898d04fae15415a84ae1a5212a1bfefbaca51",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 2,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "307c9c25a1844ae391c889e005544d8dd473c2479bc2c68e800af86aea39e639",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 3,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "45d1bbf8244e603aab35d923d1221fe83b5f5c8a4fe1e83f74de1c9040b1d79e",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 4,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "679a3bdcff978fca81eaec01495c80083d51998ee6e235dd02076929bbb2199f",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 5,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "5212c533fb8389c4b83c736c368174b5e014e3ec06f5d28a9dcaef59ee8c6f00",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 6,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "bb3519dd27d5de3a2af0588972254b8079a4a8556ee74e0e4724d847441517f1",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 7,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          }
+        ]
+      },
+      "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+    },
+    {
+      "case_id": "eight_arm_deep_frontier",
+      "level_count": 4,
+      "n_arms": 8,
+      "prefix_levels": 2,
+      "result": {
+        "backend": "numpy_exact_statevector_replay_coherent_frontier",
+        "blockers": [
+          "frontier_schedule_is_a_supplied_public_fixture_not_coherently_discovered",
+          "compiled_linear_schedule_scan_is_charged_and_not_a_variable_time_upper_bound",
+          "branch_output_qubit_is_not_complete_direct_multi_output_aggregation",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+        "durable_output_copy_executed": true,
+        "durable_output_probability": 0.24999999999999994,
+        "execution_trace": [
+          {
+            "charged_schedule_cells": 48,
+            "inverse": false,
+            "operation": "compute_scheduled_prefix",
+            "ordinal": 0,
+            "prefix_levels": 2,
+            "relation_digest": "ed1f1de80a485c7c46083a32faa2e08babf5ada0b3141218dbcc11d64472639b",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          },
+          {
+            "charged_schedule_cells": 0,
+            "inverse": false,
+            "operation": "copy_durable_output_from_work_selected_bit",
+            "ordinal": 1,
+            "prefix_levels": 2,
+            "relation_digest": "ed1f1de80a485c7c46083a32faa2e08babf5ada0b3141218dbcc11d64472639b",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          },
+          {
+            "charged_schedule_cells": 48,
+            "inverse": true,
+            "operation": "uncompute_scheduled_prefix_by_replay",
+            "ordinal": 2,
+            "prefix_levels": 2,
+            "relation_digest": "ed1f1de80a485c7c46083a32faa2e08babf5ada0b3141218dbcc11d64472639b",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          }
+        ],
+        "invariants": {
+          "all_transcripts_replayed": true,
+          "history_matches_active_prefix": true,
+          "output_matches_select_event": true,
+          "passed": true,
+          "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+          "stop_is_first_terminal_event": true,
+          "stopped_branches_remain_inactive": true,
+          "unresolved_matches_final_frontier": true
+        },
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_replay_coherent_frontier",
+          "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+          "cleanup": {
+            "all_transcripts_replayed": true,
+            "execution_trace_replayed": true,
+            "expected_durable_output_residual_l2": 0.0,
+            "norm_error": 1.1102230246251565e-16,
+            "passed": true,
+            "tolerance": 1e-12,
+            "transient_nonzero_probability": 2.220446049250313e-16
+          },
+          "depth": 823,
+          "depth_semantics": "fully_serial_sum_of_charged_logical_gates_upper_bound",
+          "gate_count_semantics": "unoptimised_compiled_select_logical_upper_bound",
+          "gate_counts": {
+            "charged_schedule_cell_selects": 96,
+            "compiled_index_equality_primitives": 672,
+            "durable_output_cnot": 1,
+            "history_controlled_xor": 30,
+            "stop_controlled_xor": 4,
+            "work_controlled_xor": 20
+          },
+          "qram_assumed": false,
+          "qubits": 11,
+          "query_count_semantics": "logical_charges_not_physical_oracle_equivalence",
+          "query_counts": {
+            "compiled_schedule_cell_accesses": 96,
+            "frontier_relation_calls": 2,
+            "qram_queries": 0,
+            "reward_oracle_queries": 0
+          },
+          "register_dimensions": {
+            "history": 4,
+            "index": 8,
+            "output": 2,
+            "stop": 4,
+            "work": 8
+          },
+          "schedule_loading_model": "charged_unoptimised_linear_compiled_select_no_qram",
+          "schedule_storage_bits": 72,
+          "statevector_dimension": 2048
+        },
+        "status": "code_sanity_passed_theorem_blocked",
+        "transcripts": [
+          {
+            "active_bits": [
+              true,
+              false
+            ],
+            "digest": "e619eda10b7f3f7ab4b496c80d6c575a05d20dae833c76e2a98b510547bc854a",
+            "events": [
+              "select",
+              "inactive"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 0,
+            "output_bit": 1,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "f20a9a426213dd15402c5344d675590069078ce3427f21f51e308ef1711a769d",
+            "events": [
+              "continue",
+              "select"
+            ],
+            "first_stop_level": 1,
+            "history_mask": 3,
+            "index": 1,
+            "output_bit": 1,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": 1,
+            "stop_code": 2,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "10a6288782b4ec9dd7ff549527555296478aa1f16e9a9203d8484d0207e411d9",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 2,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "03f18c56524cd931db17778b47d739c59fd1626632042b663765cf3ddb5c8a39",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 3,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "40e69cab472720c699905cd4c07ffa43aa6bf94a09d575c0a60feff10ca2d037",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 4,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "521fcdb19e2838c40f3ce51c6d026a8b3dbaa1a01fda048ace0fc5124713dde6",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 5,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "6e455f68e9d605835b1c72425a3a8a1ef899bd3f18e9c4f5fd707cb6ebcc8b89",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 6,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "da95abd234b78f239d3a5141f68e0f900bc48aa92eef80faa62e1d87f05bd9e5",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 7,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          }
+        ]
+      },
+      "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+    },
+    {
+      "case_id": "eight_arm_deep_frontier",
+      "level_count": 4,
+      "n_arms": 8,
+      "prefix_levels": 3,
+      "result": {
+        "backend": "numpy_exact_statevector_replay_coherent_frontier",
+        "blockers": [
+          "frontier_schedule_is_a_supplied_public_fixture_not_coherently_discovered",
+          "compiled_linear_schedule_scan_is_charged_and_not_a_variable_time_upper_bound",
+          "branch_output_qubit_is_not_complete_direct_multi_output_aggregation",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+        "durable_output_copy_executed": true,
+        "durable_output_probability": 0.3749999999999999,
+        "execution_trace": [
+          {
+            "charged_schedule_cells": 72,
+            "inverse": false,
+            "operation": "compute_scheduled_prefix",
+            "ordinal": 0,
+            "prefix_levels": 3,
+            "relation_digest": "f5e87a4553c563abf6c8cff3ad8cb4307574ca58d52c070300e7c0eb0085259e",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          },
+          {
+            "charged_schedule_cells": 0,
+            "inverse": false,
+            "operation": "copy_durable_output_from_work_selected_bit",
+            "ordinal": 1,
+            "prefix_levels": 3,
+            "relation_digest": "f5e87a4553c563abf6c8cff3ad8cb4307574ca58d52c070300e7c0eb0085259e",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          },
+          {
+            "charged_schedule_cells": 72,
+            "inverse": true,
+            "operation": "uncompute_scheduled_prefix_by_replay",
+            "ordinal": 2,
+            "prefix_levels": 3,
+            "relation_digest": "f5e87a4553c563abf6c8cff3ad8cb4307574ca58d52c070300e7c0eb0085259e",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          }
+        ],
+        "invariants": {
+          "all_transcripts_replayed": true,
+          "history_matches_active_prefix": true,
+          "output_matches_select_event": true,
+          "passed": true,
+          "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+          "stop_is_first_terminal_event": true,
+          "stopped_branches_remain_inactive": true,
+          "unresolved_matches_final_frontier": true
+        },
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_replay_coherent_frontier",
+          "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+          "cleanup": {
+            "all_transcripts_replayed": true,
+            "execution_trace_replayed": true,
+            "expected_durable_output_residual_l2": 0.0,
+            "norm_error": 1.1102230246251565e-16,
+            "passed": true,
+            "tolerance": 1e-12,
+            "transient_nonzero_probability": 2.220446049250313e-16
+          },
+          "depth": 1229,
+          "depth_semantics": "fully_serial_sum_of_charged_logical_gates_upper_bound",
+          "gate_count_semantics": "unoptimised_compiled_select_logical_upper_bound",
+          "gate_counts": {
+            "charged_schedule_cell_selects": 144,
+            "compiled_index_equality_primitives": 1008,
+            "durable_output_cnot": 1,
+            "history_controlled_xor": 42,
+            "stop_controlled_xor": 12,
+            "work_controlled_xor": 22
+          },
+          "qram_assumed": false,
+          "qubits": 12,
+          "query_count_semantics": "logical_charges_not_physical_oracle_equivalence",
+          "query_counts": {
+            "compiled_schedule_cell_accesses": 144,
+            "frontier_relation_calls": 2,
+            "qram_queries": 0,
+            "reward_oracle_queries": 0
+          },
+          "register_dimensions": {
+            "history": 8,
+            "index": 8,
+            "output": 2,
+            "stop": 4,
+            "work": 8
+          },
+          "schedule_loading_model": "charged_unoptimised_linear_compiled_select_no_qram",
+          "schedule_storage_bits": 72,
+          "statevector_dimension": 4096
+        },
+        "status": "code_sanity_passed_theorem_blocked",
+        "transcripts": [
+          {
+            "active_bits": [
+              true,
+              false,
+              false
+            ],
+            "digest": "0f2a60931cb97f4ea6c4dbea49493bf54e4a77a161d246656da5ff4a36d51f3b",
+            "events": [
+              "select",
+              "inactive",
+              "inactive"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 0,
+            "output_bit": 1,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              false
+            ],
+            "digest": "bf21dc94ab00ee2697fd84fb0714cde6e2e7b4d8a435be8af827880b0bf3962a",
+            "events": [
+              "continue",
+              "select",
+              "inactive"
+            ],
+            "first_stop_level": 1,
+            "history_mask": 3,
+            "index": 1,
+            "output_bit": 1,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": 1,
+            "stop_code": 2,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "61a53e888e70ca64bfe188dce18222030fbcf73dc59ca19dbe0bd0265cc9c48f",
+            "events": [
+              "continue",
+              "continue",
+              "select"
+            ],
+            "first_stop_level": 2,
+            "history_mask": 7,
+            "index": 2,
+            "output_bit": 1,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": 2,
+            "stop_code": 3,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "dae56cb88d7b121ba5bee3e74e291db16f4ac558800970dc0e6bab39d44ff25f",
+            "events": [
+              "continue",
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 7,
+            "index": 3,
+            "output_bit": 0,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "6859ba24997bac1e377b676f61a460719058fc186f0ca1048bac6daede0b9429",
+            "events": [
+              "continue",
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 7,
+            "index": 4,
+            "output_bit": 0,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "60403a3fa05680bd2babcd4d971d257c72c76239c1cb67a091ca03bdc79041b3",
+            "events": [
+              "continue",
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 7,
+            "index": 5,
+            "output_bit": 0,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "93afc833e719103bfda6295718048cb3769dd52e2cf2b1a7cabdaaf96d21f2f1",
+            "events": [
+              "continue",
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 7,
+            "index": 6,
+            "output_bit": 0,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "617f68f22be3af42d094828444ff3bb1e49afafab55762770d27b78af660de41",
+            "events": [
+              "continue",
+              "continue",
+              "reject"
+            ],
+            "first_stop_level": 2,
+            "history_mask": 7,
+            "index": 7,
+            "output_bit": 0,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 3,
+            "work_code": 2
+          }
+        ]
+      },
+      "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+    },
+    {
+      "case_id": "eight_arm_deep_frontier",
+      "level_count": 4,
+      "n_arms": 8,
+      "prefix_levels": 4,
+      "result": {
+        "backend": "numpy_exact_statevector_replay_coherent_frontier",
+        "blockers": [
+          "frontier_schedule_is_a_supplied_public_fixture_not_coherently_discovered",
+          "compiled_linear_schedule_scan_is_charged_and_not_a_variable_time_upper_bound",
+          "branch_output_qubit_is_not_complete_direct_multi_output_aggregation",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+        "durable_output_copy_executed": true,
+        "durable_output_probability": 0.4999999999999999,
+        "execution_trace": [
+          {
+            "charged_schedule_cells": 96,
+            "inverse": false,
+            "operation": "compute_scheduled_prefix",
+            "ordinal": 0,
+            "prefix_levels": 4,
+            "relation_digest": "56daea47508ab0dc8ff7f83d9a8cd486b1d8968b921b2d5b0900dc4a2c32068d",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          },
+          {
+            "charged_schedule_cells": 0,
+            "inverse": false,
+            "operation": "copy_durable_output_from_work_selected_bit",
+            "ordinal": 1,
+            "prefix_levels": 4,
+            "relation_digest": "56daea47508ab0dc8ff7f83d9a8cd486b1d8968b921b2d5b0900dc4a2c32068d",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          },
+          {
+            "charged_schedule_cells": 96,
+            "inverse": true,
+            "operation": "uncompute_scheduled_prefix_by_replay",
+            "ordinal": 2,
+            "prefix_levels": 4,
+            "relation_digest": "56daea47508ab0dc8ff7f83d9a8cd486b1d8968b921b2d5b0900dc4a2c32068d",
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+          }
+        ],
+        "invariants": {
+          "all_transcripts_replayed": true,
+          "history_matches_active_prefix": true,
+          "output_matches_select_event": true,
+          "passed": true,
+          "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+          "stop_is_first_terminal_event": true,
+          "stopped_branches_remain_inactive": true,
+          "unresolved_matches_final_frontier": true
+        },
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_replay_coherent_frontier",
+          "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+          "cleanup": {
+            "all_transcripts_replayed": true,
+            "execution_trace_replayed": true,
+            "expected_durable_output_residual_l2": 0.0,
+            "norm_error": 1.1102230246251565e-16,
+            "passed": true,
+            "tolerance": 1e-12,
+            "transient_nonzero_probability": 2.220446049250313e-16
+          },
+          "depth": 1627,
+          "depth_semantics": "fully_serial_sum_of_charged_logical_gates_upper_bound",
+          "gate_count_semantics": "unoptimised_compiled_select_logical_upper_bound",
+          "gate_counts": {
+            "charged_schedule_cell_selects": 192,
+            "compiled_index_equality_primitives": 1344,
+            "durable_output_cnot": 1,
+            "history_controlled_xor": 50,
+            "stop_controlled_xor": 16,
+            "work_controlled_xor": 24
+          },
+          "qram_assumed": false,
+          "qubits": 14,
+          "query_count_semantics": "logical_charges_not_physical_oracle_equivalence",
+          "query_counts": {
+            "compiled_schedule_cell_accesses": 192,
+            "frontier_relation_calls": 2,
+            "qram_queries": 0,
+            "reward_oracle_queries": 0
+          },
+          "register_dimensions": {
+            "history": 16,
+            "index": 8,
+            "output": 2,
+            "stop": 8,
+            "work": 8
+          },
+          "schedule_loading_model": "charged_unoptimised_linear_compiled_select_no_qram",
+          "schedule_storage_bits": 72,
+          "statevector_dimension": 16384
+        },
+        "status": "code_sanity_passed_theorem_blocked",
+        "transcripts": [
+          {
+            "active_bits": [
+              true,
+              false,
+              false,
+              false
+            ],
+            "digest": "45c5b4902433620a251732b8afddcc51b697add40624cc4e72daaf049ff6a3be",
+            "events": [
+              "select",
+              "inactive",
+              "inactive",
+              "inactive"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 0,
+            "output_bit": 1,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              false,
+              false
+            ],
+            "digest": "7a66503158a4e547e762544df80718b244f9694e7262e6b862594ac926282bdf",
+            "events": [
+              "continue",
+              "select",
+              "inactive",
+              "inactive"
+            ],
+            "first_stop_level": 1,
+            "history_mask": 3,
+            "index": 1,
+            "output_bit": 1,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": 1,
+            "stop_code": 2,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true,
+              false
+            ],
+            "digest": "bc00f7af1a05f41db7e51c73ae7547caaa044147d4095d3f2926e65d7b05e6b5",
+            "events": [
+              "continue",
+              "continue",
+              "select",
+              "inactive"
+            ],
+            "first_stop_level": 2,
+            "history_mask": 7,
+            "index": 2,
+            "output_bit": 1,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": 2,
+            "stop_code": 3,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "digest": "c29d73ea77c66dc4c434cbbc29ad5fc18ffefef88633f074351bb5078a5f8ff2",
+            "events": [
+              "continue",
+              "continue",
+              "continue",
+              "select"
+            ],
+            "first_stop_level": 3,
+            "history_mask": 15,
+            "index": 3,
+            "output_bit": 1,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": 3,
+            "stop_code": 4,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "digest": "5f8890d3f2fc300f7089087b314dc5e4ea8d7ac0954d2f41ae601747f0632541",
+            "events": [
+              "continue",
+              "continue",
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 15,
+            "index": 4,
+            "output_bit": 0,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "digest": "8db3b6ec7aef16dccaccad7b56b0c19c17d14ba60e63907930b419bd2c096d00",
+            "events": [
+              "continue",
+              "continue",
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 15,
+            "index": 5,
+            "output_bit": 0,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "digest": "78bd299d50a68512314ba06203ccefc54125584f9fd501bb49d3ec4e6bbe227d",
+            "events": [
+              "continue",
+              "continue",
+              "continue",
+              "reject"
+            ],
+            "first_stop_level": 3,
+            "history_mask": 15,
+            "index": 6,
+            "output_bit": 0,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 4,
+            "work_code": 2
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true,
+              false
+            ],
+            "digest": "aae9bc06fbb8a912f354b69ce226594b51075e1142d8ff59e4b4c8b9cc576b5c",
+            "events": [
+              "continue",
+              "continue",
+              "reject",
+              "inactive"
+            ],
+            "first_stop_level": 2,
+            "history_mask": 7,
+            "index": 7,
+            "output_bit": 0,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c",
+            "selected_level": null,
+            "stop_code": 3,
+            "work_code": 2
+          }
+        ]
+      },
+      "schedule_fingerprint": "1a1a89f608137661fd9961dec1286ab7c07c5840d190741f4f37bb7c1f98709c"
+    },
+    {
+      "case_id": "eight_arm_multiple_births",
+      "level_count": 4,
+      "n_arms": 8,
+      "prefix_levels": 1,
+      "result": {
+        "backend": "numpy_exact_statevector_replay_coherent_frontier",
+        "blockers": [
+          "frontier_schedule_is_a_supplied_public_fixture_not_coherently_discovered",
+          "compiled_linear_schedule_scan_is_charged_and_not_a_variable_time_upper_bound",
+          "branch_output_qubit_is_not_complete_direct_multi_output_aggregation",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+        "durable_output_copy_executed": true,
+        "durable_output_probability": 0.24999999999999994,
+        "execution_trace": [
+          {
+            "charged_schedule_cells": 24,
+            "inverse": false,
+            "operation": "compute_scheduled_prefix",
+            "ordinal": 0,
+            "prefix_levels": 1,
+            "relation_digest": "ecfc654822cefa19c9e4e9d9240c744b0cb6cee8ad687cf389faf8352ca8e8e7",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          },
+          {
+            "charged_schedule_cells": 0,
+            "inverse": false,
+            "operation": "copy_durable_output_from_work_selected_bit",
+            "ordinal": 1,
+            "prefix_levels": 1,
+            "relation_digest": "ecfc654822cefa19c9e4e9d9240c744b0cb6cee8ad687cf389faf8352ca8e8e7",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          },
+          {
+            "charged_schedule_cells": 24,
+            "inverse": true,
+            "operation": "uncompute_scheduled_prefix_by_replay",
+            "ordinal": 2,
+            "prefix_levels": 1,
+            "relation_digest": "ecfc654822cefa19c9e4e9d9240c744b0cb6cee8ad687cf389faf8352ca8e8e7",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          }
+        ],
+        "invariants": {
+          "all_transcripts_replayed": true,
+          "history_matches_active_prefix": true,
+          "output_matches_select_event": true,
+          "passed": true,
+          "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+          "stop_is_first_terminal_event": true,
+          "stopped_branches_remain_inactive": true,
+          "unresolved_matches_final_frontier": true
+        },
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_replay_coherent_frontier",
+          "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+          "cleanup": {
+            "all_transcripts_replayed": true,
+            "execution_trace_replayed": true,
+            "expected_durable_output_residual_l2": 0.0,
+            "norm_error": 1.1102230246251565e-16,
+            "passed": true,
+            "tolerance": 1e-12,
+            "transient_nonzero_probability": 2.220446049250313e-16
+          },
+          "depth": 425,
+          "depth_semantics": "fully_serial_sum_of_charged_logical_gates_upper_bound",
+          "gate_count_semantics": "unoptimised_compiled_select_logical_upper_bound",
+          "gate_counts": {
+            "charged_schedule_cell_selects": 48,
+            "compiled_index_equality_primitives": 336,
+            "durable_output_cnot": 1,
+            "history_controlled_xor": 16,
+            "stop_controlled_xor": 4,
+            "work_controlled_xor": 20
+          },
+          "qram_assumed": false,
+          "qubits": 9,
+          "query_count_semantics": "logical_charges_not_physical_oracle_equivalence",
+          "query_counts": {
+            "compiled_schedule_cell_accesses": 48,
+            "frontier_relation_calls": 2,
+            "qram_queries": 0,
+            "reward_oracle_queries": 0
+          },
+          "register_dimensions": {
+            "history": 2,
+            "index": 8,
+            "output": 2,
+            "stop": 2,
+            "work": 8
+          },
+          "schedule_loading_model": "charged_unoptimised_linear_compiled_select_no_qram",
+          "schedule_storage_bits": 72,
+          "statevector_dimension": 512
+        },
+        "status": "code_sanity_passed_theorem_blocked",
+        "transcripts": [
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "8de50992ebbb846de3bff0f761646cb06100abfa79b30e203bb63e7714e694a3",
+            "events": [
+              "select"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 0,
+            "output_bit": 1,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "6c45ad3869b4afaaa8b1fbdf0787f433922382ba3dcc7c552356340b49af12d1",
+            "events": [
+              "select"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 1,
+            "output_bit": 1,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "769615401f7760fde88d8f433b11b658c0400f6c42f21ab557a72629a0514d2a",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 2,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "b69dd6a4feae1ec96465e599740bfd2c8ae0fb1afee498301697f0906255217c",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 3,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "52027f51f112be6c0da56b423cd74ce5706068f6a979cd9f2fffc73d04749b0e",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 4,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "c1074fe51120301d9a531ee75b88e9c089216cbd935910711af9af5eea1828d3",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 5,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "b8f3841e88172d67493bf58f26513fda2659d028c51fc3587ac7582511350288",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 6,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true
+            ],
+            "digest": "ab0b471f93049cb58232af941a08f31a2ae9caabbbecc8832589e4de2129f3b9",
+            "events": [
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 1,
+            "index": 7,
+            "output_bit": 0,
+            "prefix_levels": 1,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          }
+        ]
+      },
+      "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+    },
+    {
+      "case_id": "eight_arm_multiple_births",
+      "level_count": 4,
+      "n_arms": 8,
+      "prefix_levels": 2,
+      "result": {
+        "backend": "numpy_exact_statevector_replay_coherent_frontier",
+        "blockers": [
+          "frontier_schedule_is_a_supplied_public_fixture_not_coherently_discovered",
+          "compiled_linear_schedule_scan_is_charged_and_not_a_variable_time_upper_bound",
+          "branch_output_qubit_is_not_complete_direct_multi_output_aggregation",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+        "durable_output_copy_executed": true,
+        "durable_output_probability": 0.3749999999999999,
+        "execution_trace": [
+          {
+            "charged_schedule_cells": 48,
+            "inverse": false,
+            "operation": "compute_scheduled_prefix",
+            "ordinal": 0,
+            "prefix_levels": 2,
+            "relation_digest": "e5431b5898324dfefd0d7ea283acd78acaf00f6cc81074d8a77745333f821855",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          },
+          {
+            "charged_schedule_cells": 0,
+            "inverse": false,
+            "operation": "copy_durable_output_from_work_selected_bit",
+            "ordinal": 1,
+            "prefix_levels": 2,
+            "relation_digest": "e5431b5898324dfefd0d7ea283acd78acaf00f6cc81074d8a77745333f821855",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          },
+          {
+            "charged_schedule_cells": 48,
+            "inverse": true,
+            "operation": "uncompute_scheduled_prefix_by_replay",
+            "ordinal": 2,
+            "prefix_levels": 2,
+            "relation_digest": "e5431b5898324dfefd0d7ea283acd78acaf00f6cc81074d8a77745333f821855",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          }
+        ],
+        "invariants": {
+          "all_transcripts_replayed": true,
+          "history_matches_active_prefix": true,
+          "output_matches_select_event": true,
+          "passed": true,
+          "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+          "stop_is_first_terminal_event": true,
+          "stopped_branches_remain_inactive": true,
+          "unresolved_matches_final_frontier": true
+        },
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_replay_coherent_frontier",
+          "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+          "cleanup": {
+            "all_transcripts_replayed": true,
+            "execution_trace_replayed": true,
+            "expected_durable_output_residual_l2": 0.0,
+            "norm_error": 1.1102230246251565e-16,
+            "passed": true,
+            "tolerance": 1e-12,
+            "transient_nonzero_probability": 2.220446049250313e-16
+          },
+          "depth": 827,
+          "depth_semantics": "fully_serial_sum_of_charged_logical_gates_upper_bound",
+          "gate_count_semantics": "unoptimised_compiled_select_logical_upper_bound",
+          "gate_counts": {
+            "charged_schedule_cell_selects": 96,
+            "compiled_index_equality_primitives": 672,
+            "durable_output_cnot": 1,
+            "history_controlled_xor": 28,
+            "stop_controlled_xor": 8,
+            "work_controlled_xor": 22
+          },
+          "qram_assumed": false,
+          "qubits": 11,
+          "query_count_semantics": "logical_charges_not_physical_oracle_equivalence",
+          "query_counts": {
+            "compiled_schedule_cell_accesses": 96,
+            "frontier_relation_calls": 2,
+            "qram_queries": 0,
+            "reward_oracle_queries": 0
+          },
+          "register_dimensions": {
+            "history": 4,
+            "index": 8,
+            "output": 2,
+            "stop": 4,
+            "work": 8
+          },
+          "schedule_loading_model": "charged_unoptimised_linear_compiled_select_no_qram",
+          "schedule_storage_bits": 72,
+          "statevector_dimension": 2048
+        },
+        "status": "code_sanity_passed_theorem_blocked",
+        "transcripts": [
+          {
+            "active_bits": [
+              true,
+              false
+            ],
+            "digest": "f95fd655a1e2419611455a78df773f92fdf5c28b6513924c601ca188f8097726",
+            "events": [
+              "select",
+              "inactive"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 0,
+            "output_bit": 1,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              false
+            ],
+            "digest": "c2777de859501446afdab511a2f5fd30ee958e82312624ea1a489d1a85a83e4b",
+            "events": [
+              "select",
+              "inactive"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 1,
+            "output_bit": 1,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "8761896adfa3ece0807e7380c55c8fca49e470752f33b3aede56d780cdad4259",
+            "events": [
+              "continue",
+              "select"
+            ],
+            "first_stop_level": 1,
+            "history_mask": 3,
+            "index": 2,
+            "output_bit": 1,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 1,
+            "stop_code": 2,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "3ab49c190a14a9d3061a81364259fd16a32ba7a4b72b00e10b9a8fb6a61677b4",
+            "events": [
+              "continue",
+              "reject"
+            ],
+            "first_stop_level": 1,
+            "history_mask": 3,
+            "index": 3,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 2,
+            "work_code": 2
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "3b255cad6317c861b2bccc7b9ece4637e7044796eb2cccfcefaf79dc3bbfe5e3",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 4,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "de48ddcb520dca6372b9d2691884aee6c91611d13c7060fdecf7598f6e66e280",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 5,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "e5f9fa6a077fdd62a896f34caf9fb0e90bbadaccfa840ffee03679367ac81a25",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 6,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true
+            ],
+            "digest": "c155bd3a8c30f65d52bbe5ac97042411073c6c51a8b8287ed39c3ddd2182796b",
+            "events": [
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 3,
+            "index": 7,
+            "output_bit": 0,
+            "prefix_levels": 2,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          }
+        ]
+      },
+      "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+    },
+    {
+      "case_id": "eight_arm_multiple_births",
+      "level_count": 4,
+      "n_arms": 8,
+      "prefix_levels": 3,
+      "result": {
+        "backend": "numpy_exact_statevector_replay_coherent_frontier",
+        "blockers": [
+          "frontier_schedule_is_a_supplied_public_fixture_not_coherently_discovered",
+          "compiled_linear_schedule_scan_is_charged_and_not_a_variable_time_upper_bound",
+          "branch_output_qubit_is_not_complete_direct_multi_output_aggregation",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+        "durable_output_copy_executed": true,
+        "durable_output_probability": 0.6249999999999998,
+        "execution_trace": [
+          {
+            "charged_schedule_cells": 72,
+            "inverse": false,
+            "operation": "compute_scheduled_prefix",
+            "ordinal": 0,
+            "prefix_levels": 3,
+            "relation_digest": "44b22d89274fcca80f3f919ee9fcc5f77be2dd4060d32571736e611259149163",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          },
+          {
+            "charged_schedule_cells": 0,
+            "inverse": false,
+            "operation": "copy_durable_output_from_work_selected_bit",
+            "ordinal": 1,
+            "prefix_levels": 3,
+            "relation_digest": "44b22d89274fcca80f3f919ee9fcc5f77be2dd4060d32571736e611259149163",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          },
+          {
+            "charged_schedule_cells": 72,
+            "inverse": true,
+            "operation": "uncompute_scheduled_prefix_by_replay",
+            "ordinal": 2,
+            "prefix_levels": 3,
+            "relation_digest": "44b22d89274fcca80f3f919ee9fcc5f77be2dd4060d32571736e611259149163",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          }
+        ],
+        "invariants": {
+          "all_transcripts_replayed": true,
+          "history_matches_active_prefix": true,
+          "output_matches_select_event": true,
+          "passed": true,
+          "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+          "stop_is_first_terminal_event": true,
+          "stopped_branches_remain_inactive": true,
+          "unresolved_matches_final_frontier": true
+        },
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_replay_coherent_frontier",
+          "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+          "cleanup": {
+            "all_transcripts_replayed": true,
+            "execution_trace_replayed": true,
+            "expected_durable_output_residual_l2": 0.0,
+            "norm_error": 1.1102230246251565e-16,
+            "passed": true,
+            "tolerance": 1e-12,
+            "transient_nonzero_probability": 2.220446049250313e-16
+          },
+          "depth": 1231,
+          "depth_semantics": "fully_serial_sum_of_charged_logical_gates_upper_bound",
+          "gate_count_semantics": "unoptimised_compiled_select_logical_upper_bound",
+          "gate_counts": {
+            "charged_schedule_cell_selects": 144,
+            "compiled_index_equality_primitives": 1008,
+            "durable_output_cnot": 1,
+            "history_controlled_xor": 36,
+            "stop_controlled_xor": 16,
+            "work_controlled_xor": 26
+          },
+          "qram_assumed": false,
+          "qubits": 12,
+          "query_count_semantics": "logical_charges_not_physical_oracle_equivalence",
+          "query_counts": {
+            "compiled_schedule_cell_accesses": 144,
+            "frontier_relation_calls": 2,
+            "qram_queries": 0,
+            "reward_oracle_queries": 0
+          },
+          "register_dimensions": {
+            "history": 8,
+            "index": 8,
+            "output": 2,
+            "stop": 4,
+            "work": 8
+          },
+          "schedule_loading_model": "charged_unoptimised_linear_compiled_select_no_qram",
+          "schedule_storage_bits": 72,
+          "statevector_dimension": 4096
+        },
+        "status": "code_sanity_passed_theorem_blocked",
+        "transcripts": [
+          {
+            "active_bits": [
+              true,
+              false,
+              false
+            ],
+            "digest": "c084440058eb2ea60eb9adb6402005ff2614b7719d8d0cde89378f3a60db517e",
+            "events": [
+              "select",
+              "inactive",
+              "inactive"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 0,
+            "output_bit": 1,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              false,
+              false
+            ],
+            "digest": "a039b33cd4db3105e35b00c3cd74f5e41e261dbce6febe7c2a2185022329abc2",
+            "events": [
+              "select",
+              "inactive",
+              "inactive"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 1,
+            "output_bit": 1,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              false
+            ],
+            "digest": "4f1ed8348392ce8fb928dc3806ad34422f79c42a9776af558752f399d16629d8",
+            "events": [
+              "continue",
+              "select",
+              "inactive"
+            ],
+            "first_stop_level": 1,
+            "history_mask": 3,
+            "index": 2,
+            "output_bit": 1,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 1,
+            "stop_code": 2,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              false
+            ],
+            "digest": "bd131d53bab9dab610a921676c68647e1d2f35a9c6447b25d6077b748aca4808",
+            "events": [
+              "continue",
+              "reject",
+              "inactive"
+            ],
+            "first_stop_level": 1,
+            "history_mask": 3,
+            "index": 3,
+            "output_bit": 0,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 2,
+            "work_code": 2
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "27a80cc18201ceffdaaae3bf67fc6f3dc3fdbc84642f73fe70d30831cf133bfc",
+            "events": [
+              "continue",
+              "continue",
+              "select"
+            ],
+            "first_stop_level": 2,
+            "history_mask": 7,
+            "index": 4,
+            "output_bit": 1,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 2,
+            "stop_code": 3,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "d6f0563e2e296d4c217aaba3ed4d71cf381ce0fa6f008b0dd660c88a4253e066",
+            "events": [
+              "continue",
+              "continue",
+              "select"
+            ],
+            "first_stop_level": 2,
+            "history_mask": 7,
+            "index": 5,
+            "output_bit": 1,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 2,
+            "stop_code": 3,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "1110f3c3c258c75d99af43e5a47d5a97401da40db526ffb8f91d089c5effbc9d",
+            "events": [
+              "continue",
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 7,
+            "index": 6,
+            "output_bit": 0,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true
+            ],
+            "digest": "31cd7788c7fa9db32af99252336ca8cc0de1fa8096bc40270e276478ebf12c35",
+            "events": [
+              "continue",
+              "continue",
+              "continue"
+            ],
+            "first_stop_level": null,
+            "history_mask": 7,
+            "index": 7,
+            "output_bit": 0,
+            "prefix_levels": 3,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 0,
+            "work_code": 1
+          }
+        ]
+      },
+      "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+    },
+    {
+      "case_id": "eight_arm_multiple_births",
+      "level_count": 4,
+      "n_arms": 8,
+      "prefix_levels": 4,
+      "result": {
+        "backend": "numpy_exact_statevector_replay_coherent_frontier",
+        "blockers": [
+          "frontier_schedule_is_a_supplied_public_fixture_not_coherently_discovered",
+          "compiled_linear_schedule_scan_is_charged_and_not_a_variable_time_upper_bound",
+          "branch_output_qubit_is_not_complete_direct_multi_output_aggregation",
+          "no_same_interface_composition_separation",
+          "no_matching_lower_bound"
+        ],
+        "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+        "durable_output_copy_executed": true,
+        "durable_output_probability": 0.7499999999999998,
+        "execution_trace": [
+          {
+            "charged_schedule_cells": 96,
+            "inverse": false,
+            "operation": "compute_scheduled_prefix",
+            "ordinal": 0,
+            "prefix_levels": 4,
+            "relation_digest": "f1d5b8c9ab657118e66a0bfc3b26955e636de42ddc2aa7c98c5dc38af2162023",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          },
+          {
+            "charged_schedule_cells": 0,
+            "inverse": false,
+            "operation": "copy_durable_output_from_work_selected_bit",
+            "ordinal": 1,
+            "prefix_levels": 4,
+            "relation_digest": "f1d5b8c9ab657118e66a0bfc3b26955e636de42ddc2aa7c98c5dc38af2162023",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          },
+          {
+            "charged_schedule_cells": 96,
+            "inverse": true,
+            "operation": "uncompute_scheduled_prefix_by_replay",
+            "ordinal": 2,
+            "prefix_levels": 4,
+            "relation_digest": "f1d5b8c9ab657118e66a0bfc3b26955e636de42ddc2aa7c98c5dc38af2162023",
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+          }
+        ],
+        "invariants": {
+          "all_transcripts_replayed": true,
+          "history_matches_active_prefix": true,
+          "output_matches_select_event": true,
+          "passed": true,
+          "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+          "stop_is_first_terminal_event": true,
+          "stopped_branches_remain_inactive": true,
+          "unresolved_matches_final_frontier": true
+        },
+        "quantum_advantage_claimable": false,
+        "resources": {
+          "backend": "numpy_exact_statevector_replay_coherent_frontier",
+          "claim_scope": "executable_code_sanity_only_no_new_upper_bound_no_lower_bound_no_hardware",
+          "cleanup": {
+            "all_transcripts_replayed": true,
+            "execution_trace_replayed": true,
+            "expected_durable_output_residual_l2": 0.0,
+            "norm_error": 1.1102230246251565e-16,
+            "passed": true,
+            "tolerance": 1e-12,
+            "transient_nonzero_probability": 2.220446049250313e-16
+          },
+          "depth": 1625,
+          "depth_semantics": "fully_serial_sum_of_charged_logical_gates_upper_bound",
+          "gate_count_semantics": "unoptimised_compiled_select_logical_upper_bound",
+          "gate_counts": {
+            "charged_schedule_cell_selects": 192,
+            "compiled_index_equality_primitives": 1344,
+            "durable_output_cnot": 1,
+            "history_controlled_xor": 40,
+            "stop_controlled_xor": 20,
+            "work_controlled_xor": 28
+          },
+          "qram_assumed": false,
+          "qubits": 14,
+          "query_count_semantics": "logical_charges_not_physical_oracle_equivalence",
+          "query_counts": {
+            "compiled_schedule_cell_accesses": 192,
+            "frontier_relation_calls": 2,
+            "qram_queries": 0,
+            "reward_oracle_queries": 0
+          },
+          "register_dimensions": {
+            "history": 16,
+            "index": 8,
+            "output": 2,
+            "stop": 8,
+            "work": 8
+          },
+          "schedule_loading_model": "charged_unoptimised_linear_compiled_select_no_qram",
+          "schedule_storage_bits": 72,
+          "statevector_dimension": 16384
+        },
+        "status": "code_sanity_passed_theorem_blocked",
+        "transcripts": [
+          {
+            "active_bits": [
+              true,
+              false,
+              false,
+              false
+            ],
+            "digest": "bf4d6fdbfeb1dd4769c4df16d56dbfd655ca9a2b7f7cc0bcbb3ba5c4fbc3f7d4",
+            "events": [
+              "select",
+              "inactive",
+              "inactive",
+              "inactive"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 0,
+            "output_bit": 1,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              false,
+              false,
+              false
+            ],
+            "digest": "37be8b486068a72f7addf194fc023978b8e4347239ba0ecae5a84f28bfb33c9b",
+            "events": [
+              "select",
+              "inactive",
+              "inactive",
+              "inactive"
+            ],
+            "first_stop_level": 0,
+            "history_mask": 1,
+            "index": 1,
+            "output_bit": 1,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 0,
+            "stop_code": 1,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              false,
+              false
+            ],
+            "digest": "8c5570badf04e36c8d1f08575ae7a060aaaf28d8ec05415fee89c77e67aa032e",
+            "events": [
+              "continue",
+              "select",
+              "inactive",
+              "inactive"
+            ],
+            "first_stop_level": 1,
+            "history_mask": 3,
+            "index": 2,
+            "output_bit": 1,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 1,
+            "stop_code": 2,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              false,
+              false
+            ],
+            "digest": "577786da24d0db59934504fa46e24127a26c89e78b802f86d29d1e087f782af2",
+            "events": [
+              "continue",
+              "reject",
+              "inactive",
+              "inactive"
+            ],
+            "first_stop_level": 1,
+            "history_mask": 3,
+            "index": 3,
+            "output_bit": 0,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 2,
+            "work_code": 2
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true,
+              false
+            ],
+            "digest": "86b5b4aac0b277980d7c42ea4b9cbad83780eb9a4ac71e2bdff25f2ca996aa39",
+            "events": [
+              "continue",
+              "continue",
+              "select",
+              "inactive"
+            ],
+            "first_stop_level": 2,
+            "history_mask": 7,
+            "index": 4,
+            "output_bit": 1,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 2,
+            "stop_code": 3,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true,
+              false
+            ],
+            "digest": "d97221580189b96727a2e2be6a06a3edb8a92988c0ee28c4f06fb59a474a3503",
+            "events": [
+              "continue",
+              "continue",
+              "select",
+              "inactive"
+            ],
+            "first_stop_level": 2,
+            "history_mask": 7,
+            "index": 5,
+            "output_bit": 1,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 2,
+            "stop_code": 3,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "digest": "d98012137ad39c5cbd7e0283524270cda6058c714bded1fc63d8b876046df81d",
+            "events": [
+              "continue",
+              "continue",
+              "continue",
+              "select"
+            ],
+            "first_stop_level": 3,
+            "history_mask": 15,
+            "index": 6,
+            "output_bit": 1,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": 3,
+            "stop_code": 4,
+            "work_code": 6
+          },
+          {
+            "active_bits": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "digest": "03e72a0114c6803e6b87ecdfe1840aa8e16647a6e5bfc675480891e73c1f81e5",
+            "events": [
+              "continue",
+              "continue",
+              "continue",
+              "reject"
+            ],
+            "first_stop_level": 3,
+            "history_mask": 15,
+            "index": 7,
+            "output_bit": 0,
+            "prefix_levels": 4,
+            "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5",
+            "selected_level": null,
+            "stop_code": 4,
+            "work_code": 2
+          }
+        ]
+      },
+      "schedule_fingerprint": "0c1d550f4ae0de87ced10862c73447608d0d94d64e2ba3fe777cb4cbc501e7b5"
+    }
+  ],
+  "resolved_config": {
+    "cases": [
+      {
+        "active_indices_by_level": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2
+          ]
+        ],
+        "case_id": "four_arm_heterogeneous_stop",
+        "cleanup_tolerance": 1e-12,
+        "max_statevector_dimension": 2000000,
+        "n_arms": 4,
+        "output_births_by_level": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          []
+        ],
+        "prefix_levels": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "active_indices_by_level": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            3,
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "case_id": "eight_arm_deep_frontier",
+        "cleanup_tolerance": 1e-12,
+        "max_statevector_dimension": 2000000,
+        "n_arms": 8,
+        "output_births_by_level": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "prefix_levels": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "active_indices_by_level": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          []
+        ],
+        "case_id": "eight_arm_multiple_births",
+        "cleanup_tolerance": 1e-12,
+        "max_statevector_dimension": 2000000,
+        "n_arms": 8,
+        "output_births_by_level": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6
+          ]
+        ],
+        "prefix_levels": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "experiment_name": "replay_preserving_coherent_frontier_v1",
+    "notes": [
+      "Every record executes an explicit index/history/stop/output/work statevector permutation.",
+      "The durable output is copied before strict replay uncomputation of all transient registers.",
+      "Schedule access is charged as an unoptimised linear compiled SELECT; QRAM is never assumed.",
+      "Schedules are public fixtures, so this artifact does not establish coherent boundary discovery or a quantum advantage theorem."
+    ],
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "summary": {
+    "all_cleanup_passed": true,
+    "all_execution_traces_replayed": true,
+    "all_invariants_passed": true,
+    "coherent_boundary_discovery_executed": false,
+    "coherent_index_execution_performed": true,
+    "direct_multi_output_complete": false,
+    "durable_output_copy_executed": true,
+    "matching_lower_bound_proved": false,
+    "maximum_cleanup_residual_l2": 0.0,
+    "maximum_qubits": 14,
+    "maximum_statevector_dimension": 16384,
+    "maximum_transient_nonzero_probability": 2.220446049250313e-16,
+    "new_variable_time_upper_bound_proved": false,
+    "qram_assumed": false,
+    "quantum_advantage_claimable": false,
+    "record_count": 11,
+    "same_interface_composition_separated": false
+  }
+}

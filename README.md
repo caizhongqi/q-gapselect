@@ -320,6 +320,7 @@ make attack-design
 make frozen-selector-benchmark
 make frozen-quantum-reference
 make coherent-statevector-history
+make replay-coherent-frontier
 make theorem-closure-audit
 make ccfa-matched-benchmark
 make install-datasets

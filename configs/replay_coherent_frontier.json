@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "experiment_name": "replay_preserving_coherent_frontier_v1",
+  "cases": [
+    {
+      "case_id": "four_arm_heterogeneous_stop",
+      "n_arms": 4,
+      "active_indices_by_level": [
+        [0, 1, 2, 3],
+        [1, 2, 3],
+        [2, 3],
+        [2]
+      ],
+      "output_births_by_level": [[0], [1], []],
+      "prefix_levels": [1, 2, 3],
+      "cleanup_tolerance": 1e-12,
+      "max_statevector_dimension": 2000000
+    },
+    {
+      "case_id": "eight_arm_deep_frontier",
+      "n_arms": 8,
+      "active_indices_by_level": [
+        [0, 1, 2, 3, 4, 5, 6, 7],
+        [1, 2, 3, 4, 5, 6, 7],
+        [2, 3, 4, 5, 6, 7],
+        [3, 4, 5, 6],
+        [4, 5]
+      ],
+      "output_births_by_level": [[0], [1], [2], [3]],
+      "prefix_levels": [1, 2, 3, 4],
+      "cleanup_tolerance": 1e-12,
+      "max_statevector_dimension": 2000000
+    },
+    {
+      "case_id": "eight_arm_multiple_births",
+      "n_arms": 8,
+      "active_indices_by_level": [
+        [0, 1, 2, 3, 4, 5, 6, 7],
+        [2, 3, 4, 5, 6, 7],
+        [4, 5, 6, 7],
+        [6, 7],
+        []
+      ],
+      "output_births_by_level": [[0, 1], [2], [4, 5], [6]],
+      "prefix_levels": [1, 2, 3, 4],
+      "cleanup_tolerance": 1e-12,
+      "max_statevector_dimension": 2000000
+    }
+  ],
+  "notes": [
+    "Every record executes an explicit index/history/stop/output/work statevector permutation.",
+    "The durable output is copied before strict replay uncomputation of all transient registers.",
+    "Schedule access is charged as an unoptimised linear compiled SELECT; QRAM is never assumed.",
+    "Schedules are public fixtures, so this artifact does not establish coherent boundary discovery or a quantum advantage theorem."
+  ]
+}
