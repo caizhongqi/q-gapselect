@@ -1,0 +1,43 @@
+name: exp4c-interaction-scale50
+
+on:
+  push:
+    branches:
+      - scratch/exp1-mnist-qco
+    paths:
+      - '.github/workflows/exp4c-interaction-scale50.yml'
+  workflow_dispatch:
+
+jobs:
+  run-exp4c:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy
+          python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Syntax check
+        run: python -m py_compile scratch/exp4b_strong_refiner_audit.py
+      - name: Run Experiment 4C scale-50 interaction audit
+        run: |
+          python scratch/exp4b_strong_refiner_audit.py \
+            --epochs 3 \
+            --targets 50 \
+            --pool 512 \
+            --seed-budget 128 \
+            --steps 120 \
+            --out exp4c_out
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp4c-interaction-scale50-results
+          path: exp4c_out
+          if-no-files-found: warn
