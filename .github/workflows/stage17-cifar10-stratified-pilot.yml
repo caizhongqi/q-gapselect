@@ -1,0 +1,46 @@
+name: stage17-cifar10-stratified-pilot
+
+on:
+  push:
+    branches:
+      - scratch/stage9-functional-collision
+    paths:
+      - scratch/stage17_cifar10_stratified_pilot.py
+      - .github/workflows/stage17-cifar10-stratified-pilot.yml
+  workflow_dispatch:
+
+jobs:
+  pilot:
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [cifar10_resnet20, cifar10_mobilenetv2_x0_5, cifar10_vgg11_bn]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Syntax check
+        run: |
+          python -m py_compile scratch/stage17_cifar10_pretrained.py
+          python -m py_compile scratch/stage17_cifar10_stratified_pilot.py
+      - name: Run fixed stratified pilot
+        run: |
+          cd scratch
+          python stage17_cifar10_stratified_pilot.py \
+            --model ${{ matrix.model }} \
+            --out ../stage17_pilot_out
+      - name: Upload pilot artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage17-pilot-${{ matrix.model }}
+          path: stage17_pilot_out
+          if-no-files-found: warn
