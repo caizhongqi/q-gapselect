@@ -1,0 +1,46 @@
+name: exp2-debug
+
+on:
+  push:
+    branches:
+      - scratch/exp1-mnist-qco
+    paths:
+      - '.github/workflows/exp2-debug.yml'
+  workflow_dispatch:
+
+jobs:
+  capture-exp2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy
+          python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Run and capture traceback
+        shell: bash
+        run: |
+          set +e
+          mkdir -p exp2_debug
+          python scratch/exp2_qdsa_attack_effect.py \
+            --epochs 3 \
+            --targets 50 \
+            --pool 512 \
+            --out exp2_debug/out > exp2_debug/run.log 2>&1
+          code=$?
+          echo "$code" > exp2_debug/exit_code.txt
+          cat exp2_debug/run.log
+          exit 0
+      - name: Upload debug bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp2-debug-bundle
+          path: exp2_debug
+          if-no-files-found: warn
