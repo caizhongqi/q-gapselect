@@ -1,0 +1,41 @@
+name: exp6a-semantic-nearclaw-feasibility
+
+on:
+  push:
+    branches:
+      - scratch/exp1-mnist-qco
+    paths:
+      - 'scratch/exp6a_semantic_nearclaw_feasibility.py'
+      - '.github/workflows/exp6a-semantic-nearclaw-feasibility.yml'
+  workflow_dispatch:
+
+jobs:
+  run-exp6a:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy
+          python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Syntax check
+        run: python -m py_compile scratch/exp6a_semantic_nearclaw_feasibility.py
+      - name: Run Experiment 6A
+        run: |
+          python scratch/exp6a_semantic_nearclaw_feasibility.py \
+            --epochs 3 \
+            --cloud-size 1024 \
+            --out exp6a_out
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp6a-semantic-nearclaw-feasibility-results
+          path: exp6a_out
+          if-no-files-found: warn
