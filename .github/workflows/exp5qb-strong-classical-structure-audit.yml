@@ -1,0 +1,42 @@
+name: exp5qb-strong-classical-structure-audit
+
+on:
+  push:
+    branches:
+      - scratch/exp1-mnist-qco
+    paths:
+      - 'scratch/exp5qb_strong_classical_structure_audit.py'
+      - '.github/workflows/exp5qb-strong-classical-structure-audit.yml'
+  workflow_dispatch:
+
+jobs:
+  run-exp5qb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy
+          python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Syntax check
+        run: python -m py_compile scratch/exp5qb_strong_classical_structure_audit.py
+      - name: Run Experiment 5QB
+        run: |
+          python scratch/exp5qb_strong_classical_structure_audit.py \
+            --epochs 3 \
+            --targets 20 \
+            --max-pool 2048 \
+            --out exp5qb_out
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp5qb-strong-classical-structure-audit-results
+          path: exp5qb_out
+          if-no-files-found: warn
