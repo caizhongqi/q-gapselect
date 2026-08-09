@@ -1,9 +1,6 @@
 name: stage9-functional-collision
 
 on:
-  push:
-    branches:
-      - scratch/stage9-functional-collision
   workflow_dispatch:
 
 jobs:
