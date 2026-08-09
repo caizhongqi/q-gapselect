@@ -1,0 +1,53 @@
+name: stage18-cifar10-broad-victims
+
+on:
+  push:
+    branches:
+      - scratch/stage9-functional-collision
+    paths:
+      - scratch/stage17_cifar10_pretrained.py
+      - scratch/stage18_cifar10_broad_victims.py
+      - .github/workflows/stage18-cifar10-broad-victims.yml
+  workflow_dispatch:
+
+jobs:
+  broad-victim:
+    strategy:
+      fail-fast: false
+      matrix:
+        model:
+          - cifar10_resnet56
+          - cifar10_vgg16_bn
+          - cifar10_mobilenetv2_x1_0
+          - cifar10_shufflenetv2_x1_0
+          - cifar10_repvgg_a0
+          - cifar10_vit_b16
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Syntax check
+        run: |
+          python -m py_compile scratch/stage17_cifar10_pretrained.py
+          python -m py_compile scratch/stage18_cifar10_broad_victims.py
+      - name: Run frozen Stage 18 replication
+        run: |
+          cd scratch
+          python stage18_cifar10_broad_victims.py \
+            --model ${{ matrix.model }} \
+            --out ../stage18_out
+      - name: Upload Stage 18 artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage18-${{ matrix.model }}
+          path: stage18_out
+          if-no-files-found: warn
