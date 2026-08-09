@@ -1,0 +1,37 @@
+name: stage9-functional-collision
+
+on:
+  push:
+    branches:
+      - scratch/stage9-functional-collision
+  workflow_dispatch:
+
+jobs:
+  fv1-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install experiment dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Syntax check
+        run: python -m py_compile scratch/stage9_fv1_arch_sweep.py
+      - name: Run Stage 9 F-v1 pilot
+        run: |
+          python scratch/stage9_fv1_arch_sweep.py \
+            --seed 7 --epochs 2 \
+            --models mlp tinycnn lenet5 resnet18 tinyvit \
+            --out stage9_out
+      - name: Upload Stage 9 artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage9-fv1-pilot
+          path: stage9_out
+          if-no-files-found: warn
