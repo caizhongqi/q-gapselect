@@ -1,0 +1,44 @@
+name: stage17-cifar10-pretrained
+
+on:
+  push:
+    branches:
+      - scratch/stage9-functional-collision
+    paths:
+      - scratch/stage17_cifar10_pretrained.py
+      - .github/workflows/stage17-cifar10-pretrained.yml
+  workflow_dispatch:
+
+jobs:
+  cifar10-pretrained:
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [cifar10_resnet20, cifar10_mobilenetv2_x0_5, cifar10_vgg11_bn]
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Syntax check
+        run: python -m py_compile scratch/stage17_cifar10_pretrained.py
+      - name: Run CIFAR-10 collision experiment
+        run: |
+          cd scratch
+          python stage17_cifar10_pretrained.py \
+            --model ${{ matrix.model }} \
+            --out ../stage17_out
+      - name: Upload Stage 17 artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage17-${{ matrix.model }}
+          path: stage17_out
+          if-no-files-found: warn
