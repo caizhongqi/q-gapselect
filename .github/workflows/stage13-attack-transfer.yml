@@ -1,0 +1,49 @@
+name: stage13-attack-transfer
+
+on:
+  push:
+    branches:
+      - scratch/stage9-functional-collision
+    paths:
+      - scratch/stage13_attack_bank.py
+      - .github/workflows/stage13-attack-transfer.yml
+  workflow_dispatch:
+
+jobs:
+  attack-bank:
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [mlp, tinycnn, lenet5, resnet18, tinyvit]
+        seed: [1, 7, 13]
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install experiment dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Syntax check
+        run: |
+          python -m py_compile scratch/stage9_fv1_arch_sweep.py
+          python -m py_compile scratch/stage13_attack_bank.py
+      - name: Run Stage 13 attack bank
+        run: |
+          cd scratch
+          python stage13_attack_bank.py \
+            --model ${{ matrix.model }} \
+            --seed ${{ matrix.seed }} \
+            --epochs 2 \
+            --out ../stage13_out
+      - name: Upload Stage 13 artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage13-${{ matrix.model }}-seed${{ matrix.seed }}
+          path: stage13_out
+          if-no-files-found: warn
