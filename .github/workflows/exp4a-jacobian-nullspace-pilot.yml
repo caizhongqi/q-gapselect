@@ -1,0 +1,45 @@
+name: exp4a-jacobian-nullspace-pilot
+
+on:
+  push:
+    branches:
+      - scratch/exp1-mnist-qco
+    paths:
+      - 'scratch/exp4a_jacobian_nullspace_pilot.py'
+      - '.github/workflows/exp4a-jacobian-nullspace-pilot.yml'
+  workflow_dispatch:
+
+jobs:
+  run-exp4a:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy
+          python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Syntax check
+        run: python -m py_compile scratch/exp4a_jacobian_nullspace_pilot.py
+      - name: Run Experiment 4A
+        run: |
+          python scratch/exp4a_jacobian_nullspace_pilot.py \
+            --epochs 3 \
+            --targets 10 \
+            --pool 512 \
+            --seed-budget 128 \
+            --steps 120 \
+            --step-size 0.020 \
+            --out exp4a_out
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp4a-jacobian-nullspace-pilot-results
+          path: exp4a_out
+          if-no-files-found: warn
