@@ -1,0 +1,47 @@
+name: exp2-v2-qdsa-attack-effect
+
+on:
+  push:
+    branches:
+      - scratch/exp1-mnist-qco
+    paths:
+      - 'scratch/exp2_qdsa_attack_effect_v2.py'
+      - '.github/workflows/exp2-v2-qdsa-attack-effect.yml'
+  workflow_dispatch:
+
+jobs:
+  run-exp2-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy
+          python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Syntax check
+        run: |
+          python -m py_compile scratch/exp1_mnist_qco.py
+          python -m py_compile scratch/exp1b_mnist_strong_baselines.py
+          python -m py_compile scratch/exp1c_qdsa_semantic_gate.py
+          python -m py_compile scratch/exp2_qdsa_attack_effect.py
+          python -m py_compile scratch/exp2_qdsa_attack_effect_v2.py
+      - name: Run Experiment 2 v2
+        run: |
+          python scratch/exp2_qdsa_attack_effect_v2.py \
+            --epochs 3 \
+            --targets 50 \
+            --pool 512 \
+            --out exp2_v2_out
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp2-v2-qdsa-attack-effect-results
+          path: exp2_v2_out
+          if-no-files-found: warn
