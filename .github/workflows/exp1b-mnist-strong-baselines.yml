@@ -1,0 +1,45 @@
+name: exp1b-mnist-strong-baselines
+
+on:
+  push:
+    branches:
+      - scratch/exp1-mnist-qco
+    paths:
+      - 'scratch/exp1_mnist_qco.py'
+      - 'scratch/exp1b_mnist_strong_baselines.py'
+      - '.github/workflows/exp1b-mnist-strong-baselines.yml'
+  workflow_dispatch:
+
+jobs:
+  run-exp1b:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy
+          python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Syntax check
+        run: |
+          python -m py_compile scratch/exp1_mnist_qco.py
+          python -m py_compile scratch/exp1b_mnist_strong_baselines.py
+      - name: Run Experiment 1B
+        run: |
+          python scratch/exp1b_mnist_strong_baselines.py \
+            --epochs 3 \
+            --targets 20 \
+            --pool 512 \
+            --out exp1b_out
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp1b-mnist-strong-baselines-results
+          path: exp1b_out
+          if-no-files-found: warn
