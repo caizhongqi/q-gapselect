@@ -8,6 +8,10 @@ on:
 
 jobs:
   fv1-pilot:
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [mlp, tinycnn, lenet5, resnet18, tinyvit]
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -26,12 +30,12 @@ jobs:
         run: |
           python scratch/stage9_fv1_arch_sweep.py \
             --seed 7 --epochs 2 \
-            --models mlp tinycnn lenet5 resnet18 tinyvit \
+            --models ${{ matrix.model }} \
             --out stage9_out
       - name: Upload Stage 9 artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: stage9-fv1-pilot
+          name: stage9-fv1-${{ matrix.model }}-seed7
           path: stage9_out
           if-no-files-found: warn
