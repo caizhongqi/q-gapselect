@@ -140,6 +140,7 @@ def adaptive_rank_summary(
 ) -> list[dict[str, Any]]:
     architectures_present = sorted({str(row["architecture"]) for row in summary})
     visible_ranks = sorted({int(row["visible_rank"]) for row in summary})
+    target_tolerance = 1e-12 * max(1.0, abs(packing_target))
     output: list[dict[str, Any]] = []
     for architecture in architectures_present:
         for visible_rank in visible_ranks:
@@ -160,9 +161,13 @@ def adaptive_rank_summary(
             eligible = [
                 int(row["closure_rank"])
                 for row in targeted
-                if float(row["mean_packing_fraction"]) <= packing_target
+                if float(row["mean_packing_fraction"])
+                <= packing_target + target_tolerance
             ]
-            if float(baseline["mean_packing_fraction"]) <= packing_target:
+            if (
+                float(baseline["mean_packing_fraction"])
+                <= packing_target + target_tolerance
+            ):
                 eligible.append(0)
             static = [
                 row
