@@ -37,6 +37,12 @@ from .geometry import (
     tunnel_geometry,
 )
 from .graph import PackingStatistics, build_adjacency, packing_statistics
+from .prefix_lower_bound import (
+    PrefixRestrictionProfile,
+    StageRestrictionBound,
+    homogeneous_packed_claw_lower_bound,
+    prefix_stage_restriction_profile,
+)
 from .scaling import compact_summary, fit_log_linear, run_scaling_campaign
 
 __all__ = [
@@ -45,6 +51,8 @@ __all__ = [
     "DualHeadModel",
     "EndpointRecord",
     "PackingStatistics",
+    "PrefixRestrictionProfile",
+    "StageRestrictionBound",
     "TunnelCertificate",
     "TunnelGeometry",
     "build_adjacency",
@@ -56,11 +64,13 @@ __all__ = [
     "evaluate_instance",
     "fit_log_linear",
     "geometry_to_packing",
+    "homogeneous_packed_claw_lower_bound",
     "packed_claw",
     "packing_statistics",
     "pair_grover_cost",
     "pair_oracle_negative",
     "prefix_rms_cost",
+    "prefix_stage_restriction_profile",
     "prefix_survival_rates",
     "product_johnson_cost",
     "random_range",
