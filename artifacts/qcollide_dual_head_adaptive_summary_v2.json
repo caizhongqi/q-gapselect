@@ -1,0 +1,107 @@
+{
+  "adaptive_by_rank": [
+    {
+      "baseline": {"candidate_fraction": 1.0, "effective_rank": 1.0, "openness": 0.936550303, "packing": 1.0},
+      "random_null": {"candidate_fraction": 1.0, "effective_rank": 2.0, "openness": 0.880926342, "packing": 1.0},
+      "row_sham": {"candidate_fraction": 1.0, "effective_rank": 1.0, "openness": 0.936550303, "packing": 1.0},
+      "targeted": {"candidate_fraction": 0.9953125, "effective_rank": 2.0, "openness": 0.603551231, "packing": 0.9953125},
+      "variance_null": {"candidate_fraction": 1.0, "effective_rank": 2.0, "openness": 0.871630978, "packing": 1.0},
+      "visible_rank": 1
+    },
+    {
+      "baseline": {"candidate_fraction": 1.0, "effective_rank": 2.0, "openness": 0.867438577, "packing": 1.0},
+      "random_null": {"candidate_fraction": 1.0, "effective_rank": 3.0, "openness": 0.790295896, "packing": 1.0},
+      "row_sham": {"candidate_fraction": 1.0, "effective_rank": 2.0, "openness": 0.867438577, "packing": 1.0},
+      "targeted": {"candidate_fraction": 0.4359375, "effective_rank": 3.0, "openness": 0.488941067, "packing": 0.4359375},
+      "variance_null": {"candidate_fraction": 1.0, "effective_rank": 3.0, "openness": 0.769257121, "packing": 1.0},
+      "visible_rank": 2
+    },
+    {
+      "baseline": {"candidate_fraction": 1.0, "effective_rank": 4.0, "openness": 0.709635488, "packing": 1.0},
+      "random_null": {"candidate_fraction": 0.6625, "effective_rank": 5.0, "openness": 0.561776693, "packing": 0.6625},
+      "row_sham": {"candidate_fraction": 1.0, "effective_rank": 4.0, "openness": 0.709635488, "packing": 1.0},
+      "targeted": {"candidate_fraction": 0.0, "effective_rank": 5.0, "openness": 0.286745374, "packing": 0.0},
+      "variance_null": {"candidate_fraction": 0.7984375, "effective_rank": 5.0, "openness": 0.592498391, "packing": 0.7984375},
+      "visible_rank": 4
+    },
+    {
+      "baseline": {"candidate_fraction": 0.784375, "effective_rank": 6.0, "openness": 0.501485728, "packing": 0.784375},
+      "random_null": {"candidate_fraction": 0.06875, "effective_rank": 7.0, "openness": 0.352708168, "packing": 0.06875},
+      "row_sham": {"candidate_fraction": 0.784375, "effective_rank": 6.0, "openness": 0.501485728, "packing": 0.784375},
+      "targeted": {"candidate_fraction": 0.0, "effective_rank": 7.0, "openness": 0.081143678, "packing": 0.0},
+      "variance_null": {"candidate_fraction": 0.0484375, "effective_rank": 7.0, "openness": 0.242117058, "packing": 0.0484375},
+      "visible_rank": 6
+    },
+    {
+      "baseline": {"candidate_fraction": 0.0, "effective_rank": 8.0, "openness": 0.0, "packing": 0.0},
+      "random_null": {"candidate_fraction": 0.0, "effective_rank": 9.0, "openness": 0.0, "packing": 0.0},
+      "row_sham": {"candidate_fraction": 0.0, "effective_rank": 8.0, "openness": 0.0, "packing": 0.0},
+      "targeted": {"candidate_fraction": 0.0, "effective_rank": 8.0, "openness": 0.0, "packing": 0.0},
+      "variance_null": {"candidate_fraction": 0.0, "effective_rank": 9.0, "openness": 0.0, "packing": 0.0},
+      "visible_rank": 8
+    }
+  ],
+  "artifact_type": "qcollide_trainable_dual_head_causal_summary_v2",
+  "claim_scope": {
+    "adaptive_reoptimization_included": true,
+    "coherent_quantum_execution": false,
+    "independent_cross_anchor_matching": true,
+    "new_lower_bound_claimed": false,
+    "payload_is_noncontrol_hidden_representation": true,
+    "pretrained_model_claimed": false,
+    "quantum_values_are": "analytic endpoint-query proxies",
+    "real_world_attack_claimed": false,
+    "synthetic_task_only": true,
+    "trained_neural_network": true
+  },
+  "diagnostics": {
+    "baseline_openness_packing_pearson": 0.956093968795959,
+    "benign_acceptance_target": 0.95,
+    "interpretation": [
+      "Rank-one targeted closure is not universally sufficient under adaptive re-optimization.",
+      "It is ineffective at visible rank 1, heterogeneous and partial at rank 2, and complete in this fixture at visible ranks 4 and 6.",
+      "At visible rank 4, targeted closure is specific relative to random-null and variance-null controls.",
+      "At visible rank 6, random-null and variance-null additions also remove most tunnels, so rank saturation contributes materially.",
+      "The next falsifiable object is the dangerous-direction singular spectrum and the closure-rank dose-response."
+    ]
+  },
+  "gates": {
+    "maximum_benign_acceptance_deviation": 0.0007812499999999556,
+    "maximum_full_rank_baseline_adaptive_packing": 0.0,
+    "maximum_targeted_nonfull_adaptive_packing": 0.9953125,
+    "maximum_targeted_nonfull_transfer_packing": 0.4109375,
+    "mean_benign_acceptance": 0.94921875
+  },
+  "paired_adaptive_effects": [
+    {"bootstrap_ci95": [0.0, 0.0109375], "contrast": "baseline_minus_targeted", "mean_paired_difference": 0.0046875, "visible_rank": 1},
+    {"bootstrap_ci95": [0.0, 0.0109375], "contrast": "random_null_minus_targeted", "mean_paired_difference": 0.0046875, "visible_rank": 1},
+    {"bootstrap_ci95": [0.0, 0.0109375], "contrast": "variance_null_minus_targeted", "mean_paired_difference": 0.0046875, "visible_rank": 1},
+    {"bootstrap_ci95": [0.28125, 0.8390625], "contrast": "baseline_minus_targeted", "mean_paired_difference": 0.5640625, "visible_rank": 2},
+    {"bootstrap_ci95": [0.28125, 0.8390625], "contrast": "random_null_minus_targeted", "mean_paired_difference": 0.5640625, "visible_rank": 2},
+    {"bootstrap_ci95": [0.28125, 0.8390625], "contrast": "variance_null_minus_targeted", "mean_paired_difference": 0.5640625, "visible_rank": 2},
+    {"bootstrap_ci95": [1.0, 1.0], "contrast": "baseline_minus_targeted", "mean_paired_difference": 1.0, "visible_rank": 4},
+    {"bootstrap_ci95": [0.39375, 0.903125], "contrast": "random_null_minus_targeted", "mean_paired_difference": 0.6625, "visible_rank": 4},
+    {"bootstrap_ci95": [0.5, 1.0], "contrast": "variance_null_minus_targeted", "mean_paired_difference": 0.7984375, "visible_rank": 4},
+    {"bootstrap_ci95": [0.75, 0.8187890624999966], "contrast": "baseline_minus_targeted", "mean_paired_difference": 0.784375, "visible_rank": 6},
+    {"bootstrap_ci95": [0.0, 0.20625], "contrast": "random_null_minus_targeted", "mean_paired_difference": 0.06875, "visible_rank": 6},
+    {"bootstrap_ci95": [0.0, 0.1359375], "contrast": "variance_null_minus_targeted", "mean_paired_difference": 0.0484375, "visible_rank": 6}
+  ],
+  "schema_version": 1,
+  "source": {
+    "artifact_archive_digest": "sha256:a4231193d4a720d74324ab748ace1343f0facec9075aa87096be6f5771289870",
+    "artifact_id": 9061137731,
+    "head_sha": "4fd1066a0a6e7871244052835122fad43ed47164",
+    "json_bytes": 391348,
+    "json_sha256": "d2eba1c66d8d0a3f2523f24689961cfebe659b1dad872a4ca0c956b7b9118e11",
+    "raw_record_count": 500,
+    "summary_record_count": 50,
+    "workflow_run_id": 31384321098
+  },
+  "transfer_by_rank": [
+    {"visible_rank": 1, "baseline": {"packing": 1.0}, "targeted": {"packing": 0.4109375}, "random_null": {"packing": 0.96875}, "variance_null": {"packing": 0.9953125}, "row_sham": {"packing": 1.0}},
+    {"visible_rank": 2, "baseline": {"packing": 1.0}, "targeted": {"packing": 0.190625}, "random_null": {"packing": 0.8046875}, "variance_null": {"packing": 0.8265625}, "row_sham": {"packing": 1.0}},
+    {"visible_rank": 4, "baseline": {"packing": 1.0}, "targeted": {"packing": 0.0}, "random_null": {"packing": 0.9109375}, "variance_null": {"packing": 1.0}, "row_sham": {"packing": 1.0}},
+    {"visible_rank": 6, "baseline": {"packing": 0.784375}, "targeted": {"packing": 0.0}, "random_null": {"packing": 0.5640625}, "variance_null": {"packing": 0.784375}, "row_sham": {"packing": 0.784375}},
+    {"visible_rank": 8, "baseline": {"packing": 0.0}, "targeted": {"packing": 0.0}, "random_null": {"packing": 0.0}, "variance_null": {"packing": 0.0}, "row_sham": {"packing": 0.0}}
+  ]
+}
