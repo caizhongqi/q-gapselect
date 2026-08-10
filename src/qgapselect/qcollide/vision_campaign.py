@@ -1,8 +1,9 @@
-"""End-to-end real-image CNN/Transformer Q-COLLIDE campaign."""
+"""End-to-end scalable real-image CNN/Transformer Q-COLLIDE campaign."""
 
 from __future__ import annotations
 
 from collections.abc import Mapping
+from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -28,7 +29,7 @@ from .vision_interventions import (
     residual_dangerous_energy,
 )
 from .vision_linear import combine_projection, row_basis, visible_control_projection
-from .vision_models import derived_seed, load_real_digits, train_vision_model
+from .vision_models import derived_seed, load_real_vision_dataset, train_vision_model
 from .vision_panels import (
     calibrate_projection,
     make_benign_panel,
@@ -37,12 +38,21 @@ from .vision_panels import (
 )
 
 
+def _optional_positive_int(config: Mapping[str, object], name: str) -> int | None:
+    value = config.get(name)
+    if value is None:
+        return None
+    return positive_int(value, name)
+
+
 def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
     schema_version = positive_int(config.get("schema_version"), "schema_version")
     if schema_version != 1:
         raise ValueError("only schema_version=1 is supported")
     master_seed = positive_int(config.get("master_seed"), "master_seed")
     dataset_seed = positive_int(config.get("dataset_seed"), "dataset_seed")
+    dataset_name = str(config.get("dataset", "digits"))
+    data_root = Path(str(config.get("data_root", ".cache/qcollide-data")))
     architecture_values = architectures(config.get("architectures"))
     model_seeds = integer_values(config.get("model_seeds"), "model_seeds", allow_zero=True)
     visible_ranks = integer_values(config.get("visible_ranks"), "visible_ranks")
@@ -64,6 +74,10 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
         "line_search_steps",
     )
     integers = {name: positive_int(config.get(name), name) for name in integer_names}
+    jacobian_batch_size = positive_int(
+        config.get("jacobian_batch_size", 64),
+        "jacobian_batch_size",
+    )
     numeric_names = (
         "learning_rate",
         "control_loss_weight",
@@ -81,14 +95,24 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
     if max(visible_ranks) > integers["control_dimension"]:
         raise ValueError("visible_ranks cannot exceed control_dimension")
 
-    data = load_real_digits(dataset_seed=dataset_seed)
+    data = load_real_vision_dataset(
+        dataset=dataset_name,
+        dataset_seed=dataset_seed,
+        data_root=data_root,
+        train_samples=_optional_positive_int(config, "train_samples"),
+        calibration_samples=_optional_positive_int(config, "calibration_samples"),
+        evaluation_samples=_optional_positive_int(config, "evaluation_samples"),
+    )
     rows: list[dict[str, Any]] = []
     training: list[dict[str, Any]] = []
     spectra: list[dict[str, Any]] = []
 
     for architecture in architecture_values:
         for model_seed in model_seeds:
-            seed = derived_seed(master_seed, architecture, model_seed)
+            seed_parts = (architecture, model_seed)
+            if data.dataset_name != "scikit-learn digits":
+                seed_parts = (data.dataset_name, *seed_parts)
+            seed = derived_seed(master_seed, *seed_parts)
             model, diagnostics = train_vision_model(
                 architecture,
                 data,
@@ -118,19 +142,25 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
                 data.calibration_images,
                 data.calibration_labels,
                 calibration_indices,
+                jacobian_batch_size=jacobian_batch_size,
             )
             evaluation_panel = prepare_anchor_panel(
                 model,
                 data.evaluation_images,
                 data.evaluation_labels,
                 evaluation_indices,
+                jacobian_batch_size=jacobian_batch_size,
             )
             support_count = min(integers["support_samples"], len(data.train_images))
+            hidden_support_parts: list[torch.Tensor] = []
             with torch.no_grad():
-                _, _, hidden_support_tensor = model(
-                    torch.from_numpy(data.train_images[:support_count, None].astype(np.float32))
+                support_tensor = torch.from_numpy(
+                    data.train_images[:support_count, None].astype(np.float32)
                 )
-            hidden_support = hidden_support_tensor.cpu().numpy()
+                for start in range(0, len(support_tensor), 2048):
+                    _, _, hidden_support_tensor = model(support_tensor[start : start + 2048])
+                    hidden_support_parts.append(hidden_support_tensor.cpu())
+            hidden_support = torch.cat(hidden_support_parts, dim=0).numpy()
             calibration_benign = make_benign_panel(
                 model,
                 calibration_panel,
@@ -178,6 +208,7 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
                 )
                 spectra.append(
                     {
+                        "dataset": data.dataset_name,
                         "architecture": architecture,
                         "model_seed": model_seed,
                         "visible_rank": visible_rank,
@@ -246,6 +277,7 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
                         total_energy = max(float(spectrum["total_energy"]), 1e-12)
                         rows.append(
                             {
+                                "dataset": data.dataset_name,
                                 "architecture": architecture,
                                 "model_seed": model_seed,
                                 "visible_rank": visible_rank,
@@ -279,14 +311,20 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
                         )
 
     summary = summarize_rows(rows)
+    slug = data.dataset_name.lower().replace("-", "_").replace(" ", "_")
     return {
-        "artifact_type": "qcollide_real_digits_cnn_transformer_causal_diagnostic",
+        "artifact_type": f"qcollide_real_{slug}_cnn_transformer_causal_diagnostic",
         "schema_version": schema_version,
         "master_seed": master_seed,
         "claim_scope": {
             "real_image_dataset": True,
-            "dataset": "scikit-learn digits",
+            "dataset": data.dataset_name,
+            "image_size": data.image_size,
+            "class_count": data.class_count,
             "architectures": list(architecture_values),
+            "train_samples": len(data.train_images),
+            "calibration_samples": len(data.calibration_images),
+            "evaluation_samples": len(data.evaluation_images),
             "production_scale_claimed": False,
             "real_world_attack_claimed": False,
             "quantum_values_are": "analytic endpoint-query proxies",

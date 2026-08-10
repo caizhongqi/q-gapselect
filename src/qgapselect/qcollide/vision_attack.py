@@ -64,14 +64,16 @@ def generate_attacks(
         openness_values.append(openness)
         tunnel_dimensions.append(tunnel_dimension)
 
+    image_shape = anchors.images.shape[1:]
+    input_dimension = int(np.prod(image_shape))
     scales = np.linspace(0.025, maximum_radius, line_search_steps, dtype=np.float32)
-    flattened = anchors.images.reshape(anchors.size, 64)
+    flattened = anchors.images.reshape(anchors.size, input_dimension)
     direction_matrix = np.asarray(directions, dtype=np.float32)
     candidate_images = np.clip(
         flattened[:, None, :] + scales[None, :, None] * direction_matrix[:, None, :],
         0.0,
         1.0,
-    ).reshape(-1, 1, 8, 8)
+    ).reshape(-1, 1, *image_shape)
     logits_parts: list[np.ndarray] = []
     hidden_parts: list[np.ndarray] = []
     with torch.no_grad():
@@ -87,7 +89,9 @@ def generate_attacks(
         anchors.size, line_search_steps, -1
     )
     candidate_images_view = candidate_images.reshape(
-        anchors.size, line_search_steps, 8, 8
+        anchors.size,
+        line_search_steps,
+        *image_shape,
     )
 
     source_control = control_output(anchors.hidden, calibration.standardized_projection)

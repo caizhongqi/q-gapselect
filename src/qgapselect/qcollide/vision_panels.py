@@ -18,10 +18,15 @@ def stratified_correct_indices(
     per_class: int,
 ) -> np.ndarray:
     with torch.no_grad():
-        logits, _, _ = model(torch.from_numpy(images[:, None].astype(np.float32)))
-    predictions = logits.argmax(dim=1).cpu().numpy()
+        logits_parts: list[torch.Tensor] = []
+        tensor = torch.from_numpy(images[:, None].astype(np.float32))
+        for start in range(0, len(tensor), 2048):
+            logits, _, _ = model(tensor[start : start + 2048])
+            logits_parts.append(logits.cpu())
+    predictions = torch.cat(logits_parts, dim=0).argmax(dim=1).numpy()
     selected: list[int] = []
-    for label in range(10):
+    class_count = int(model.main_head.out_features)
+    for label in range(class_count):
         candidates = np.flatnonzero((labels == label) & (predictions == label))
         if len(candidates) < per_class:
             raise RuntimeError(
@@ -37,19 +42,26 @@ def prepare_anchor_panel(
     images: np.ndarray,
     labels: np.ndarray,
     indices: np.ndarray,
+    *,
+    jacobian_batch_size: int = 8,
 ) -> AnchorPanel:
+    if jacobian_batch_size <= 0:
+        raise ValueError("jacobian_batch_size must be positive")
     selected_images = images[indices].astype(np.float32)
     tensor = torch.from_numpy(selected_images[:, None])
+    input_dimension = int(np.prod(selected_images.shape[1:]))
 
     def encode_single(image: torch.Tensor) -> torch.Tensor:
         return model.encode(image.unsqueeze(0)).squeeze(0)
 
-    hidden_jacobians = (
-        vmap(jacrev(encode_single))(tensor)
-        .detach()
-        .cpu()
-        .numpy()
-        .reshape(len(indices), -1, 64)
+    jacobian_parts: list[np.ndarray] = []
+    for start in range(0, len(tensor), jacobian_batch_size):
+        chunk = tensor[start : start + jacobian_batch_size]
+        jacobian_parts.append(vmap(jacrev(encode_single))(chunk).detach().cpu().numpy())
+    hidden_jacobians = np.concatenate(jacobian_parts, axis=0).reshape(
+        len(indices),
+        -1,
+        input_dimension,
     )
     with torch.no_grad():
         logits, _, hidden = model(tensor)
@@ -83,16 +95,21 @@ def make_benign_panel(
     for image, hidden in zip(anchors.images, anchors.hidden, strict=True):
         flattened = image.reshape(-1)
         for _ in range(repetitions):
-            direction = rng.normal(size=64)
+            direction = rng.normal(size=flattened.size)
             direction /= np.linalg.norm(direction) + 1e-12
             candidate = np.clip(flattened + radius * direction, 0.0, 1.0)
-            perturbed.append(candidate.reshape(8, 8).astype(np.float32))
+            perturbed.append(candidate.reshape(image.shape).astype(np.float32))
             repeated_anchor_hidden.append(hidden)
+    perturbed_array = np.asarray(perturbed, dtype=np.float32)
+    hidden_parts: list[torch.Tensor] = []
     with torch.no_grad():
-        _, _, perturbed_hidden = model(torch.from_numpy(np.asarray(perturbed)[:, None]))
+        tensor = torch.from_numpy(perturbed_array[:, None])
+        for start in range(0, len(tensor), 2048):
+            _, _, perturbed_hidden = model(tensor[start : start + 2048])
+            hidden_parts.append(perturbed_hidden.cpu())
     return BenignPanel(
         anchor_hidden=np.asarray(repeated_anchor_hidden, dtype=float),
-        perturbed_hidden=perturbed_hidden.cpu().numpy(),
+        perturbed_hidden=torch.cat(hidden_parts, dim=0).numpy(),
     )
 
 
