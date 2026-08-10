@@ -6,6 +6,7 @@ pytest.importorskip("sklearn")
 
 import torch
 
+from qgapselect.qcollide.vision_common import adaptive_rank_summary
 from qgapselect.qcollide.vision_merge import merge_real_vision_artifacts
 from qgapselect.qcollide.vision_models import image_control_targets, make_model
 
@@ -62,3 +63,32 @@ def test_merge_rejects_cross_dataset_components() -> None:
     }
     with pytest.raises(ValueError, match="share dataset"):
         merge_real_vision_artifacts([digits, fashion], packing_target=0.05)
+
+
+def test_adaptive_rank_uses_tolerance_at_exact_fraction_boundary() -> None:
+    summary = [
+        {
+            "architecture": "cnn",
+            "visible_rank": 1,
+            "intervention": "baseline",
+            "closure_rank": 0,
+            "mean_packing_fraction": 0.5,
+        },
+        {
+            "architecture": "cnn",
+            "visible_rank": 1,
+            "intervention": "targeted",
+            "closure_rank": 6,
+            "mean_packing_fraction": 0.05000000000000001,
+        },
+    ]
+    spectra = [
+        {
+            "architecture": "cnn",
+            "visible_rank": 1,
+            "rank_95": 7,
+            "displacement_rank_95": 8,
+        }
+    ]
+    result = adaptive_rank_summary(summary, spectra, packing_target=0.05)
+    assert result[0]["adaptive_closure_rank"] == 6
