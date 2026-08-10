@@ -1,0 +1,95 @@
+{
+  "adaptive_spectral_inflation": [
+    {"inflation_range": [1.0, 4.0], "mean_adaptive_closure_rank_005": 3.2, "mean_adaptive_spectral_inflation": 2.2, "mean_static_rank_95": 1.0, "visible_rank": 1},
+    {"inflation_range": [0.0, 2.0], "mean_adaptive_closure_rank_005": 1.7, "mean_adaptive_spectral_inflation": 0.7, "mean_static_rank_95": 1.0, "visible_rank": 2},
+    {"inflation_range": [0.0, 0.0], "mean_adaptive_closure_rank_005": 1.0, "mean_adaptive_spectral_inflation": 0.0, "mean_static_rank_95": 1.0, "visible_rank": 4},
+    {"inflation_range": [0.0, 0.0], "mean_adaptive_closure_rank_005": 1.0, "mean_adaptive_spectral_inflation": 0.0, "mean_static_rank_95": 1.0, "visible_rank": 6}
+  ],
+  "artifact_type": "qcollide_dangerous_direction_closure_spectrum_summary",
+  "claim_scope": {
+    "adaptive_reoptimization_included": true,
+    "coherent_quantum_execution": false,
+    "new_lower_bound_claimed": false,
+    "pretrained_model_claimed": false,
+    "quantum_values_are": "analytic endpoint-query proxies",
+    "rank_dose_response_included": true,
+    "real_world_attack_claimed": false,
+    "spectral_optimality_is_linear_algebraic": true,
+    "synthetic_task_only": true,
+    "trained_neural_network": true
+  },
+  "diagnostics": {
+    "benign_acceptance_maximum_deviation": 0.0007812499999999556,
+    "benign_acceptance_mean": 0.94921875,
+    "openness_packing_pearson": 0.898659798549625,
+    "residual_energy_packing_pearson": 0.5963212049863912,
+    "targeted_energy_optimal_fraction": 1.0
+  },
+  "equal_rank_key_checkpoints": [
+    {"closure_rank": 1, "random_null": 0.9, "targeted": 0.9953125, "variance_null": 1.0, "visible_rank": 1},
+    {"closure_rank": 4, "random_null": 0.528125, "targeted": 0.00625, "variance_null": 0.8703125, "visible_rank": 1},
+    {"closure_rank": 1, "random_null": 1.0, "targeted": 0.4359375, "variance_null": 1.0, "visible_rank": 2},
+    {"closure_rank": 3, "random_null": 0.734375, "targeted": 0.0, "variance_null": 0.59375, "visible_rank": 2},
+    {"closure_rank": 1, "random_null": 0.99375, "targeted": 0.0, "variance_null": 0.7984375, "visible_rank": 4},
+    {"closure_rank": 1, "random_null": 0.11875, "targeted": 0.0, "variance_null": 0.0484375, "visible_rank": 6}
+  ],
+  "interpretation": [
+    "The baseline dangerous-displacement spectrum is effectively rank one at every non-full visible rank.",
+    "Static spectral rank therefore severely underestimates the rank needed against post-intervention adaptive attacks at low control rank.",
+    "At packing threshold 0.05, the mean targeted closure ranks are 3.2, 1.7, 1.0, and 1.0 for visible ranks 1, 2, 4, and 6.",
+    "Targeted rank-k augmentation minimizes residual baseline dangerous energy in every equal-rank comparison, but residual baseline energy correlates with adaptive packing only moderately (0.596).",
+    "Post-intervention openness is a substantially stronger predictor of adaptive packing (Pearson 0.899), indicating collision-tunnel mode rotation.",
+    "This motivates an adaptive deflation algorithm and an adaptive rotation penalty in the spectral packing bound."
+  ],
+  "minimum_closure_rank_statistics": [
+    {"maximum": 5, "mean_minimum_rank": 3.2, "median_minimum_rank": 3.0, "minimum": 2, "resolved_models": 10, "threshold": 0.05, "visible_rank": 1},
+    {"maximum": 3, "mean_minimum_rank": 1.7, "median_minimum_rank": 1.5, "minimum": 1, "resolved_models": 10, "threshold": 0.05, "visible_rank": 2},
+    {"maximum": 1, "mean_minimum_rank": 1.0, "median_minimum_rank": 1.0, "minimum": 1, "resolved_models": 10, "threshold": 0.05, "visible_rank": 4},
+    {"maximum": 1, "mean_minimum_rank": 1.0, "median_minimum_rank": 1.0, "minimum": 1, "resolved_models": 10, "threshold": 0.05, "visible_rank": 6},
+    {"maximum": null, "mean_minimum_rank": null, "median_minimum_rank": null, "minimum": null, "resolved_models": 0, "threshold": 0.05, "visible_rank": 8}
+  ],
+  "schema_version": 1,
+  "source": {
+    "artifact_archive_digest": "sha256:ccc6ee036266a9fd58be20966415754ec6b1d282a6b140c65e71eb5ce75c909d",
+    "artifact_id": 9061436433,
+    "head_sha": "6c73c51e4b8887e835119d84710688a4617535fa",
+    "json_bytes": 762250,
+    "json_sha256": "f5e7dfb54eeaafc6d6471f891b8703c194902705c135ff9e783e7e0a1bc8b8d4",
+    "row_count": 810,
+    "summary_count": 81,
+    "workflow_run_id": 31385008519
+  },
+  "static_spectrum_by_visible_rank": [
+    {"mean_baseline_candidate_fraction": 1.0, "mean_entropy_effective_rank": 1.0106272427148884, "mean_stable_rank": 1.0011248886497388, "mean_static_rank_95": 1.0, "visible_rank": 1},
+    {"mean_baseline_candidate_fraction": 1.0, "mean_entropy_effective_rank": 1.0071599923938561, "mean_stable_rank": 1.0007107679027771, "mean_static_rank_95": 1.0, "visible_rank": 2},
+    {"mean_baseline_candidate_fraction": 1.0, "mean_entropy_effective_rank": 1.0062784912033773, "mean_stable_rank": 1.0006134192552525, "mean_static_rank_95": 1.0, "visible_rank": 4},
+    {"mean_baseline_candidate_fraction": 0.7984375, "mean_entropy_effective_rank": 1.0044438240125184, "mean_stable_rank": 1.000420274954368, "mean_static_rank_95": 1.0, "visible_rank": 6},
+    {"mean_baseline_candidate_fraction": 0.0, "mean_entropy_effective_rank": 0.0, "mean_stable_rank": 0.0, "mean_static_rank_95": 0.0, "visible_rank": 8}
+  ],
+  "targeted_closure_curve": [
+    {"closure_rank": 0, "openness": 0.936550303, "packing": 1.0, "residual_energy": 1.0, "visible_rank": 1},
+    {"closure_rank": 1, "openness": 0.603551231, "packing": 0.9953125, "residual_energy": 0.001123493949, "visible_rank": 1},
+    {"closure_rank": 2, "openness": 0.515759638, "packing": 0.6484375, "residual_energy": 0.000547103145, "visible_rank": 1},
+    {"closure_rank": 3, "openness": 0.435210069, "packing": 0.3609375, "residual_energy": 0.000375552949, "visible_rank": 1},
+    {"closure_rank": 4, "openness": 0.349886355, "packing": 0.00625, "residual_energy": 0.000267628294, "visible_rank": 1},
+    {"closure_rank": 5, "openness": 0.266598281, "packing": 0.0, "residual_energy": 0.000192678283, "visible_rank": 1},
+    {"closure_rank": 6, "openness": 0.174330859, "packing": 0.0, "residual_energy": 0.000139950774, "visible_rank": 1},
+    {"closure_rank": 7, "openness": 0.0, "packing": 0.0, "residual_energy": 0.000100439308, "visible_rank": 1},
+    {"closure_rank": 0, "openness": 0.867438577, "packing": 1.0, "residual_energy": 1.0, "visible_rank": 2},
+    {"closure_rank": 1, "openness": 0.488941067, "packing": 0.4359375, "residual_energy": 0.000710221768, "visible_rank": 2},
+    {"closure_rank": 2, "openness": 0.41105812, "packing": 0.1796875, "residual_energy": 0.000396278793, "visible_rank": 2},
+    {"closure_rank": 3, "openness": 0.322308684, "packing": 0.0, "residual_energy": 0.000276914452, "visible_rank": 2},
+    {"closure_rank": 4, "openness": 0.265881739, "packing": 0.0, "residual_energy": 0.000204063157, "visible_rank": 2},
+    {"closure_rank": 5, "openness": 0.173140802, "packing": 0.0, "residual_energy": 0.000149813256, "visible_rank": 2},
+    {"closure_rank": 6, "openness": 0.0, "packing": 0.0, "residual_energy": 0.000110320374, "visible_rank": 2},
+    {"closure_rank": 0, "openness": 0.709635488, "packing": 1.0, "residual_energy": 1.0, "visible_rank": 4},
+    {"closure_rank": 1, "openness": 0.286745374, "packing": 0.0, "residual_energy": 0.000612972363, "visible_rank": 4},
+    {"closure_rank": 2, "openness": 0.230094019, "packing": 0.0, "residual_energy": 0.000373257106, "visible_rank": 4},
+    {"closure_rank": 3, "openness": 0.136831032, "packing": 0.0, "residual_energy": 0.000269046694, "visible_rank": 4},
+    {"closure_rank": 4, "openness": 0.0, "packing": 0.0, "residual_energy": 0.000197526503, "visible_rank": 4},
+    {"closure_rank": 0, "openness": 0.501485728, "packing": 0.784375, "residual_energy": 1.0, "visible_rank": 6},
+    {"closure_rank": 1, "openness": 0.081143678, "packing": 0.0, "residual_energy": 0.000420075568, "visible_rank": 6},
+    {"closure_rank": 2, "openness": 0.0, "packing": 0.0, "residual_energy": 0.000255513767, "visible_rank": 6},
+    {"closure_rank": 0, "openness": 0.0, "packing": 0.0, "residual_energy": 0.0, "visible_rank": 8}
+  ]
+}

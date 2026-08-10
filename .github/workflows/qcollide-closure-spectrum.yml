@@ -1,0 +1,40 @@
+name: qcollide-closure-spectrum
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/qcollide-closure-spectrum.yml"
+      - "configs/qcollide_closure_spectrum.json"
+      - "scripts/run_qcollide_closure_spectrum.py"
+      - "src/qgapselect/qcollide/closure_spectrum.py"
+      - "src/qgapselect/qcollide/dual_head*.py"
+      - "src/qgapselect/qcollide/geometry.py"
+      - "src/qgapselect/qcollide/graph.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  closure-spectrum:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[dev]'
+      - run: |
+          mkdir -p artifacts-ci
+          python scripts/run_qcollide_closure_spectrum.py \
+            --config configs/qcollide_closure_spectrum.json \
+            --output artifacts-ci/qcollide_closure_spectrum_diagnostic.json
+          sha256sum artifacts-ci/qcollide_closure_spectrum_diagnostic.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-closure-spectrum-audit
+          path: artifacts-ci/qcollide_closure_spectrum_diagnostic.json
+          if-no-files-found: error
+          retention-days: 14

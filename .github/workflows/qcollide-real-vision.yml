@@ -1,0 +1,84 @@
+name: qcollide-real-vision
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/qcollide-real-vision.yml"
+      - "configs/qcollide_real_vision_digits.json"
+      - "docs/qcollide_real_vision_protocol.md"
+      - "scripts/run_qcollide_real_vision.py"
+      - "scripts/merge_qcollide_real_vision.py"
+      - "src/qgapselect/qcollide/vision.py"
+      - "src/qgapselect/qcollide/vision_*.py"
+      - "src/qgapselect/qcollide/vision_models.py"
+      - "pyproject.toml"
+
+concurrency:
+  group: qcollide-real-vision-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  component:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        architecture: [cnn, tiny_vit]
+        model-seed: [0, 1, 2]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[vision]'
+      - run: mkdir -p artifacts-ci
+      - name: Run component
+        run: >-
+          python scripts/run_qcollide_real_vision.py
+          --config configs/qcollide_real_vision_digits.json
+          --architecture ${{ matrix.architecture }}
+          --model-seed ${{ matrix.model-seed }}
+          --output artifacts-ci/${{ matrix.architecture }}-seed-${{ matrix.model-seed }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-vision-${{ matrix.architecture }}-${{ matrix.model-seed }}
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 14
+
+  merge:
+    needs: component
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[vision]'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qcollide-vision-*
+          path: artifacts-components
+          merge-multiple: true
+      - run: mkdir -p artifacts-ci
+      - name: Merge raw component rows
+        run: >-
+          python scripts/merge_qcollide_real_vision.py
+          --input-directory artifacts-components
+          --config configs/qcollide_real_vision_digits.json
+          --output artifacts-ci/qcollide_real_vision_diagnostic.json
+          --summary artifacts-ci/qcollide_real_vision_summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-real-vision-merged
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 14

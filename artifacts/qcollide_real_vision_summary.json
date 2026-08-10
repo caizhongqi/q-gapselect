@@ -1,0 +1,321 @@
+{
+  "artifact_type": "qcollide_real_digits_cnn_transformer_causal_summary",
+  "baseline_and_closure": [
+    {
+      "architecture": "cnn",
+      "baseline_openness": 0.8700558706474665,
+      "baseline_packing": 0.4444444444444444,
+      "baseline_se": 0.06758625033664689,
+      "random_min_rank_le_0_05": 5,
+      "row_sham_packing": 0.4444444444444444,
+      "targeted_min_rank_le_0_05": 4,
+      "targeted_rank1_packing": 0.17777777777777778,
+      "variance_min_rank_le_0_05": 3,
+      "visible_rank": 1
+    },
+    {
+      "architecture": "cnn",
+      "baseline_openness": 0.7785769000308659,
+      "baseline_packing": 0.27777777777777773,
+      "baseline_se": 0.04006168083848876,
+      "random_min_rank_le_0_05": 6,
+      "row_sham_packing": 0.27777777777777773,
+      "targeted_min_rank_le_0_05": 4,
+      "targeted_rank1_packing": 0.11111111111111112,
+      "variance_min_rank_le_0_05": 4,
+      "visible_rank": 2
+    },
+    {
+      "architecture": "cnn",
+      "baseline_openness": 0.5070173876030518,
+      "baseline_packing": 0.15555555555555556,
+      "baseline_se": 0.029397236789606564,
+      "random_min_rank_le_0_05": 3,
+      "row_sham_packing": 0.15555555555555556,
+      "targeted_min_rank_le_0_05": 1,
+      "targeted_rank1_packing": 0.044444444444444446,
+      "variance_min_rank_le_0_05": 1,
+      "visible_rank": 4
+    },
+    {
+      "architecture": "cnn",
+      "baseline_openness": 0.18206939250864576,
+      "baseline_packing": 0.05555555555555556,
+      "baseline_se": 0.029397236789606564,
+      "random_min_rank_le_0_05": 1,
+      "row_sham_packing": 0.05555555555555556,
+      "targeted_min_rank_le_0_05": 1,
+      "targeted_rank1_packing": 0.022222222222222223,
+      "variance_min_rank_le_0_05": 1,
+      "visible_rank": 8
+    },
+    {
+      "architecture": "tiny_vit",
+      "baseline_openness": 0.966871867443491,
+      "baseline_packing": 0.7111111111111111,
+      "baseline_se": 0.011111111111111112,
+      "random_min_rank_le_0_05": null,
+      "row_sham_packing": 0.7111111111111111,
+      "targeted_min_rank_le_0_05": null,
+      "targeted_rank1_packing": 0.4777777777777778,
+      "variance_min_rank_le_0_05": 6,
+      "visible_rank": 1
+    },
+    {
+      "architecture": "tiny_vit",
+      "baseline_openness": 0.8964115811112626,
+      "baseline_packing": 0.611111111111111,
+      "baseline_se": 0.029397236789606557,
+      "random_min_rank_le_0_05": null,
+      "row_sham_packing": 0.611111111111111,
+      "targeted_min_rank_le_0_05": null,
+      "targeted_rank1_packing": 0.39999999999999997,
+      "variance_min_rank_le_0_05": 6,
+      "visible_rank": 2
+    },
+    {
+      "architecture": "tiny_vit",
+      "baseline_openness": 0.7423103907758021,
+      "baseline_packing": 0.5666666666666667,
+      "baseline_se": 0.03333333333333333,
+      "random_min_rank_le_0_05": null,
+      "row_sham_packing": 0.5666666666666667,
+      "targeted_min_rank_le_0_05": 5,
+      "targeted_rank1_packing": 0.3333333333333333,
+      "variance_min_rank_le_0_05": 6,
+      "visible_rank": 4
+    },
+    {
+      "architecture": "tiny_vit",
+      "baseline_openness": 0.5288760394201271,
+      "baseline_packing": 0.3666666666666667,
+      "baseline_se": 0.01924500897298754,
+      "random_min_rank_le_0_05": 5,
+      "row_sham_packing": 0.3666666666666667,
+      "targeted_min_rank_le_0_05": 4,
+      "targeted_rank1_packing": 0.2222222222222222,
+      "variance_min_rank_le_0_05": 3,
+      "visible_rank": 8
+    }
+  ],
+  "claim_scope": {
+    "architectures": [
+      "cnn",
+      "tiny_vit"
+    ],
+    "coherent_quantum_execution": false,
+    "dataset": "scikit-learn digits",
+    "new_lower_bound_claimed": false,
+    "production_scale_claimed": false,
+    "quantum_values_are": "analytic endpoint-query proxies",
+    "real_image_dataset": true,
+    "real_world_attack_claimed": false
+  },
+  "equal_rank_checkpoints": [
+    {
+      "architecture": "cnn",
+      "closure_rank": 4,
+      "random_null": 0.05555555555555555,
+      "row_sham": 0.4444444444444444,
+      "targeted": 0.011111111111111112,
+      "variance_null": 0.011111111111111112,
+      "visible_rank": 1
+    },
+    {
+      "architecture": "cnn",
+      "closure_rank": 4,
+      "random_null": 0.05555555555555555,
+      "row_sham": 0.27777777777777773,
+      "targeted": 0.011111111111111112,
+      "variance_null": 0.022222222222222223,
+      "visible_rank": 2
+    },
+    {
+      "architecture": "cnn",
+      "closure_rank": 1,
+      "random_null": 0.09999999999999999,
+      "row_sham": 0.15555555555555556,
+      "targeted": 0.044444444444444446,
+      "variance_null": 0.044444444444444446,
+      "visible_rank": 4
+    },
+    {
+      "architecture": "tiny_vit",
+      "closure_rank": 6,
+      "random_null": 0.13333333333333333,
+      "row_sham": 0.7111111111111111,
+      "targeted": 0.05555555555555555,
+      "variance_null": 0.011111111111111112,
+      "visible_rank": 1
+    },
+    {
+      "architecture": "tiny_vit",
+      "closure_rank": 6,
+      "random_null": 0.1111111111111111,
+      "row_sham": 0.611111111111111,
+      "targeted": 0.05555555555555555,
+      "variance_null": 0.03333333333333333,
+      "visible_rank": 2
+    },
+    {
+      "architecture": "tiny_vit",
+      "closure_rank": 5,
+      "random_null": 0.15555555555555556,
+      "row_sham": 0.5666666666666667,
+      "targeted": 0.03333333333333333,
+      "variance_null": 0.05555555555555556,
+      "visible_rank": 4
+    },
+    {
+      "architecture": "tiny_vit",
+      "closure_rank": 4,
+      "random_null": 0.07777777777777778,
+      "row_sham": 0.3666666666666667,
+      "targeted": 0.03333333333333333,
+      "variance_null": 0.044444444444444446,
+      "visible_rank": 8
+    }
+  ],
+  "experiment_counts": {
+    "anchors_per_model_partition": 30,
+    "architectures": 2,
+    "model_seeds_per_architecture": 3,
+    "raw_rows": 600,
+    "spectrum_rows": 24
+  },
+  "formal_workflow": {
+    "artifact_zip_digest": "sha256:719f1e5a5f849462a6f010fe1276e0e84fc50067a2ac08b2fa82180ce897249d",
+    "diagnostic_bytes": 716686,
+    "diagnostic_sha256": "70f2b67d9143964bbb2a78825f0c37f053974388aadf1c298f91b31be53e8d13",
+    "head_sha": "8e2c9d847099748da121c76e5ba3a45d76d4fa1a",
+    "merged_artifact_id": 9063585318,
+    "run_id": 31390450430,
+    "summary_sha256": "dffeb6801efc83983b4f9120bd700b397361cc8fd17ccc594e27a91936e6e0f4"
+  },
+  "geometry_association": {
+    "correlation_all_grouped_rows_openness_vs_packing": 0.9131893720179369,
+    "correlation_baseline_architecture_rank_cells_openness_vs_packing": 0.8613829761365343,
+    "maximum_benign_control_acceptance_deviation_from_0_95": 0.0,
+    "maximum_row_sham_packing_difference_from_baseline": 0.0,
+    "mean_benign_control_acceptance": 0.95
+  },
+  "interpretation": {
+    "not_supported": [
+      "A universal single dangerous collision direction.",
+      "Uniform superiority of the current targeted-gradient basis over variance-null controls.",
+      "Production-scale or physical attack generalization.",
+      "Coherent quantum runtime advantage."
+    ],
+    "supported": [
+      "Conditional collision packing persists on a real image dataset in both CNN and Tiny-ViT encoders.",
+      "Packing falls as visible control rank rises, and grouped post-intervention openness strongly tracks packing.",
+      "Tiny-ViT retains substantially more packed tunnels than CNN at matched visible control rank.",
+      "Redundant row-space interventions are exactly inert under the basis-invariant whitened control metric."
+    ]
+  },
+  "schema_version": 1,
+  "static_spectra": [
+    {
+      "architecture": "cnn",
+      "disp_energy": 205.7100986769993,
+      "disp_rank95": 9.0,
+      "grad_energy": 186.24561483539887,
+      "grad_rank90": 7.0,
+      "grad_rank95": 8.0,
+      "grad_rank99": 9.0,
+      "visible_rank": 1
+    },
+    {
+      "architecture": "cnn",
+      "disp_energy": 132.61851442261255,
+      "disp_rank95": 7.0,
+      "grad_energy": 182.47396305879852,
+      "grad_rank90": 7.0,
+      "grad_rank95": 8.0,
+      "grad_rank99": 9.0,
+      "visible_rank": 2
+    },
+    {
+      "architecture": "cnn",
+      "disp_energy": 25.069892723586587,
+      "disp_rank95": 3.6666666666666665,
+      "grad_energy": 172.59247404847108,
+      "grad_rank90": 7.0,
+      "grad_rank95": 8.0,
+      "grad_rank99": 9.0,
+      "visible_rank": 4
+    },
+    {
+      "architecture": "cnn",
+      "disp_energy": 12.011796716716274,
+      "disp_rank95": 1.3333333333333333,
+      "grad_energy": 158.2335355047727,
+      "grad_rank90": 6.666666666666667,
+      "grad_rank95": 7.666666666666667,
+      "grad_rank99": 9.0,
+      "visible_rank": 8
+    },
+    {
+      "architecture": "tiny_vit",
+      "disp_energy": 492.63226841134497,
+      "disp_rank95": 7.666666666666667,
+      "grad_energy": 96.84334915681018,
+      "grad_rank90": 7.333333333333333,
+      "grad_rank95": 8.0,
+      "grad_rank99": 9.0,
+      "visible_rank": 1
+    },
+    {
+      "architecture": "tiny_vit",
+      "disp_energy": 416.9444591418019,
+      "disp_rank95": 7.666666666666667,
+      "grad_energy": 95.48972523641875,
+      "grad_rank90": 7.333333333333333,
+      "grad_rank95": 8.0,
+      "grad_rank99": 9.0,
+      "visible_rank": 2
+    },
+    {
+      "architecture": "tiny_vit",
+      "disp_energy": 283.9728255863938,
+      "disp_rank95": 6.0,
+      "grad_energy": 89.2227915748532,
+      "grad_rank90": 7.0,
+      "grad_rank95": 8.0,
+      "grad_rank99": 9.0,
+      "visible_rank": 4
+    },
+    {
+      "architecture": "tiny_vit",
+      "disp_energy": 106.502664586881,
+      "disp_rank95": 4.666666666666667,
+      "grad_energy": 86.73736374027565,
+      "grad_rank90": 7.0,
+      "grad_rank95": 8.0,
+      "grad_rank99": 9.0,
+      "visible_rank": 8
+    }
+  ],
+  "training": [
+    {
+      "accuracy_se": 0.0018518518518518456,
+      "architecture": "cnn",
+      "maximum_evaluation_accuracy": 0.9944444444444445,
+      "mean_evaluation_accuracy": 0.9925925925925926,
+      "mean_evaluation_control_mse": 0.09855298697948456,
+      "minimum_evaluation_accuracy": 0.9888888888888889,
+      "model_count": 3,
+      "parameter_count": 27594
+    },
+    {
+      "accuracy_se": 0.008229809645662589,
+      "architecture": "tiny_vit",
+      "maximum_evaluation_accuracy": 0.9722222222222222,
+      "mean_evaluation_accuracy": 0.9601851851851851,
+      "mean_evaluation_control_mse": 0.13671415547529855,
+      "minimum_evaluation_accuracy": 0.9444444444444444,
+      "model_count": 3,
+      "parameter_count": 18482
+    }
+  ]
+}

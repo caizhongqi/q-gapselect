@@ -1,0 +1,34 @@
+{
+  "master_seed": 20260810,
+  "f0": {
+    "n": 256,
+    "marked_pairs": 16
+  },
+  "f1": {
+    "n": 256,
+    "matching_size": 16
+  },
+  "f2": {
+    "n": 256,
+    "range_size": 4096
+  },
+  "f3": {
+    "n": 256,
+    "matching_size": 16,
+    "cumulative_bits": [2, 6, 12, 20],
+    "stage_costs": [1.0, 2.0, 8.0, 32.0]
+  },
+  "f4": {
+    "manifold_dimension": 32,
+    "control_rank": 12,
+    "openness": 0.75,
+    "anchors": 32,
+    "control_epsilon": 0.2,
+    "payload_delta": 0.05,
+    "behavior_gamma": 0.05,
+    "control_curvature": 0.05,
+    "behavior_curvature": 0.05,
+    "payload_curvature": 0.05,
+    "local_radius": 1.0
+  }
+}

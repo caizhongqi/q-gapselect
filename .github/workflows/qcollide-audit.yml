@@ -1,0 +1,40 @@
+name: qcollide-audit
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/qcollide-audit.yml"
+      - "configs/qcollide_dual_head.json"
+      - "scripts/run_qcollide_dual_head.py"
+      - "src/qgapselect/qcollide/dual_head*.py"
+      - "src/qgapselect/qcollide/geometry.py"
+      - "src/qgapselect/qcollide/graph.py"
+      - "src/qgapselect/qcollide/contracts.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trained-causal-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[dev]'
+      - run: |
+          mkdir -p artifacts-ci
+          python scripts/run_qcollide_dual_head.py \
+            --config configs/qcollide_dual_head.json \
+            --output artifacts-ci/qcollide_dual_head_diagnostic.json
+          sha256sum artifacts-ci/qcollide_dual_head_diagnostic.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-dual-head-adaptive-audit
+          path: artifacts-ci/qcollide_dual_head_diagnostic.json
+          if-no-files-found: error
+          retention-days: 14
