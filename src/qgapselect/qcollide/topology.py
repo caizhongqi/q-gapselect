@@ -275,7 +275,10 @@ def collision_filtration(
     thresholds = tuple(float(value) for value in control_epsilons)
     if not thresholds or any(value < 0.0 for value in thresholds):
         raise ValueError("control_epsilons must be a non-empty non-negative sequence")
-    if any(left > right for left, right in zip(thresholds, thresholds[1:])):
+    if any(
+        left > right
+        for left, right in zip(thresholds, thresholds[1:], strict=False)
+    ):
         raise ValueError("control_epsilons must be non-decreasing")
 
     eligible = valid & (payload >= payload_delta) & (behavior >= behavior_gamma)
