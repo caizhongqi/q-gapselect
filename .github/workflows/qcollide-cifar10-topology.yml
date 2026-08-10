@@ -1,0 +1,103 @@
+name: qcollide-cifar10-topology-pilot
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/qcollide-cifar-topology
+    paths:
+      - ".github/workflows/qcollide-cifar10-topology.yml"
+      - "configs/qcollide_cifar10_topology_pilot.json"
+      - "docs/qcollide_cifar_topology_protocol.md"
+      - "scripts/run_qcollide_cifar_topology.py"
+      - "scripts/merge_qcollide_cifar_topology.py"
+      - "src/qgapselect/qcollide/cifar_*.py"
+      - "src/qgapselect/qcollide/topology*.py"
+      - "src/qgapselect/qcollide/vision_linear.py"
+      - "pyproject.toml"
+  pull_request:
+    paths:
+      - ".github/workflows/qcollide-cifar10-topology.yml"
+      - "configs/qcollide_cifar10_topology_pilot.json"
+      - "docs/qcollide_cifar_topology_protocol.md"
+      - "scripts/run_qcollide_cifar_topology.py"
+      - "scripts/merge_qcollide_cifar_topology.py"
+      - "src/qgapselect/qcollide/cifar_*.py"
+      - "src/qgapselect/qcollide/topology*.py"
+      - "src/qgapselect/qcollide/vision_linear.py"
+      - "pyproject.toml"
+
+concurrency:
+  group: qcollide-cifar10-topology-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  component:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        architecture: [resnet18, vit_tiny, mlp_mixer]
+        model-seed: [0]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[vision]'
+      - uses: actions/cache@v4
+        with:
+          path: .cache/qcollide-data
+          key: cifar10-v1-${{ runner.os }}
+      - run: mkdir -p artifacts-ci
+      - name: Run CIFAR-10 topology component
+        run: >-
+          python scripts/run_qcollide_cifar_topology.py
+          --config configs/qcollide_cifar10_topology_pilot.json
+          --architecture ${{ matrix.architecture }}
+          --model-seed ${{ matrix.model-seed }}
+          --output artifacts-ci/${{ matrix.architecture }}-seed-${{ matrix.model-seed }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-cifar10-${{ matrix.architecture }}-${{ matrix.model-seed }}
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 14
+
+  merge:
+    needs: component
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[vision]'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qcollide-cifar10-*
+          path: artifacts-components
+          merge-multiple: true
+      - run: mkdir -p artifacts-ci
+      - name: Merge CIFAR-10 topology components
+        run: >-
+          python scripts/merge_qcollide_cifar_topology.py
+          --input-directory artifacts-components
+          --config configs/qcollide_cifar10_topology_pilot.json
+          --output artifacts-ci/qcollide_cifar10_topology_diagnostic.json
+          --summary artifacts-ci/qcollide_cifar10_topology_summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-cifar10-topology-merged
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 14
