@@ -39,9 +39,14 @@ from .geometry import (
 from .graph import PackingStatistics, build_adjacency, packing_statistics
 from .prefix_lower_bound import (
     PrefixRestrictionProfile,
+    RandomRangeClawBound,
+    RandomRangePrefixProfile,
+    RandomRangeStageBound,
     StageRestrictionBound,
     homogeneous_packed_claw_lower_bound,
     prefix_stage_restriction_profile,
+    random_range_claw_distributional_bound,
+    random_range_prefix_restriction_profile,
 )
 from .scaling import compact_summary, fit_log_linear, run_scaling_campaign
 
@@ -52,6 +57,9 @@ __all__ = [
     "EndpointRecord",
     "PackingStatistics",
     "PrefixRestrictionProfile",
+    "RandomRangeClawBound",
+    "RandomRangePrefixProfile",
+    "RandomRangeStageBound",
     "StageRestrictionBound",
     "TunnelCertificate",
     "TunnelGeometry",
@@ -74,6 +82,8 @@ __all__ = [
     "prefix_survival_rates",
     "product_johnson_cost",
     "random_range",
+    "random_range_claw_distributional_bound",
+    "random_range_prefix_restriction_profile",
     "residual_dangerous_energy",
     "run_closure_spectrum_campaign",
     "run_dual_head_causal_campaign",
