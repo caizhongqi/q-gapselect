@@ -1,0 +1,49 @@
+{
+  "artifact_type": "qcollide_trainable_dual_head_causal_summary",
+  "claim_scope": {
+    "coherent_quantum_execution": false,
+    "new_lower_bound_claimed": false,
+    "pretrained_model_claimed": false,
+    "quantum_values_are": "analytic endpoint-query proxies",
+    "real_world_attack_claimed": false,
+    "synthetic_task_only": true,
+    "trained_neural_network": true
+  },
+  "full_artifact_bytes": 137443,
+  "full_artifact_sha256": "70697ea4155dadc7ffbaa70260d496a199b8b5d1463cfe9de0d01f6cd515d675",
+  "gates": {
+    "maximum_benign_acceptance_deviation": 0.0007812499999999556,
+    "maximum_full_rank_baseline_packing": 0.0,
+    "maximum_targeted_nonfull_packing": 0.0,
+    "mean_benign_acceptance": 0.94921875
+  },
+  "master_seed": 20260810,
+  "rank_intervention_summary": [
+    {"visible_rank": 1, "intervention": "baseline", "mean_openness": 0.9365503032271831, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 1.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 1, "intervention": "targeted", "mean_openness": 0.9365503032271831, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 0.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 1, "intervention": "random_null", "mean_openness": 0.9365503032271831, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 0.9015625, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 1, "intervention": "variance_null", "mean_openness": 0.9365503032271831, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 0.9640625, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 1, "intervention": "row_sham", "mean_openness": 0.9365503032271831, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 1.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 2, "intervention": "baseline", "mean_openness": 0.8674385771229005, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 1.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 2, "intervention": "targeted", "mean_openness": 0.8674385771229005, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 0.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 2, "intervention": "random_null", "mean_openness": 0.8674385771229005, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 0.7, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 2, "intervention": "variance_null", "mean_openness": 0.8674385771229005, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 0.7015625, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 2, "intervention": "row_sham", "mean_openness": 0.8674385771229005, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 1.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 4, "intervention": "baseline", "mean_openness": 0.7096354883515069, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 1.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 4, "intervention": "targeted", "mean_openness": 0.7096354883515069, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 0.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 4, "intervention": "random_null", "mean_openness": 0.7096354883515069, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 0.9, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 4, "intervention": "variance_null", "mean_openness": 0.7096354883515069, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 1.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 4, "intervention": "row_sham", "mean_openness": 0.7096354883515069, "mean_candidate_fraction": 1.0, "mean_packing_fraction": 1.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 6, "intervention": "baseline", "mean_openness": 0.5014857280165834, "mean_candidate_fraction": 0.784375, "mean_packing_fraction": 0.784375, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 6, "intervention": "targeted", "mean_openness": 0.5014857280165834, "mean_candidate_fraction": 0.784375, "mean_packing_fraction": 0.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 6, "intervention": "random_null", "mean_openness": 0.5014857280165834, "mean_candidate_fraction": 0.784375, "mean_packing_fraction": 0.565625, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 6, "intervention": "variance_null", "mean_openness": 0.5014857280165834, "mean_candidate_fraction": 0.784375, "mean_packing_fraction": 0.784375, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 6, "intervention": "row_sham", "mean_openness": 0.5014857280165834, "mean_candidate_fraction": 0.784375, "mean_packing_fraction": 0.784375, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 8, "intervention": "baseline", "mean_openness": 0.0, "mean_candidate_fraction": 0.0, "mean_packing_fraction": 0.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 8, "intervention": "targeted", "mean_openness": 0.0, "mean_candidate_fraction": 0.0, "mean_packing_fraction": 0.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 8, "intervention": "random_null", "mean_openness": 0.0, "mean_candidate_fraction": 0.0, "mean_packing_fraction": 0.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 8, "intervention": "variance_null", "mean_openness": 0.0, "mean_candidate_fraction": 0.0, "mean_packing_fraction": 0.0, "mean_benign_acceptance": 0.94921875},
+    {"visible_rank": 8, "intervention": "row_sham", "mean_openness": 0.0, "mean_candidate_fraction": 0.0, "mean_packing_fraction": 0.0, "mean_benign_acceptance": 0.94921875}
+  ],
+  "schema_version": 1
+}
