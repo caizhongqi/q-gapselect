@@ -6,6 +6,8 @@ from dataclasses import dataclass
 
 import numpy as np
 
+from .topology import CollisionTopologyMetrics
+
 
 @dataclass(frozen=True)
 class AnchorPanel:
@@ -59,6 +61,7 @@ class PackingResult:
     packing_fraction: float
     candidate_fraction: float
     mean_input_l2: float | None
+    topology: CollisionTopologyMetrics | None = None
 
 
 __all__ = [

@@ -92,43 +92,70 @@ def summarize_rows(rows: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
         )
         groups.setdefault(key, []).append(row)
     output: list[dict[str, Any]] = []
+    topology_fields = {
+        "mean_collision_active_vertex_fraction": "collision_active_vertex_fraction",
+        "mean_collision_beta0_active": "collision_beta0_active",
+        "mean_collision_beta1_active": "collision_beta1_active",
+        "mean_collision_component_entropy": "collision_component_entropy",
+        "mean_collision_displacement_entropy_rank": (
+            "collision_displacement_entropy_rank"
+        ),
+        "mean_collision_displacement_rank_95": "collision_displacement_rank_95",
+        "mean_collision_displacement_stable_rank": (
+            "collision_displacement_stable_rank"
+        ),
+        "mean_collision_effective_component_count": (
+            "collision_effective_component_count"
+        ),
+        "mean_collision_independence_ratio": "collision_independence_ratio",
+        "mean_collision_largest_component_edge_fraction": (
+            "collision_largest_component_edge_fraction"
+        ),
+        "mean_collision_normalized_component_entropy": (
+            "collision_normalized_component_entropy"
+        ),
+    }
     for key, cell in sorted(groups.items()):
         architecture, visible_rank, intervention, closure_rank = key
         packing = np.asarray([float(row["packing_fraction"]) for row in cell])
-        output.append(
-            {
-                "architecture": architecture,
-                "visible_rank": visible_rank,
-                "intervention": intervention,
-                "closure_rank": closure_rank,
-                "mean_effective_closure_rank": float(
-                    np.mean([row["effective_closure_rank"] for row in cell])
-                ),
-                "model_count": len(cell),
-                "mean_packing_fraction": float(packing.mean()),
-                "standard_error": (
-                    float(packing.std(ddof=1) / np.sqrt(len(cell)))
-                    if len(cell) > 1
-                    else 0.0
-                ),
-                "mean_candidate_fraction": float(
-                    np.mean([row["candidate_fraction"] for row in cell])
-                ),
-                "mean_openness": float(np.mean([row["mean_openness"] for row in cell])),
-                "mean_tunnel_dimension": float(
-                    np.mean([row["mean_tunnel_dimension"] for row in cell])
-                ),
-                "mean_benign_control_acceptance": float(
-                    np.mean([row["benign_control_acceptance"] for row in cell])
-                ),
-                "mean_evaluation_accuracy": float(
-                    np.mean([row["evaluation_accuracy"] for row in cell])
-                ),
-                "mean_residual_energy_fraction": float(
-                    np.mean([row["residual_energy_fraction"] for row in cell])
-                ),
-            }
-        )
+        record: dict[str, Any] = {
+            "architecture": architecture,
+            "visible_rank": visible_rank,
+            "intervention": intervention,
+            "closure_rank": closure_rank,
+            "mean_effective_closure_rank": float(
+                np.mean([row["effective_closure_rank"] for row in cell])
+            ),
+            "model_count": len(cell),
+            "mean_packing_fraction": float(packing.mean()),
+            "standard_error": (
+                float(packing.std(ddof=1) / np.sqrt(len(cell)))
+                if len(cell) > 1
+                else 0.0
+            ),
+            "mean_candidate_fraction": float(
+                np.mean([row["candidate_fraction"] for row in cell])
+            ),
+            "mean_openness": float(np.mean([row["mean_openness"] for row in cell])),
+            "mean_tunnel_dimension": float(
+                np.mean([row["mean_tunnel_dimension"] for row in cell])
+            ),
+            "mean_benign_control_acceptance": float(
+                np.mean([row["benign_control_acceptance"] for row in cell])
+            ),
+            "mean_evaluation_accuracy": float(
+                np.mean([row["evaluation_accuracy"] for row in cell])
+            ),
+            "mean_residual_energy_fraction": float(
+                np.mean([row["residual_energy_fraction"] for row in cell])
+            ),
+        }
+        for output_name, row_name in topology_fields.items():
+            if all(row_name in row and row[row_name] is not None for row in cell):
+                record[output_name] = float(
+                    np.mean([float(row[row_name]) for row in cell])
+                )
+        output.append(record)
     return output
 
 

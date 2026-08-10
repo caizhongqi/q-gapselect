@@ -260,6 +260,9 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
                             evaluation_panel,
                             projection_calibration,
                         )
+                        if packing.topology is None:
+                            raise RuntimeError("packing evaluation did not emit topology metrics")
+                        topology = packing.topology
                         mean_openness, mean_tunnel_dimension = mean_geometry(
                             model,
                             evaluation_panel,
@@ -307,6 +310,35 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
                                 "residual_energy": residual_energy,
                                 "residual_energy_fraction": residual_energy / total_energy,
                                 "static_rank_95": spectrum["rank_95"],
+                                "collision_active_vertex_fraction": (
+                                    topology.active_vertex_fraction
+                                ),
+                                "collision_beta0_active": topology.beta0_active,
+                                "collision_beta1_active": topology.beta1_active,
+                                "collision_component_entropy": (
+                                    topology.component_edge_entropy
+                                ),
+                                "collision_normalized_component_entropy": (
+                                    topology.normalized_component_edge_entropy
+                                ),
+                                "collision_effective_component_count": (
+                                    topology.effective_component_count
+                                ),
+                                "collision_largest_component_edge_fraction": (
+                                    topology.largest_component_edge_fraction
+                                ),
+                                "collision_independence_ratio": (
+                                    topology.independence_ratio
+                                ),
+                                "collision_displacement_rank_95": (
+                                    topology.displacement_rank_95
+                                ),
+                                "collision_displacement_entropy_rank": (
+                                    topology.displacement_entropy_rank
+                                ),
+                                "collision_displacement_stable_rank": (
+                                    topology.displacement_stable_rank
+                                ),
                             }
                         )
 
@@ -330,6 +362,8 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
             "quantum_values_are": "analytic endpoint-query proxies",
             "coherent_quantum_execution": False,
             "new_lower_bound_claimed": False,
+            "full_collision_topology_emitted": True,
+            "training_phase_transition_claimed": False,
         },
         "config": dict(config),
         "training": training,

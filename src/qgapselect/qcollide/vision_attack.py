@@ -9,6 +9,7 @@ from math import sqrt
 import numpy as np
 import torch
 
+from .topology import collision_topology_metrics
 from .vision_linear import control_output, nullspace_basis, residual_hidden
 from .vision_types import AnchorPanel, AttackCandidate, PackingResult, ProjectionCalibration
 
@@ -83,10 +84,14 @@ def generate_attacks(
             logits_parts.append(logits.cpu().numpy())
             hidden_parts.append(hidden.cpu().numpy())
     all_logits = np.concatenate(logits_parts, axis=0).reshape(
-        anchors.size, line_search_steps, -1
+        anchors.size,
+        line_search_steps,
+        -1,
     )
     all_hidden = np.concatenate(hidden_parts, axis=0).reshape(
-        anchors.size, line_search_steps, -1
+        anchors.size,
+        line_search_steps,
+        -1,
     )
     candidate_images_view = candidate_images.reshape(
         anchors.size,
@@ -202,6 +207,7 @@ def evaluate_packing(
     anchor_control = control_output(anchors.hidden, calibration.standardized_projection)
     anchor_payload = residual_hidden(anchors.hidden, calibration.projection)
     adjacency: list[tuple[int, ...]] = []
+    edge_vectors: list[np.ndarray] = []
     input_distances: list[float] = []
     valid_count = 0
     for attack in attacks:
@@ -220,22 +226,35 @@ def evaluate_packing(
                 control_distance = float(
                     np.linalg.norm(attack_control - anchor_control[anchor_index])
                 )
-                payload_distance = float(
-                    np.linalg.norm(attack_payload - anchor_payload[anchor_index])
-                )
+                payload_vector = attack_payload - anchor_payload[anchor_index]
+                payload_distance = float(np.linalg.norm(payload_vector))
                 if (
                     control_distance <= calibration.control_epsilon
                     and payload_distance >= calibration.payload_delta
                 ):
                     edges.append(anchor_index)
+                    edge_vectors.append(payload_vector)
         adjacency.append(tuple(edges))
-    matching = maximum_bipartite_matching(tuple(adjacency), anchors.size)
+    canonical_adjacency = tuple(adjacency)
+    matching = maximum_bipartite_matching(canonical_adjacency, anchors.size)
+    vector_matrix = (
+        np.stack(edge_vectors, axis=0)
+        if edge_vectors
+        else np.empty((0, anchor_payload.shape[1]), dtype=float)
+    )
+    topology = collision_topology_metrics(
+        canonical_adjacency,
+        anchors.size,
+        edge_vectors=vector_matrix,
+        matching_size=matching,
+    )
     return PackingResult(
-        edge_count=sum(len(row) for row in adjacency),
+        edge_count=topology.edge_count,
         matching_size=matching,
         packing_fraction=matching / anchors.size,
         candidate_fraction=valid_count / len(attacks),
         mean_input_l2=float(np.mean(input_distances)) if input_distances else None,
+        topology=topology,
     )
 
 
