@@ -7,6 +7,20 @@ from collections.abc import Mapping, Sequence
 from .vision_common import adaptive_rank_summary, summarize_rows
 
 
+def _merged_claim_scope(artifacts: Sequence[Mapping[str, object]]) -> dict[str, object]:
+    scopes = [artifact["claim_scope"] for artifact in artifacts]
+    first = dict(scopes[0])
+    architectures = sorted(
+        {
+            str(architecture)
+            for scope in scopes
+            for architecture in scope["architectures"]
+        }
+    )
+    first["architectures"] = architectures
+    return first
+
+
 def merge_real_vision_artifacts(
     artifacts: Sequence[Mapping[str, object]],
     *,
@@ -16,6 +30,10 @@ def merge_real_vision_artifacts(
 
     if not artifacts:
         raise ValueError("artifacts must be non-empty")
+    schema_versions = {artifact["schema_version"] for artifact in artifacts}
+    master_seeds = {artifact["master_seed"] for artifact in artifacts}
+    if len(schema_versions) != 1 or len(master_seeds) != 1:
+        raise ValueError("component artifacts must share schema version and master seed")
     rows = [row for artifact in artifacts for row in artifact["rows"]]
     training = [row for artifact in artifacts for row in artifact["training"]]
     spectra = [row for artifact in artifacts for row in artifact["spectra"]]
@@ -25,7 +43,7 @@ def merge_real_vision_artifacts(
         "artifact_type": "qcollide_real_digits_cnn_transformer_causal_diagnostic",
         "schema_version": first["schema_version"],
         "master_seed": first["master_seed"],
-        "claim_scope": first["claim_scope"],
+        "claim_scope": _merged_claim_scope(artifacts),
         "component_count": len(artifacts),
         "training": training,
         "spectra": spectra,
