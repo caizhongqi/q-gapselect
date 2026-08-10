@@ -114,6 +114,33 @@ def summarize_rows(rows: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
         "mean_collision_normalized_component_entropy": (
             "collision_normalized_component_entropy"
         ),
+        "mean_collision_filtration_capacity_auc": (
+            "collision_filtration_capacity_auc"
+        ),
+        "mean_collision_filtration_basin_density_auc": (
+            "collision_filtration_basin_density_auc"
+        ),
+        "mean_collision_filtration_cycle_density_auc": (
+            "collision_filtration_cycle_density_auc"
+        ),
+        "mean_collision_filtration_component_entropy_auc": (
+            "collision_filtration_component_entropy_auc"
+        ),
+        "mean_collision_filtration_capacity_robustness_ratio": (
+            "collision_filtration_capacity_robustness_ratio"
+        ),
+        "mean_collision_persistence_normalized_total_lifetime": (
+            "collision_persistence_normalized_total_lifetime"
+        ),
+        "mean_collision_persistence_maximum_lifetime_fraction": (
+            "collision_persistence_maximum_lifetime_fraction"
+        ),
+        "mean_collision_persistence_effective_basin_count": (
+            "collision_persistence_effective_basin_count"
+        ),
+        "mean_collision_persistence_half_window_basin_count": (
+            "collision_persistence_half_window_basin_count"
+        ),
     }
     for key, cell in sorted(groups.items()):
         architecture, visible_rank, intervention, closure_rank = key

@@ -10,6 +10,7 @@ import numpy as np
 import torch
 
 from .topology import collision_topology_metrics
+from .topology_persistence import collision_filtration_profile
 from .vision_linear import control_output, nullspace_basis, residual_hidden
 from .vision_types import AnchorPanel, AttackCandidate, PackingResult, ProjectionCalibration
 
@@ -199,18 +200,46 @@ def maximum_bipartite_matching(adjacency: tuple[tuple[int, ...], ...], n_right: 
     return matching
 
 
+def _filtration_multipliers(values: Sequence[float]) -> tuple[float, ...]:
+    multipliers = tuple(float(value) for value in values)
+    if not multipliers or any(value <= 0.0 or not np.isfinite(value) for value in multipliers):
+        raise ValueError("filtration_multipliers must be finite and positive")
+    if any(
+        left > right
+        for left, right in zip(multipliers, multipliers[1:], strict=False)
+    ):
+        raise ValueError("filtration_multipliers must be non-decreasing")
+    if not any(abs(value - 1.0) <= 1e-12 for value in multipliers):
+        raise ValueError("filtration_multipliers must include the nominal value 1.0")
+    return multipliers
+
+
 def evaluate_packing(
     attacks: Sequence[AttackCandidate | None],
     anchors: AnchorPanel,
     calibration: ProjectionCalibration,
+    *,
+    filtration_multipliers: Sequence[float] = (0.5, 0.75, 1.0, 1.25, 1.5, 2.0),
 ) -> PackingResult:
+    if len(attacks) != anchors.size:
+        raise ValueError("attacks and anchors must have equal cardinality")
+    multipliers = _filtration_multipliers(filtration_multipliers)
     anchor_control = control_output(anchors.hidden, calibration.standardized_projection)
     anchor_payload = residual_hidden(anchors.hidden, calibration.projection)
+    pair_shape = (len(attacks), anchors.size)
+    control_distances = np.full(pair_shape, np.inf, dtype=float)
+    payload_distances = np.zeros(pair_shape, dtype=float)
+    behavior_distances = np.zeros(pair_shape, dtype=float)
+    valid_pairs = np.zeros(pair_shape, dtype=bool)
+    edge_displacements = np.zeros(
+        (*pair_shape, anchor_payload.shape[1]),
+        dtype=float,
+    )
     adjacency: list[tuple[int, ...]] = []
     edge_vectors: list[np.ndarray] = []
     input_distances: list[float] = []
     valid_count = 0
-    for attack in attacks:
+    for attack_index, attack in enumerate(attacks):
         edges: list[int] = []
         if attack is not None:
             valid_count += 1
@@ -228,6 +257,11 @@ def evaluate_packing(
                 )
                 payload_vector = attack_payload - anchor_payload[anchor_index]
                 payload_distance = float(np.linalg.norm(payload_vector))
+                valid_pairs[attack_index, anchor_index] = True
+                control_distances[attack_index, anchor_index] = control_distance
+                payload_distances[attack_index, anchor_index] = payload_distance
+                behavior_distances[attack_index, anchor_index] = 1.0
+                edge_displacements[attack_index, anchor_index] = payload_vector
                 if (
                     control_distance <= calibration.control_epsilon
                     and payload_distance >= calibration.payload_delta
@@ -248,6 +282,17 @@ def evaluate_packing(
         edge_vectors=vector_matrix,
         matching_size=matching,
     )
+    filtration = collision_filtration_profile(
+        control_distances,
+        payload_distances,
+        behavior_distances,
+        tuple(calibration.control_epsilon * value for value in multipliers),
+        nominal_epsilon=calibration.control_epsilon,
+        payload_delta=calibration.payload_delta,
+        behavior_gamma=0.5,
+        valid_pairs=valid_pairs,
+        edge_displacements=edge_displacements,
+    )
     return PackingResult(
         edge_count=topology.edge_count,
         matching_size=matching,
@@ -255,6 +300,7 @@ def evaluate_packing(
         candidate_fraction=valid_count / len(attacks),
         mean_input_l2=float(np.mean(input_distances)) if input_distances else None,
         topology=topology,
+        filtration=filtration,
     )
 
 

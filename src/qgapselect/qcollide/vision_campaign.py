@@ -36,6 +36,7 @@ from .vision_panels import (
     prepare_anchor_panel,
     stratified_correct_indices,
 )
+from .vision_types import PackingResult
 
 
 def _optional_positive_int(config: Mapping[str, object], name: str) -> int | None:
@@ -43,6 +44,103 @@ def _optional_positive_int(config: Mapping[str, object], name: str) -> int | Non
     if value is None:
         return None
     return positive_int(value, name)
+
+
+def _positive_float_sequence(
+    config: Mapping[str, object],
+    name: str,
+    default: tuple[float, ...],
+) -> tuple[float, ...]:
+    raw = config.get(name, default)
+    values = tuple(
+        number(item, f"{name}[{index}]", minimum=1e-12)
+        for index, item in enumerate(sequence(raw, name))
+    )
+    if not values:
+        raise ValueError(f"{name} must be non-empty")
+    if any(left > right for left, right in zip(values, values[1:], strict=False)):
+        raise ValueError(f"{name} must be non-decreasing")
+    if not any(abs(value - 1.0) <= 1e-12 for value in values):
+        raise ValueError(f"{name} must include 1.0")
+    return values
+
+
+def _filtration_payload(
+    packing: PackingResult,
+    multipliers: tuple[float, ...],
+) -> dict[str, object]:
+    if packing.filtration is None:
+        raise RuntimeError("packing evaluation did not emit a filtration profile")
+    profile = packing.filtration
+    summary = profile.summary
+    persistence = profile.basin_persistence
+    onset = summary.capacity_onset_epsilon
+    half = summary.half_max_capacity_epsilon
+    cycle = summary.cycle_onset_epsilon
+    return {
+        "collision_filtration_multipliers": list(multipliers),
+        "collision_filtration_capacity": [
+            point.metrics.capacity_fraction for point in profile.points
+        ],
+        "collision_filtration_beta0": [
+            point.metrics.beta0_active for point in profile.points
+        ],
+        "collision_filtration_beta1": [
+            point.metrics.beta1_active for point in profile.points
+        ],
+        "collision_filtration_component_entropy": [
+            point.metrics.normalized_component_edge_entropy for point in profile.points
+        ],
+        "collision_filtration_capacity_auc": summary.capacity_auc,
+        "collision_filtration_basin_density_auc": summary.basin_density_auc,
+        "collision_filtration_cycle_density_auc": summary.cycle_density_auc,
+        "collision_filtration_component_entropy_auc": summary.component_entropy_auc,
+        "collision_filtration_capacity_robustness_ratio": (
+            summary.capacity_robustness_ratio
+        ),
+        "collision_filtration_peak_beta0": summary.peak_beta0,
+        "collision_filtration_peak_beta0_multiplier": (
+            summary.peak_beta0_epsilon / summary.nominal_epsilon
+        ),
+        "collision_filtration_capacity_onset_multiplier": (
+            None if onset is None else onset / summary.nominal_epsilon
+        ),
+        "collision_filtration_half_capacity_multiplier": (
+            None if half is None else half / summary.nominal_epsilon
+        ),
+        "collision_filtration_cycle_onset_multiplier": (
+            None if cycle is None else cycle / summary.nominal_epsilon
+        ),
+        "collision_persistence_interval_count": persistence.interval_count,
+        "collision_persistence_finite_interval_count": (
+            persistence.finite_interval_count
+        ),
+        "collision_persistence_essential_interval_count": (
+            persistence.essential_interval_count
+        ),
+        "collision_persistence_normalized_total_lifetime": (
+            persistence.normalized_total_lifetime
+        ),
+        "collision_persistence_maximum_lifetime_fraction": (
+            persistence.maximum_lifetime / persistence.epsilon_max
+        ),
+        "collision_persistence_entropy": persistence.persistence_entropy,
+        "collision_persistence_effective_basin_count": (
+            persistence.effective_persistent_basin_count
+        ),
+        "collision_persistence_half_window_basin_count": (
+            persistence.half_window_persistent_basin_count
+        ),
+        "collision_persistence_intervals": [
+            {
+                "birth_multiplier": interval.birth_epsilon / summary.nominal_epsilon,
+                "death_multiplier": interval.death_epsilon / summary.nominal_epsilon,
+                "lifetime_fraction": interval.lifetime / persistence.epsilon_max,
+                "essential": interval.essential_at_window_end,
+            }
+            for interval in persistence.intervals
+        ],
+    }
 
 
 def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
@@ -57,6 +155,11 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
     model_seeds = integer_values(config.get("model_seeds"), "model_seeds", allow_zero=True)
     visible_ranks = integer_values(config.get("visible_ranks"), "visible_ranks")
     closure_ranks = integer_values(config.get("closure_ranks"), "closure_ranks")
+    filtration_multipliers = _positive_float_sequence(
+        config,
+        "filtration_multipliers",
+        (0.5, 0.75, 1.0, 1.25, 1.5, 2.0),
+    )
     configured_closure_ranks = tuple(
         int(value) for value in sequence(config.get("closure_ranks"), "closure_ranks")
     )
@@ -259,6 +362,7 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
                             attacks,
                             evaluation_panel,
                             projection_calibration,
+                            filtration_multipliers=filtration_multipliers,
                         )
                         if packing.topology is None:
                             raise RuntimeError("packing evaluation did not emit topology metrics")
@@ -278,69 +382,67 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
                             closure_rank,
                         )
                         total_energy = max(float(spectrum["total_energy"]), 1e-12)
-                        rows.append(
-                            {
-                                "dataset": data.dataset_name,
-                                "architecture": architecture,
-                                "model_seed": model_seed,
-                                "visible_rank": visible_rank,
-                                "intervention": intervention,
-                                "closure_rank": closure_rank,
-                                "effective_closure_rank": effective_closure_rank,
-                                "projection_rank": int(projection.shape[0]),
-                                "evaluation_accuracy": diagnostics["evaluation_accuracy"],
-                                "control_mse": diagnostics["evaluation_control_mse"],
-                                "control_epsilon": projection_calibration.control_epsilon,
-                                "payload_delta": projection_calibration.payload_delta,
-                                "benign_control_acceptance": (
-                                    projection_calibration.control_acceptance
-                                ),
-                                "benign_payload_exceedance": (
-                                    projection_calibration.payload_exceedance
-                                ),
-                                "mean_openness": mean_openness,
-                                "mean_tunnel_dimension": mean_tunnel_dimension,
-                                "edge_count": packing.edge_count,
-                                "matching_size": packing.matching_size,
-                                "packing_fraction": packing.packing_fraction,
-                                "candidate_fraction": packing.candidate_fraction,
-                                "mean_input_l2": packing.mean_input_l2,
-                                "classical_packed_cost": classical_cost,
-                                "quantum_query_proxy": quantum_proxy,
-                                "residual_energy": residual_energy,
-                                "residual_energy_fraction": residual_energy / total_energy,
-                                "static_rank_95": spectrum["rank_95"],
-                                "collision_active_vertex_fraction": (
-                                    topology.active_vertex_fraction
-                                ),
-                                "collision_beta0_active": topology.beta0_active,
-                                "collision_beta1_active": topology.beta1_active,
-                                "collision_component_entropy": (
-                                    topology.component_edge_entropy
-                                ),
-                                "collision_normalized_component_entropy": (
-                                    topology.normalized_component_edge_entropy
-                                ),
-                                "collision_effective_component_count": (
-                                    topology.effective_component_count
-                                ),
-                                "collision_largest_component_edge_fraction": (
-                                    topology.largest_component_edge_fraction
-                                ),
-                                "collision_independence_ratio": (
-                                    topology.independence_ratio
-                                ),
-                                "collision_displacement_rank_95": (
-                                    topology.displacement_rank_95
-                                ),
-                                "collision_displacement_entropy_rank": (
-                                    topology.displacement_entropy_rank
-                                ),
-                                "collision_displacement_stable_rank": (
-                                    topology.displacement_stable_rank
-                                ),
-                            }
-                        )
+                        row: dict[str, Any] = {
+                            "dataset": data.dataset_name,
+                            "architecture": architecture,
+                            "model_seed": model_seed,
+                            "visible_rank": visible_rank,
+                            "intervention": intervention,
+                            "closure_rank": closure_rank,
+                            "effective_closure_rank": effective_closure_rank,
+                            "projection_rank": int(projection.shape[0]),
+                            "evaluation_accuracy": diagnostics["evaluation_accuracy"],
+                            "control_mse": diagnostics["evaluation_control_mse"],
+                            "control_epsilon": projection_calibration.control_epsilon,
+                            "payload_delta": projection_calibration.payload_delta,
+                            "benign_control_acceptance": (
+                                projection_calibration.control_acceptance
+                            ),
+                            "benign_payload_exceedance": (
+                                projection_calibration.payload_exceedance
+                            ),
+                            "mean_openness": mean_openness,
+                            "mean_tunnel_dimension": mean_tunnel_dimension,
+                            "edge_count": packing.edge_count,
+                            "matching_size": packing.matching_size,
+                            "packing_fraction": packing.packing_fraction,
+                            "candidate_fraction": packing.candidate_fraction,
+                            "mean_input_l2": packing.mean_input_l2,
+                            "classical_packed_cost": classical_cost,
+                            "quantum_query_proxy": quantum_proxy,
+                            "residual_energy": residual_energy,
+                            "residual_energy_fraction": residual_energy / total_energy,
+                            "static_rank_95": spectrum["rank_95"],
+                            "collision_active_vertex_fraction": (
+                                topology.active_vertex_fraction
+                            ),
+                            "collision_beta0_active": topology.beta0_active,
+                            "collision_beta1_active": topology.beta1_active,
+                            "collision_component_entropy": (
+                                topology.component_edge_entropy
+                            ),
+                            "collision_normalized_component_entropy": (
+                                topology.normalized_component_edge_entropy
+                            ),
+                            "collision_effective_component_count": (
+                                topology.effective_component_count
+                            ),
+                            "collision_largest_component_edge_fraction": (
+                                topology.largest_component_edge_fraction
+                            ),
+                            "collision_independence_ratio": topology.independence_ratio,
+                            "collision_displacement_rank_95": (
+                                topology.displacement_rank_95
+                            ),
+                            "collision_displacement_entropy_rank": (
+                                topology.displacement_entropy_rank
+                            ),
+                            "collision_displacement_stable_rank": (
+                                topology.displacement_stable_rank
+                            ),
+                        }
+                        row.update(_filtration_payload(packing, filtration_multipliers))
+                        rows.append(row)
 
     summary = summarize_rows(rows)
     slug = data.dataset_name.lower().replace("-", "_").replace(" ", "_")
@@ -363,6 +465,9 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
             "coherent_quantum_execution": False,
             "new_lower_bound_claimed": False,
             "full_collision_topology_emitted": True,
+            "fixed_candidate_collision_filtration_emitted": True,
+            "truncated_h0_basin_persistence_emitted": True,
+            "full_persistent_homology_claimed": False,
             "training_phase_transition_claimed": False,
         },
         "config": dict(config),

@@ -11,7 +11,7 @@ from qgapselect.qcollide.vision_types import (
 )
 
 
-def test_visual_packing_emits_cycles_entropy_capacity_and_dimension() -> None:
+def test_visual_packing_emits_cycles_entropy_capacity_dimension_and_persistence() -> None:
     anchors = AnchorPanel(
         images=np.zeros((2, 2, 2), dtype=np.float32),
         labels=np.array([0, 0]),
@@ -46,6 +46,7 @@ def test_visual_packing_emits_cycles_entropy_capacity_and_dimension() -> None:
     )
     result = evaluate_packing(attacks, anchors, calibration)
     assert result.topology is not None
+    assert result.filtration is not None
     assert result.edge_count == 4
     assert result.matching_size == 2
     assert result.topology.beta0_active == 1
@@ -53,3 +54,10 @@ def test_visual_packing_emits_cycles_entropy_capacity_and_dimension() -> None:
     assert result.topology.normalized_component_edge_entropy == 0.0
     assert result.topology.displacement_rank_95 == 1
     assert np.isclose(result.topology.displacement_entropy_rank, 1.0)
+    assert result.filtration.summary.capacity_monotone
+    assert np.isclose(result.filtration.summary.capacity_robustness_ratio, 1.0)
+    assert result.filtration.basin_persistence.essential_interval_count == 1
+    assert np.isclose(
+        result.filtration.basin_persistence.normalized_total_lifetime,
+        0.5,
+    )
