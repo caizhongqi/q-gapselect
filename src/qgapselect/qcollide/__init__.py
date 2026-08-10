@@ -1,5 +1,11 @@
 """Q-COLLIDE calibration, geometry, packing, and analytic cost models."""
 
+from .closure_spectrum import (
+    compact_closure_spectrum_summary,
+    dangerous_direction_spectrum,
+    residual_dangerous_energy,
+    run_closure_spectrum_campaign,
+)
 from .contracts import CollisionCriteria, CollisionInstance, EndpointRecord
 from .costs import (
     classical_packed_cost,
@@ -43,8 +49,10 @@ __all__ = [
     "TunnelGeometry",
     "build_adjacency",
     "classical_packed_cost",
+    "compact_closure_spectrum_summary",
     "compact_dual_head_summary",
     "compact_summary",
+    "dangerous_direction_spectrum",
     "evaluate_instance",
     "fit_log_linear",
     "geometry_to_packing",
@@ -56,6 +64,8 @@ __all__ = [
     "prefix_survival_rates",
     "product_johnson_cost",
     "random_range",
+    "residual_dangerous_energy",
+    "run_closure_spectrum_campaign",
     "run_dual_head_causal_campaign",
     "run_scaling_campaign",
     "targeted_control_closure",
