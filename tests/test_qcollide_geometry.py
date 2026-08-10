@@ -67,3 +67,13 @@ def test_full_rank_control_has_no_tunnel_certificate() -> None:
     )
     assert certificate.geometry.tunnel_dimension == 0
     assert not certificate.certified
+
+
+def test_row_space_gradient_does_not_create_numerical_tunnel() -> None:
+    rng = np.random.default_rng(314159)
+    control = rng.normal(size=(3, 8))
+    gradient = control.T @ rng.normal(size=3)
+    geometry = tunnel_geometry(control, gradient)
+    assert geometry.tunnel_dimension == 5
+    assert geometry.openness == 0.0
+    assert np.linalg.norm(geometry.direction) == 0.0

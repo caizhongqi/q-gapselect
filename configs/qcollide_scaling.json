@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "master_seed": 20260810,
+  "f0": {
+    "n_values": [64, 128, 256, 512, 1024],
+    "marked_exponents": [0.0, 0.5, 1.0],
+    "repetitions": 8
+  },
+  "f1": {
+    "n_values": [64, 128, 256, 512, 1024, 2048],
+    "matching_exponents": [0.0, 0.25, 0.5, 0.75, 1.0],
+    "repetitions": 4
+  },
+  "f2": {
+    "n_values": [64, 128, 256, 512],
+    "target_collision_exponents": [0.0, 0.5, 1.0],
+    "repetitions": 32
+  },
+  "f3": {
+    "n_values": [64, 128, 256, 512],
+    "matching_exponents": [0.0, 0.5, 1.0],
+    "repetitions": 8,
+    "schedules": [
+      {
+        "name": "early_information",
+        "cumulative_bits": [4, 8, 14, 24],
+        "stage_costs": [1.0, 2.0, 8.0, 32.0]
+      },
+      {
+        "name": "balanced_information",
+        "cumulative_bits": [2, 6, 12, 24],
+        "stage_costs": [1.0, 2.0, 8.0, 32.0]
+      },
+      {
+        "name": "late_information",
+        "cumulative_bits": [1, 2, 4, 24],
+        "stage_costs": [1.0, 2.0, 8.0, 32.0]
+      }
+    ]
+  },
+  "f4": {
+    "manifold_dimensions": [16, 32],
+    "control_rank_fractions": [0.25, 0.5, 0.75, 1.0],
+    "openness_values": [0.0, 0.25, 0.5, 0.75, 1.0],
+    "curvature_values": [0.01, 0.1, 0.4],
+    "anchors": 16,
+    "repetitions": 4,
+    "control_epsilon": 0.2,
+    "payload_delta": 0.05,
+    "behavior_gamma": 0.05,
+    "local_radius": 1.0
+  }
+}

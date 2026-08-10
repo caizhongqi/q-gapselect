@@ -79,11 +79,14 @@ def tunnel_geometry(
     projected = basis @ (basis.T @ gradient) if basis.size else np.zeros_like(gradient)
     projected_norm = float(np.linalg.norm(projected))
     gradient_norm = float(np.linalg.norm(gradient))
-    openness = projected_norm / gradient_norm if gradient_norm > 0.0 else 0.0
-    if projected_norm > 0.0:
-        direction = projected / projected_norm
-    else:
+    projection_tolerance = relative_tolerance * max(gradient_norm, 1.0)
+    if projected_norm <= projection_tolerance:
+        projected_norm = 0.0
+        openness = 0.0
         direction = np.zeros_like(gradient)
+    else:
+        openness = projected_norm / gradient_norm if gradient_norm > 0.0 else 0.0
+        direction = projected / projected_norm
     return TunnelGeometry(
         manifold_dimension=manifold_dimension,
         effective_rank=rank,

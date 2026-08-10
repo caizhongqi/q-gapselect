@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import Counter
 from collections.abc import Iterable
 from dataclasses import dataclass
 from math import ceil, inf, sqrt
@@ -79,11 +80,9 @@ def prefix_survival_rates(
     total = len(left) * len(right)
     rates = [1.0]
     for level in range(1, levels + 1):
-        matches = 0
-        for lhs in left:
-            for rhs in right:
-                if lhs[:level] == rhs[:level]:
-                    matches += 1
+        left_counts = Counter(item[:level] for item in left)
+        right_counts = Counter(item[:level] for item in right)
+        matches = sum(count * right_counts.get(prefix, 0) for prefix, count in left_counts.items())
         rates.append(matches / total)
     return tuple(rates)
 

@@ -25,6 +25,7 @@ from .geometry import (
     tunnel_geometry,
 )
 from .graph import PackingStatistics, build_adjacency, packing_statistics
+from .scaling import compact_summary, fit_log_linear, run_scaling_campaign
 
 __all__ = [
     "CollisionCriteria",
@@ -34,6 +35,9 @@ __all__ = [
     "TunnelCertificate",
     "TunnelGeometry",
     "build_adjacency",
+    "compact_summary",
+    "fit_log_linear",
+    "run_scaling_campaign",
     "classical_packed_cost",
     "evaluate_instance",
     "geometry_to_packing",
