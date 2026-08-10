@@ -1,4 +1,4 @@
-"""Tight L2 profiles for an explicit disjoint-stage claw family."""
+"""Tight mixed-norm profiles for an explicit disjoint-stage claw family."""
 
 from __future__ import annotations
 
@@ -27,15 +27,72 @@ class StageSelectorProfile:
 
 
 @dataclass(frozen=True)
+class CollisionWeightedCostNorm:
+    domain_mass_fractions: tuple[float, ...]
+    collision_weighted_norm: float
+    endpoint_rms_cost: float
+    endpoint_rms_over_collision_norm: float
+
+
+@dataclass(frozen=True)
 class StageSelectorComplexityScale:
     """Normalized scale of a matching lower/upper theorem."""
 
     lower_profile: StageSelectorProfile
     normalized_l2_scale: float
+    total_balanced_domain: int
+    cost_norm: CollisionWeightedCostNorm
+    mixed_norm_identity_error: float
     lower_bound_notation: str
     upper_bound_notation: str
     tight_up_to_polylogarithmic_factors: bool
     coherent_stage_subroutines_required: bool
+
+
+def collision_weighted_cost_norm(
+    *,
+    cumulative_costs: tuple[float, ...],
+    domain_masses: tuple[int, ...],
+) -> CollisionWeightedCostNorm:
+    """Compare the claw mixed norm with ordinary endpoint RMS cost.
+
+    For total balanced domain ``N`` and mass fraction ``p_l=n_l/N``, the
+    collision-weighted norm is
+
+    ``sqrt(sum_l C_l^2 p_l^(4/3))``.
+
+    The ordinary endpoint RMS is ``sqrt(sum_l C_l^2 p_l)``. The former is no
+    larger, and it is the exact cost factor in the partitioned single-claw law.
+    """
+
+    if not cumulative_costs:
+        raise ValueError("at least one cost is required")
+    if len(cumulative_costs) != len(domain_masses):
+        raise ValueError("cost and domain arrays must have equal length")
+    if any(cost <= 0.0 for cost in cumulative_costs):
+        raise ValueError("cumulative costs must be positive")
+    if any(mass <= 0 for mass in domain_masses):
+        raise ValueError("domain masses must be positive")
+    total = sum(domain_masses)
+    fractions = tuple(mass / total for mass in domain_masses)
+    collision_norm = sqrt(
+        sum(
+            cost * cost * fraction ** (4.0 / 3.0)
+            for cost, fraction in zip(cumulative_costs, fractions, strict=True)
+        )
+    )
+    endpoint_rms = sqrt(
+        sum(
+            cost * cost * fraction
+            for cost, fraction in zip(cumulative_costs, fractions, strict=True)
+        )
+    )
+    return CollisionWeightedCostNorm(
+        domain_mass_fractions=fractions,
+        collision_weighted_norm=collision_norm,
+        endpoint_rms_cost=endpoint_rms,
+        endpoint_rms_over_collision_norm=endpoint_rms / collision_norm,
+    )
 
 
 def conditional_stage_selector_profile(
@@ -44,15 +101,7 @@ def conditional_stage_selector_profile(
     outer_adversary_values: tuple[float, ...],
     outer_values_certified: bool = False,
 ) -> StageSelectorProfile:
-    """Aggregate stage hardness through a costed exact-one selector.
-
-    Stage ``l`` is a public, disjoint endpoint block whose records cost the
-    cumulative prefix cost ``C_l``. Exactly one stage block is a yes-instance.
-    Costed exact-one-OR adversary composition gives the L2 aggregation
-    ``sqrt(sum_l (C_l A_l)^2)``. The returned profile is rigorous only when the
-    supplied outer adversary values have independently been certified for the
-    stage decision promises.
-    """
+    """Aggregate stage hardness through a costed exact-one selector."""
 
     levels = len(incremental_costs)
     if levels == 0:
@@ -99,15 +148,7 @@ def disjoint_single_claw_stage_selector_profile(
     incremental_costs: tuple[float, ...],
     balanced_domains: tuple[int, ...],
 ) -> StageSelectorProfile:
-    """Return the rigorous lower profile for ordinary single claws.
-
-    Block ``l`` contains two balanced domains of size ``n_l`` and obeys the
-    ordinary no-claw versus single-claw decision promise. Its unit-cost
-    adversary value is ``Theta(n_l^(2/3))``. With endpoint-generation cost
-    ``C_l`` and an exact-one marked-stage selector, composition yields
-
-    ``Omega(sqrt(sum_l C_l^2 n_l^(4/3)))``.
-    """
+    """Return the rigorous lower profile for ordinary single claws."""
 
     if len(balanced_domains) != len(incremental_costs):
         raise ValueError("cost and domain arrays must have equal length")
@@ -146,32 +187,48 @@ def disjoint_single_claw_stage_selector_complexity_scale(
     incremental_costs: tuple[float, ...],
     balanced_domains: tuple[int, ...],
 ) -> StageSelectorComplexityScale:
-    """Return the matching heterogeneous complexity scale.
+    """Return the matching partitioned heterogeneous complexity law.
 
-    The lower bound is the costed exact-one adversary profile. For the upper
-    bound, run the optimal coherent claw subroutine for each stage and compose
-    the unequal stage runtimes with variable-time exact-one search. This gives
-    the same L2 scale up to polylogarithmic implementation factors.
+    The lower bound is costed exact-one adversary composition. The upper bound
+    coherently combines optimal stage claw subroutines with variable-time
+    exact-one search. In mixed-norm form, for ``N=sum_l n_l`` and
+    ``p_l=n_l/N``, the scale is
+
+    ``N^(2/3) sqrt(sum_l C_l^2 p_l^(4/3))``.
     """
 
     profile = disjoint_single_claw_stage_selector_profile(
         incremental_costs=incremental_costs,
         balanced_domains=balanced_domains,
     )
+    cumulative_costs = tuple(
+        component.cumulative_endpoint_cost for component in profile.components
+    )
+    cost_norm = collision_weighted_cost_norm(
+        cumulative_costs=cumulative_costs,
+        domain_masses=balanced_domains,
+    )
+    total_domain = sum(balanced_domains)
+    reconstructed = total_domain ** (2.0 / 3.0) * cost_norm.collision_weighted_norm
     return StageSelectorComplexityScale(
         lower_profile=profile,
         normalized_l2_scale=profile.l2_lower_bound,
-        lower_bound_notation="Omega(L2_stage_hardness)",
-        upper_bound_notation="O_tilde(L2_stage_hardness)",
+        total_balanced_domain=total_domain,
+        cost_norm=cost_norm,
+        mixed_norm_identity_error=abs(reconstructed - profile.l2_lower_bound),
+        lower_bound_notation="Omega(N^(2/3) * collision_weighted_cost_norm)",
+        upper_bound_notation="O_tilde(N^(2/3) * collision_weighted_cost_norm)",
         tight_up_to_polylogarithmic_factors=True,
         coherent_stage_subroutines_required=True,
     )
 
 
 __all__ = [
+    "CollisionWeightedCostNorm",
     "StageSelectorComponent",
     "StageSelectorComplexityScale",
     "StageSelectorProfile",
+    "collision_weighted_cost_norm",
     "conditional_stage_selector_profile",
     "disjoint_single_claw_stage_selector_complexity_scale",
     "disjoint_single_claw_stage_selector_profile",

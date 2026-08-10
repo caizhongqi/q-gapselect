@@ -51,9 +51,11 @@ from .prefix_lower_bound import (
 )
 from .scaling import compact_summary, fit_log_linear, run_scaling_campaign
 from .stage_selector_lower_bound import (
+    CollisionWeightedCostNorm,
     StageSelectorComplexityScale,
     StageSelectorComponent,
     StageSelectorProfile,
+    collision_weighted_cost_norm,
     conditional_stage_selector_profile,
     disjoint_single_claw_stage_selector_complexity_scale,
     disjoint_single_claw_stage_selector_profile,
@@ -63,6 +65,7 @@ __all__ = [
     "CapacityCell",
     "CollisionCriteria",
     "CollisionInstance",
+    "CollisionWeightedCostNorm",
     "DualHeadModel",
     "EndpointRecord",
     "PackingStatistics",
@@ -79,6 +82,7 @@ __all__ = [
     "build_adjacency",
     "build_capacity_meta_summary",
     "classical_packed_cost",
+    "collision_weighted_cost_norm",
     "compact_closure_spectrum_summary",
     "compact_dual_head_summary",
     "compact_summary",
