@@ -1,0 +1,38 @@
+{
+  "architectures": ["cnn", "tiny_vit"],
+  "artifact_type": "qcollide_cross_dataset_capacity_meta_summary",
+  "associations": {"pearson_openness_vs_packing": 0.8122212683216353},
+  "baseline_cells": [
+    {"architecture": "cnn", "dataset": "scikit-learn digits", "openness": 0.8700558706474665, "packing_fraction": 0.4444444444444444, "standard_error": 0.06758625033664689, "visible_rank": 1},
+    {"architecture": "cnn", "dataset": "scikit-learn digits", "openness": 0.7785769000308659, "packing_fraction": 0.27777777777777773, "standard_error": 0.04006168083848876, "visible_rank": 2},
+    {"architecture": "cnn", "dataset": "scikit-learn digits", "openness": 0.5070173876030518, "packing_fraction": 0.15555555555555556, "standard_error": 0.029397236789606564, "visible_rank": 4},
+    {"architecture": "cnn", "dataset": "scikit-learn digits", "openness": 0.18206939250864576, "packing_fraction": 0.05555555555555556, "standard_error": 0.029397236789606564, "visible_rank": 8},
+    {"architecture": "tiny_vit", "dataset": "scikit-learn digits", "openness": 0.966871867443491, "packing_fraction": 0.7111111111111111, "standard_error": 0.011111111111111112, "visible_rank": 1},
+    {"architecture": "tiny_vit", "dataset": "scikit-learn digits", "openness": 0.8964115811112626, "packing_fraction": 0.611111111111111, "standard_error": 0.029397236789606557, "visible_rank": 2},
+    {"architecture": "tiny_vit", "dataset": "scikit-learn digits", "openness": 0.7423103907758021, "packing_fraction": 0.5666666666666667, "standard_error": 0.03333333333333333, "visible_rank": 4},
+    {"architecture": "tiny_vit", "dataset": "scikit-learn digits", "openness": 0.5288760394201271, "packing_fraction": 0.3666666666666667, "standard_error": 0.01924500897298754, "visible_rank": 8},
+    {"architecture": "cnn", "dataset": "Fashion-MNIST", "openness": 0.916853, "packing_fraction": 0.7166666666666667, "standard_error": null, "visible_rank": 1},
+    {"architecture": "cnn", "dataset": "Fashion-MNIST", "openness": 0.73894, "packing_fraction": 0.5166666666666667, "standard_error": null, "visible_rank": 2},
+    {"architecture": "cnn", "dataset": "Fashion-MNIST", "openness": 0.531414, "packing_fraction": 0.4166666666666667, "standard_error": null, "visible_rank": 4},
+    {"architecture": "cnn", "dataset": "Fashion-MNIST", "openness": 0.255769, "packing_fraction": 0.26666666666666666, "standard_error": null, "visible_rank": 8},
+    {"architecture": "tiny_vit", "dataset": "Fashion-MNIST", "openness": 0.94081, "packing_fraction": 0.8333333333333334, "standard_error": null, "visible_rank": 1},
+    {"architecture": "tiny_vit", "dataset": "Fashion-MNIST", "openness": 0.877445, "packing_fraction": 0.7166666666666667, "standard_error": null, "visible_rank": 2},
+    {"architecture": "tiny_vit", "dataset": "Fashion-MNIST", "openness": 0.732074, "packing_fraction": 0.7166666666666667, "standard_error": null, "visible_rank": 4},
+    {"architecture": "tiny_vit", "dataset": "Fashion-MNIST", "openness": 0.580277, "packing_fraction": 0.55, "standard_error": null, "visible_rank": 8}
+  ],
+  "cell_count": 16,
+  "claim_scope": {"coherent_quantum_execution": false, "production_scale_claimed": false, "supports_cross_dataset_geometry_to_packing": true, "universal_dataset_invariant_scalar_curve_claimed": false},
+  "datasets": ["Fashion-MNIST", "scikit-learn digits"],
+  "leave_one_dataset_out": {"Fashion-MNIST": {"cell_count": 8, "mae": 0.19177958784406338, "rmse": 0.20258821799089036}, "scikit-learn digits": {"cell_count": 8, "mae": 0.18690186131516429, "rmse": 0.1965766413895249}},
+  "linear_models": {
+    "openness_dataset_architecture": {"coefficients": {"architecture:tiny_vit": 0.16402602196115965, "dataset:scikit-learn digits": -0.18528559074313444, "intercept": 0.08253620691274059, "openness": 0.6130598940119254}, "columns": ["intercept", "openness", "dataset:scikit-learn digits", "architecture:tiny_vit"], "design_rank": 4, "r_squared": 0.9542974274331399, "rmse": 0.04670011232282214, "sample_count": 16, "singular_values": [5.761911511620138, 2.0189315161007406, 1.644653594677003, 0.7099913547551862]},
+    "openness_dataset_architecture_log2_rank": {"coefficients": {"architecture:tiny_vit": 0.2222465754581442, "dataset:scikit-learn digits": -0.18926242300197507, "intercept": 0.36598761644290667, "log2_visible_rank": -0.06263596409375068, "openness": 0.2992828793193526}, "columns": ["intercept", "openness", "dataset:scikit-learn digits", "architecture:tiny_vit", "log2_visible_rank"], "design_rank": 5, "r_squared": 0.9641231014114894, "rmse": 0.04137662355682976, "sample_count": 16, "singular_values": [8.865984858693805, 3.335994352040187, 2.0141535076176043, 1.6296895712870882, 0.1934777049545911]}
+  },
+  "monotonicity": [
+    {"architecture": "cnn", "cell_count": 4, "dataset": "Fashion-MNIST", "openness_nonincreasing_fraction": 1.0, "packing_nonincreasing_fraction": 1.0},
+    {"architecture": "tiny_vit", "cell_count": 4, "dataset": "Fashion-MNIST", "openness_nonincreasing_fraction": 1.0, "packing_nonincreasing_fraction": 1.0},
+    {"architecture": "cnn", "cell_count": 4, "dataset": "scikit-learn digits", "openness_nonincreasing_fraction": 1.0, "packing_nonincreasing_fraction": 1.0},
+    {"architecture": "tiny_vit", "cell_count": 4, "dataset": "scikit-learn digits", "openness_nonincreasing_fraction": 1.0, "packing_nonincreasing_fraction": 1.0}
+  ],
+  "schema_version": 1
+}

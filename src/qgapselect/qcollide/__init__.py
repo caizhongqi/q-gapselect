@@ -1,5 +1,6 @@
 """Q-COLLIDE calibration, geometry, packing, and analytic cost models."""
 
+from .capacity_meta import CapacityCell, build_capacity_meta_summary, extract_capacity_cells
 from .closure_spectrum import (
     compact_closure_spectrum_summary,
     dangerous_direction_spectrum,
@@ -49,8 +50,15 @@ from .prefix_lower_bound import (
     random_range_prefix_restriction_profile,
 )
 from .scaling import compact_summary, fit_log_linear, run_scaling_campaign
+from .stage_selector_lower_bound import (
+    StageSelectorComponent,
+    StageSelectorProfile,
+    conditional_stage_selector_profile,
+    disjoint_single_claw_stage_selector_profile,
+)
 
 __all__ = [
+    "CapacityCell",
     "CollisionCriteria",
     "CollisionInstance",
     "DualHeadModel",
@@ -61,15 +69,21 @@ __all__ = [
     "RandomRangePrefixProfile",
     "RandomRangeStageBound",
     "StageRestrictionBound",
+    "StageSelectorComponent",
+    "StageSelectorProfile",
     "TunnelCertificate",
     "TunnelGeometry",
     "build_adjacency",
+    "build_capacity_meta_summary",
     "classical_packed_cost",
     "compact_closure_spectrum_summary",
     "compact_dual_head_summary",
     "compact_summary",
+    "conditional_stage_selector_profile",
     "dangerous_direction_spectrum",
+    "disjoint_single_claw_stage_selector_profile",
     "evaluate_instance",
+    "extract_capacity_cells",
     "fit_log_linear",
     "geometry_to_packing",
     "homogeneous_packed_claw_lower_bound",
