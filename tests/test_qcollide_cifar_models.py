@@ -4,13 +4,10 @@ import pytest
 torch = pytest.importorskip("torch")
 pytest.importorskip("torchvision")
 
-from qgapselect.qcollide.cifar_models import (  # noqa: E402
-    cifar_control_targets,
-    make_cifar_model,
-)
-
 
 def test_cifar_architectures_share_the_control_interface() -> None:
+    from qgapselect.qcollide.cifar_models import make_cifar_model
+
     images = torch.rand(2, 3, 32, 32)
     parameter_counts = []
     for architecture in ("resnet18", "vit_tiny", "mlp_mixer"):
@@ -29,6 +26,8 @@ def test_cifar_architectures_share_the_control_interface() -> None:
 
 
 def test_cifar_control_target_shape() -> None:
+    from qgapselect.qcollide.cifar_models import cifar_control_targets
+
     images = torch.rand(3, 3, 32, 32).numpy()
     descriptor = cifar_control_targets(images, grid_size=4)
     assert descriptor.shape == (3, 48)
