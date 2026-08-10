@@ -5,7 +5,7 @@
   "dataset_seed": 20260810,
   "data_root": ".cache/qcollide-data",
   "architectures": ["resnet18", "vit_tiny", "mlp_mixer"],
-  "model_seeds": [0],
+  "model_seeds": [0, 1, 2],
   "train_samples": 10000,
   "calibration_samples": 2000,
   "evaluation_samples": 2000,
