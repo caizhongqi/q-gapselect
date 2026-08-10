@@ -52,6 +52,7 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
     )
     if 0 not in configured_closure_ranks:
         closure_ranks = (0, *closure_ranks)
+
     integer_names = (
         "hidden_dimension",
         "control_dimension",
@@ -140,6 +141,7 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
 
             for visible_rank in visible_ranks:
                 base_projection = visible_control_projection(model, visible_rank)
+                base_projection_rank = row_basis(base_projection).shape[0]
                 base_calibration = calibrate_projection(
                     base_projection,
                     hidden_support,
@@ -199,14 +201,14 @@ def run_real_vision_campaign(config: Mapping[str, object]) -> dict[str, object]:
                         if intervention != "baseline" and closure_rank == 0:
                             continue
                         selected = basis[:, : min(closure_rank, basis.shape[1])]
-                        effective_closure_rank = row_basis(selected.T).shape[0]
+                        projection = combine_projection(base_projection, selected)
+                        effective_closure_rank = projection.shape[0] - base_projection_rank
                         if (
                             intervention == "targeted"
                             and closure_rank > 0
                             and effective_closure_rank == 0
                         ):
                             continue
-                        projection = combine_projection(base_projection, selected)
                         projection_calibration = calibrate_projection(
                             projection,
                             hidden_support,
