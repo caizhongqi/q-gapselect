@@ -45,8 +45,11 @@ class RandomRangeClawBound:
     endpoint_cost: float
     expected_cross_claws: float
     expected_isolated_cross_claws: float
+    isolated_cross_claw_second_moment: float
+    paley_zygmund_success_lower_bound: float
     domain_condition_satisfied: bool
     isolated_mass_condition_satisfied: bool
+    success_probability_condition_satisfied: bool
     premises_satisfied: bool
     quantum_omega_scale: float
     classical_omega_scale: float
@@ -90,6 +93,33 @@ def homogeneous_packed_claw_lower_bound(
     return endpoint_cost * ((left_domain * right_domain) / packed_solutions) ** (1.0 / 3.0)
 
 
+def _isolated_cross_claw_moments(
+    left_domain: int,
+    right_domain: int,
+    range_size: int,
+) -> tuple[float, float, float]:
+    """Return E[X], E[X^2], and the Paley--Zygmund P[X>0] lower bound."""
+
+    expected = (left_domain * right_domain / range_size) * (
+        1.0 - 1.0 / range_size
+    ) ** (left_domain + right_domain - 2)
+    if left_domain < 2 or right_domain < 2:
+        pair_term = 0.0
+    else:
+        joint_two_labels = (
+            left_domain
+            * (left_domain - 1)
+            * right_domain
+            * (right_domain - 1)
+            / range_size**4
+            * (1.0 - 2.0 / range_size) ** (left_domain + right_domain - 4)
+        )
+        pair_term = range_size * (range_size - 1) * joint_two_labels
+    second_moment = expected + pair_term
+    success_lower_bound = expected * expected / second_moment if second_moment > 0.0 else 0.0
+    return expected, second_moment, success_lower_bound
+
+
 def random_range_claw_distributional_bound(
     *,
     left_domain: int,
@@ -97,6 +127,7 @@ def random_range_claw_distributional_bound(
     range_size: int,
     endpoint_cost: float = 1.0,
     minimum_expected_isolated_claws: float = 0.25,
+    minimum_cross_success_probability: float = 0.1,
 ) -> RandomRangeClawBound:
     """Certify the random-range average-case claw lower-bound scale.
 
@@ -108,10 +139,11 @@ def random_range_claw_distributional_bound(
     scale through costed adversary composition.
 
     The cross-domain problem must be non-vacuous. The returned premise flag
-    checks both the random-collision domain regime ``N_A+N_B >= sqrt(R)`` and a
-    constant expected mass of isolated cross claws. An isolated output label
-    has exactly one preimage on each side, so all such labels form a
-    vertex-disjoint matching.
+    checks the random-collision domain regime ``N_A+N_B >= sqrt(R)`` and uses an
+    exact second-moment calculation for isolated cross claws. An isolated output
+    label has exactly one preimage on each side, so all such labels form a
+    vertex-disjoint matching. Paley--Zygmund then certifies a constant lower
+    bound on the probability that at least one such claw exists.
     """
 
     if left_domain <= 0 or right_domain <= 0:
@@ -122,15 +154,19 @@ def random_range_claw_distributional_bound(
         raise ValueError("endpoint_cost must be positive")
     if minimum_expected_isolated_claws <= 0.0:
         raise ValueError("minimum_expected_isolated_claws must be positive")
+    if not 0.0 < minimum_cross_success_probability < 1.0:
+        raise ValueError("minimum_cross_success_probability must lie in (0,1)")
 
     expected_cross = (left_domain * right_domain) / range_size
-    isolation_factor = (1.0 - 1.0 / range_size) ** (
-        left_domain + right_domain - 2
+    expected_isolated, second_moment, success_lower_bound = _isolated_cross_claw_moments(
+        left_domain,
+        right_domain,
+        range_size,
     )
-    expected_isolated = expected_cross * isolation_factor
     domain_condition = left_domain + right_domain >= sqrt(range_size)
     isolated_condition = expected_isolated >= minimum_expected_isolated_claws
-    premises = domain_condition and isolated_condition
+    success_condition = success_lower_bound >= minimum_cross_success_probability
+    premises = domain_condition and isolated_condition and success_condition
     quantum_scale = endpoint_cost * range_size ** (1.0 / 3.0) if premises else 0.0
     classical_scale = endpoint_cost * sqrt(range_size) if premises else 0.0
     return RandomRangeClawBound(
@@ -140,8 +176,11 @@ def random_range_claw_distributional_bound(
         endpoint_cost=endpoint_cost,
         expected_cross_claws=expected_cross,
         expected_isolated_cross_claws=expected_isolated,
+        isolated_cross_claw_second_moment=second_moment,
+        paley_zygmund_success_lower_bound=success_lower_bound,
         domain_condition_satisfied=domain_condition,
         isolated_mass_condition_satisfied=isolated_condition,
+        success_probability_condition_satisfied=success_condition,
         premises_satisfied=premises,
         quantum_omega_scale=quantum_scale,
         classical_omega_scale=classical_scale,
@@ -155,6 +194,7 @@ def random_range_prefix_restriction_profile(
     right_survivors: tuple[int, ...],
     range_sizes: tuple[int, ...],
     minimum_expected_isolated_claws: float = 0.25,
+    minimum_cross_success_probability: float = 0.1,
 ) -> RandomRangePrefixProfile:
     """Return a rigorous distributional stage-restriction lower profile.
 
@@ -205,6 +245,7 @@ def random_range_prefix_restriction_profile(
             range_size=range_size,
             endpoint_cost=cumulative,
             minimum_expected_isolated_claws=minimum_expected_isolated_claws,
+            minimum_cross_success_probability=minimum_cross_success_probability,
         )
         stages.append(
             RandomRangeStageBound(
