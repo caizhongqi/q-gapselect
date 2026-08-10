@@ -14,6 +14,10 @@ on:
       - "src/qgapselect/qcollide/vision_models.py"
       - "pyproject.toml"
 
+concurrency:
+  group: qcollide-real-vision-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
