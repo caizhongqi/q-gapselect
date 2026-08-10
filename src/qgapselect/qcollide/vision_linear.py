@@ -31,21 +31,41 @@ def nullspace_basis(matrix: np.ndarray, *, tolerance: float = 1e-9) -> np.ndarra
 
 
 def standardized_projection(projection: np.ndarray, hidden_support: np.ndarray) -> np.ndarray:
+    """Return a covariance-whitened, row-space-invariant control map.
+
+    Per-coordinate standardization depends on which orthonormal basis happens
+    to represent a subspace. Whitening the projected support covariance instead
+    makes Euclidean control distances invariant under orthogonal basis changes.
+    """
+
     basis = row_basis(projection)
     if basis.shape[0] == 0:
         return basis
-    outputs = np.asarray(hidden_support, dtype=float) @ basis.T
-    scales = np.maximum(outputs.std(axis=0), 1e-6)
-    return basis / scales[:, None]
+    support = np.asarray(hidden_support, dtype=float)
+    outputs = support @ basis.T
+    centered = outputs - outputs.mean(axis=0, keepdims=True)
+    denominator = max(len(centered) - 1, 1)
+    covariance = centered.T @ centered / denominator
+    eigenvalues, eigenvectors = np.linalg.eigh(covariance)
+    largest = max(float(eigenvalues.max()) if eigenvalues.size else 0.0, 1.0)
+    floor = 1e-8 * largest
+    inverse_root = eigenvectors @ np.diag(
+        1.0 / np.sqrt(np.maximum(eigenvalues, floor))
+    ) @ eigenvectors.T
+    return inverse_root @ basis
 
 
 def combine_projection(projection: np.ndarray, added_columns: np.ndarray) -> np.ndarray:
+    """Add genuinely new control directions while preserving a redundant sham."""
+
+    base = row_basis(projection)
     columns = np.asarray(added_columns, dtype=float)
     if columns.ndim != 2:
         raise ValueError("added_columns must be a matrix")
     if columns.shape[1] == 0:
-        return row_basis(projection)
-    return row_basis(np.vstack([projection, columns.T]))
+        return base
+    combined = row_basis(np.vstack([base, columns.T]))
+    return base if combined.shape[0] == base.shape[0] else combined
 
 
 def control_output(hidden: np.ndarray, standardized: np.ndarray) -> np.ndarray:
