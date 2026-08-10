@@ -52,8 +52,10 @@ from .prefix_lower_bound import (
 from .scaling import compact_summary, fit_log_linear, run_scaling_campaign
 from .stage_selector_lower_bound import (
     StageSelectorComponent,
+    StageSelectorComplexityScale,
     StageSelectorProfile,
     conditional_stage_selector_profile,
+    disjoint_single_claw_stage_selector_complexity_scale,
     disjoint_single_claw_stage_selector_profile,
 )
 
@@ -70,6 +72,7 @@ __all__ = [
     "RandomRangeStageBound",
     "StageRestrictionBound",
     "StageSelectorComponent",
+    "StageSelectorComplexityScale",
     "StageSelectorProfile",
     "TunnelCertificate",
     "TunnelGeometry",
@@ -81,6 +84,7 @@ __all__ = [
     "compact_summary",
     "conditional_stage_selector_profile",
     "dangerous_direction_spectrum",
+    "disjoint_single_claw_stage_selector_complexity_scale",
     "disjoint_single_claw_stage_selector_profile",
     "evaluate_instance",
     "extract_capacity_cells",

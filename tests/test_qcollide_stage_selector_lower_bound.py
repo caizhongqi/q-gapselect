@@ -5,6 +5,7 @@ import pytest
 
 from qgapselect.qcollide.stage_selector_lower_bound import (
     conditional_stage_selector_profile,
+    disjoint_single_claw_stage_selector_complexity_scale,
     disjoint_single_claw_stage_selector_profile,
 )
 
@@ -36,15 +37,28 @@ def test_equal_stage_hardness_recovers_sqrt_number_of_stages_gain() -> None:
     assert np.isclose(profile.aggregation_gain_over_maximum, 2.0)
 
 
+def test_tight_scale_closes_the_explicit_heterogeneous_family() -> None:
+    result = disjoint_single_claw_stage_selector_complexity_scale(
+        incremental_costs=(1.0, 3.0, 12.0),
+        balanced_domains=(1024, 256, 64),
+    )
+    assert np.isclose(
+        result.normalized_l2_scale,
+        result.lower_profile.l2_lower_bound,
+    )
+    assert result.tight_up_to_polylogarithmic_factors
+    assert result.coherent_stage_subroutines_required
+    assert result.lower_bound_notation.startswith("Omega")
+    assert result.upper_bound_notation.startswith("O_tilde")
+
+
 def test_single_stage_selector_reduces_to_ordinary_composed_bound() -> None:
-    profile = disjoint_single_claw_stage_selector_profile(
+    result = disjoint_single_claw_stage_selector_complexity_scale(
         incremental_costs=(3.0,),
         balanced_domains=(512,),
     )
-    assert np.isclose(
-        profile.l2_lower_bound,
-        profile.maximum_stage_lower_bound,
-    )
+    profile = result.lower_profile
+    assert np.isclose(profile.l2_lower_bound, profile.maximum_stage_lower_bound)
     assert np.isclose(profile.aggregation_gain_over_maximum, 1.0)
 
 

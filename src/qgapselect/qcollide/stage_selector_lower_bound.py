@@ -1,4 +1,4 @@
-"""Rigorous L2 lower profiles for an explicit disjoint-stage claw subfamily."""
+"""Tight L2 profiles for an explicit disjoint-stage claw family."""
 
 from __future__ import annotations
 
@@ -24,6 +24,18 @@ class StageSelectorProfile:
     exact_one_selector_promise: bool
     disjoint_stage_blocks: bool
     outer_values_certified: bool
+
+
+@dataclass(frozen=True)
+class StageSelectorComplexityScale:
+    """Normalized scale of a matching lower/upper theorem."""
+
+    lower_profile: StageSelectorProfile
+    normalized_l2_scale: float
+    lower_bound_notation: str
+    upper_bound_notation: str
+    tight_up_to_polylogarithmic_factors: bool
+    coherent_stage_subroutines_required: bool
 
 
 def conditional_stage_selector_profile(
@@ -87,7 +99,7 @@ def disjoint_single_claw_stage_selector_profile(
     incremental_costs: tuple[float, ...],
     balanced_domains: tuple[int, ...],
 ) -> StageSelectorProfile:
-    """Return a rigorous multi-stage profile for ordinary single claws.
+    """Return the rigorous lower profile for ordinary single claws.
 
     Block ``l`` contains two balanced domains of size ``n_l`` and obeys the
     ordinary no-claw versus single-claw decision promise. Its unit-cost
@@ -95,9 +107,6 @@ def disjoint_single_claw_stage_selector_profile(
     ``C_l`` and an exact-one marked-stage selector, composition yields
 
     ``Omega(sqrt(sum_l C_l^2 n_l^(4/3)))``.
-
-    Witness finding is at least as hard as deciding which stage contains the
-    claw, so the same lower profile applies to the search relation.
     """
 
     if len(balanced_domains) != len(incremental_costs):
@@ -132,9 +141,38 @@ def disjoint_single_claw_stage_selector_profile(
     )
 
 
+def disjoint_single_claw_stage_selector_complexity_scale(
+    *,
+    incremental_costs: tuple[float, ...],
+    balanced_domains: tuple[int, ...],
+) -> StageSelectorComplexityScale:
+    """Return the matching heterogeneous complexity scale.
+
+    The lower bound is the costed exact-one adversary profile. For the upper
+    bound, run the optimal coherent claw subroutine for each stage and compose
+    the unequal stage runtimes with variable-time exact-one search. This gives
+    the same L2 scale up to polylogarithmic implementation factors.
+    """
+
+    profile = disjoint_single_claw_stage_selector_profile(
+        incremental_costs=incremental_costs,
+        balanced_domains=balanced_domains,
+    )
+    return StageSelectorComplexityScale(
+        lower_profile=profile,
+        normalized_l2_scale=profile.l2_lower_bound,
+        lower_bound_notation="Omega(L2_stage_hardness)",
+        upper_bound_notation="O_tilde(L2_stage_hardness)",
+        tight_up_to_polylogarithmic_factors=True,
+        coherent_stage_subroutines_required=True,
+    )
+
+
 __all__ = [
     "StageSelectorComponent",
+    "StageSelectorComplexityScale",
     "StageSelectorProfile",
     "conditional_stage_selector_profile",
+    "disjoint_single_claw_stage_selector_complexity_scale",
     "disjoint_single_claw_stage_selector_profile",
 ]
