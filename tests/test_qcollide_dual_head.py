@@ -27,7 +27,7 @@ def _micro_config() -> dict[str, object]:
         "benign_radius": 0.4,
         "benign_repetitions": 4,
         "benign_quantile": 0.9,
-        "payload_delta": 0.15,
+        "payload_delta": 0.08,
         "behavior_gamma": 0.1,
         "local_radius": 1.2,
         "attack_steps": 24,
@@ -66,26 +66,61 @@ def test_campaign_is_deterministic_and_preserves_claim_boundary() -> None:
     assert first["claim_scope"]["synthetic_task_only"] is True
     assert first["claim_scope"]["coherent_quantum_execution"] is False
     assert first["claim_scope"]["pretrained_model_claimed"] is False
+    assert first["claim_scope"]["adaptive_reoptimization_included"] is True
+    assert first["claim_scope"]["independent_cross_anchor_matching"] is True
+    assert first["claim_scope"]["payload_is_noncontrol_hidden_representation"] is True
 
 
-def test_full_rank_closes_baseline_and_targeted_never_increases_packing() -> None:
+def test_campaign_contains_transfer_and_adaptive_modes() -> None:
     artifact = run_dual_head_causal_campaign(_micro_config())
-    summary = artifact["summary"]
+    assert {row["attack_mode"] for row in artifact["rows"]} == {
+        "adaptive",
+        "transfer",
+    }
+    assert len(artifact["rows"]) == 2 * 3 * 5 * 2
+    assert len(artifact["summary"]) == 3 * 5 * 2
+
+
+def test_full_rank_closes_adaptive_baseline() -> None:
+    artifact = run_dual_head_causal_campaign(_micro_config())
     full_rank_baseline = [
         row
-        for row in summary
-        if row["visible_rank"] == 4 and row["intervention"] == "baseline"
+        for row in artifact["summary"]
+        if row["visible_rank"] == 4
+        and row["intervention"] == "baseline"
+        and row["attack_mode"] == "adaptive"
     ][0]
     assert full_rank_baseline["mean_packing_fraction"] == 0.0
+
+
+def test_targeted_projection_reduces_post_intervention_openness() -> None:
+    artifact = run_dual_head_causal_campaign(_micro_config())
+    summary = artifact["summary"]
     for rank in (1, 2):
         baseline = [
             row
             for row in summary
-            if row["visible_rank"] == rank and row["intervention"] == "baseline"
+            if row["visible_rank"] == rank
+            and row["intervention"] == "baseline"
+            and row["attack_mode"] == "adaptive"
         ][0]
         targeted = [
             row
             for row in summary
-            if row["visible_rank"] == rank and row["intervention"] == "targeted"
+            if row["visible_rank"] == rank
+            and row["intervention"] == "targeted"
+            and row["attack_mode"] == "adaptive"
         ][0]
-        assert targeted["mean_packing_fraction"] <= baseline["mean_packing_fraction"]
+        sham = [
+            row
+            for row in summary
+            if row["visible_rank"] == rank
+            and row["intervention"] == "row_sham"
+            and row["attack_mode"] == "adaptive"
+        ][0]
+        assert targeted["mean_openness"] <= baseline["mean_openness"] + 1e-12
+        assert np.isclose(sham["mean_openness"], baseline["mean_openness"])
+        assert (
+            targeted["mean_projection_effective_rank"]
+            >= baseline["mean_projection_effective_rank"]
+        )

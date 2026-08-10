@@ -30,6 +30,25 @@ def _control_vector(
     )
 
 
+def _rowspace_basis(matrix: np.ndarray) -> np.ndarray:
+    _, singular_values, vh = np.linalg.svd(matrix, full_matrices=True)
+    scale = float(singular_values[0]) if singular_values.size else 1.0
+    rank = int(np.count_nonzero(singular_values > 1e-10 * max(scale, 1.0)))
+    return vh[:rank].T.copy()
+
+
+def _payload_vector(
+    model: DualHeadModel,
+    latent: np.ndarray,
+    projection: np.ndarray,
+) -> np.ndarray:
+    hidden = model.hidden(latent)
+    rowspace = _rowspace_basis(projection)
+    if rowspace.shape[1] == 0:
+        return hidden
+    return hidden - rowspace @ (rowspace.T @ hidden)
+
+
 def _calibrate_epsilon(
     model: DualHeadModel,
     anchors: np.ndarray,
@@ -65,7 +84,7 @@ def _calibrate_epsilon(
 def _generate_attacks(
     model: DualHeadModel,
     anchors: np.ndarray,
-    visible_rank: int,
+    projection: np.ndarray,
     standardized_projection: np.ndarray,
     epsilon: float,
     *,
@@ -75,7 +94,8 @@ def _generate_attacks(
     attack_steps: int,
     latent_bound: float,
 ) -> tuple[dict[str, Any] | None, ...]:
-    projection = model.control_head[:, :visible_rank].T
+    """Generate attacks adaptively for the supplied post-intervention projection."""
+
     candidates: list[dict[str, Any] | None] = []
     for anchor_index, anchor in enumerate(anchors):
         hidden_jacobian = model.hidden_jacobian(anchor)
@@ -87,8 +107,9 @@ def _generate_attacks(
         selected: dict[str, Any] | None = None
         if np.linalg.norm(direction) > 0.0:
             anchor_control = _control_vector(model, anchor, standardized_projection)
+            anchor_payload = _payload_vector(model, anchor, projection)
             anchor_behavior = float(model.main(anchor))
-            for step in np.linspace(payload_delta, local_radius, attack_steps):
+            for step in np.linspace(local_radius / attack_steps, local_radius, attack_steps):
                 for sign in (1.0, -1.0):
                     latent = anchor + sign * step * direction
                     if np.any(latent < -latent_bound) or np.any(latent > latent_bound):
@@ -99,13 +120,23 @@ def _generate_attacks(
                             - anchor_control
                         )
                     )
+                    payload_distance = float(
+                        np.linalg.norm(
+                            _payload_vector(model, latent, projection) - anchor_payload
+                        )
+                    )
                     behavior_distance = abs(float(model.main(latent)) - anchor_behavior)
-                    if control_distance <= epsilon and behavior_distance >= behavior_gamma:
+                    if (
+                        control_distance <= epsilon
+                        and payload_distance >= payload_delta
+                        and behavior_distance >= behavior_gamma
+                    ):
                         selected = {
                             "anchor_index": anchor_index,
                             "latent": latent,
                             "step": float(step),
                             "control_distance": control_distance,
+                            "payload_distance": payload_distance,
                             "behavior_distance": behavior_distance,
                             "openness": geometry.openness,
                             "tunnel_dimension": geometry.tunnel_dimension,
@@ -125,13 +156,6 @@ def _orthonormal_columns(vectors: np.ndarray, maximum_columns: int) -> np.ndarra
     tolerance = 1e-10 * max(float(diagonal.max()) if diagonal.size else 0.0, 1.0)
     rank = int(np.count_nonzero(diagonal > tolerance))
     return q[:, : min(maximum_columns, rank)]
-
-
-def _rowspace_basis(matrix: np.ndarray) -> np.ndarray:
-    _, singular_values, vh = np.linalg.svd(matrix, full_matrices=True)
-    scale = float(singular_values[0]) if singular_values.size else 1.0
-    rank = int(np.count_nonzero(singular_values > 1e-10 * max(scale, 1.0)))
-    return vh[:rank].T.copy()
 
 
 def _append_rows(projection: np.ndarray, columns: np.ndarray) -> np.ndarray:
@@ -201,26 +225,17 @@ def _evaluate_projection(
     anchors: np.ndarray,
     attacks: Sequence[dict[str, Any] | None],
     projection: np.ndarray,
-    hidden_support: np.ndarray,
+    standardized_projection: np.ndarray,
+    epsilon: float,
+    benign_acceptance: float,
     *,
     intervention: str,
-    seed: int,
-    benign_radius: float,
-    benign_repetitions: int,
-    benign_quantile: float,
+    attack_mode: str,
     payload_delta: float,
     behavior_gamma: float,
 ) -> dict[str, Any]:
-    standardized, epsilon, benign_acceptance = _calibrate_epsilon(
-        model,
-        anchors,
-        projection,
-        hidden_support,
-        seed=seed,
-        benign_radius=benign_radius,
-        benign_repetitions=benign_repetitions,
-        benign_quantile=benign_quantile,
-    )
+    """Evaluate all cross-anchor collision edges with non-control hidden payloads."""
+
     left: list[EndpointRecord] = []
     right: list[EndpointRecord] = []
     for index, (anchor, attack) in enumerate(zip(anchors, attacks, strict=True)):
@@ -228,10 +243,10 @@ def _evaluate_projection(
             EndpointRecord(
                 index=index,
                 side="B",
-                signature=(index,),
+                signature=(0,),
                 prefixes=(),
-                control=tuple(_control_vector(model, anchor, standardized)),
-                payload=tuple(float(value) for value in anchor),
+                control=tuple(_control_vector(model, anchor, standardized_projection)),
+                payload=tuple(float(value) for value in _payload_vector(model, anchor, projection)),
                 behavior=float(model.main(anchor)),
                 valid=True,
             )
@@ -241,33 +256,40 @@ def _evaluate_projection(
             EndpointRecord(
                 index=index,
                 side="A",
-                signature=(index,),
+                signature=(0,),
                 prefixes=(),
-                control=tuple(_control_vector(model, attack_latent, standardized)),
-                payload=tuple(float(value) for value in attack_latent),
+                control=tuple(_control_vector(model, attack_latent, standardized_projection)),
+                payload=tuple(
+                    float(value) for value in _payload_vector(model, attack_latent, projection)
+                ),
                 behavior=float(model.main(attack_latent)),
                 valid=attack is not None,
             )
         )
     instance = CollisionInstance(
-        name=f"dual_head_{intervention}",
+        name=f"dual_head_{intervention}_{attack_mode}",
         left=tuple(left),
         right=tuple(right),
         criteria=CollisionCriteria(epsilon, payload_delta, behavior_gamma),
         endpoint_local=True,
-        metadata={"intervention": intervention},
+        metadata={"intervention": intervention, "attack_mode": attack_mode},
     )
     statistics = packing_statistics(instance)
     matching = statistics.matching_size
     quantum = product_johnson_cost(len(anchors), matching).total_cost if matching else None
     return {
         "intervention": intervention,
+        "attack_mode": attack_mode,
         "projection_rows": int(projection.shape[0]),
+        "projection_effective_rank": int(_rowspace_basis(projection).shape[1]),
         "epsilon": epsilon,
         "benign_acceptance": benign_acceptance,
         "edge_count": statistics.edge_count,
         "matching_size": matching,
         "packing_fraction": matching / len(anchors),
+        "independence_ratio": statistics.independence_ratio,
+        "maximum_left_degree": statistics.max_left_degree,
+        "maximum_right_degree": statistics.max_right_degree,
         "classical_cost": classical_packed_cost(len(anchors), matching)
         if matching
         else None,

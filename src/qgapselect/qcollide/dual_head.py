@@ -28,39 +28,58 @@ def _summary(rows: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
     output: list[dict[str, Any]] = []
     ranks = sorted({int(row["visible_rank"]) for row in rows})
     interventions = sorted({str(row["intervention"]) for row in rows})
+    attack_modes = sorted({str(row["attack_mode"]) for row in rows})
     for rank in ranks:
         for intervention in interventions:
-            cell = [
-                row
-                for row in rows
-                if row["visible_rank"] == rank and row["intervention"] == intervention
-            ]
-            packing = np.asarray([row["packing_fraction"] for row in cell], dtype=float)
-            output.append(
-                {
-                    "visible_rank": rank,
-                    "intervention": intervention,
-                    "mean_packing_fraction": float(packing.mean()),
-                    "standard_error": float(packing.std(ddof=1) / sqrt(len(packing)))
-                    if len(packing) > 1
-                    else 0.0,
-                    "mean_benign_acceptance": float(
-                        np.mean([row["benign_acceptance"] for row in cell])
-                    ),
-                    "mean_openness": float(np.mean([row["mean_openness"] for row in cell])),
-                    "mean_tunnel_dimension": float(
-                        np.mean([row["mean_tunnel_dimension"] for row in cell])
-                    ),
-                    "mean_candidate_fraction": float(
-                        np.mean([row["candidate_fraction"] for row in cell])
-                    ),
-                }
-            )
+            for attack_mode in attack_modes:
+                cell = [
+                    row
+                    for row in rows
+                    if row["visible_rank"] == rank
+                    and row["intervention"] == intervention
+                    and row["attack_mode"] == attack_mode
+                ]
+                packing = np.asarray(
+                    [row["packing_fraction"] for row in cell],
+                    dtype=float,
+                )
+                output.append(
+                    {
+                        "visible_rank": rank,
+                        "intervention": intervention,
+                        "attack_mode": attack_mode,
+                        "mean_packing_fraction": float(packing.mean()),
+                        "standard_error": float(packing.std(ddof=1) / sqrt(len(packing)))
+                        if len(packing) > 1
+                        else 0.0,
+                        "mean_benign_acceptance": float(
+                            np.mean([row["benign_acceptance"] for row in cell])
+                        ),
+                        "mean_openness": float(
+                            np.mean([row["mean_openness"] for row in cell])
+                        ),
+                        "mean_tunnel_dimension": float(
+                            np.mean([row["mean_tunnel_dimension"] for row in cell])
+                        ),
+                        "mean_candidate_fraction": float(
+                            np.mean([row["candidate_fraction"] for row in cell])
+                        ),
+                        "mean_projection_effective_rank": float(
+                            np.mean([row["projection_effective_rank"] for row in cell])
+                        ),
+                        "mean_edge_count": float(
+                            np.mean([row["edge_count"] for row in cell])
+                        ),
+                        "mean_independence_ratio": float(
+                            np.mean([row["independence_ratio"] for row in cell])
+                        ),
+                    }
+                )
     return output
 
 
 def run_dual_head_causal_campaign(config: Mapping[str, object]) -> dict[str, object]:
-    """Run disjoint calibration/evaluation intervention experiments."""
+    """Run disjoint calibration/evaluation transfer and adaptive interventions."""
 
     schema_version = positive_int(config.get("schema_version"), "schema_version")
     if schema_version != 1:
@@ -148,7 +167,7 @@ def run_dual_head_causal_campaign(config: Mapping[str, object]) -> dict[str, obj
             calibration_attacks = _generate_attacks(
                 model,
                 calibration_anchors,
-                visible_rank,
+                projection,
                 calibration_standardized,
                 calibration_epsilon,
                 payload_delta=numbers["payload_delta"],
@@ -166,7 +185,8 @@ def run_dual_head_causal_campaign(config: Mapping[str, object]) -> dict[str, obj
                 closure_rank=integers["closure_rank"],
                 seed=_seed(master_seed, "intervention", model_seed, visible_rank),
             )
-            evaluation_standardized, evaluation_epsilon, _ = _calibrate_epsilon(
+
+            baseline_standardized, baseline_epsilon, _ = _calibrate_epsilon(
                 model,
                 evaluation_anchors,
                 projection,
@@ -176,82 +196,125 @@ def run_dual_head_causal_campaign(config: Mapping[str, object]) -> dict[str, obj
                 benign_repetitions=integers["benign_repetitions"],
                 benign_quantile=numbers["benign_quantile"],
             )
-            evaluation_attacks = _generate_attacks(
+            transfer_attacks = _generate_attacks(
                 model,
                 evaluation_anchors,
-                visible_rank,
-                evaluation_standardized,
-                evaluation_epsilon,
+                projection,
+                baseline_standardized,
+                baseline_epsilon,
                 payload_delta=numbers["payload_delta"],
                 behavior_gamma=numbers["behavior_gamma"],
                 local_radius=numbers["local_radius"],
                 attack_steps=integers["attack_steps"],
                 latent_bound=numbers["latent_bound"],
             )
-            geometries = []
-            for anchor in evaluation_anchors:
-                hidden_jacobian = model.hidden_jacobian(anchor)
-                geometries.append(
-                    tunnel_geometry(
-                        projection @ hidden_jacobian,
-                        model.main_head @ hidden_jacobian,
-                    )
-                )
-            common = {
-                "model_seed": model_seed,
-                "visible_rank": visible_rank,
-                "mean_openness": float(np.mean([item.openness for item in geometries])),
-                "mean_tunnel_dimension": float(
-                    np.mean([item.tunnel_dimension for item in geometries])
-                ),
-                "calibration_candidate_fraction": float(
-                    np.mean([item is not None for item in calibration_attacks])
-                ),
-                "candidate_fraction": float(
-                    np.mean([item is not None for item in evaluation_attacks])
-                ),
-            }
-            for index, (intervention, candidate_projection) in enumerate(
-                projections.items()
-            ):
-                result = _evaluate_projection(
+
+            common_benign_seed = _seed(
+                master_seed,
+                "projection",
+                model_seed,
+                visible_rank,
+            )
+            for intervention, candidate_projection in projections.items():
+                standardized, epsilon, benign_acceptance = _calibrate_epsilon(
                     model,
                     evaluation_anchors,
-                    evaluation_attacks,
                     candidate_projection,
                     hidden_support,
-                    intervention=intervention,
-                    seed=_seed(
-                        master_seed,
-                        "projection",
-                        model_seed,
-                        visible_rank,
-                        index,
-                    ),
+                    seed=common_benign_seed,
                     benign_radius=numbers["benign_radius"],
                     benign_repetitions=integers["benign_repetitions"],
                     benign_quantile=numbers["benign_quantile"],
+                )
+                adaptive_attacks = _generate_attacks(
+                    model,
+                    evaluation_anchors,
+                    candidate_projection,
+                    standardized,
+                    epsilon,
                     payload_delta=numbers["payload_delta"],
                     behavior_gamma=numbers["behavior_gamma"],
+                    local_radius=numbers["local_radius"],
+                    attack_steps=integers["attack_steps"],
+                    latent_bound=numbers["latent_bound"],
                 )
-                rows.append({**common, **result})
+                geometries = []
+                for anchor in evaluation_anchors:
+                    hidden_jacobian = model.hidden_jacobian(anchor)
+                    geometries.append(
+                        tunnel_geometry(
+                            candidate_projection @ hidden_jacobian,
+                            model.main_head @ hidden_jacobian,
+                        )
+                    )
+                geometry_common = {
+                    "model_seed": model_seed,
+                    "visible_rank": visible_rank,
+                    "mean_openness": float(
+                        np.mean([item.openness for item in geometries])
+                    ),
+                    "mean_tunnel_dimension": float(
+                        np.mean([item.tunnel_dimension for item in geometries])
+                    ),
+                    "calibration_candidate_fraction": float(
+                        np.mean([item is not None for item in calibration_attacks])
+                    ),
+                    "baseline_candidate_fraction": float(
+                        np.mean([item is not None for item in transfer_attacks])
+                    ),
+                }
+                for attack_mode, attacks in (
+                    ("transfer", transfer_attacks),
+                    ("adaptive", adaptive_attacks),
+                ):
+                    result = _evaluate_projection(
+                        model,
+                        evaluation_anchors,
+                        attacks,
+                        candidate_projection,
+                        standardized,
+                        epsilon,
+                        benign_acceptance,
+                        intervention=intervention,
+                        attack_mode=attack_mode,
+                        payload_delta=numbers["payload_delta"],
+                        behavior_gamma=numbers["behavior_gamma"],
+                    )
+                    rows.append(
+                        {
+                            **geometry_common,
+                            "candidate_fraction": float(
+                                np.mean([item is not None for item in attacks])
+                            ),
+                            **result,
+                        }
+                    )
 
     summary = _summary(rows)
-    target_nonfull = [
+    targeted_adaptive_nonfull = [
         row
         for row in summary
         if row["intervention"] == "targeted"
+        and row["attack_mode"] == "adaptive"
         and row["visible_rank"] < latent_dimension
     ]
-    full_baseline = [
+    targeted_transfer_nonfull = [
+        row
+        for row in summary
+        if row["intervention"] == "targeted"
+        and row["attack_mode"] == "transfer"
+        and row["visible_rank"] < latent_dimension
+    ]
+    full_baseline_adaptive = [
         row
         for row in summary
         if row["intervention"] == "baseline"
+        and row["attack_mode"] == "adaptive"
         and row["visible_rank"] == latent_dimension
     ]
     benign_values = np.asarray([row["benign_acceptance"] for row in rows], dtype=float)
     return {
-        "artifact_type": "qcollide_trainable_dual_head_causal_diagnostic",
+        "artifact_type": "qcollide_trainable_dual_head_causal_diagnostic_v2",
         "schema_version": schema_version,
         "master_seed": master_seed,
         "claim_scope": {
@@ -259,6 +322,9 @@ def run_dual_head_causal_campaign(config: Mapping[str, object]) -> dict[str, obj
             "synthetic_task_only": True,
             "pretrained_model_claimed": False,
             "real_world_attack_claimed": False,
+            "adaptive_reoptimization_included": True,
+            "independent_cross_anchor_matching": True,
+            "payload_is_noncontrol_hidden_representation": True,
             "quantum_values_are": "analytic endpoint-query proxies",
             "coherent_quantum_execution": False,
             "new_lower_bound_claimed": False,
@@ -268,11 +334,14 @@ def run_dual_head_causal_campaign(config: Mapping[str, object]) -> dict[str, obj
         "rows": rows,
         "summary": summary,
         "gates": {
-            "maximum_targeted_nonfull_packing": max(
-                row["mean_packing_fraction"] for row in target_nonfull
+            "maximum_targeted_nonfull_adaptive_packing": max(
+                row["mean_packing_fraction"] for row in targeted_adaptive_nonfull
             ),
-            "maximum_full_rank_baseline_packing": max(
-                row["mean_packing_fraction"] for row in full_baseline
+            "maximum_targeted_nonfull_transfer_packing": max(
+                row["mean_packing_fraction"] for row in targeted_transfer_nonfull
+            ),
+            "maximum_full_rank_baseline_adaptive_packing": max(
+                row["mean_packing_fraction"] for row in full_baseline_adaptive
             ),
             "mean_benign_acceptance": float(benign_values.mean()),
             "maximum_benign_acceptance_deviation": float(
