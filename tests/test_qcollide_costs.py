@@ -38,7 +38,7 @@ def test_weighted_prefix_survival_is_monotone() -> None:
         (record.prefixes for record in instance.right),
     )
     assert rates[0] == 1.0
-    assert all(a >= b for a, b in zip(rates, rates[1:]))
+    assert all(a >= b for a, b in zip(rates, rates[1:], strict=False))
     assert rates[-1] == 4 / (32 * 32)
 
 

@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import asdict
 from hashlib import sha256
 from math import sqrt
-from typing import Iterable
 
 import numpy as np
 
-from .contracts import CollisionCriteria, CollisionInstance, EndpointRecord
+from .contracts import CollisionCriteria, CollisionInstance, EndpointRecord, Side
 from .geometry import tunnel_certificate
 
 
@@ -19,7 +19,7 @@ def _fingerprint(payload: object) -> str:
 
 def _record(
     index: int,
-    side: str,
+    side: Side,
     signature: tuple[int, ...],
     *,
     control: Iterable[float],
@@ -30,7 +30,7 @@ def _record(
 ) -> EndpointRecord:
     return EndpointRecord(
         index=index,
-        side=side,  # type: ignore[arg-type]
+        side=side,
         signature=signature,
         prefixes=prefixes,
         control=tuple(float(x) for x in control),
@@ -176,7 +176,7 @@ def weighted_prefix_claw(
 
     if len(cumulative_bits) != len(stage_costs) or not cumulative_bits:
         raise ValueError("prefix levels and stage costs must be non-empty and aligned")
-    if any(a >= b for a, b in zip(cumulative_bits, cumulative_bits[1:])):
+    if any(a >= b for a, b in zip(cumulative_bits, cumulative_bits[1:], strict=False)):
         raise ValueError("cumulative_bits must be strictly increasing")
     total_bits = cumulative_bits[-1]
     if total_bits > 62:

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
 from math import ceil, inf, sqrt
-from typing import Iterable
 
 import numpy as np
 
@@ -99,7 +99,7 @@ def prefix_rms_cost(stage_costs: tuple[float, ...], survival_rates: tuple[float,
         raise ValueError("s_0 must equal one")
     if any(not 0.0 <= value <= 1.0 for value in survival_rates):
         raise ValueError("survival rates must lie in [0,1]")
-    if any(a < b for a, b in zip(survival_rates, survival_rates[1:])):
+    if any(a < b for a, b in zip(survival_rates, survival_rates[1:], strict=False)):
         raise ValueError("survival rates must be non-increasing")
 
     cumulative = np.cumsum(np.asarray(stage_costs, dtype=float))
