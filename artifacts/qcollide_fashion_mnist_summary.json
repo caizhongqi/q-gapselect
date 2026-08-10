@@ -1,0 +1,124 @@
+{
+  "artifact_type": "qcollide_fashion_mnist_external_validity_summary",
+  "schema_version": 1,
+  "master_seed": 20260810,
+  "claim_scope": {
+    "dataset": "Fashion-MNIST",
+    "real_image_dataset": true,
+    "image_size": 28,
+    "class_count": 10,
+    "train_samples": 12000,
+    "calibration_samples": 2000,
+    "evaluation_samples": 2000,
+    "architectures": ["cnn", "tiny_vit"],
+    "production_scale_claimed": false,
+    "pretrained_model_claimed": false,
+    "imagenet_scale_claimed": false,
+    "physical_world_claimed": false,
+    "real_world_attack_claimed": false,
+    "quantum_values_are": "analytic endpoint-query proxies",
+    "coherent_quantum_execution": false,
+    "strict_quantum_advantage_claimed": false
+  },
+  "formal_workflow": {
+    "run_id": 31393900075,
+    "head_sha": "af9f8c13991410bea7fc4bac1e03bf3b8be05a2b",
+    "merged_artifact_id": 9064957222,
+    "artifact_zip_digest": "sha256:d8680cf567e816510cf350408fadc5cc7254c61848e4e26070428c0542b4edb5",
+    "diagnostic_bytes": 720674,
+    "diagnostic_sha256": "3cf16c74ee391e9e2ca7d40dd524d85b7e42474d7ce222ec48a16273122624df",
+    "merged_summary_bytes": 124840,
+    "merged_summary_sha256": "922006115e86863188ccf3f72f4948e2555104b0bf4c05f490fdc2ff5c64fd26"
+  },
+  "experiment_counts": {
+    "architectures": 2,
+    "model_seeds_per_architecture": 3,
+    "anchors_per_model_partition": 20,
+    "raw_rows": 600,
+    "spectrum_rows": 24,
+    "summary_rows": 200
+  },
+  "training": [
+    {
+      "architecture": "cnn",
+      "model_count": 3,
+      "mean_evaluation_accuracy": 0.8370000000000001,
+      "accuracy_se": 0.004310839052125852,
+      "minimum_evaluation_accuracy": 0.8285,
+      "maximum_evaluation_accuracy": 0.8425,
+      "mean_evaluation_control_mse": 0.13079597304264703,
+      "parameter_count": 36090
+    },
+    {
+      "architecture": "tiny_vit",
+      "model_count": 3,
+      "mean_evaluation_accuracy": 0.8313333333333333,
+      "accuracy_se": 0.0023333333333333353,
+      "minimum_evaluation_accuracy": 0.827,
+      "maximum_evaluation_accuracy": 0.835,
+      "mean_evaluation_control_mse": 0.1368867059548696,
+      "parameter_count": 42162
+    }
+  ],
+  "baseline_and_rank6_closure": [
+    {"architecture": "cnn", "visible_rank": 1, "baseline_openness": 0.916853, "baseline_packing": 0.7166666666666667, "targeted_rank6": 0.05, "random_null_rank6": 0.15, "variance_null_rank6": 0.11666666666666665, "row_sham_rank6": 0.7166666666666667, "adaptive_closure_rank_le_0_05": 6},
+    {"architecture": "cnn", "visible_rank": 2, "baseline_openness": 0.738940, "baseline_packing": 0.5166666666666667, "targeted_rank6": 0.05, "random_null_rank6": 0.18333333333333335, "variance_null_rank6": 0.13333333333333333, "row_sham_rank6": 0.5166666666666667, "adaptive_closure_rank_le_0_05": 6},
+    {"architecture": "cnn", "visible_rank": 4, "baseline_openness": 0.531414, "baseline_packing": 0.4166666666666667, "targeted_rank6": 0.05, "random_null_rank6": 0.15, "variance_null_rank6": 0.08333333333333333, "row_sham_rank6": 0.4166666666666667, "adaptive_closure_rank_le_0_05": 6},
+    {"architecture": "cnn", "visible_rank": 8, "baseline_openness": 0.255769, "baseline_packing": 0.26666666666666666, "targeted_rank6": 0.05, "random_null_rank6": 0.08333333333333333, "variance_null_rank6": 0.03333333333333333, "row_sham_rank6": 0.26666666666666666, "adaptive_closure_rank_le_0_05": 6},
+    {"architecture": "tiny_vit", "visible_rank": 1, "baseline_openness": 0.940810, "baseline_packing": 0.8333333333333334, "targeted_rank6": 0.2, "random_null_rank6": 0.43333333333333335, "variance_null_rank6": 0.2833333333333333, "row_sham_rank6": 0.8333333333333334, "adaptive_closure_rank_le_0_05": null},
+    {"architecture": "tiny_vit", "visible_rank": 2, "baseline_openness": 0.877445, "baseline_packing": 0.7166666666666667, "targeted_rank6": 0.18333333333333335, "random_null_rank6": 0.48333333333333334, "variance_null_rank6": 0.26666666666666666, "row_sham_rank6": 0.7166666666666667, "adaptive_closure_rank_le_0_05": null},
+    {"architecture": "tiny_vit", "visible_rank": 4, "baseline_openness": 0.732074, "baseline_packing": 0.7166666666666667, "targeted_rank6": 0.15, "random_null_rank6": 0.3666666666666667, "variance_null_rank6": 0.21666666666666667, "row_sham_rank6": 0.7166666666666667, "adaptive_closure_rank_le_0_05": null},
+    {"architecture": "tiny_vit", "visible_rank": 8, "baseline_openness": 0.580277, "baseline_packing": 0.55, "targeted_rank6": 0.15, "random_null_rank6": 0.2833333333333333, "variance_null_rank6": 0.21666666666666667, "row_sham_rank6": 0.55, "adaptive_closure_rank_le_0_05": null}
+  ],
+  "architecture_aggregates": [
+    {"architecture": "cnn", "mean_baseline_packing": 0.4791666666666667, "mean_targeted_rank6_packing": 0.05000000000000001, "mean_random_null_rank6_packing": 0.1416666666666667, "mean_variance_null_rank6_packing": 0.09166666666666666, "targeted_relative_reduction_from_baseline": 0.8956521739130435},
+    {"architecture": "tiny_vit", "mean_baseline_packing": 0.7041666666666667, "mean_targeted_rank6_packing": 0.17083333333333334, "mean_random_null_rank6_packing": 0.3916666666666667, "mean_variance_null_rank6_packing": 0.24583333333333332, "targeted_relative_reduction_from_baseline": 0.7573964497041421}
+  ],
+  "paired_equal_rank_tests": [
+    {"architecture": "cnn", "comparison": "targeted_vs_random_null", "paired_cells": 12, "mean_difference": -0.09166666666666667, "wilcoxon_statistic": 2.0, "one_sided_p_value": 0.001953125},
+    {"architecture": "cnn", "comparison": "targeted_vs_variance_null", "paired_cells": 12, "mean_difference": -0.041666666666666664, "wilcoxon_statistic": 3.5, "one_sided_p_value": 0.013671875},
+    {"architecture": "tiny_vit", "comparison": "targeted_vs_random_null", "paired_cells": 12, "mean_difference": -0.22083333333333333, "wilcoxon_statistic": 0.0, "one_sided_p_value": 0.000244140625},
+    {"architecture": "tiny_vit", "comparison": "targeted_vs_variance_null", "paired_cells": 12, "mean_difference": -0.075, "wilcoxon_statistic": 0.0, "one_sided_p_value": 0.00048828125}
+  ],
+  "architecture_baseline_test": {
+    "comparison": "tiny_vit_baseline_greater_than_cnn_baseline",
+    "paired_cells": 12,
+    "mean_difference": 0.225,
+    "wilcoxon_statistic": 66.0,
+    "one_sided_p_value": 0.00048828125
+  },
+  "geometry_association": {
+    "correlation_all_grouped_rows_openness_vs_packing": 0.9637837069516552,
+    "correlation_baseline_architecture_rank_cells_openness_vs_packing": 0.935814703344598,
+    "mean_benign_control_acceptance": 0.9499999999999997,
+    "maximum_benign_control_acceptance_deviation_from_0_95": 1.1102230246251565e-16,
+    "maximum_row_sham_packing_difference_from_baseline": 0.0
+  },
+  "static_spectra": [
+    {"architecture": "cnn", "visible_rank": 1, "mean_gradient_rank_95": 7.0, "mean_displacement_rank_95": 7.666666666666667},
+    {"architecture": "cnn", "visible_rank": 2, "mean_gradient_rank_95": 7.0, "mean_displacement_rank_95": 6.333333333333333},
+    {"architecture": "cnn", "visible_rank": 4, "mean_gradient_rank_95": 7.0, "mean_displacement_rank_95": 5.333333333333333},
+    {"architecture": "cnn", "visible_rank": 8, "mean_gradient_rank_95": 7.0, "mean_displacement_rank_95": 4.333333333333333},
+    {"architecture": "tiny_vit", "visible_rank": 1, "mean_gradient_rank_95": 7.333333333333333, "mean_displacement_rank_95": 7.666666666666667},
+    {"architecture": "tiny_vit", "visible_rank": 2, "mean_gradient_rank_95": 7.333333333333333, "mean_displacement_rank_95": 7.333333333333333},
+    {"architecture": "tiny_vit", "visible_rank": 4, "mean_gradient_rank_95": 7.333333333333333, "mean_displacement_rank_95": 6.666666666666667},
+    {"architecture": "tiny_vit", "visible_rank": 8, "mean_gradient_rank_95": 7.333333333333333, "mean_displacement_rank_95": 6.666666666666667}
+  ],
+  "interpretation": {
+    "supported": [
+      "Conditional collision packing persists on Fashion-MNIST in independently trained CNN and Tiny-ViT encoders.",
+      "Grouped post-intervention openness strongly tracks exact maximum-matching packing.",
+      "At equal added rank six, targeted dangerous-gradient subspaces reduce packing more than random-null and variance-null controls on average in both architectures.",
+      "CNN reaches the preregistered five-percent packing target at closure rank six for every visible-rank cell.",
+      "Tiny-ViT retains fifteen-to-twenty percent packing at closure rank six and therefore exhibits a higher-dimensional adaptive tunnel geometry.",
+      "Redundant row-space interventions are exactly inert under the covariance-whitened control metric."
+    ],
+    "not_supported": [
+      "A universal low-rank closure of collision tunnels.",
+      "Targeted closure dominates every control in every individual model cell.",
+      "ImageNet-scale, pretrained-production, physical-world, or deployed-model generalization.",
+      "Coherent quantum runtime or fault-tolerant resource advantage.",
+      "A universal fully heterogeneous worst-case packed-claw matching lower bound."
+    ]
+  }
+}
