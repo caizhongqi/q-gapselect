@@ -1,0 +1,28 @@
+{
+  "artifact_type": "qcollide_legacy_collision_topology_evidence_audit",
+  "associations": {
+    "displacement_rank95_vs_capacity": 0.7756869954930634,
+    "gradient_rank95_vs_capacity": -0.2362078542655632,
+    "openness_vs_capacity": 0.8122215117930884,
+    "openness_vs_displacement_rank95": 0.9108009865636324
+  },
+  "cell_count": 16,
+  "claim_scope": {
+    "phase_transition_claimed": false,
+    "retrospective_entropy_reconstruction_claimed": false,
+    "supports_full_collision_topology": false,
+    "supports_partial_capacity_dimension_profile": true
+  },
+  "datasets": [
+    "Fashion-MNIST",
+    "scikit-learn digits"
+  ],
+  "metric_identifiability": {
+    "D_C_displacement_spectral_proxy": "identified",
+    "H_C_component_entropy": "not_identifiable_without_adjacency",
+    "K_C_matching_capacity": "identified",
+    "beta_0_active_components": "not_identifiable_without_adjacency",
+    "beta_1_collision_cycles": "not_identifiable_without_adjacency"
+  },
+  "schema_version": 1
+}
