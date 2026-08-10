@@ -1,9 +1,10 @@
-"""Cost-profile lower bounds for prefix-conditional packed claw finding.
+"""Conditional cost profiles for prefix-conditional packed claw finding.
 
-The bounds in this module are valid for the explicit composed-oracle model
-stated in ``docs/qcollide_weighted_prefix_lower_bound.md``. They are not a
-claim that every variable-time implementation is characterized by the same
-profile.
+The numerical multi-solution expression in this module is a lower bound only
+when the stated unit-cost outer packed-claw adversary premise has independently
+been established. The rigorous unconditional result supplied by the project is
+the adversary-composition transfer and its ordinary single-claw instantiation;
+see ``docs/qcollide_weighted_prefix_lower_bound.md``.
 """
 
 from __future__ import annotations
@@ -35,7 +36,13 @@ def homogeneous_packed_claw_lower_bound(
     packed_solutions: int,
     endpoint_cost: float,
 ) -> float:
-    """Return C * ((N_A N_B) / nu)^(1/3) in the composed-oracle model."""
+    """Return the conditional composed profile C*((N_A*N_B)/nu)^(1/3).
+
+    For ``packed_solutions == 1`` this specializes to the established
+    homogeneous single-claw composition bound. For more than one solution, the
+    caller must separately justify the corresponding unit-cost outer-relation
+    adversary lower bound.
+    """
 
     if left_domain <= 0 or right_domain <= 0:
         raise ValueError("domain sizes must be positive")
@@ -53,12 +60,12 @@ def prefix_stage_restriction_profile(
     right_survivors: tuple[int, ...],
     packed_solutions: tuple[int, ...],
 ) -> PrefixRestrictionProfile:
-    """Compute the maximum lower bound obtained by restricting to one stage.
+    """Compute a conditional stage-restriction hardness profile.
 
-    Stage ``l`` is interpreted as a homogeneous composed packed-claw instance
-    on the endpoints surviving through that stage. A zero packed-solution
-    count contributes a zero bound because it cannot contain a positive search
-    instance.
+    Each nonzero stage value assumes that the restricted unit-cost outer
+    relation has adversary value at least
+    ``((N_A,l*N_B,l)/nu_l)^(1/3)``. A zero packed-solution count contributes
+    zero because it cannot contain a positive search instance.
     """
 
     levels = len(incremental_costs)
