@@ -32,7 +32,10 @@ def _correlation(x: Sequence[float], y: Sequence[float]) -> float | None:
 
 
 def _spearman(x: Sequence[float], y: Sequence[float]) -> float | None:
-    return _correlation(_rankdata(np.asarray(x, dtype=float)), _rankdata(np.asarray(y, dtype=float)))
+    return _correlation(
+        _rankdata(np.asarray(x, dtype=float)),
+        _rankdata(np.asarray(y, dtype=float)),
+    )
 
 
 def _partial_architecture_accuracy(
@@ -86,7 +89,11 @@ def build_training_risk_monitor_table(
         raise ValueError("unexpected performance artifact type")
 
     performance_by_key = {
-        (str(row["architecture"]), int(row["model_seed"]), int(row["checkpoint_epoch"])): row
+        (
+            str(row["architecture"]),
+            int(row["model_seed"]),
+            int(row["checkpoint_epoch"]),
+        ): row
         for row in performance["rows"]
     }
     topology_by_key = {
@@ -123,20 +130,37 @@ def build_training_risk_monitor_table(
                 topology_row = topology_by_key.get((model[0], model[1], epoch, rank))
                 performance_row = performance_by_key.get((model[0], model[1], epoch))
                 if topology_row is None or performance_row is None:
-                    raise ValueError(f"missing early cell for {model}, epoch={epoch}, rank={rank}")
+                    raise ValueError(
+                        f"missing early cell for {model}, epoch={epoch}, rank={rank}"
+                    )
                 point = _nominal_point(topology_row)
-                denominator = max(1, min(int(point["n_left"]), int(point["n_right"])))
+                denominator = max(
+                    1,
+                    min(int(point["n_left"]), int(point["n_right"])),
+                )
                 architecture_values.append(model[0])
                 early_accuracy.append(float(performance_row["calibration_accuracy"]))
                 final_values.append(final_capacity[model])
                 metrics["capacity_fraction"].append(float(point["capacity_fraction"]))
-                metrics["basin_density"].append(float(point["beta0_active"]) / denominator)
-                metrics["capacity_auc"].append(float(topology_row["filtration_summary"]["capacity_auc"]))
+                metrics["basin_density"].append(
+                    float(point["beta0_active"]) / denominator
+                )
+                metrics["capacity_auc"].append(
+                    float(topology_row["filtration_summary"]["capacity_auc"])
+                )
                 metrics["capacity_robustness_ratio"].append(
-                    float(topology_row["filtration_summary"]["capacity_robustness_ratio"])
+                    float(
+                        topology_row["filtration_summary"][
+                            "capacity_robustness_ratio"
+                        ]
+                    )
                 )
                 metrics["persistent_basin_lifetime"].append(
-                    float(topology_row["basin_persistence"]["normalized_total_lifetime"])
+                    float(
+                        topology_row["basin_persistence"][
+                            "normalized_total_lifetime"
+                        ]
+                    )
                 )
 
             accuracy_spearman = _spearman(early_accuracy, final_values)
@@ -153,7 +177,8 @@ def build_training_risk_monitor_table(
                         "early_accuracy_to_final_capacity_spearman": accuracy_spearman,
                         "spearman_gain_over_early_accuracy": (
                             metric_spearman - accuracy_spearman
-                            if metric_spearman is not None and accuracy_spearman is not None
+                            if metric_spearman is not None
+                            and accuracy_spearman is not None
                             else None
                         ),
                         "partial_pearson_controlling_architecture_and_early_accuracy": (
@@ -168,7 +193,15 @@ def build_training_risk_monitor_table(
                 )
 
     capacity_rows = [row for row in rows if row["metric"] == "capacity_fraction"]
-    high_rank = [row for row in capacity_rows if int(row["visible_rank"]) in {8, 32}]
+    high_rank = [
+        row for row in capacity_rows if int(row["visible_rank"]) in {8, 32}
+    ]
+    high_rank_partials = [
+        float(row["partial_pearson_controlling_architecture_and_early_accuracy"])
+        for row in high_rank
+        if row["partial_pearson_controlling_architecture_and_early_accuracy"]
+        is not None
+    ]
     return {
         "artifact_type": "qcollide_training_risk_monitor_utility_table",
         "schema_version": 1,
@@ -187,10 +220,8 @@ def build_training_risk_monitor_table(
                 )
             ),
             "high_rank_capacity_cell_count": len(high_rank),
-            "minimum_high_rank_capacity_partial_correlation": min(
-                float(row["partial_pearson_controlling_architecture_and_early_accuracy"])
-                for row in high_rank
-                if row["partial_pearson_controlling_architecture_and_early_accuracy"] is not None
+            "minimum_high_rank_capacity_partial_correlation": (
+                min(high_rank_partials) if high_rank_partials else None
             ),
         },
         "claim_boundary": {
