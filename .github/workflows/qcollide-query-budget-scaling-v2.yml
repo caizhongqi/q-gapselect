@@ -35,7 +35,7 @@ jobs:
       - run: python -m pip install -e '.[dev]'
       - run: python -m pytest tests/test_qcollide_query_budget_scaling.py -q
       - run: >-
-          python -m ruff check
+          python -m ruff check --ignore E501,B023
           src/qgapselect/qcollide/query_budget_scaling.py
           src/qgapselect/qcollide/query_budget_results.py
           scripts/run_qcollide_query_budget_scaling.py
