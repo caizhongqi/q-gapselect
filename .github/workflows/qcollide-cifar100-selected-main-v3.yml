@@ -7,12 +7,6 @@ on:
       - agent/qcollide-cifar-topology
     paths:
       - '.github/workflows/qcollide-cifar100-selected-main-v3.yml'
-      - 'configs/qcollide_cifar100_selected_main_v3.json'
-      - 'src/qgapselect/qcollide/cifar_selected_topology.py'
-      - 'src/qgapselect/qcollide/cifar_selected_results.py'
-      - 'scripts/run_qcollide_cifar_selected_topology.py'
-      - 'scripts/merge_qcollide_cifar_selected_main.py'
-      - 'tests/test_qcollide_cifar_selected_results.py'
 
 concurrency:
   group: qcollide-cifar100-selected-main-v3-${{ github.ref }}
@@ -23,6 +17,7 @@ permissions:
 
 jobs:
   preflight:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
