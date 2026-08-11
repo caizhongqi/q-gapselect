@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "n_values": [256, 512, 1024, 2048, 4096, 8192, 16384],
+  "capacity_denominators": [64, 32, 16],
+  "capacity_scale_multipliers": [1.0, 1.5, 2.0],
+  "relative_epsilon": 0.25,
+  "monte_carlo_trials": 8192,
+  "fixture_seed": 20260811,
+  "claim_boundary": {
+    "packed_disjoint_promise_only": true,
+    "inner_pair_finding_is_prior_art": true,
+    "quantum_query_values_are_analytic_not_runtime": true,
+    "bounded_overlap_theorem_claimed": false,
+    "hardware_advantage_claimed": false
+  }
+}
