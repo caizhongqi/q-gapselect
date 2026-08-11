@@ -1,0 +1,146 @@
+name: qcollide-cifar10-prospective-repair-utility
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/qcollide-neural-atlas
+    paths:
+      - '.github/workflows/qcollide-cifar10-repair-utility.yml'
+      - 'configs/qcollide_cifar10_repair_utility.json'
+      - 'docs/qcollide_cifar_repair_utility_protocol.md'
+      - 'src/qgapselect/qcollide/cifar_repair_data.py'
+      - 'src/qgapselect/qcollide/cifar_repair_utility.py'
+      - 'src/qgapselect/qcollide/cifar_repair_results.py'
+      - 'scripts/prepare_qcollide_cifar10_hf_snapshot.py'
+      - 'scripts/run_qcollide_cifar_repair_utility.py'
+      - 'scripts/merge_qcollide_cifar_repair_utility.py'
+      - 'tests/test_qcollide_cifar_repair_utility.py'
+
+concurrency:
+  group: qcollide-cifar10-prospective-repair-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[vision]'
+      - run: >-
+          python -m pytest
+          tests/test_qcollide_cifar_repair_utility.py
+          -q
+      - run: >-
+          python -m ruff check
+          src/qgapselect/qcollide/cifar_repair_data.py
+          src/qgapselect/qcollide/cifar_repair_utility.py
+          src/qgapselect/qcollide/cifar_repair_results.py
+          scripts/prepare_qcollide_cifar10_hf_snapshot.py
+          scripts/run_qcollide_cifar_repair_utility.py
+          scripts/merge_qcollide_cifar_repair_utility.py
+          tests/test_qcollide_cifar_repair_utility.py
+
+  prepare-data:
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install 'numpy>=1.24' 'datasets>=2.20,<5'
+      - uses: actions/cache@v4
+        id: raw-cache
+        with:
+          path: .cache/qcollide-repair-cifar10
+          key: qcollide-cifar10-repair-snapshot-v1-${{ runner.os }}
+      - name: Freeze CIFAR-10 raw snapshot from HF mirror
+        if: steps.raw-cache.outputs.cache-hit != 'true'
+        run: >-
+          python scripts/prepare_qcollide_cifar10_hf_snapshot.py
+          --output-directory .cache/qcollide-repair-cifar10
+      - name: Verify prepared snapshot
+        run: |
+          test -f .cache/qcollide-repair-cifar10/train_images.npy
+          test -f .cache/qcollide-repair-cifar10/train_labels.npy
+          test -f .cache/qcollide-repair-cifar10/evaluation_images.npy
+          test -f .cache/qcollide-repair-cifar10/evaluation_labels.npy
+          test -f .cache/qcollide-repair-cifar10/snapshot_metadata.json
+          cat .cache/qcollide-repair-cifar10/snapshot_metadata.json
+
+  component:
+    needs: prepare-data
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        architecture: [resnet18, vit_tiny, mlp_mixer]
+        seed: [0, 1, 2]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[vision]'
+      - uses: actions/cache@v4
+        with:
+          path: .cache/qcollide-repair-cifar10
+          key: qcollide-cifar10-repair-snapshot-v1-${{ runner.os }}
+          fail-on-cache-miss: true
+      - run: mkdir -p artifacts-ci
+      - name: Run prospective collision repair component
+        run: >-
+          python scripts/run_qcollide_cifar_repair_utility.py
+          --config configs/qcollide_cifar10_repair_utility.json
+          --architecture ${{ matrix.architecture }}
+          --model-seed ${{ matrix.seed }}
+          --output artifacts-ci/component.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-cifar10-repair-${{ matrix.architecture }}-${{ matrix.seed }}
+          path: artifacts-ci/component.json
+          if-no-files-found: error
+          retention-days: 21
+
+  merge:
+    needs: component
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qcollide-cifar10-repair-*
+          path: artifacts-components
+      - run: mkdir -p artifacts-ci
+      - run: >-
+          python scripts/merge_qcollide_cifar_repair_utility.py
+          --input-directory artifacts-components
+          --config configs/qcollide_cifar10_repair_utility.json
+          --output artifacts-ci/qcollide_cifar10_prospective_repair_utility.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-cifar10-prospective-repair-utility
+          path: artifacts-ci/qcollide_cifar10_prospective_repair_utility.json
+          if-no-files-found: error
+          retention-days: 21
