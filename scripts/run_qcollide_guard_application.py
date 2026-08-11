@@ -4,9 +4,11 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import random
 import tempfile
+import urllib.parse
 import urllib.request
 from pathlib import Path
 from typing import Any
@@ -34,6 +36,7 @@ _PROTECTAI_VALIDATION_SPLITS = (
     "wildguard",
     "deepset",
 )
+_DATASET_VIEWER_BASE = "https://datasets-server.huggingface.co"
 
 
 def _load_optional_dependencies():
@@ -57,6 +60,20 @@ def _load_optional_dependencies():
     )
 
 
+def _http_json(url: str) -> dict[str, Any]:
+    request = urllib.request.Request(
+        url,
+        headers={"User-Agent": "q-gapselect-guard-benchmark/0.1"},
+    )
+    with urllib.request.urlopen(request, timeout=120) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def _dataset_viewer_json(endpoint: str, **params: object) -> dict[str, Any]:
+    query = urllib.parse.urlencode(params)
+    return _http_json(f"{_DATASET_VIEWER_BASE}/{endpoint}?{query}")
+
+
 def _download_public_parquet(url: str, destination: Path) -> None:
     request = urllib.request.Request(
         url,
@@ -66,8 +83,71 @@ def _download_public_parquet(url: str, destination: Path) -> None:
         destination.write_bytes(response.read())
 
 
+def _load_from_dataset_viewer(load_dataset, dataset_name: str):
+    split_payload = _dataset_viewer_json("splits", dataset=dataset_name)
+    split_records = split_payload.get("splits", [])
+    if not isinstance(split_records, list) or not split_records:
+        raise RuntimeError("Dataset Viewer returned no splits")
+
+    expected = set(_PROTECTAI_VALIDATION_SPLITS)
+    actual = {str(record["split"]) for record in split_records}
+    if actual != expected:
+        raise RuntimeError(
+            "Dataset Viewer split set differs from the frozen ProtectAI fixture: "
+            f"expected={sorted(expected)}, actual={sorted(actual)}"
+        )
+
+    with tempfile.TemporaryDirectory(prefix="qcollide-viewer-") as temporary_dir:
+        root = Path(temporary_dir)
+        data_files: dict[str, str] = {}
+        for record in split_records:
+            config = str(record["config"])
+            split = str(record["split"])
+            rows: list[dict[str, Any]] = []
+            offset = 0
+            while True:
+                page = _dataset_viewer_json(
+                    "rows",
+                    dataset=dataset_name,
+                    config=config,
+                    split=split,
+                    offset=offset,
+                    length=100,
+                )
+                wrapped_rows = page.get("rows", [])
+                if not isinstance(wrapped_rows, list):
+                    raise RuntimeError("Dataset Viewer returned an invalid rows payload")
+                for wrapped in wrapped_rows:
+                    row = wrapped.get("row", {})
+                    if "text" not in row or "label" not in row:
+                        raise RuntimeError("Dataset Viewer row lacks text/label")
+                    rows.append(
+                        {
+                            "text": str(row["text"]),
+                            "label": int(row["label"]),
+                            "source": row.get("source"),
+                        }
+                    )
+                if len(wrapped_rows) < 100:
+                    break
+                offset += len(wrapped_rows)
+
+            destination = root / f"{split}.jsonl"
+            with destination.open("w", encoding="utf-8") as handle:
+                for row in rows:
+                    handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+            data_files[split] = str(destination)
+
+        dataset = load_dataset(
+            "json",
+            data_files=data_files,
+            keep_in_memory=True,
+        )
+    return dataset, "dataset_viewer_rows", None
+
+
 def _load_dataset_bundle(load_dataset, dataset_name: str):
-    """Load a dataset, bypassing the Hub API for the pinned ProtectAI fallback."""
+    """Load a dataset with reproducible fallbacks for the ProtectAI fixture."""
     try:
         if dataset_name == _PROTECTAI_VALIDATION_DATASET:
             dataset = load_dataset(
@@ -80,6 +160,7 @@ def _load_dataset_bundle(load_dataset, dataset_name: str):
         if dataset_name != _PROTECTAI_VALIDATION_DATASET:
             raise
 
+    try:  # pragma: no cover - Actions currently receives 401 from raw Hub URLs
         with tempfile.TemporaryDirectory(prefix="qcollide-protectai-") as temporary_dir:
             root = Path(temporary_dir)
             local_files = {}
@@ -99,6 +180,18 @@ def _load_dataset_bundle(load_dataset, dataset_name: str):
                 keep_in_memory=True,
             )
         return dataset, "direct_http_parquet", _PROTECTAI_VALIDATION_REVISION
+    except Exception:
+        return _load_from_dataset_viewer(load_dataset, dataset_name)
+
+
+def _fixture_sha256(texts: list[str], labels: np.ndarray) -> str:
+    digest = hashlib.sha256()
+    for label, text in zip(labels.tolist(), texts, strict=True):
+        digest.update(str(int(label)).encode("ascii"))
+        digest.update(b"\x00")
+        digest.update(text.encode("utf-8"))
+        digest.update(b"\x00")
+    return digest.hexdigest()
 
 
 def _masked_mean(hidden, attention_mask, torch):
@@ -268,6 +361,7 @@ def main() -> int:
     selected = _balanced_indices(labels_all, args.per_class, args.seed)
     texts = texts_all[selected].tolist()
     labels = labels_all[selected]
+    fixture_sha256 = _fixture_sha256(texts, labels)
 
     guard_tokenizer = AutoTokenizer.from_pretrained(args.guard_model)
     guard_model = AutoModelForSequenceClassification.from_pretrained(args.guard_model)
@@ -359,6 +453,7 @@ def main() -> int:
         "dataset_access": dataset_access,
         "dataset_revision": dataset_revision,
         "dataset_splits": split_names,
+        "fixture_sha256": fixture_sha256,
         "seed": args.seed,
         "sampled_per_class": args.per_class,
         "unsafe_class_index": unsafe_index,
