@@ -1,0 +1,137 @@
+name: qcollide-pretrained-vision-atlas
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/qcollide-neural-atlas
+    paths:
+      - '.github/workflows/qcollide-pretrained-vision-atlas.yml'
+      - 'configs/qcollide_pretrained_vision_cifar10_phase2.json'
+      - 'src/qgapselect/qcollide/pretrained_vision_atlas.py'
+      - 'src/qgapselect/qcollide/pretrained_vision_results.py'
+      - 'scripts/run_qcollide_pretrained_vision_atlas.py'
+      - 'scripts/merge_qcollide_pretrained_vision_atlas.py'
+      - 'tests/test_qcollide_pretrained_vision_atlas.py'
+
+concurrency:
+  group: qcollide-pretrained-vision-atlas-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -e '.[dev]'
+      - run: python -m pytest tests/test_qcollide_pretrained_vision_atlas.py -q
+      - run: >-
+          python -m ruff check --ignore E501
+          src/qgapselect/qcollide/pretrained_vision_atlas.py
+          src/qgapselect/qcollide/pretrained_vision_results.py
+          scripts/run_qcollide_pretrained_vision_atlas.py
+          scripts/merge_qcollide_pretrained_vision_atlas.py
+          tests/test_qcollide_pretrained_vision_atlas.py
+
+  prepare-data:
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --index-url https://download.pytorch.org/whl/cpu torch torchvision
+      - uses: actions/cache@v4
+        with:
+          path: .cache/qcollide-pretrained-vision
+          key: qcollide-cifar10-pretrained-vision-${{ runner.os }}
+      - run: |
+          mkdir -p .cache/qcollide-pretrained-vision
+          python - <<'PY'
+          from torchvision.datasets import CIFAR10
+          root = '.cache/qcollide-pretrained-vision'
+          print('train', len(CIFAR10(root=root, train=True, download=True)))
+          print('test', len(CIFAR10(root=root, train=False, download=True)))
+          PY
+
+  component:
+    needs: prepare-data
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        architecture: [resnet50, convnext_tiny, swin_t, vit_b_16]
+        seed: [20260811, 20260812, 20260813]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -e .
+      - run: python -m pip install --index-url https://download.pytorch.org/whl/cpu torch torchvision
+      - run: python -m pip install 'scikit-learn>=1.9'
+      - uses: actions/cache@v4
+        with:
+          path: .cache/qcollide-pretrained-vision
+          key: qcollide-cifar10-pretrained-vision-${{ runner.os }}
+          fail-on-cache-miss: true
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/torch/hub/checkpoints
+          key: qcollide-pretrained-vision-${{ runner.os }}-${{ matrix.architecture }}
+          restore-keys: |
+            qcollide-pretrained-vision-${{ runner.os }}-
+      - run: mkdir -p artifacts-ci
+      - name: Run pretrained visual encoder component
+        run: >-
+          python scripts/run_qcollide_pretrained_vision_atlas.py
+          --config configs/qcollide_pretrained_vision_cifar10_phase2.json
+          --architecture ${{ matrix.architecture }}
+          --fixture-seed ${{ matrix.seed }}
+          --output artifacts-ci/component.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-pretrained-vision-${{ matrix.architecture }}-${{ matrix.seed }}
+          path: artifacts-ci/component.json
+          if-no-files-found: error
+          retention-days: 21
+
+  merge:
+    needs: component
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qcollide-pretrained-vision-*
+          path: artifacts-components
+      - run: mkdir -p artifacts-ci
+      - run: >-
+          python scripts/merge_qcollide_pretrained_vision_atlas.py
+          --input-directory artifacts-components
+          --config configs/qcollide_pretrained_vision_cifar10_phase2.json
+          --output artifacts-ci/qcollide_pretrained_vision_atlas_merged.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-pretrained-vision-atlas-merged
+          path: artifacts-ci/qcollide_pretrained_vision_atlas_merged.json
+          if-no-files-found: error
+          retention-days: 21
