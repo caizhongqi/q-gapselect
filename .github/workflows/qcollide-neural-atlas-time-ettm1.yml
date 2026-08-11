@@ -13,6 +13,7 @@ on:
       - 'scripts/run_qcollide_time_atlas.py'
       - 'scripts/merge_qcollide_time_atlas.py'
       - 'tests/test_qcollide_time_atlas.py'
+      - '.ruff.toml'
       - 'pyproject.toml'
 
 concurrency:
@@ -94,11 +95,17 @@ jobs:
         with:
           pattern: qcollide-time-ettm1-*
           path: artifacts-components
-          merge-multiple: true
-      - run: mkdir -p artifacts-ci
+      - name: Preserve every time-series component artifact
+        run: |
+          mkdir -p flattened artifacts-ci
+          find artifacts-components -name 'component.json' -print0 | while IFS= read -r -d '' file; do
+            parent=$(basename "$(dirname "$file")")
+            cp "$file" "flattened/${parent}.json"
+          done
+          test "$(find flattened -name '*.json' | wc -l)" -eq 12
       - run: >-
           python scripts/merge_qcollide_time_atlas.py
-          --input-directory artifacts-components
+          --input-directory flattened
           --config configs/qcollide_time_ettm1_phase2.json
           --output artifacts-ci/qcollide_time_ettm1_phase2_merged.json
       - uses: actions/upload-artifact@v4
