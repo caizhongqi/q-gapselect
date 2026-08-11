@@ -26,8 +26,8 @@ jobs:
       fail-fast: false
       matrix:
         guard:
-          - protectai/deberta-v3-small-prompt-injection-v2
           - protectai/deberta-v3-base-prompt-injection-v2
+          - fmops/distilbert-prompt-injection
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -52,7 +52,7 @@ jobs:
           python scripts/run_qcollide_guard_application.py \
             --guard-model '${{ matrix.guard }}' \
             --behavior-model 'HuggingFaceTB/SmolLM2-135M-Instruct' \
-            --dataset 'protectai/prompt-injection-validation' \
+            --dataset 'deepset/prompt-injections' \
             --per-class 160 \
             --batch-size 16 \
             --max-length 128 \
