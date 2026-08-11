@@ -111,7 +111,13 @@ jobs:
               benign_acceptance = [float(row['domain']['benign_acceptance_observed']) for row in rows]
               classical = [float(row['query_proxies']['packed_classical_discovery_proxy']) for row in rows]
               quantum = [float(row['query_proxies']['packed_quantum_discovery_proxy']) for row in rows]
-              ratios = [c / q for c, q in zip(classical, quantum, strict=True) if q > 0]
+              positive_rows = [row for row in rows if row['collision_graph']['matching_capacity'] > 0]
+              positive_ratios = [
+                  float(row['query_proxies']['packed_classical_discovery_proxy'])
+                  / float(row['query_proxies']['packed_quantum_discovery_proxy'])
+                  for row in positive_rows
+                  if float(row['query_proxies']['packed_quantum_discovery_proxy']) > 0
+              ]
               aggregates.append({
                   'guard_model': guard,
                   'seed_count': len(rows),
@@ -126,12 +132,14 @@ jobs:
                   'benign_acceptance_mean': statistics.mean(benign_acceptance),
                   'packed_classical_proxy_mean': statistics.mean(classical),
                   'packed_quantum_proxy_mean': statistics.mean(quantum),
-                  'classical_to_quantum_proxy_ratio_mean': statistics.mean(ratios),
+                  'classical_to_quantum_proxy_ratio_mean_nonzero_capacity': (
+                      statistics.mean(positive_ratios) if positive_ratios else None
+                  ),
               })
 
           payload = {
               'artifact_type': 'qcollide_guard_application_main_table',
-              'schema_version': 2,
+              'schema_version': 3,
               'records': records,
               'aggregates': aggregates,
               'claim_boundary': {
@@ -139,6 +147,7 @@ jobs:
                   'generated_jailbreak_content': False,
                   'quantum_values_are': 'analytic endpoint-query proxies',
                   'multi_seed_results_are_empirical': True,
+                  'proxy_ratio_reported_only_when_matching_capacity_is_positive': True,
               },
           }
           Path('artifacts-ci').mkdir(exist_ok=True)
