@@ -1,0 +1,50 @@
+{
+  "architecture_model_counts": {
+    "mlp_mixer": 5,
+    "resnet18": 4,
+    "vit_tiny": 5
+  },
+  "artifact_type": "qcollide_cifar_strict_matched_subset_sensitivity",
+  "claim_boundary": {
+    "architecture_causality_claimed": false,
+    "excluded_models_selected_only_by_preregistered_accuracy_gate": true,
+    "sensitivity_analysis_only": true
+  },
+  "dataset": "cifar10",
+  "excluded_models": [
+    {
+      "absolute_calibration_mismatch": 0.04349999999999998,
+      "architecture": "resnet18",
+      "checkpoint_epoch": 3,
+      "model_seed": 0
+    }
+  ],
+  "frozen_maximum_accuracy_mismatch": 0.04,
+  "gates": {
+    "all_retained_models_within_frozen_tolerance": true,
+    "at_least_four_models_per_architecture": true,
+    "posthoc_tolerance_relaxation_used": false
+  },
+  "main_cells": [
+    {"architecture":"mlp_mixer","visible_rank":1,"model_count":5,"mean_calibration_accuracy":0.5826499999999999,"mean_evaluation_accuracy":0.5793,"mean_capacity_fraction":0.6733333333333333,"mean_basin_density":0.14666666666666667,"mean_cycle_density":0.4792228879438182,"mean_component_entropy":0.45386333981829025,"mean_displacement_entropy_rank":14.625191557983214,"mean_capacity_auc":0.7802222222222222,"mean_capacity_robustness_ratio":0.8457681897711689,"mean_persistent_basin_lifetime":0.10155552865610404,"se_calibration_accuracy":0.011379971441088954,"se_evaluation_accuracy":0.011462275079581714,"se_capacity_fraction":0.02211083193570266,"se_basin_density":0.016158932858054427,"se_cycle_density":0.01883293669079637,"se_component_entropy":0.04478179454843441,"se_displacement_entropy_rank":0.3461333007080125,"se_capacity_auc":0.011061835179158288,"se_capacity_robustness_ratio":0.019112407832976408,"se_persistent_basin_lifetime":0.005474231726591403},
+    {"architecture":"mlp_mixer","visible_rank":8,"model_count":5,"mean_calibration_accuracy":0.5826499999999999,"mean_evaluation_accuracy":0.5793,"mean_capacity_fraction":0.0,"mean_basin_density":0.0,"mean_cycle_density":0.0,"mean_component_entropy":0.0,"mean_displacement_entropy_rank":0.0,"mean_capacity_auc":0.12466666666666666,"mean_capacity_robustness_ratio":0.23619825565194258,"mean_persistent_basin_lifetime":0.04722887679818723,"se_calibration_accuracy":0.011379971441088954,"se_evaluation_accuracy":0.011462275079581714,"se_capacity_fraction":0.0,"se_basin_density":0.0,"se_cycle_density":0.0,"se_component_entropy":0.0,"se_displacement_entropy_rank":0.0,"se_capacity_auc":0.018623627631931414,"se_capacity_robustness_ratio":0.008019022765162864,"se_persistent_basin_lifetime":0.005377402268229844},
+    {"architecture":"mlp_mixer","visible_rank":32,"model_count":5,"mean_calibration_accuracy":0.5826499999999999,"mean_evaluation_accuracy":0.5793,"mean_capacity_fraction":0.0,"mean_basin_density":0.0,"mean_cycle_density":0.0,"mean_component_entropy":0.0,"mean_displacement_entropy_rank":0.0,"mean_capacity_auc":0.14133333333333334,"mean_capacity_robustness_ratio":0.17227611379495436,"mean_persistent_basin_lifetime":0.019660092354910248,"se_calibration_accuracy":0.011379971441088954,"se_evaluation_accuracy":0.011462275079581714,"se_capacity_fraction":0.0,"se_basin_density":0.0,"se_cycle_density":0.0,"se_component_entropy":0.0,"se_displacement_entropy_rank":0.0,"se_capacity_auc":0.007749153677405638,"se_capacity_robustness_ratio":0.0036065062030279566,"se_persistent_basin_lifetime":0.001145135105561965},
+    {"architecture":"resnet18","visible_rank":1,"model_count":4,"mean_calibration_accuracy":0.554125,"mean_evaluation_accuracy":0.5438125,"mean_capacity_fraction":0.9083333333333332,"mean_basin_density":0.0375,"mean_cycle_density":0.7722157352756972,"mean_component_entropy":0.11033356463562174,"mean_displacement_entropy_rank":5.919878437188005,"mean_capacity_auc":0.9393055555555556,"mean_capacity_robustness_ratio":0.9431355932203389,"mean_persistent_basin_lifetime":0.0445758703521298,"se_calibration_accuracy":0.0034888214342382227,"se_evaluation_accuracy":0.004673033231567407,"se_capacity_fraction":0.04383259399460971,"se_basin_density":0.01577474540500076,"se_cycle_density":0.03536113565994407,"se_component_entropy":0.06534953220526907,"se_displacement_entropy_rank":0.391483918465519,"se_capacity_auc":0.022416253610403458,"se_capacity_robustness_ratio":0.02065735146568029,"se_persistent_basin_lifetime":0.005439698397573743},
+    {"architecture":"resnet18","visible_rank":8,"model_count":4,"mean_calibration_accuracy":0.554125,"mean_evaluation_accuracy":0.5438125,"mean_capacity_fraction":0.1875,"mean_basin_density":0.0625,"mean_cycle_density":0.07646834477498093,"mean_component_entropy":0.4139027986657101,"mean_displacement_entropy_rank":3.657339641961504,"mean_capacity_auc":0.6090277777777777,"mean_capacity_robustness_ratio":0.6180529350104822,"mean_persistent_basin_lifetime":0.0334511930032958,"se_calibration_accuracy":0.0034888214342382227,"se_evaluation_accuracy":0.004673033231567407,"se_capacity_fraction":0.09061901321221477,"se_basin_density":0.024883990093290165,"se_cycle_density":0.04509462518091653,"se_component_entropy":0.19084705416178754,"se_displacement_entropy_rank":1.5206259774314326,"se_capacity_auc":0.11522128803328571,"se_capacity_robustness_ratio":0.1064781757777313,"se_persistent_basin_lifetime":0.005052626054851071},
+    {"architecture":"resnet18","visible_rank":32,"model_count":4,"mean_calibration_accuracy":0.554125,"mean_evaluation_accuracy":0.5438125,"mean_capacity_fraction":0.09166666666666667,"mean_basin_density":0.041666666666666664,"mean_cycle_density":0.046875,"mean_component_entropy":0.521484018788262,"mean_displacement_entropy_rank":2.983446163986767,"mean_capacity_auc":0.625,"mean_capacity_robustness_ratio":0.625,"mean_persistent_basin_lifetime":0.016757770328148333,"se_calibration_accuracy":0.0034888214342382227,"se_evaluation_accuracy":0.004673033231567407,"se_capacity_fraction":0.04835248662647003,"se_basin_density":0.015957118462605637,"se_cycle_density":0.046875,"se_component_entropy":0.22751433432366805,"se_displacement_entropy_rank":1.2786565641033705,"se_capacity_auc":0.08697978810674727,"se_capacity_robustness_ratio":0.08697978810674727,"se_persistent_basin_lifetime":0.00026236156229413255},
+    {"architecture":"vit_tiny","visible_rank":1,"model_count":5,"mean_calibration_accuracy":0.5829000000000001,"mean_evaluation_accuracy":0.5760500000000001,"mean_capacity_fraction":0.6433333333333333,"mean_basin_density":0.21333333333333332,"mean_cycle_density":0.34762711142821073,"mean_component_entropy":0.6768175464201718,"mean_displacement_entropy_rank":12.995905788307283,"mean_capacity_auc":0.7422222222222222,"mean_capacity_robustness_ratio":0.8391589782766253,"mean_persistent_basin_lifetime":0.12036594277712569,"se_calibration_accuracy":0.0014352700094407442,"se_evaluation_accuracy":0.0022808989455914237,"se_capacity_fraction":0.03858612300930073,"se_basin_density":0.02260776661041756,"se_cycle_density":0.03503619558858065,"se_component_entropy":0.08287025480384493,"se_displacement_entropy_rank":0.6048877373961858,"se_capacity_auc":0.028073426651383626,"se_capacity_robustness_ratio":0.016300157555472716,"se_persistent_basin_lifetime":0.004548022209964388},
+    {"architecture":"vit_tiny","visible_rank":8,"model_count":5,"mean_calibration_accuracy":0.5829000000000001,"mean_evaluation_accuracy":0.5760500000000001,"mean_capacity_fraction":0.0,"mean_basin_density":0.0,"mean_cycle_density":0.0,"mean_component_entropy":0.0,"mean_displacement_entropy_rank":0.0,"mean_capacity_auc":0.18333333333333335,"mean_capacity_robustness_ratio":0.2693472112003324,"mean_persistent_basin_lifetime":0.04845490021177336,"se_calibration_accuracy":0.0014352700094407442,"se_evaluation_accuracy":0.0022808989455914237,"se_capacity_fraction":0.0,"se_basin_density":0.0,"se_cycle_density":0.0,"se_component_entropy":0.0,"se_displacement_entropy_rank":0.0,"se_capacity_auc":0.016566364853052233,"se_capacity_robustness_ratio":0.010812671923976832,"se_persistent_basin_lifetime":0.0038908668788351056},
+    {"architecture":"vit_tiny","visible_rank":32,"model_count":5,"mean_calibration_accuracy":0.5829000000000001,"mean_evaluation_accuracy":0.5760500000000001,"mean_capacity_fraction":0.0,"mean_basin_density":0.0,"mean_cycle_density":0.0,"mean_component_entropy":0.0,"mean_displacement_entropy_rank":0.0,"mean_capacity_auc":0.06533333333333333,"mean_capacity_robustness_ratio":0.13998792837502513,"mean_persistent_basin_lifetime":0.01621059200482019,"se_calibration_accuracy":0.0014352700094407442,"se_evaluation_accuracy":0.0022808989455914237,"se_capacity_fraction":0.0,"se_basin_density":0.0,"se_cycle_density":0.0,"se_component_entropy":0.0,"se_displacement_entropy_rank":0.0,"se_capacity_auc":0.007780951733338483,"se_capacity_robustness_ratio":0.0028770480729895026,"se_persistent_basin_lifetime":0.002022660080345834}
+  ],
+  "provenance": {
+    "source_artifact_digest": "sha256:f9d2380859d9415aa3e7dc54a28607b00b5eda4384e15ab9d9001fffd1eab67a",
+    "source_artifact_id": 9094857025,
+    "source_run_id": 31460911805
+  },
+  "retained_observation_count": 42,
+  "schema_version": 1,
+  "selected_model_count_original": 15,
+  "selected_model_count_retained": 14,
+  "target_accuracy": 0.58,
+  "visible_ranks": [1, 8, 32]
+}
