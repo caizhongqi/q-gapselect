@@ -1,22 +1,6 @@
 name: qcollide-guard-application
 
 on:
-  push:
-    branches:
-      - agent/qcollide-cifar-topology
-    paths:
-      - 'src/qgapselect/qcollide/guard_application.py'
-      - 'scripts/run_qcollide_guard_application.py'
-      - 'tests/test_qcollide_guard_application.py'
-      - 'pyproject.toml'
-      - '.github/workflows/qcollide-guard-application.yml'
-  pull_request:
-    paths:
-      - 'src/qgapselect/qcollide/guard_application.py'
-      - 'scripts/run_qcollide_guard_application.py'
-      - 'tests/test_qcollide_guard_application.py'
-      - 'pyproject.toml'
-      - '.github/workflows/qcollide-guard-application.yml'
   workflow_dispatch:
 
 jobs:
