@@ -1,0 +1,56 @@
+{
+  "artifact_type": "qcollide_graph_cora_phase2_evidence_audit",
+  "schema_version": 1,
+  "dataset": "cora",
+  "source": {
+    "run_id": 31481795460,
+    "artifact_id": 9097525411,
+    "artifact_digest": "sha256:f7a92dc116ca6506d7553623058242a1a1f33a26b9dddece76c218a49a360c93"
+  },
+  "execution": {
+    "architecture_seed_components": 9,
+    "all_components_successful": true,
+    "merged_row_count": 27,
+    "all_rows_finite": true,
+    "nonzero_capacity_row_fraction": 1.0
+  },
+  "architecture_diagnostics": [
+    {
+      "architecture": "gat",
+      "mean_evaluation_accuracy": 0.7856666666666666,
+      "mean_control_head_calibration_r2": -0.0631777262377193,
+      "rank1_capacity_fraction": 0.8333333333333334,
+      "rank4_capacity_fraction": 0.7380952380952381
+    },
+    {
+      "architecture": "gcn",
+      "mean_evaluation_accuracy": 0.775,
+      "mean_control_head_calibration_r2": 0.13818489184751843,
+      "rank1_capacity_fraction": 0.8174603174603176,
+      "rank4_capacity_fraction": 0.7063492063492064
+    },
+    {
+      "architecture": "graphsage",
+      "mean_evaluation_accuracy": 0.7703333333333333,
+      "mean_control_head_calibration_r2": 0.00592931840330053,
+      "rank1_capacity_fraction": 0.8809523809523809,
+      "rank4_capacity_fraction": 0.6984126984126985
+    }
+  ],
+  "gates": {
+    "complete_architecture_seed_grid": true,
+    "all_architecture_mean_control_r2_positive": false,
+    "eligible_for_universal_atlas_main_claim": false
+  },
+  "interpretation": {
+    "nontrivial_collision_graph_observed": true,
+    "control_interface_is_adequately_validated": false,
+    "next_required_experiment": "controlled Graph v2 with an explicit label-agnostic auxiliary control objective and held-out control-decoding gate"
+  },
+  "claim_boundary": {
+    "phase2_is_feasibility_evidence_only": true,
+    "cross_domain_universality_claimed": false,
+    "architecture_ordering_claimed": false,
+    "quantum_execution": false
+  }
+}
