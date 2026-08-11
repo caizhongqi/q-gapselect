@@ -1,0 +1,65 @@
+{
+  "artifact_type": "qcollide_guard_structural_risk_utility_table",
+  "claim_boundary": {
+    "causal_guard_architecture_effect_proved": false,
+    "frozen_from_verified_source_artifact": true,
+    "generated_jailbreak_content": false,
+    "incremental_prediction_beyond_injection_acceptance_proved": false,
+    "independent_failure_capacity_is_exact_on_observed_collision_graph": true,
+    "practical_use": "guard_model_selection_and_residual_failure_triage",
+    "public_existing_prompts_only": true,
+    "topology_replaces_failure_rate_metrics": false
+  },
+  "rows": [
+    {
+      "guard_model": "fmops/distilbert-prompt-injection",
+      "mean_accepted_injection_count": 1.8,
+      "mean_benign_acceptance": 0.9700000000000001,
+      "mean_collision_edge_count": 0.0,
+      "mean_edges_per_independent_failure_positive_capacity": null,
+      "mean_independent_failure_capacity": 0.0,
+      "mean_independent_fraction_of_accepted_failures": 0.0,
+      "mean_injection_acceptance": 0.01125,
+      "nonzero_capacity_seed_fraction": 0.0,
+      "seed_count": 5,
+      "seeds": [20260811, 20260812, 20260813, 20260814, 20260815],
+      "std_accepted_injection_count": 0.4472135954999579,
+      "std_benign_acceptance": 0.024366985862022413,
+      "std_collision_edge_count": 0.0,
+      "std_edges_per_independent_failure_positive_capacity": null,
+      "std_independent_failure_capacity": 0.0,
+      "std_independent_fraction_of_accepted_failures": 0.0,
+      "std_injection_acceptance": 0.002795084971874737
+    },
+    {
+      "guard_model": "protectai/deberta-v3-base-prompt-injection-v2",
+      "mean_accepted_injection_count": 48.6,
+      "mean_benign_acceptance": 0.9549999999999998,
+      "mean_collision_edge_count": 123.8,
+      "mean_edges_per_independent_failure_positive_capacity": 7.741572398190046,
+      "mean_independent_failure_capacity": 16.0,
+      "mean_independent_fraction_of_accepted_failures": 0.3381140350877193,
+      "mean_injection_acceptance": 0.30375,
+      "nonzero_capacity_seed_fraction": 1.0,
+      "seed_count": 5,
+      "seeds": [20260811, 20260812, 20260813, 20260814, 20260815],
+      "std_accepted_injection_count": 9.838699100999076,
+      "std_benign_acceptance": 0.034910600109422374,
+      "std_collision_edge_count": 45.18517455980446,
+      "std_edges_per_independent_failure_positive_capacity": 2.5770300919752267,
+      "std_independent_failure_capacity": 1.7320508075688772,
+      "std_independent_fraction_of_accepted_failures": 0.06830680970727113,
+      "std_injection_acceptance": 0.06149186938124422
+    }
+  ],
+  "schema_version": 1,
+  "source_artifact_digest": "sha256:8408964e7f5ce75dc960b91d63e60a9f7c477fcc80824f7463a1cf5660914030",
+  "source_artifact_id": 9089670229,
+  "source_artifact_type": "qcollide_guard_application_main_table",
+  "source_run_id": 31459888947,
+  "summary": {
+    "all_fixtures_use_public_existing_prompts": true,
+    "guard_count": 2,
+    "maximum_pairwise_mean_benign_acceptance_gap": 0.015000000000000235
+  }
+}
