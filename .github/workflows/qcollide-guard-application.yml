@@ -35,7 +35,7 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: python -m pip install --upgrade pip
-      - run: python -m pip install -e '.[guard]'
+      - run: python -m pip install -e '.[guard,dev]'
       - uses: actions/cache@v4
         with:
           path: ~/.cache/huggingface
