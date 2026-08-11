@@ -199,7 +199,7 @@ def main() -> int:
             "random_prequery_information": "domain dimensions only",
             "nearest_control_prequery_information": "full control-distance matrix",
             "collision_diversified_prequery_information": "same full control-distance matrix",
-            "collision_diversified_adaptive_information": "outcomes of previously queried pairs only",
+            "collision_diversified_adaptive_information": "queried-pair outcomes only",
             "unqueried_collision_labels_visible": False,
             "query_budget_identical": True,
         },
