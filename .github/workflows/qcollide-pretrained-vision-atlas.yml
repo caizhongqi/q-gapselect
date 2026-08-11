@@ -10,9 +10,11 @@ on:
       - 'configs/qcollide_pretrained_vision_cifar10_phase2.json'
       - 'src/qgapselect/qcollide/pretrained_vision_atlas.py'
       - 'src/qgapselect/qcollide/pretrained_vision_results.py'
+      - 'src/qgapselect/qcollide/hf_cifar10.py'
       - 'scripts/run_qcollide_pretrained_vision_atlas.py'
       - 'scripts/merge_qcollide_pretrained_vision_atlas.py'
       - 'tests/test_qcollide_pretrained_vision_atlas.py'
+      - 'tests/test_qcollide_hf_cifar10.py'
 
 concurrency:
   group: qcollide-pretrained-vision-atlas-${{ github.ref }}
@@ -32,14 +34,20 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: python -m pip install -e '.[dev]'
-      - run: python -m pytest tests/test_qcollide_pretrained_vision_atlas.py -q
+      - run: >-
+          python -m pytest
+          tests/test_qcollide_pretrained_vision_atlas.py
+          tests/test_qcollide_hf_cifar10.py
+          -q
       - run: >-
           python -m ruff check --ignore E501
           src/qgapselect/qcollide/pretrained_vision_atlas.py
           src/qgapselect/qcollide/pretrained_vision_results.py
+          src/qgapselect/qcollide/hf_cifar10.py
           scripts/run_qcollide_pretrained_vision_atlas.py
           scripts/merge_qcollide_pretrained_vision_atlas.py
           tests/test_qcollide_pretrained_vision_atlas.py
+          tests/test_qcollide_hf_cifar10.py
 
   prepare-data:
     needs: preflight
@@ -50,18 +58,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install --index-url https://download.pytorch.org/whl/cpu torch torchvision
+          cache: pip
+      - run: python -m pip install 'datasets>=2.20,<5'
       - uses: actions/cache@v4
         with:
-          path: .cache/qcollide-data
-          key: cifar10-v1-${{ runner.os }}
-      - run: |
-          mkdir -p .cache/qcollide-data
+          path: .cache/qcollide-pretrained-vision-hf
+          key: qcollide-hf-cifar10-v1-${{ runner.os }}
+      - name: Prime Hugging Face CIFAR-10 mirror
+        run: |
+          mkdir -p .cache/qcollide-pretrained-vision-hf
           python - <<'PY'
-          from torchvision.datasets import CIFAR10
-          root = '.cache/qcollide-data'
-          print('train', len(CIFAR10(root=root, train=True, download=True)))
-          print('test', len(CIFAR10(root=root, train=False, download=True)))
+          from datasets import load_dataset
+          root = '.cache/qcollide-pretrained-vision-hf'
+          for split, expected in [('train', 50000), ('test', 10000)]:
+              dataset = load_dataset('uoft-cs/cifar10', split=split, cache_dir=root)
+              assert len(dataset) == expected, (split, len(dataset))
+              print(split, len(dataset), dataset.features)
           PY
 
   component:
@@ -82,11 +94,11 @@ jobs:
           cache: pip
       - run: python -m pip install -e .
       - run: python -m pip install --index-url https://download.pytorch.org/whl/cpu torch torchvision
-      - run: python -m pip install 'scikit-learn>=1.9'
+      - run: python -m pip install 'scikit-learn>=1.9' 'datasets>=2.20,<5'
       - uses: actions/cache@v4
         with:
-          path: .cache/qcollide-data
-          key: cifar10-v1-${{ runner.os }}
+          path: .cache/qcollide-pretrained-vision-hf
+          key: qcollide-hf-cifar10-v1-${{ runner.os }}
           fail-on-cache-miss: true
       - uses: actions/cache@v4
         with:
