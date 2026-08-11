@@ -1,0 +1,109 @@
+name: qcollide-guard-query-budget-utility
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/qcollide-neural-atlas
+    paths:
+      - '.github/workflows/qcollide-guard-budget-utility.yml'
+
+concurrency:
+  group: qcollide-guard-query-budget-utility-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[dev]'
+      - run: python -m pytest tests/test_qcollide_guard_utility.py -q
+      - run: >-
+          python -m ruff check
+          src/qgapselect/qcollide/guard_utility.py
+          scripts/run_qcollide_guard_budget_utility.py
+          scripts/merge_qcollide_guard_budget_utility.py
+          tests/test_qcollide_guard_utility.py
+
+  component:
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        seed: [20260811, 20260812, 20260813, 20260814, 20260815]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[guard,dev]'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: guard-utility-hf-${{ runner.os }}
+          restore-keys: |
+            guard-hf-${{ runner.os }}-
+      - run: mkdir -p artifacts-ci
+      - name: Run real Guard query-budget utility component
+        env:
+          TOKENIZERS_PARALLELISM: 'false'
+        run: >-
+          python scripts/run_qcollide_guard_budget_utility.py
+          --guard-model 'protectai/deberta-v3-base-prompt-injection-v2'
+          --behavior-model 'HuggingFaceTB/SmolLM2-135M-Instruct'
+          --dataset 'deepset/prompt-injections'
+          --per-class 160
+          --batch-size 16
+          --max-length 128
+          --logit-features 512
+          --benign-acceptance 0.95
+          --random-repetitions 32
+          --seed ${{ matrix.seed }}
+          --output artifacts-ci/guard-utility-seed-${{ matrix.seed }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-guard-utility-${{ matrix.seed }}
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 21
+
+  merge:
+    needs: component
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qcollide-guard-utility-*
+          path: artifacts-components
+          merge-multiple: true
+      - run: mkdir -p artifacts-ci
+      - run: >-
+          python scripts/merge_qcollide_guard_budget_utility.py
+          --input-directory artifacts-components
+          --output artifacts-ci/qcollide_guard_query_budget_utility_main_table.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-guard-query-budget-utility-main-table
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 21
