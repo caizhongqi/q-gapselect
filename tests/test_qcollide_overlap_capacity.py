@@ -1,6 +1,11 @@
 import numpy as np
 
-from qgapselect.qcollide.overlap_bounds import bipartite_capacity_envelope
+from qgapselect.qcollide.overlap_bounds import (
+    bipartite_capacity_envelope,
+    capacity_bounds_from_population_survival,
+    survival_capacity_confidence_interval,
+    survival_probability_envelope,
+)
 from qgapselect.qcollide.overlap_capacity import (
     critical_retention_probability,
     estimate_overlap_capacity,
@@ -105,3 +110,72 @@ def test_capacity_envelope_is_exact_on_matching_and_star_extremes() -> None:
     hub = bipartite_capacity_envelope(make_hub_graph(n=32, spokes=24, seed=17))
     assert matching.lower_bound == matching.true_matching_size == matching.upper_bound
     assert hub.lower_bound == hub.true_matching_size == 1
+
+
+def test_survival_envelope_is_exact_on_matching_lower_side() -> None:
+    matching_size = 11
+    q = 0.23
+    envelope = survival_probability_envelope(
+        matching_size,
+        maximum_degree=1,
+        retention_probability=q,
+    )
+    exact = packed_survival_probability(matching_size, q)
+    assert np.isclose(envelope.lower_survival, exact)
+    assert envelope.lower_survival <= envelope.upper_survival
+
+
+def test_survival_envelope_contains_exact_star_probability() -> None:
+    spokes = 24
+    q = 0.2
+    envelope = survival_probability_envelope(
+        matching_size=1,
+        maximum_degree=spokes,
+        retention_probability=q,
+    )
+    exact_star_survival = q * (1.0 - (1.0 - q) ** spokes)
+    assert envelope.lower_survival <= exact_star_survival <= envelope.upper_survival
+
+
+def test_population_survival_inversion_contains_matching_capacity() -> None:
+    matching_size = 17
+    q = 0.19
+    survival = packed_survival_probability(matching_size, q)
+    lower, upper = capacity_bounds_from_population_survival(
+        survival,
+        retention_probability=q,
+        maximum_degree=1,
+        domain_cap=64,
+    )
+    assert lower <= matching_size
+    assert np.isclose(upper, matching_size)
+
+
+def test_population_survival_inversion_contains_star_capacity() -> None:
+    spokes = 30
+    q = 0.17
+    survival = q * (1.0 - (1.0 - q) ** spokes)
+    lower, upper = capacity_bounds_from_population_survival(
+        survival,
+        retention_probability=q,
+        maximum_degree=spokes,
+        domain_cap=64,
+    )
+    assert lower <= 1 <= upper
+
+
+def test_finite_sample_capacity_certificate_contains_packed_truth() -> None:
+    matching_size = 16
+    q = 0.25
+    survival = packed_survival_probability(matching_size, q)
+    trials = 20000
+    successes = round(trials * survival)
+    interval = survival_capacity_confidence_interval(
+        successes,
+        trials,
+        retention_probability=q,
+        maximum_degree=1,
+        failure_probability=1e-4,
+        domain_cap=64,
+    )
+    assert interval.capacity_lower <= matching_size <= interval.capacity_upper
