@@ -1,0 +1,116 @@
+name: qcollide-cifar100-main-5seed-v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/qcollide-cifar-topology
+    paths:
+      - '.github/workflows/qcollide-cifar100-main-v2.yml'
+
+concurrency:
+  group: qcollide-cifar100-main-v2-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  topology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        architecture: [resnet18, vit_tiny, mlp_mixer]
+        model-seed: [0, 1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[vision]'
+      - uses: actions/cache@v4
+        with:
+          path: .cache/qcollide-data
+          key: cifar100-main-v1-${{ runner.os }}
+      - run: mkdir -p artifacts-ci
+      - name: Run amended CIFAR-100 topology component
+        run: >-
+          python scripts/run_qcollide_cifar_topology.py
+          --config configs/qcollide_cifar100_main_5seed_v2.json
+          --architecture ${{ matrix.architecture }}
+          --model-seed ${{ matrix.model-seed }}
+          --output artifacts-ci/${{ matrix.architecture }}-seed-${{ matrix.model-seed }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-cifar100-main-v2-topology-${{ matrix.architecture }}-${{ matrix.model-seed }}
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 21
+
+  merge-topology:
+    needs: topology
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qcollide-cifar100-main-v2-topology-*
+          path: artifacts-components
+          merge-multiple: true
+      - run: mkdir -p artifacts-ci
+      - run: >-
+          python scripts/merge_qcollide_cifar_topology.py
+          --input-directory artifacts-components
+          --config configs/qcollide_cifar100_main_5seed_v2.json
+          --output artifacts-ci/qcollide_cifar100_topology_diagnostic_v2.json
+          --summary artifacts-ci/qcollide_cifar100_topology_summary_v2.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-cifar100-main-v2-topology-merged
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 21
+
+  main-table:
+    needs: merge-topology
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - uses: actions/download-artifact@v4
+        with:
+          name: qcollide-cifar100-main-v2-topology-merged
+          path: topology
+      - uses: actions/download-artifact@v4
+        with:
+          name: qcollide-cifar100-main-performance-merged
+          path: performance
+          run-id: 31460985478
+          github-token: ${{ github.token }}
+      - run: mkdir -p artifacts-ci
+      - run: >-
+          python scripts/merge_qcollide_cifar_main.py
+          --topology topology/qcollide_cifar100_topology_diagnostic_v2.json
+          --performance performance/qcollide_cifar100_checkpoint_performance.json
+          --config configs/qcollide_cifar100_main_5seed_v2.json
+          --output artifacts-ci/qcollide_cifar100_performance_matched_main_table_v2.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-cifar100-performance-matched-main-table-v2
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 21
