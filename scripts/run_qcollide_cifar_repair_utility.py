@@ -7,6 +7,7 @@ import argparse
 import json
 from pathlib import Path
 
+from qgapselect.qcollide.cifar_repair_data import install_prepared_cifar10_adapter
 from qgapselect.qcollide.cifar_repair_utility import run_cifar_repair_component
 
 
@@ -19,12 +20,14 @@ def main() -> int:
     args = parser.parse_args()
 
     config = json.loads(args.config.read_text(encoding="utf-8"))
+    install_prepared_cifar10_adapter()
     artifact = run_cifar_repair_component(
         config,
         architecture=args.architecture,
         model_seed=args.model_seed,
     )
     artifact["experiment_config"] = str(args.config)
+    artifact["dataset_backend"] = "prepared:huggingface:uoft-cs/cifar10"
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(artifact, indent=2, sort_keys=True, allow_nan=False) + "\n",
@@ -39,6 +42,7 @@ def main() -> int:
                 "baseline_capacity_fraction": artifact["heldout_baseline_profile"][
                     "nominal"
                 ]["capacity_fraction"],
+                "dataset_backend": artifact["dataset_backend"],
             },
             sort_keys=True,
         )
