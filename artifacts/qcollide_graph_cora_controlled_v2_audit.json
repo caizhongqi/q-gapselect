@@ -1,0 +1,48 @@
+{
+  "artifact_type": "qcollide_graph_cora_controlled_v2_audit",
+  "schema_version": 1,
+  "source_workflow_run": 31482636485,
+  "source_artifact_id": 9099718079,
+  "source_digest": "sha256:eab7240421ffb8b005ace7466deb49eb91f417347ae85f27c313ed43af82aa55",
+  "quality_gates": {
+    "minimum_control_r2": 0.2,
+    "minimum_evaluation_accuracy": 0.7,
+    "complete_component_grid": true,
+    "all_evaluation_accuracy_gates_pass": true,
+    "all_control_r2_gates_pass": false,
+    "eligible_for_universal_atlas_main_claim": false
+  },
+  "architecture_summary": {
+    "gcn": {
+      "control_r2": [0.154336, 0.140752, 0.126202],
+      "mean_control_r2": 0.14043,
+      "evaluation_accuracy": [0.786, 0.781, 0.765],
+      "control_gate_pass_seeds": 0,
+      "seed_count": 3
+    },
+    "graphsage": {
+      "control_r2": [-0.07699, 0.01109, -0.05483],
+      "mean_control_r2": -0.040245,
+      "mean_evaluation_accuracy": 0.7707,
+      "control_gate_pass_seeds": 0,
+      "seed_count": 3
+    },
+    "gat": {
+      "control_r2": [-0.04144, 0.01690, -0.07267],
+      "mean_control_r2": -0.0324,
+      "mean_evaluation_accuracy": 0.7643,
+      "control_gate_pass_seeds": 0,
+      "seed_count": 3
+    }
+  },
+  "collision_observation": {
+    "nonzero_capacity_row_fraction": 1.0,
+    "used_as_universal_atlas_evidence": false
+  },
+  "claim_boundary": {
+    "high_capacity_overrides_invalid_control_gate": false,
+    "control_r2_threshold_lowered_after_results": false,
+    "graph_domain_in_universal_atlas_main_claim": false,
+    "v3_independent_weight_calibration_required_before_any_confirmatory_rerun": true
+  }
+}
