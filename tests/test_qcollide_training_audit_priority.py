@@ -71,7 +71,7 @@ def test_collision_priority_captures_more_final_risk_than_accuracy():
         for row in result["rows"]
         if row["visible_rank"] == 8
         and row["early_epoch"] == 3
-        and abs(row["audit_fraction"] - 0.5) < 1e-12
+        and abs(row["audit_fraction"] - 0.4) < 1e-12
     )
     assert target["early_collision_capacity_capture"] == 1.0
     assert target["early_accuracy_capture"] == 0.0
