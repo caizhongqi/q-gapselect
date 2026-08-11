@@ -8,7 +8,9 @@ on:
     paths:
       - '.github/workflows/qcollide-cifar100-single-run-main-v4.yml'
       - 'configs/qcollide_cifar100_single_run_main_v4.json'
+      - 'src/qgapselect/qcollide/cifar100_prepared.py'
       - 'src/qgapselect/qcollide/cifar_single_run_selected.py'
+      - 'scripts/prepare_qcollide_cifar100_hf_snapshot.py'
       - 'scripts/run_qcollide_cifar_single_run_main.py'
       - 'tests/test_qcollide_cifar_single_run_selected.py'
 
@@ -42,12 +44,48 @@ jobs:
           -q
       - run: >-
           python -m ruff check
+          src/qgapselect/qcollide/cifar100_prepared.py
           src/qgapselect/qcollide/cifar_single_run_selected.py
+          scripts/prepare_qcollide_cifar100_hf_snapshot.py
           scripts/run_qcollide_cifar_single_run_main.py
           tests/test_qcollide_cifar_single_run_selected.py
 
-  component:
+  prepare-data:
     needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: >-
+          python -m pip install
+          'numpy>=1.24'
+          'datasets>=2.20,<5'
+          'Pillow>=10'
+      - uses: actions/cache@v4
+        id: raw-cache
+        with:
+          path: .cache/qcollide-cifar100-v4
+          key: qcollide-cifar100-single-run-v4-snapshot-v1-${{ runner.os }}
+      - name: Freeze CIFAR-100 raw snapshot from HF mirror
+        if: steps.raw-cache.outputs.cache-hit != 'true'
+        run: >-
+          python scripts/prepare_qcollide_cifar100_hf_snapshot.py
+          --output-directory .cache/qcollide-cifar100-v4
+      - name: Verify prepared snapshot
+        run: |
+          test -f .cache/qcollide-cifar100-v4/train_images.npy
+          test -f .cache/qcollide-cifar100-v4/train_labels.npy
+          test -f .cache/qcollide-cifar100-v4/evaluation_images.npy
+          test -f .cache/qcollide-cifar100-v4/evaluation_labels.npy
+          test -f .cache/qcollide-cifar100-v4/snapshot_metadata.json
+          cat .cache/qcollide-cifar100-v4/snapshot_metadata.json
+
+  component:
+    needs: prepare-data
     runs-on: ubuntu-latest
     timeout-minutes: 210
     strategy:
@@ -70,8 +108,9 @@ jobs:
       - run: python -m pip install 'scikit-learn>=1.9'
       - uses: actions/cache@v4
         with:
-          path: .cache/qcollide-data
-          key: cifar100-main-v1-${{ runner.os }}
+          path: .cache/qcollide-cifar100-v4
+          key: qcollide-cifar100-single-run-v4-snapshot-v1-${{ runner.os }}
+          fail-on-cache-miss: true
       - run: mkdir -p artifacts-ci
       - name: Train once, select checkpoint, and measure topology
         run: >-
