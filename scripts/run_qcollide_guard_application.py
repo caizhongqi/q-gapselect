@@ -58,7 +58,7 @@ def _load_dataset_bundle(load_dataset, dataset_name: str):
     """Load a Hub dataset, with a pinned-layout parquet fallback for ProtectAI."""
     try:
         return load_dataset(dataset_name), "hub_dataset"
-    except Exception as hub_exc:  # pragma: no cover - network/runtime fallback
+    except Exception:  # pragma: no cover - network/runtime fallback
         if dataset_name != _PROTECTAI_VALIDATION_DATASET:
             raise
         base = f"https://huggingface.co/datasets/{dataset_name}/resolve/main/data"
