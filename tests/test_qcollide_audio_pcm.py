@@ -3,6 +3,9 @@ from __future__ import annotations
 import wave
 
 import numpy as np
+import pytest
+
+pytest.importorskip("torch")
 
 from qgapselect.qcollide.audio_pcm import load_pcm16_waveform
 
