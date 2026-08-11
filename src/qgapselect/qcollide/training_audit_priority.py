@@ -47,13 +47,21 @@ def build_training_audit_priority_table(
     epochs and audit budgets are reported; no best cell is selected.
     """
 
-    if str(topology.get("artifact_type")) != "qcollide_cifar_functional_collision_topology_merged":
+    if str(topology.get("artifact_type")) != (
+        "qcollide_cifar_functional_collision_topology_merged"
+    ):
         raise ValueError("unexpected topology artifact type")
-    if str(performance.get("artifact_type")) != "qcollide_cifar_checkpoint_performance_merged":
+    if str(performance.get("artifact_type")) != (
+        "qcollide_cifar_checkpoint_performance_merged"
+    ):
         raise ValueError("unexpected performance artifact type")
 
     performance_by_key = {
-        (str(row["architecture"]), int(row["model_seed"]), int(row["checkpoint_epoch"])): row
+        (
+            str(row["architecture"]),
+            int(row["model_seed"]),
+            int(row["checkpoint_epoch"]),
+        ): row
         for row in performance["rows"]
     }
     topology_by_key = {
@@ -85,7 +93,9 @@ def build_training_audit_priority_table(
                 topology_row = topology_by_key.get((model[0], model[1], epoch, rank))
                 performance_row = performance_by_key.get((model[0], model[1], epoch))
                 if topology_row is None or performance_row is None:
-                    raise ValueError(f"missing early cell for {model}, epoch={epoch}, rank={rank}")
+                    raise ValueError(
+                        f"missing early cell for {model}, epoch={epoch}, rank={rank}"
+                    )
                 early_capacity = float(_nominal_point(topology_row)["capacity_fraction"])
                 early_accuracy = float(performance_row["calibration_accuracy"])
                 risk = final_risk[model]
@@ -133,6 +143,10 @@ def build_training_audit_priority_table(
         if int(row["visible_rank"]) in {8, 32}
         and abs(float(row["audit_fraction"]) - 0.2) <= 1e-12
     ]
+    low_budget_high_rank_wins = sum(
+        float(row["collision_lift_over_accuracy"]) > 0.0
+        for row in low_budget_high_rank
+    )
     return {
         "artifact_type": "qcollide_training_audit_priority_utility_table",
         "schema_version": 1,
@@ -146,11 +160,14 @@ def build_training_audit_priority_table(
             "cell_count": len(rows),
             "low_budget_high_rank_cell_count": len(low_budget_high_rank),
             "low_budget_high_rank_cells_where_collision_beats_accuracy": int(
-                sum(float(row["collision_lift_over_accuracy"]) > 0.0 for row in low_budget_high_rank)
+                low_budget_high_rank_wins
             ),
             "mean_low_budget_high_rank_lift_over_accuracy": (
                 float(
-                    sum(float(row["collision_lift_over_accuracy"]) for row in low_budget_high_rank)
+                    sum(
+                        float(row["collision_lift_over_accuracy"])
+                        for row in low_budget_high_rank
+                    )
                     / len(low_budget_high_rank)
                 )
                 if low_budget_high_rank
