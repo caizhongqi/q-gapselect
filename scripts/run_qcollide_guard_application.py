@@ -6,6 +6,8 @@ from __future__ import annotations
 import argparse
 import json
 import random
+import tempfile
+import urllib.request
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +24,7 @@ from qgapselect.qcollide.guard_application import (
 )
 
 _PROTECTAI_VALIDATION_DATASET = "protectai/prompt-injection-validation"
+_PROTECTAI_VALIDATION_REVISION = "c581eb48bf461df1cf8fe916af6eb971c8e5d296"
 _PROTECTAI_VALIDATION_SPLITS = (
     "InjecGuard_valid",
     "spikee",
@@ -54,25 +57,48 @@ def _load_optional_dependencies():
     )
 
 
+def _download_public_parquet(url: str, destination: Path) -> None:
+    request = urllib.request.Request(
+        url,
+        headers={"User-Agent": "q-gapselect-guard-benchmark/0.1"},
+    )
+    with urllib.request.urlopen(request, timeout=120) as response:
+        destination.write_bytes(response.read())
+
+
 def _load_dataset_bundle(load_dataset, dataset_name: str):
-    """Load a Hub dataset, with a pinned-layout parquet fallback for ProtectAI."""
+    """Load a dataset, bypassing the Hub API for the pinned ProtectAI fallback."""
     try:
-        return load_dataset(dataset_name), "hub_dataset"
+        if dataset_name == _PROTECTAI_VALIDATION_DATASET:
+            dataset = load_dataset(
+                dataset_name,
+                revision=_PROTECTAI_VALIDATION_REVISION,
+            )
+            return dataset, "hub_dataset", _PROTECTAI_VALIDATION_REVISION
+        return load_dataset(dataset_name), "hub_dataset", None
     except Exception:  # pragma: no cover - network/runtime fallback
         if dataset_name != _PROTECTAI_VALIDATION_DATASET:
             raise
-        base = f"https://huggingface.co/datasets/{dataset_name}/resolve/main/data"
-        data_files = {
-            split: f"{base}/{split}-00000-of-00001.parquet"
-            for split in _PROTECTAI_VALIDATION_SPLITS
-        }
-        try:
-            return load_dataset("parquet", data_files=data_files), "direct_parquet_fallback"
-        except Exception as fallback_exc:
-            raise RuntimeError(
-                "failed to load the ProtectAI validation dataset through both the Hub "
-                "dataset API and direct parquet fallback"
-            ) from fallback_exc
+
+        with tempfile.TemporaryDirectory(prefix="qcollide-protectai-") as temporary_dir:
+            root = Path(temporary_dir)
+            local_files = {}
+            for split in _PROTECTAI_VALIDATION_SPLITS:
+                filename = f"{split}-00000-of-00001.parquet"
+                url = (
+                    f"https://huggingface.co/datasets/{dataset_name}/resolve/"
+                    f"{_PROTECTAI_VALIDATION_REVISION}/data/{filename}?download=true"
+                )
+                destination = root / filename
+                _download_public_parquet(url, destination)
+                local_files[split] = str(destination)
+
+            dataset = load_dataset(
+                "parquet",
+                data_files=local_files,
+                keep_in_memory=True,
+            )
+        return dataset, "direct_http_parquet", _PROTECTAI_VALIDATION_REVISION
 
 
 def _masked_mean(hidden, attention_mask, torch):
@@ -231,7 +257,10 @@ def main() -> int:
     torch.manual_seed(args.seed)
     torch.set_num_threads(2)
 
-    dataset, dataset_access = _load_dataset_bundle(load_dataset, args.dataset)
+    dataset, dataset_access, dataset_revision = _load_dataset_bundle(
+        load_dataset,
+        args.dataset,
+    )
     split_names = sorted(dataset.keys())
     combined = concatenate_datasets([dataset[name] for name in split_names])
     texts_all = np.asarray(combined["text"], dtype=object)
@@ -328,6 +357,7 @@ def main() -> int:
         "behavior_model": args.behavior_model,
         "dataset": args.dataset,
         "dataset_access": dataset_access,
+        "dataset_revision": dataset_revision,
         "dataset_splits": split_names,
         "seed": args.seed,
         "sampled_per_class": args.per_class,
