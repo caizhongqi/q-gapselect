@@ -1,0 +1,4 @@
+extend = "pyproject.toml"
+
+[lint.per-file-ignores]
+"src/qgapselect/qcollide/time_atlas.py" = ["E501"]
