@@ -2,6 +2,11 @@ name: qcollide-cifar100-main-5seed
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - agent/qcollide-cifar-topology
+    paths:
+      - '.github/workflows/qcollide-cifar100-main.yml'
 
 concurrency:
   group: qcollide-cifar100-main-${{ github.ref }}
