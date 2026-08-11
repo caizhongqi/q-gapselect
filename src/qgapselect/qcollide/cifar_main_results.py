@@ -17,6 +17,14 @@ def _standard_error(values: Sequence[float]) -> float:
     return float(array.std(ddof=1) / np.sqrt(len(array))) if len(array) > 1 else 0.0
 
 
+def _metric_summary(
+    observations: Sequence[Mapping[str, float | int]],
+    name: str,
+) -> tuple[float, float]:
+    values = [float(item[name]) for item in observations]
+    return _mean(values), _standard_error(values)
+
+
 def _nominal_point(row: Mapping[str, Any]) -> Mapping[str, Any]:
     nominal = float(row["nominal_epsilon"])
     return min(
@@ -71,7 +79,8 @@ def performance_matched_cifar_main_table(
         topology_by_key[key] = row
 
     selections: list[dict[str, object]] = []
-    cells: dict[tuple[str, int], list[dict[str, float]]] = {}
+    cells: dict[tuple[str, int], list[dict[str, float | int]]] = {}
+    matched_observations: list[dict[str, object]] = []
     missing_topology: list[tuple[str, int, int, int]] = []
 
     for architecture in architectures:
@@ -113,47 +122,62 @@ def performance_matched_cifar_main_table(
                     1,
                     min(int(point["n_left"]), int(point["n_right"])),
                 )
-                cells.setdefault((architecture, rank), []).append(
+                observation: dict[str, float | int] = {
+                    "model_seed": seed,
+                    "checkpoint_epoch": checkpoint,
+                    "capacity_fraction": float(point["capacity_fraction"]),
+                    "basin_density": float(point["beta0_active"]) / denominator,
+                    "cycle_density": float(point["beta1_active"])
+                    / max(1, int(point["edge_count"])),
+                    "component_entropy": float(
+                        point["normalized_component_edge_entropy"]
+                    ),
+                    "displacement_entropy_rank": float(
+                        point["displacement_entropy_rank"] or 0.0
+                    ),
+                    "capacity_auc": float(row["filtration_summary"]["capacity_auc"]),
+                    "capacity_robustness_ratio": float(
+                        row["filtration_summary"]["capacity_robustness_ratio"]
+                    ),
+                    "persistent_basin_lifetime": float(
+                        row["basin_persistence"]["normalized_total_lifetime"]
+                    ),
+                    "evaluation_accuracy": evaluation_accuracy,
+                    "calibration_accuracy": calibration_accuracy,
+                }
+                cells.setdefault((architecture, rank), []).append(observation)
+                matched_observations.append(
                     {
-                        "capacity_fraction": float(point["capacity_fraction"]),
-                        "basin_density": float(point["beta0_active"]) / denominator,
-                        "cycle_density": float(point["beta1_active"])
-                        / max(1, int(point["edge_count"])),
-                        "component_entropy": float(
-                            point["normalized_component_edge_entropy"]
-                        ),
-                        "displacement_entropy_rank": float(
-                            point["displacement_entropy_rank"] or 0.0
-                        ),
-                        "capacity_auc": float(row["filtration_summary"]["capacity_auc"]),
-                        "capacity_robustness_ratio": float(
-                            row["filtration_summary"]["capacity_robustness_ratio"]
-                        ),
-                        "persistent_basin_lifetime": float(
-                            row["basin_persistence"]["normalized_total_lifetime"]
-                        ),
-                        "evaluation_accuracy": evaluation_accuracy,
-                        "calibration_accuracy": calibration_accuracy,
+                        "architecture": architecture,
+                        "visible_rank": rank,
+                        **observation,
                     }
                 )
 
     main_cells: list[dict[str, object]] = []
     for (architecture, rank), observations in sorted(cells.items()):
-
-        def metric(name: str) -> tuple[float, float]:
-            values = [float(item[name]) for item in observations]
-            return _mean(values), _standard_error(values)
-
-        capacity, capacity_se = metric("capacity_fraction")
-        basin, basin_se = metric("basin_density")
-        cycle, cycle_se = metric("cycle_density")
-        entropy, entropy_se = metric("component_entropy")
-        displacement, displacement_se = metric("displacement_entropy_rank")
-        auc, auc_se = metric("capacity_auc")
-        robustness, robustness_se = metric("capacity_robustness_ratio")
-        lifetime, lifetime_se = metric("persistent_basin_lifetime")
-        evaluation, evaluation_se = metric("evaluation_accuracy")
-        calibration, calibration_se = metric("calibration_accuracy")
+        capacity, capacity_se = _metric_summary(observations, "capacity_fraction")
+        basin, basin_se = _metric_summary(observations, "basin_density")
+        cycle, cycle_se = _metric_summary(observations, "cycle_density")
+        entropy, entropy_se = _metric_summary(observations, "component_entropy")
+        displacement, displacement_se = _metric_summary(
+            observations,
+            "displacement_entropy_rank",
+        )
+        auc, auc_se = _metric_summary(observations, "capacity_auc")
+        robustness, robustness_se = _metric_summary(
+            observations,
+            "capacity_robustness_ratio",
+        )
+        lifetime, lifetime_se = _metric_summary(
+            observations,
+            "persistent_basin_lifetime",
+        )
+        evaluation, evaluation_se = _metric_summary(observations, "evaluation_accuracy")
+        calibration, calibration_se = _metric_summary(
+            observations,
+            "calibration_accuracy",
+        )
         main_cells.append(
             {
                 "architecture": architecture,
@@ -182,10 +206,7 @@ def performance_matched_cifar_main_table(
             }
         )
 
-    mismatches = [
-        float(item["absolute_calibration_mismatch"])
-        for item in selections
-    ]
+    mismatches = [float(item["absolute_calibration_mismatch"]) for item in selections]
     return {
         "artifact_type": "qcollide_cifar_performance_matched_main_table",
         "schema_version": 1,
@@ -196,6 +217,7 @@ def performance_matched_cifar_main_table(
         "architectures": architectures,
         "model_seeds": seeds,
         "checkpoint_selections": selections,
+        "matched_observations": matched_observations,
         "main_cells": main_cells,
         "gates": {
             "all_model_checkpoints_within_tolerance": all(
