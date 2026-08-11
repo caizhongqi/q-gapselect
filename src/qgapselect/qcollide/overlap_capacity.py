@@ -254,9 +254,16 @@ def estimate_overlap_capacity(
 
 
 def critical_retention_probability(matching_size: int) -> float:
+    """Choose a non-degenerate q at the packed survival transition.
+
+    For K >= 2 this is 1/sqrt(K). For K=1 we cap the effective denominator at
+    two so that q stays strictly below one and the logarithmic inversion remains
+    defined. The asymptotic scaling is unchanged.
+    """
+
     if matching_size <= 0:
-        return 1.0
-    return min(1.0, 1.0 / sqrt(matching_size))
+        return 1.0 / sqrt(2.0)
+    return 1.0 / sqrt(max(matching_size, 2))
 
 
 __all__ = [
