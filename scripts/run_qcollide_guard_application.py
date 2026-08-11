@@ -21,6 +21,17 @@ from qgapselect.qcollide.guard_application import (
     random_pair_discovery,
 )
 
+_PROTECTAI_VALIDATION_DATASET = "protectai/prompt-injection-validation"
+_PROTECTAI_VALIDATION_SPLITS = (
+    "InjecGuard_valid",
+    "spikee",
+    "bipia_code",
+    "bipia_text",
+    "not_inject",
+    "wildguard",
+    "deepset",
+)
+
 
 def _load_optional_dependencies():
     try:
@@ -41,6 +52,27 @@ def _load_optional_dependencies():
         AutoModelForSequenceClassification,
         AutoTokenizer,
     )
+
+
+def _load_dataset_bundle(load_dataset, dataset_name: str):
+    """Load a Hub dataset, with a pinned-layout parquet fallback for ProtectAI."""
+    try:
+        return load_dataset(dataset_name), "hub_dataset"
+    except Exception as hub_exc:  # pragma: no cover - network/runtime fallback
+        if dataset_name != _PROTECTAI_VALIDATION_DATASET:
+            raise
+        base = f"https://huggingface.co/datasets/{dataset_name}/resolve/main/data"
+        data_files = {
+            split: f"{base}/{split}-00000-of-00001.parquet"
+            for split in _PROTECTAI_VALIDATION_SPLITS
+        }
+        try:
+            return load_dataset("parquet", data_files=data_files), "direct_parquet_fallback"
+        except Exception as fallback_exc:
+            raise RuntimeError(
+                "failed to load the ProtectAI validation dataset through both the Hub "
+                "dataset API and direct parquet fallback"
+            ) from fallback_exc
 
 
 def _masked_mean(hidden, attention_mask, torch):
@@ -172,7 +204,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--guard-model", default="protectai/deberta-v3-small-prompt-injection-v2")
     parser.add_argument("--behavior-model", default="HuggingFaceTB/SmolLM2-135M-Instruct")
-    parser.add_argument("--dataset", default="protectai/prompt-injection-validation")
+    parser.add_argument("--dataset", default=_PROTECTAI_VALIDATION_DATASET)
     parser.add_argument("--per-class", type=int, default=160)
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--max-length", type=int, default=128)
@@ -199,7 +231,7 @@ def main() -> int:
     torch.manual_seed(args.seed)
     torch.set_num_threads(2)
 
-    dataset = load_dataset(args.dataset)
+    dataset, dataset_access = _load_dataset_bundle(load_dataset, args.dataset)
     split_names = sorted(dataset.keys())
     combined = concatenate_datasets([dataset[name] for name in split_names])
     texts_all = np.asarray(combined["text"], dtype=object)
@@ -295,6 +327,7 @@ def main() -> int:
         "guard_model": args.guard_model,
         "behavior_model": args.behavior_model,
         "dataset": args.dataset,
+        "dataset_access": dataset_access,
         "dataset_splits": split_names,
         "seed": args.seed,
         "sampled_per_class": args.per_class,
