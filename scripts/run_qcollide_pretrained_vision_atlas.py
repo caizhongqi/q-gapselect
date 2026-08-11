@@ -7,6 +7,7 @@ import argparse
 import json
 from pathlib import Path
 
+from qgapselect.qcollide.hf_cifar10 import install_hf_cifar10_torchvision_adapter
 from qgapselect.qcollide.pretrained_vision_atlas import run_pretrained_vision_component
 
 
@@ -19,12 +20,14 @@ def main() -> int:
     args = parser.parse_args()
 
     config = json.loads(args.config.read_text(encoding="utf-8"))
+    install_hf_cifar10_torchvision_adapter()
     artifact = run_pretrained_vision_component(
         config,
         architecture=args.architecture,
         fixture_seed=args.fixture_seed,
     )
     artifact["experiment_config"] = str(args.config)
+    artifact["dataset_backend"] = "huggingface:uoft-cs/cifar10"
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(artifact, indent=2, sort_keys=True, allow_nan=False) + "\n",
@@ -37,6 +40,7 @@ def main() -> int:
                 "architecture": args.architecture,
                 "fixture_seed": args.fixture_seed,
                 "gates": artifact["gates"],
+                "dataset_backend": artifact["dataset_backend"],
             },
             sort_keys=True,
         )
