@@ -62,6 +62,7 @@ jobs:
           key: qcollide-speechcommands-v002-${{ runner.os }}
       - name: Download Speech Commands v0.02 once
         run: |
+          mkdir -p .cache/qcollide-audio
           python - <<'PY'
           from torchaudio.datasets import SPEECHCOMMANDS
           root = '.cache/qcollide-audio'
