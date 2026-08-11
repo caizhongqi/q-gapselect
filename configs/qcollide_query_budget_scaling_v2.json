@@ -1,0 +1,16 @@
+{
+  "schema_version": 2,
+  "master_seed": 20260811,
+  "matching_n_values": [256, 512, 1024, 2048, 4096, 8192, 16384],
+  "overlap_n_values": [128, 256, 512, 1024, 2048],
+  "matching_densities": [0.03125, 0.0625, 0.125],
+  "budget_fractions": [0.03125, 0.0442, 0.0625, 0.0884, 0.125, 0.1768, 0.25, 0.3536, 0.5, 0.7071, 1.0],
+  "graph_seeds": [11, 12, 13, 14, 15, 16],
+  "sampling_trials": 64,
+  "additive_epsilon": 0.02,
+  "relative_epsilon": 0.25,
+  "target_success_probability": 0.95,
+  "oracle": "endpoint_record",
+  "query_cost": "one queried left or right endpoint equals one oracle query",
+  "pairwise_collision_comparison_after_endpoint_query": "classical computation, not an additional oracle query"
+}

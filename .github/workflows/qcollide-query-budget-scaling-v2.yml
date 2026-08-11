@@ -1,0 +1,113 @@
+name: qcollide-query-budget-scaling-v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/qcollide-neural-atlas
+    paths:
+      - '.github/workflows/qcollide-query-budget-scaling-v2.yml'
+      - 'configs/qcollide_query_budget_scaling_v2.json'
+      - 'src/qgapselect/qcollide/query_budget_scaling.py'
+      - 'src/qgapselect/qcollide/query_budget_results.py'
+      - 'scripts/run_qcollide_query_budget_scaling.py'
+      - 'scripts/merge_qcollide_query_budget_scaling.py'
+      - 'tests/test_qcollide_query_budget_scaling.py'
+
+concurrency:
+  group: qcollide-query-budget-scaling-v2-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[dev]'
+      - run: python -m pytest tests/test_qcollide_query_budget_scaling.py -q
+      - run: >-
+          python -m ruff check
+          src/qgapselect/qcollide/query_budget_scaling.py
+          src/qgapselect/qcollide/query_budget_results.py
+          scripts/run_qcollide_query_budget_scaling.py
+          scripts/merge_qcollide_query_budget_scaling.py
+          tests/test_qcollide_query_budget_scaling.py
+
+  component:
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - {panel: matching, n: 256}
+          - {panel: matching, n: 512}
+          - {panel: matching, n: 1024}
+          - {panel: matching, n: 2048}
+          - {panel: matching, n: 4096}
+          - {panel: matching, n: 8192}
+          - {panel: matching, n: 16384}
+          - {panel: overlap, n: 128}
+          - {panel: overlap, n: 256}
+          - {panel: overlap, n: 512}
+          - {panel: overlap, n: 1024}
+          - {panel: overlap, n: 2048}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -e .
+      - run: mkdir -p artifacts-ci
+      - name: Run same-oracle query-budget component
+        run: >-
+          python scripts/run_qcollide_query_budget_scaling.py
+          --config configs/qcollide_query_budget_scaling_v2.json
+          --panel ${{ matrix.panel }}
+          --n ${{ matrix.n }}
+          --output artifacts-ci/component.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-query-budget-v2-${{ matrix.panel }}-${{ matrix.n }}
+          path: artifacts-ci/component.json
+          if-no-files-found: error
+          retention-days: 21
+
+  merge:
+    needs: component
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qcollide-query-budget-v2-*
+          path: artifacts-components
+      - run: mkdir -p artifacts-ci
+      - run: >-
+          python scripts/merge_qcollide_query_budget_scaling.py
+          --input-directory artifacts-components
+          --config configs/qcollide_query_budget_scaling_v2.json
+          --output artifacts-ci/qcollide_query_budget_scaling_v2_main_table.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-query-budget-scaling-v2-main-table
+          path: artifacts-ci/qcollide_query_budget_scaling_v2_main_table.json
+          if-no-files-found: error
+          retention-days: 21

@@ -1,0 +1,27 @@
+{
+  "artifact_type": "qcollide_time_ettm1_quality_gate_protocol",
+  "schema_version": 1,
+  "dataset": "ETTm1",
+  "frozen_before_merged_result_inspection": true,
+  "minimum_control_head_calibration_r2": 0.10,
+  "required_component_coverage": {
+    "architectures": ["lstm", "tcn", "timesnet", "patchtst"],
+    "model_seeds": [0, 1, 2],
+    "component_count": 12
+  },
+  "main_table_gate": {
+    "complete_architecture_seed_grid": true,
+    "all_components_control_r2_at_least_threshold": true,
+    "all_rows_finite": true
+  },
+  "performance_policy": {
+    "forecast_mse_and_mae_are_reported_as_covariates": true,
+    "posthoc_forecast_error_thresholding_is_forbidden": true,
+    "performance_matched_followup_required_for_architecture_causal_claim": true
+  },
+  "claim_boundary": {
+    "passing_gate_supports_domain_level_feasibility_not_architecture_causality": true,
+    "compact_reimplementations_are_not_official_checkpoints": true,
+    "quantum_execution": false
+  }
+}

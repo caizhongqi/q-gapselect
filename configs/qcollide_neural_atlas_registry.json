@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "atlas_name": "Q-COLLIDE Universal Neural Collision Atlas",
+  "frozen_date": "2026-08-11",
+  "primary_metric": "capacity_fraction",
+  "primary_object": "maximum_bipartite_matching_capacity",
+  "core_metrics": [
+    "capacity_fraction",
+    "basin_density",
+    "within_basin_multiplicity",
+    "cycle_density",
+    "component_entropy",
+    "displacement_entropy_rank",
+    "capacity_auc",
+    "persistent_basin_lifetime",
+    "discover_at_query_fraction"
+  ],
+  "query_fractions": [0.0025, 0.005, 0.01, 0.02, 0.05, 0.1, 0.25, 1.0],
+  "domains": [
+    {
+      "domain": "vision_classification",
+      "control_interface": "label-agnostic low-frequency visual descriptors",
+      "systems": [
+        {"id":"vision-c10-resnet18","task":"CIFAR-10 classification","dataset":"cifar10","model":"resnet18","family":"residual_cnn","tier":"core","execution":"existing"},
+        {"id":"vision-c10-vit","task":"CIFAR-10 classification","dataset":"cifar10","model":"vit_tiny","family":"global_transformer","tier":"core","execution":"existing"},
+        {"id":"vision-c10-mixer","task":"CIFAR-10 classification","dataset":"cifar10","model":"mlp_mixer","family":"all_mlp","tier":"core","execution":"existing"},
+        {"id":"vision-c100-resnet18","task":"CIFAR-100 classification","dataset":"cifar100","model":"resnet18","family":"residual_cnn","tier":"core","execution":"existing"},
+        {"id":"vision-c100-vit","task":"CIFAR-100 classification","dataset":"cifar100","model":"vit_tiny","family":"global_transformer","tier":"core","execution":"existing"},
+        {"id":"vision-c100-mixer","task":"CIFAR-100 classification","dataset":"cifar100","model":"mlp_mixer","family":"all_mlp","tier":"core","execution":"existing"},
+        {"id":"vision-imagenet-resnet50","task":"ImageNet pretrained classification","dataset":"imagenet_validation_subset","model":"resnet50","family":"residual_cnn","tier":"external","execution":"phase2"},
+        {"id":"vision-imagenet-convnext","task":"ImageNet pretrained classification","dataset":"imagenet_validation_subset","model":"convnext_tiny","family":"modern_cnn","tier":"external","execution":"phase2"},
+        {"id":"vision-imagenet-swin","task":"ImageNet pretrained classification","dataset":"imagenet_validation_subset","model":"swin_t","family":"hierarchical_transformer","tier":"external","execution":"phase2"},
+        {"id":"vision-imagenet-vit","task":"ImageNet pretrained classification","dataset":"imagenet_validation_subset","model":"vit_b_16","family":"global_transformer","tier":"external","execution":"phase2"}
+      ]
+    },
+    {
+      "domain": "language_understanding",
+      "control_interface": "label-agnostic surface/style descriptor head",
+      "systems": [
+        {"id":"text-20news-distilbert","task":"20 Newsgroups classification","dataset":"20newsgroups","model":"distilbert/distilbert-base-uncased","family":"distilled_transformer","tier":"core","execution":"phase1"},
+        {"id":"text-20news-bert","task":"20 Newsgroups classification","dataset":"20newsgroups","model":"google-bert/bert-base-uncased","family":"transformer_encoder","tier":"core","execution":"phase1"},
+        {"id":"text-20news-roberta","task":"20 Newsgroups classification","dataset":"20newsgroups","model":"FacebookAI/roberta-base","family":"transformer_encoder","tier":"core","execution":"phase1"},
+        {"id":"text-20news-deberta","task":"20 Newsgroups classification","dataset":"20newsgroups","model":"microsoft/deberta-v3-small","family":"disentangled_attention","tier":"core","execution":"phase1"},
+        {"id":"text-sst2-bert","task":"SST-2 sentiment classification","dataset":"sst2","model":"google-bert/bert-base-uncased","family":"transformer_encoder","tier":"external","execution":"phase2"},
+        {"id":"text-sst2-roberta","task":"SST-2 sentiment classification","dataset":"sst2","model":"FacebookAI/roberta-base","family":"transformer_encoder","tier":"external","execution":"phase2"},
+        {"id":"text-sst2-deberta","task":"SST-2 sentiment classification","dataset":"sst2","model":"microsoft/deberta-v3-small","family":"disentangled_attention","tier":"external","execution":"phase2"}
+      ]
+    },
+    {
+      "domain": "audio",
+      "control_interface": "spectral-energy and low-frequency envelope descriptor head",
+      "systems": [
+        {"id":"audio-scv2-cnn","task":"Speech Commands V2 classification","dataset":"speech_commands_v2","model":"audio_cnn","family":"audio_cnn","tier":"core","execution":"phase2"},
+        {"id":"audio-scv2-wav2vec2","task":"Speech Commands V2 classification","dataset":"speech_commands_v2","model":"wav2vec2_base","family":"conv_transformer","tier":"core","execution":"phase2"},
+        {"id":"audio-scv2-ast","task":"Speech Commands V2 classification","dataset":"speech_commands_v2","model":"ast","family":"audio_transformer","tier":"core","execution":"phase2"},
+        {"id":"audio-esc50-cnn","task":"ESC-50 classification","dataset":"esc50","model":"audio_cnn","family":"audio_cnn","tier":"external","execution":"phase3"},
+        {"id":"audio-esc50-ast","task":"ESC-50 classification","dataset":"esc50","model":"ast","family":"audio_transformer","tier":"external","execution":"phase3"}
+      ]
+    },
+    {
+      "domain": "graph_learning",
+      "control_interface": "degree, neighborhood-volume and low-order spectral descriptor head",
+      "systems": [
+        {"id":"graph-cora-gcn","task":"Cora node classification","dataset":"cora","model":"gcn","family":"graph_convolution","tier":"core","execution":"phase2"},
+        {"id":"graph-cora-sage","task":"Cora node classification","dataset":"cora","model":"graphsage","family":"message_passing","tier":"core","execution":"phase2"},
+        {"id":"graph-cora-gat","task":"Cora node classification","dataset":"cora","model":"gat","family":"graph_attention","tier":"core","execution":"phase2"},
+        {"id":"graph-arxiv-gcn","task":"OGBN-Arxiv node classification","dataset":"ogbn_arxiv","model":"gcn","family":"graph_convolution","tier":"external","execution":"phase3"},
+        {"id":"graph-arxiv-sage","task":"OGBN-Arxiv node classification","dataset":"ogbn_arxiv","model":"graphsage","family":"message_passing","tier":"external","execution":"phase3"},
+        {"id":"graph-arxiv-gat","task":"OGBN-Arxiv node classification","dataset":"ogbn_arxiv","model":"gat","family":"graph_attention","tier":"external","execution":"phase3"},
+        {"id":"graph-pcqm-graphormer","task":"molecular graph prediction","dataset":"pcqm4mv2_subset","model":"graphormer","family":"graph_transformer","tier":"external","execution":"phase3"}
+      ]
+    },
+    {
+      "domain": "time_series",
+      "control_interface": "trend, seasonal-energy and low-frequency temporal descriptor head",
+      "systems": [
+        {"id":"ts-ettm1-lstm","task":"ETTm1 forecasting","dataset":"ettm1","model":"lstm","family":"recurrent","tier":"core","execution":"phase2"},
+        {"id":"ts-ettm1-tcn","task":"ETTm1 forecasting","dataset":"ettm1","model":"tcn","family":"temporal_convolution","tier":"core","execution":"phase2"},
+        {"id":"ts-ettm1-timesnet","task":"ETTm1 forecasting","dataset":"ettm1","model":"timesnet","family":"temporal_2d_cnn","tier":"core","execution":"phase2"},
+        {"id":"ts-ettm1-patchtst","task":"ETTm1 forecasting","dataset":"ettm1","model":"patchtst","family":"temporal_transformer","tier":"core","execution":"phase2"},
+        {"id":"ts-weather-lstm","task":"Weather forecasting","dataset":"weather","model":"lstm","family":"recurrent","tier":"external","execution":"phase3"},
+        {"id":"ts-weather-timesnet","task":"Weather forecasting","dataset":"weather","model":"timesnet","family":"temporal_2d_cnn","tier":"external","execution":"phase3"},
+        {"id":"ts-weather-patchtst","task":"Weather forecasting","dataset":"weather","model":"patchtst","family":"temporal_transformer","tier":"external","execution":"phase3"}
+      ]
+    },
+    {
+      "domain": "multimodal",
+      "control_interface": "joint image-text alignment bottleneck",
+      "systems": [
+        {"id":"mm-flickr-clip-rn50","task":"Flickr30k retrieval","dataset":"flickr30k","model":"clip_rn50","family":"cnn_text_transformer","tier":"core","execution":"phase3"},
+        {"id":"mm-flickr-clip-vit","task":"Flickr30k retrieval","dataset":"flickr30k","model":"clip_vit_b32","family":"dual_transformer","tier":"core","execution":"phase3"},
+        {"id":"mm-coco-clip-rn50","task":"COCO retrieval","dataset":"coco_captions_subset","model":"clip_rn50","family":"cnn_text_transformer","tier":"external","execution":"phase3"},
+        {"id":"mm-coco-clip-vit","task":"COCO retrieval","dataset":"coco_captions_subset","model":"clip_vit_b32","family":"dual_transformer","tier":"external","execution":"phase3"},
+        {"id":"mm-vqa-blip2","task":"VQAv2 subset","dataset":"vqav2_subset","model":"blip2","family":"qformer_multimodal_bridge","tier":"external","execution":"phase4"}
+      ]
+    },
+    {
+      "domain": "guard_llm",
+      "control_interface": "input guard representation",
+      "systems": [
+        {"id":"guard-protectai-smollm","task":"prompt-injection guard/downstream behavior","dataset":"deepset_prompt_injections","model":"protectai_deberta_guard__smollm2_135m","family":"guard_plus_autoregressive_lm","tier":"core","execution":"existing"},
+        {"id":"guard-distilbert-smollm","task":"prompt-injection guard/downstream behavior","dataset":"deepset_prompt_injections","model":"distilbert_guard__smollm2_135m","family":"guard_plus_autoregressive_lm","tier":"core","execution":"existing"},
+        {"id":"guard-protectai-secondlm","task":"prompt-injection guard/downstream behavior","dataset":"deepset_prompt_injections","model":"protectai_deberta_guard__second_public_lm","family":"guard_plus_autoregressive_lm","tier":"external","execution":"phase2"},
+        {"id":"guard-distilbert-secondlm","task":"prompt-injection guard/downstream behavior","dataset":"deepset_prompt_injections","model":"distilbert_guard__second_public_lm","family":"guard_plus_autoregressive_lm","tier":"external","execution":"phase2"}
+      ]
+    },
+    {
+      "domain": "policy_control",
+      "control_interface": "state-summary or safety-controller bottleneck",
+      "systems": [
+        {"id":"rl-cartpole-mlp","task":"CartPole policy control","dataset":"cartpole_rollouts","model":"ppo_mlp","family":"mlp_policy","tier":"core","execution":"phase3"},
+        {"id":"rl-minigrid-cnn","task":"MiniGrid policy control","dataset":"minigrid_rollouts","model":"ppo_cnn","family":"cnn_policy","tier":"core","execution":"phase3"},
+        {"id":"rl-minigrid-recurrent","task":"MiniGrid policy control","dataset":"minigrid_rollouts","model":"recurrent_ppo","family":"recurrent_policy","tier":"external","execution":"phase3"},
+        {"id":"rl-offline-dt","task":"offline control","dataset":"d4rl_subset","model":"decision_transformer","family":"policy_transformer","tier":"external","execution":"phase4"}
+      ]
+    }
+  ],
+  "cross_cutting_experiments": [
+    "universal_atlas",
+    "architecture_family_law",
+    "layerwise_topology",
+    "model_scale_law",
+    "training_dynamics",
+    "control_rank_spectrum",
+    "distribution_shift",
+    "collision_discovery_query_budget",
+    "cross_model_transfer",
+    "causal_collision_closure",
+    "guard_llm_application",
+    "synthetic_quantum_scaling",
+    "real_graph_quantum_capacity",
+    "oracle_resource_accounting",
+    "negative_controls"
+  ]
+}
