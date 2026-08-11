@@ -4,7 +4,8 @@
   "master_seed": 20260811,
   "dataset": "cifar100",
   "dataset_seed": 20260811,
-  "data_root": ".cache/qcollide-data",
+  "data_root": ".cache/qcollide-cifar100-v4",
+  "dataset_backend": "prepared:huggingface:uoft-cs/cifar100",
   "architectures": ["resnet18", "vit_tiny", "mlp_mixer"],
   "model_seeds": [0, 1, 2, 3, 4],
   "train_samples": 30000,
@@ -36,6 +37,8 @@
     "selection_and_topology_share_one_training_run": true,
     "cross_runner_deterministic_checkpoint_replay_assumed": false,
     "checkpoint_interpolation_used": false,
-    "checkpoint_local_anchor_selection": true
+    "checkpoint_local_anchor_selection": true,
+    "dataset_identity_changed": false,
+    "dataset_transport_backend_changed": true
   }
 }
