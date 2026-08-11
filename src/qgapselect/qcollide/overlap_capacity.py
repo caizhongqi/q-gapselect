@@ -167,7 +167,10 @@ def invert_packed_survival(survival: float, q: float) -> float:
     return log(1.0 - survival) / log(1.0 - q * q)
 
 
-def degree_aware_probabilities(graph: OverlapGraph, target_q: float) -> tuple[np.ndarray, np.ndarray]:
+def degree_aware_probabilities(
+    graph: OverlapGraph,
+    target_q: float,
+) -> tuple[np.ndarray, np.ndarray]:
     """Downweight high-degree vertices while preserving packed-case q."""
 
     if not 0.0 < target_q <= 1.0:
