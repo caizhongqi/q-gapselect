@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "dataset": "20newsgroups",
+  "models": [
+    "distilbert/distilbert-base-uncased",
+    "google-bert/bert-base-uncased",
+    "FacebookAI/roberta-base",
+    "microsoft/deberta-v3-small"
+  ],
+  "fixture_seeds": [20260811, 20260812, 20260813],
+  "train_samples": 2400,
+  "calibration_samples": 800,
+  "evaluation_samples": 800,
+  "batch_size": 24,
+  "max_length": 192,
+  "anchors_per_class": 3,
+  "classifier_c": 1.0,
+  "classifier_max_iter": 800,
+  "control_ridge_alpha": 1.0,
+  "visible_ranks": [1, 2, 4, 8],
+  "control_quantile": 0.95,
+  "payload_quantile": 0.95,
+  "behavior_quantile": 0.95,
+  "epsilon_multipliers": [0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0]
+}
