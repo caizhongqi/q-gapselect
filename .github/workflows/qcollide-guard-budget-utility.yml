@@ -7,6 +7,10 @@ on:
       - agent/qcollide-neural-atlas
     paths:
       - '.github/workflows/qcollide-guard-budget-utility.yml'
+      - 'src/qgapselect/qcollide/guard_utility.py'
+      - 'scripts/run_qcollide_guard_budget_utility.py'
+      - 'scripts/merge_qcollide_guard_budget_utility.py'
+      - 'tests/test_qcollide_guard_utility.py'
 
 concurrency:
   group: qcollide-guard-query-budget-utility-${{ github.ref }}
@@ -33,6 +37,7 @@ jobs:
           scripts/run_qcollide_guard_budget_utility.py
           scripts/merge_qcollide_guard_budget_utility.py
           tests/test_qcollide_guard_utility.py
+      - run: python scripts/run_qcollide_guard_budget_utility.py --help > /dev/null
 
   component:
     needs: preflight
