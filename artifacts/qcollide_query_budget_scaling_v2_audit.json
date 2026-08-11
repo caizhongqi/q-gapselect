@@ -1,0 +1,44 @@
+{
+  "artifact_type": "qcollide_query_budget_scaling_v2_audit",
+  "schema_version": 1,
+  "source_workflow_run": 31489699320,
+  "source_artifact_id": 9100562452,
+  "source_digest": "sha256:453da18027147d49d345dc4b84366e64708bae5b4ef85be8503324049c7b1050",
+  "head_sha": "dd92b210562d4c5862e83d4cd28283e56b9964ba",
+  "matching_promise": {
+    "n_values": [256, 512, 1024, 2048, 4096, 8192, 16384],
+    "matching_densities": [0.03125, 0.0625, 0.125],
+    "empirical_classical_relative_query_exponent_vs_effective_pair_scale": 0.5484229710296261,
+    "empirical_classical_additive_query_exponent_vs_effective_pair_scale": 0.4500314035017912,
+    "qccs_packed_analytic_proxy_exponent": 0.3333333333333333,
+    "minimum_classical_to_qccs_relative_proxy_ratio": 6.349604207872799,
+    "mean_classical_to_qccs_relative_proxy_ratio": 21.145676157431257,
+    "maximum_classical_to_qccs_relative_proxy_ratio": 40.31747359663595,
+    "full_reconstruction_relative_success": true
+  },
+  "overlap_negative_controls": {
+    "families": ["bounded_overlap", "multi_hub", "biclique"],
+    "n_values": [128, 256, 512, 1024, 2048],
+    "edge_count_proxy_full_budget_failure_fraction": 1.0,
+    "matching_full_reconstruction_relative_success": true,
+    "mean_full_budget_edge_proxy_relative_error": {
+      "bounded_overlap": 3.0,
+      "multi_hub": 7.0,
+      "biclique": 12.6
+    }
+  },
+  "gates": {
+    "complete_component_grid": true,
+    "matching_full_reconstruction_relative_success": true,
+    "overlap_edge_count_negative_control_failure_fraction": 1.0,
+    "overlap_full_reconstruction_relative_success": true
+  },
+  "claim_boundary": {
+    "classical_matching_query_counts_are_measured_endpoint_record_queries": true,
+    "qccs_values_are_analytic_proxy_not_runtime": true,
+    "hardware_quantum_advantage_claimed": false,
+    "overlap_quantum_advantage_claimed": false,
+    "qccs_epsilon_factor_is_a_closed_theorem": false,
+    "edge_count_is_capacity": false
+  }
+}
