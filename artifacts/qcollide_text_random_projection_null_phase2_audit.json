@@ -1,0 +1,53 @@
+{
+  "artifact_type": "qcollide_text_random_projection_null_phase2_audit",
+  "schema_version": 1,
+  "source_workflow_run": 31481355859,
+  "source_artifact_id": 9100080201,
+  "source_digest": "sha256:c509ef03bac45c3d25778ab443cfc766ca2d4e365700331fec3df7cf7e83da77",
+  "design": {
+    "models": [
+      "distilbert/distilbert-base-uncased",
+      "google-bert/bert-base-uncased",
+      "FacebookAI/roberta-base",
+      "microsoft/deberta-v3-small"
+    ],
+    "fixture_seeds": [20260811, 20260812, 20260813],
+    "visible_ranks": [1, 2, 4, 8],
+    "random_subspaces_per_rank": 8,
+    "matched_rank_random_orthogonal_null": true
+  },
+  "global_summary": {
+    "mean_learned_capacity_percentile": 0.546875,
+    "mean_learned_minus_random_capacity_fraction": 0.016796875,
+    "positive_capacity_delta_row_fraction": 0.5,
+    "universal_learned_control_advantage_supported": false
+  },
+  "selected_model_rank_results": {
+    "distilbert_rank8": {
+      "mean_capacity_fraction_delta": 0.18611111111111112,
+      "positive_fixture_count": 3,
+      "fixture_count": 3,
+      "mean_learned_percentile": 1.0,
+      "mean_capacity_auc_delta": 0.0593
+    },
+    "roberta_rank2": {
+      "mean_capacity_fraction_delta": 0.06388888888888888,
+      "positive_fixture_count": 3,
+      "fixture_count": 3
+    },
+    "deberta_rank1": {"mean_capacity_fraction_delta": -0.061111111111111116},
+    "deberta_rank2": {"mean_capacity_fraction_delta": -0.041666666666666664},
+    "deberta_rank4": {"mean_capacity_fraction_delta": -0.04583333333333334},
+    "deberta_rank8": {"mean_capacity_fraction_delta": -0.00902777777777778}
+  },
+  "gates": {
+    "complete_model_seed_grid": true,
+    "all_reported_values_finite": true
+  },
+  "claim_boundary": {
+    "learned_control_always_exceeds_random_subspace": false,
+    "effect_is_model_and_rank_specific": true,
+    "persistence_systematically_increased": false,
+    "negative_model_rank_cells_retained": true
+  }
+}
