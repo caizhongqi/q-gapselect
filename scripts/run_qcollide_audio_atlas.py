@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 
 from qgapselect.qcollide.audio_experiment import run_audio_manifest_component
+from qgapselect.qcollide.audio_pcm import patch_torchaudio_pcm_loader
 
 
 def main() -> int:
@@ -18,12 +19,14 @@ def main() -> int:
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
+    patch_torchaudio_pcm_loader()
     artifact = run_audio_manifest_component(
         config,
         architecture=args.architecture,
         fixture_seed=args.fixture_seed,
     )
     artifact["experiment_config"] = str(args.config)
+    artifact["claim_boundary"]["audio_decode_backend"] = "stdlib_wave_pcm16"
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(artifact, indent=2, sort_keys=True, allow_nan=False) + "\n",
