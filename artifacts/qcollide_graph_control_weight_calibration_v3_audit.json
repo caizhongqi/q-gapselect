@@ -1,0 +1,52 @@
+{
+  "artifact_type": "qcollide_graph_control_weight_calibration_v3_audit",
+  "schema_version": 1,
+  "source_workflow_run": 31490399226,
+  "source_artifact_id": 9101108696,
+  "source_digest": "sha256:6f85d7d5e0cafbc03338d4d650f577fd05d285f0e182e160292a22fec7527945",
+  "calibration_design": {
+    "architectures": ["gcn", "graphsage", "gat"],
+    "independent_calibration_seeds": [100, 101],
+    "control_loss_weights": [0.5, 1.0, 2.0, 5.0],
+    "minimum_control_r2": 0.2,
+    "minimum_evaluation_accuracy": 0.7,
+    "main_seeds_used_for_selection": false
+  },
+  "selected_control_loss_weight": {
+    "gcn": null,
+    "graphsage": null,
+    "gat": null
+  },
+  "architecture_summary": {
+    "gcn": {
+      "mean_control_r2_by_weight": [0.0933646404, 0.0737897624, 0.0456292437, 0.0117807092],
+      "minimum_control_r2_by_weight": [0.0812293906, 0.0672224267, 0.0403000670, -0.0034493255],
+      "all_accuracy_gates_pass": true,
+      "any_joint_gate_pass": false
+    },
+    "graphsage": {
+      "mean_control_r2_by_weight": [-0.0473915420, -0.0705283605, -0.0703008583, -0.0904467402],
+      "minimum_control_r2_by_weight": [-0.0615293452, -0.0990470997, -0.1286521695, -0.1465427789],
+      "all_accuracy_gates_pass": true,
+      "any_joint_gate_pass": false
+    },
+    "gat": {
+      "mean_control_r2_by_weight": [-0.0635236107, -0.0855735407, -0.1801944261, -0.2329890977],
+      "minimum_control_r2_by_weight": [-0.0911983682, -0.1074163920, -0.1966908392, -0.2565303415],
+      "all_accuracy_gates_pass": true,
+      "any_joint_gate_pass": false
+    }
+  },
+  "gates": {
+    "complete_calibration_grid": true,
+    "all_architectures_have_jointly_passing_weight": false,
+    "confirmatory_main_seed_rerun_allowed": false
+  },
+  "claim_boundary": {
+    "control_r2_threshold_lowered_after_results": false,
+    "main_seeds_tuned_on_calibration_results": false,
+    "larger_auxiliary_weight_declared_a_solution": false,
+    "current_graph_control_descriptor_eligible_for_universal_atlas": false,
+    "future_graph_work_requires_new_control_descriptor_or_objective": true
+  }
+}
