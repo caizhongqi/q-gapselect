@@ -98,7 +98,15 @@ def pairwise_distances(left: np.ndarray, right: np.ndarray) -> np.ndarray:
         raise ValueError("left and right must be aligned matrices")
     lhs_square = np.sum(lhs * lhs, axis=1)[:, None]
     rhs_square = np.sum(rhs * rhs, axis=1)[None, :]
-    return np.sqrt(np.maximum(lhs_square + rhs_square - 2.0 * lhs @ rhs.T, 0.0))
+    squared = lhs_square + rhs_square - 2.0 * lhs @ rhs.T
+    scale = max(
+        1.0,
+        float(lhs_square.max(initial=0.0)),
+        float(rhs_square.max(initial=0.0)),
+    )
+    roundoff_floor = 64.0 * np.finfo(float).eps * scale
+    squared = np.where(squared <= roundoff_floor, 0.0, squared)
+    return np.sqrt(np.maximum(squared, 0.0))
 
 
 def control_projection_from_head(control_coefficients: np.ndarray, visible_rank: int) -> np.ndarray:
@@ -172,7 +180,15 @@ def _nearest_same_label_indices(values: np.ndarray, labels: np.ndarray) -> np.nd
     return np.argmin(distances, axis=1)
 
 
-def _encode_texts(model, tokenizer, texts: Sequence[str], *, batch_size: int, max_length: int, torch):
+def _encode_texts(
+    model,
+    tokenizer,
+    texts: Sequence[str],
+    *,
+    batch_size: int,
+    max_length: int,
+    torch,
+):
     parts: list[np.ndarray] = []
     model.eval()
     with torch.no_grad():
@@ -202,7 +218,9 @@ def _optional_dependencies():
         from sklearn.preprocessing import StandardScaler
         from transformers import AutoModel, AutoTokenizer
     except ImportError as exc:  # pragma: no cover - executable dependency guard
-        raise RuntimeError("install text atlas extras with: pip install -e '.[atlas_text]'") from exc
+        raise RuntimeError(
+            "install text atlas extras with: pip install -e '.[atlas_text]'"
+        ) from exc
     return (
         torch,
         fetch_20newsgroups,
