@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "master_seed": 20260811,
+  "dataset": "cifar100",
+  "dataset_seed": 20260811,
+  "data_root": ".cache/qcollide-data",
+  "architectures": ["resnet18", "vit_tiny", "mlp_mixer"],
+  "model_seeds": [0, 1, 2, 3, 4],
+  "train_samples": 30000,
+  "calibration_samples": 5000,
+  "evaluation_samples": 5000,
+  "hidden_dimension": 128,
+  "control_grid_size": 4,
+  "epochs": 30,
+  "checkpoint_epochs": [0, 5, 7, 8, 10, 15, 30],
+  "batch_size": 128,
+  "learning_rate": 0.001,
+  "control_loss_weight": 0.15,
+  "main_visible_ranks": [1, 8, 32],
+  "anchors_per_class": 1,
+  "support_samples": 3000,
+  "benign_repetitions": 4,
+  "benign_sigma": 0.03,
+  "control_quantile": 0.95,
+  "payload_quantile": 0.95,
+  "behavior_quantile": 0.95,
+  "epsilon_multipliers": [0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0],
+  "performance_match_target": 0.30,
+  "performance_match_tolerance": 0.05,
+  "selected_checkpoint_epoch": {
+    "resnet18": {"0": 7, "1": 7, "2": 8, "3": 7, "4": 7},
+    "vit_tiny": {"0": 15, "1": 15, "2": 15, "3": 15, "4": 15},
+    "mlp_mixer": {"0": 10, "1": 5, "2": 5, "3": 5, "4": 5}
+  },
+  "selected_checkpoint_source": {
+    "resnet18": "dense deterministic performance replay run 31482286279, artifact 9101559695",
+    "vit_tiny": "CIFAR-100 v2 performance-matching selections, run 31473807005",
+    "mlp_mixer": "CIFAR-100 v2 performance-matching selections, run 31473807005"
+  },
+  "device": "auto",
+  "claim_boundary": {
+    "performance_target_changed_after_results": false,
+    "performance_tolerance_changed_after_results": false,
+    "selected_checkpoint_anchors_are_recomputed_at_selected_checkpoint": true,
+    "final_epoch_anchors_reused_for_selected_checkpoint": false,
+    "only_selected_checkpoint_topology_is_emitted": true
+  }
+}
