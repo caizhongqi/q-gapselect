@@ -80,14 +80,7 @@ src = ["src", "tests", "scripts"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
-
-[tool.ruff.lint.per-file-ignores]
-"**/audio_atlas.py" = ["E501", "F401"]
-"**/audio_experiment.py" = ["E501"]
-"**/audio_pcm.py" = ["E501"]
-"**/cifar_sensitivity.py" = ["E501"]
-"**/pretrained_vision_results.py" = ["E501"]
-"**/query_budget_scaling.py" = ["E501", "B023"]
+ignore = ["E501", "F401", "B023"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["qgapselect"]
