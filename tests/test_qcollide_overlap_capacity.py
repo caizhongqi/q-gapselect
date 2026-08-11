@@ -1,5 +1,6 @@
 import numpy as np
 
+from qgapselect.qcollide.overlap_bounds import bipartite_capacity_envelope
 from qgapselect.qcollide.overlap_capacity import (
     critical_retention_probability,
     estimate_overlap_capacity,
@@ -83,3 +84,24 @@ def test_degree_aware_sampling_reduces_hub_survival_bias() -> None:
         degree_aware=True,
     )
     assert corrected.survival_probability < uniform.survival_probability
+
+
+def test_capacity_envelope_contains_truth_for_all_fixture_families() -> None:
+    graphs = (
+        make_matching_graph(n=48, matching_size=12, seed=12),
+        make_sparse_overlap_graph(n=48, matching_size=12, maximum_degree=4, seed=13),
+        make_hub_graph(n=48, spokes=32, seed=14),
+        make_dense_graph(n=48, density=0.15, seed=15),
+    )
+    for graph in graphs:
+        envelope = bipartite_capacity_envelope(graph)
+        assert envelope.lower_bound <= graph.matching_size <= envelope.upper_bound
+
+
+def test_capacity_envelope_is_exact_on_matching_and_star_extremes() -> None:
+    matching = bipartite_capacity_envelope(
+        make_matching_graph(n=32, matching_size=9, seed=16)
+    )
+    hub = bipartite_capacity_envelope(make_hub_graph(n=32, spokes=24, seed=17))
+    assert matching.lower_bound == matching.true_matching_size == matching.upper_bound
+    assert hub.lower_bound == hub.true_matching_size == 1
