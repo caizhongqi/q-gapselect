@@ -1,0 +1,53 @@
+{
+  "artifact_type": "qcollide_time_ettm1_phase2_quality_audit",
+  "schema_version": 1,
+  "source_workflow_run": 31481968453,
+  "source_artifact_id": 9099726172,
+  "source_digest": "sha256:33ffd3b759c9a9cfc14c052b7e2a7bc380f70e74b8b257535f280b1898e03c9a",
+  "quality_protocol": {
+    "minimum_control_r2_for_atlas_eligibility": 0.1,
+    "forecast_error_used_as_reported_performance_covariate": true,
+    "post_hoc_architecture_deletion_allowed": false
+  },
+  "architecture_summary": {
+    "lstm": {
+      "control_r2": [-0.03795, -0.01707, -0.03819],
+      "control_gate_pass_seeds": 0,
+      "seed_count": 3,
+      "forecast_mse": [0.054785, 0.032851, 0.069451]
+    },
+    "tcn": {
+      "control_r2": [-0.06728, 0.02313, 0.01003],
+      "control_gate_pass_seeds": 0,
+      "seed_count": 3,
+      "forecast_mse": [0.041795, 0.026299, 0.039473]
+    },
+    "timesnet": {
+      "control_r2": [0.179243, -0.144972, 0.135886],
+      "control_gate_pass_seeds": 2,
+      "seed_count": 3,
+      "forecast_mse": [0.082513, 0.045824, 0.117523]
+    },
+    "patchtst": {
+      "control_r2": [0.143021, 0.125411, 0.180148],
+      "control_gate_pass_seeds": 3,
+      "seed_count": 3,
+      "forecast_mse": [2.197702, 2.159369, 1.738117]
+    }
+  },
+  "gates": {
+    "complete_architecture_seed_grid": true,
+    "lstm_eligible_for_universal_atlas": false,
+    "tcn_eligible_for_universal_atlas": false,
+    "timesnet_all_seeds_control_valid": false,
+    "patchtst_all_seeds_control_valid": true,
+    "cross_architecture_performance_matched": false,
+    "cross_architecture_topology_claim_allowed": false
+  },
+  "claim_boundary": {
+    "time_series_domain_is_feasibility_evidence": true,
+    "cross_architecture_topology_ordering_claimed": false,
+    "patchtst_topology_compared_causally_to_other_architectures": false,
+    "performance_confounding_exposed": true
+  }
+}
