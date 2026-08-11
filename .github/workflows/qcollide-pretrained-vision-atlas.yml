@@ -54,7 +54,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: .cache/qcollide-data
-          key: cifar10-main-v1-${{ runner.os }}
+          key: cifar10-v1-${{ runner.os }}
       - run: |
           mkdir -p .cache/qcollide-data
           python - <<'PY'
@@ -86,7 +86,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: .cache/qcollide-data
-          key: cifar10-main-v1-${{ runner.os }}
+          key: cifar10-v1-${{ runner.os }}
           fail-on-cache-miss: true
       - uses: actions/cache@v4
         with:
