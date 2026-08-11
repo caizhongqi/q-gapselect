@@ -1,0 +1,51 @@
+name: qcollide-guard-structural-risk
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/qcollide-neural-atlas
+    paths:
+      - '.github/workflows/qcollide-guard-structural-risk.yml'
+      - 'src/qgapselect/qcollide/guard_structural_risk.py'
+      - 'scripts/build_qcollide_guard_structural_risk.py'
+      - 'tests/test_qcollide_guard_structural_risk.py'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -e '.[dev]'
+      - run: python -m pytest tests/test_qcollide_guard_structural_risk.py -q
+      - run: >-
+          python -m ruff check
+          src/qgapselect/qcollide/guard_structural_risk.py
+          scripts/build_qcollide_guard_structural_risk.py
+          tests/test_qcollide_guard_structural_risk.py
+      - uses: actions/download-artifact@v4
+        with:
+          name: qcollide-guard-application-main-table
+          path: source
+          run-id: 31459888947
+          github-token: ${{ github.token }}
+      - run: mkdir -p artifacts-ci
+      - run: >-
+          python scripts/build_qcollide_guard_structural_risk.py
+          --input source/qcollide_guard_application_main_table.json
+          --output artifacts-ci/qcollide_guard_structural_risk_utility_table.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-guard-structural-risk-utility-table
+          path: artifacts-ci/qcollide_guard_structural_risk_utility_table.json
+          if-no-files-found: error
+          retention-days: 21
