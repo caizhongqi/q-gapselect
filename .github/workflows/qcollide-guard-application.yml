@@ -1,0 +1,111 @@
+name: qcollide-guard-application
+
+on:
+  push:
+    branches:
+      - agent/qcollide-cifar-topology
+    paths:
+      - 'src/qgapselect/qcollide/guard_application.py'
+      - 'scripts/run_qcollide_guard_application.py'
+      - 'tests/test_qcollide_guard_application.py'
+      - 'pyproject.toml'
+      - '.github/workflows/qcollide-guard-application.yml'
+  pull_request:
+    paths:
+      - 'src/qgapselect/qcollide/guard_application.py'
+      - 'scripts/run_qcollide_guard_application.py'
+      - 'tests/test_qcollide_guard_application.py'
+      - 'pyproject.toml'
+      - '.github/workflows/qcollide-guard-application.yml'
+  workflow_dispatch:
+
+jobs:
+  component:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        guard:
+          - protectai/deberta-v3-small-prompt-injection-v2
+          - protectai/deberta-v3-base-prompt-injection-v2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[guard]'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: guard-hf-${{ runner.os }}-${{ matrix.guard }}
+          restore-keys: |
+            guard-hf-${{ runner.os }}-
+      - run: python -m pytest tests/test_qcollide_guard_application.py -q
+      - name: Run guard collision application
+        env:
+          TOKENIZERS_PARALLELISM: 'false'
+        run: |
+          mkdir -p artifacts-ci
+          slug=$(echo '${{ matrix.guard }}' | tr '/.' '__')
+          python scripts/run_qcollide_guard_application.py \
+            --guard-model '${{ matrix.guard }}' \
+            --behavior-model 'HuggingFaceTB/SmolLM2-135M-Instruct' \
+            --dataset 'protectai/prompt-injection-validation' \
+            --per-class 160 \
+            --batch-size 16 \
+            --max-length 128 \
+            --logit-features 512 \
+            --benign-acceptance 0.95 \
+            --seed 20260811 \
+            --output "artifacts-ci/qcollide_guard_${slug}.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-guard-${{ strategy.job-index }}
+          path: artifacts-ci/*.json
+          retention-days: 14
+
+  merge:
+    needs: component
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qcollide-guard-*
+          path: artifacts-downloaded
+          merge-multiple: true
+      - name: Merge main-table records
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          records = []
+          for path in sorted(Path('artifacts-downloaded').glob('*.json')):
+              records.append(json.loads(path.read_text(encoding='utf-8')))
+          payload = {
+              'artifact_type': 'qcollide_guard_application_main_table',
+              'schema_version': 1,
+              'records': records,
+              'claim_boundary': {
+                  'public_existing_prompts_only': True,
+                  'generated_jailbreak_content': False,
+                  'quantum_values_are': 'analytic endpoint-query proxies',
+              },
+          }
+          Path('artifacts-ci').mkdir(exist_ok=True)
+          Path('artifacts-ci/qcollide_guard_application_main_table.json').write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8',
+          )
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-guard-application-main-table
+          path: artifacts-ci/qcollide_guard_application_main_table.json
+          retention-days: 14
