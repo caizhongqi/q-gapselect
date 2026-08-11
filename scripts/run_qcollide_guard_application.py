@@ -26,8 +26,11 @@ def _load_optional_dependencies():
     try:
         import torch
         from datasets import concatenate_datasets, load_dataset
-        from transformers import AutoModelForCausalLM, AutoModelForSequenceClassification
-        from transformers import AutoTokenizer
+        from transformers import (
+            AutoModelForCausalLM,
+            AutoModelForSequenceClassification,
+            AutoTokenizer,
+        )
     except ImportError as exc:  # pragma: no cover - executable dependency guard
         raise RuntimeError("install the guard extras with: pip install -e '.[guard]'") from exc
     return (
