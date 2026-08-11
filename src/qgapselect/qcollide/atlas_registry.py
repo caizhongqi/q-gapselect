@@ -103,7 +103,13 @@ def validate_atlas_registry(registry: Mapping[str, object]) -> dict[str, object]
     if missing_domains:
         raise ValueError(f"atlas misses required domains: {missing_domains}")
 
-    core_metrics = tuple(str(value) for value in _sequence(registry.get("core_metrics"), "core_metrics"))
+    core_metrics = tuple(
+        str(value)
+        for value in _sequence(
+            registry.get("core_metrics"),
+            "core_metrics",
+        )
+    )
     if "capacity_fraction" not in core_metrics or "basin_density" not in core_metrics:
         raise ValueError("core_metrics must include capacity_fraction and basin_density")
     cross_cutting = tuple(
