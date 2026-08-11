@@ -61,7 +61,13 @@ def _fixtures(include_all_topology=True):
             )
             for epoch in (3, 6):
                 for rank in (1, 8, 32):
-                    if not include_all_topology and architecture == "vit_tiny" and seed == 1 and rank == 32:
+                    missing = (
+                        not include_all_topology
+                        and architecture == "vit_tiny"
+                        and seed == 1
+                        and rank == 32
+                    )
+                    if missing:
                         continue
                     topology["rows"].append(
                         _topology_row(architecture, seed, epoch, rank, 0.2 + 0.01 * seed)

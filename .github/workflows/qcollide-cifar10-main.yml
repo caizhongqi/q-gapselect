@@ -14,7 +14,7 @@ on:
 
 concurrency:
   group: qcollide-cifar10-main-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: read
