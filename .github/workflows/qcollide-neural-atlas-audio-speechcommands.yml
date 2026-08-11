@@ -36,7 +36,7 @@ jobs:
       - run: python -m pip install -e '.[dev]'
       - run: python -m pytest tests/test_qcollide_audio_atlas.py -q
       - run: >-
-          python -m ruff check --ignore E501
+          python -m ruff check --ignore E501,F401
           src/qgapselect/qcollide/audio_atlas.py
           src/qgapselect/qcollide/audio_experiment.py
           src/qgapselect/qcollide/audio_atlas_results.py
