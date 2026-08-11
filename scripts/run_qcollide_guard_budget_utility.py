@@ -19,7 +19,7 @@ from qgapselect.qcollide.guard_application import (
     random_pair_discovery,
 )
 from qgapselect.qcollide.guard_utility import collision_diversified_control_discovery
-from scripts.run_qcollide_guard_application import (
+from run_qcollide_guard_application import (
     _balanced_indices,
     _batched_behavior_features,
     _batched_guard_features,
