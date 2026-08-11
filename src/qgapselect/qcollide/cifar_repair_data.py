@@ -10,6 +10,48 @@ from sklearn.model_selection import train_test_split
 from .cifar_models import CIFARData, _stratified_take, cifar_control_targets
 
 
+class PreparedCIFAR10:
+    """Minimal ``torchvision.datasets.CIFAR10``-compatible raw-array adapter."""
+
+    def __init__(
+        self,
+        root: str | Path,
+        *,
+        train: bool = True,
+        download: bool = False,
+        **_: object,
+    ) -> None:
+        del download
+        directory = Path(root)
+        if train:
+            image_path = directory / "train_images.npy"
+            label_path = directory / "train_labels.npy"
+            expected_images = (50000, 32, 32, 3)
+            expected_labels = (50000,)
+        else:
+            image_path = directory / "evaluation_images.npy"
+            label_path = directory / "evaluation_labels.npy"
+            expected_images = (10000, 32, 32, 3)
+            expected_labels = (10000,)
+        if not image_path.is_file() or not label_path.is_file():
+            raise FileNotFoundError(
+                f"prepared CIFAR-10 snapshot not found under {directory}"
+            )
+        self.data = np.load(image_path, mmap_mode="r")
+        labels = np.asarray(np.load(label_path), dtype=np.int64)
+        if self.data.shape != expected_images or labels.shape != expected_labels:
+            raise ValueError("prepared CIFAR-10 snapshot has an unexpected shape")
+        self.targets = [int(value) for value in labels]
+
+
+def install_prepared_cifar10_adapter() -> None:
+    """Route the standard Q-COLLIDE CIFAR loader to ``PreparedCIFAR10``."""
+
+    from . import cifar_models
+
+    cifar_models.CIFAR10 = PreparedCIFAR10
+
+
 def load_prepared_cifar10_data(
     *,
     prepared_directory: str | Path,
@@ -92,4 +134,8 @@ def load_prepared_cifar10_data(
     )
 
 
-__all__ = ["load_prepared_cifar10_data"]
+__all__ = [
+    "PreparedCIFAR10",
+    "install_prepared_cifar10_adapter",
+    "load_prepared_cifar10_data",
+]
