@@ -11,9 +11,11 @@ on:
       - 'src/qgapselect/qcollide/audio_atlas.py'
       - 'src/qgapselect/qcollide/audio_experiment.py'
       - 'src/qgapselect/qcollide/audio_atlas_results.py'
+      - 'src/qgapselect/qcollide/audio_pcm.py'
       - 'scripts/run_qcollide_audio_atlas.py'
       - 'scripts/merge_qcollide_audio_atlas.py'
       - 'tests/test_qcollide_audio_atlas.py'
+      - 'tests/test_qcollide_audio_pcm.py'
 
 concurrency:
   group: qcollide-neural-atlas-audio-speechcommands-${{ github.ref }}
@@ -34,15 +36,17 @@ jobs:
           cache: pip
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e '.[dev]'
-      - run: python -m pytest tests/test_qcollide_audio_atlas.py -q
+      - run: python -m pytest tests/test_qcollide_audio_atlas.py tests/test_qcollide_audio_pcm.py -q
       - run: >-
           python -m ruff check --ignore E501,F401
           src/qgapselect/qcollide/audio_atlas.py
           src/qgapselect/qcollide/audio_experiment.py
           src/qgapselect/qcollide/audio_atlas_results.py
+          src/qgapselect/qcollide/audio_pcm.py
           scripts/run_qcollide_audio_atlas.py
           scripts/merge_qcollide_audio_atlas.py
           tests/test_qcollide_audio_atlas.py
+          tests/test_qcollide_audio_pcm.py
 
   prepare-data:
     needs: preflight
@@ -95,7 +99,6 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e .
       - run: python -m pip install --index-url https://download.pytorch.org/whl/cpu torch torchaudio
-      - run: python -m pip install torchcodec
       - run: >-
           python -m pip install
           'transformers>=4.57,<5'
