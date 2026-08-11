@@ -88,7 +88,6 @@ def merge_text_atlas_components(
                     "displacement_entropy_rank": float(
                         point["displacement_entropy_rank"] or 0.0
                     ),
-                    "maximum_degree": int(point["maximum_degree"]),
                     "capacity_auc": float(row["filtration_summary"]["capacity_auc"]),
                     "capacity_robustness_ratio": float(
                         row["filtration_summary"]["capacity_robustness_ratio"]
@@ -112,7 +111,6 @@ def merge_text_atlas_components(
         "cycle_density",
         "component_entropy",
         "displacement_entropy_rank",
-        "maximum_degree",
         "capacity_auc",
         "capacity_robustness_ratio",
         "persistent_basin_lifetime",
@@ -131,6 +129,11 @@ def merge_text_atlas_components(
         cells.append(cell)
 
     nonzero = [float(row["capacity_fraction"]) > 0.0 for row in raw_rows]
+    finite_values: list[float] = []
+    for row in raw_rows:
+        for key, value in row.items():
+            if key != "model":
+                finite_values.append(float(value))
     return {
         "artifact_type": "qcollide_text_functional_collision_atlas_merged",
         "schema_version": 1,
@@ -146,14 +149,7 @@ def merge_text_atlas_components(
             "model_count": len(configured_models),
             "fixture_seed_count": len(configured_seeds),
             "nonzero_capacity_row_fraction": float(np.mean(nonzero)),
-            "all_rows_finite": bool(
-                all(
-                    np.isfinite(float(value))
-                    for row in raw_rows
-                    for key, value in row.items()
-                    if key not in {"model"}
-                )
-            ),
+            "all_rows_finite": bool(all(np.isfinite(value) for value in finite_values)),
         },
         "claim_boundary": {
             "fixture_seeds_are_independent_model_training_seeds": False,
@@ -161,6 +157,7 @@ def merge_text_atlas_components(
             "classifier_is_linear_probe": True,
             "generated_attack_text": False,
             "cross_domain_universality_proved": False,
+            "maximum_degree_not_yet_exported_by_text_adapter": True,
         },
     }
 
