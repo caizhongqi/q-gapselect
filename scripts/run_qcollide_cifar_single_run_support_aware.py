@@ -7,8 +7,8 @@ import argparse
 import json
 from pathlib import Path
 
-from qgapselect.qcollide.cifar100_prepared import install_prepared_cifar100_adapter
 from qgapselect.qcollide import cifar_single_run_selected as selected_module
+from qgapselect.qcollide.cifar100_prepared import install_prepared_cifar100_adapter
 from qgapselect.qcollide.cifar_support_sampling import support_aware_correct_indices
 
 
