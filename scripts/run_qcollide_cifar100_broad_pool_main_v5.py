@@ -22,7 +22,7 @@ def main() -> int:
     args = parser.parse_args()
 
     config = json.loads(args.config.read_text(encoding="utf-8"))
-    install_prepared_cifar100_adapter(str(config["data_root"]))
+    install_prepared_cifar100_adapter()
     artifact = run_cifar_single_run_broad_pool_component(
         config,
         architecture=args.architecture,
