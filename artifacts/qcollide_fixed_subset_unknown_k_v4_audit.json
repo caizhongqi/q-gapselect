@@ -1,0 +1,43 @@
+{
+  "artifact_type": "qcollide_fixed_subset_unknown_k_v4_audit",
+  "schema_version": 1,
+  "source_workflow_run": 31597416034,
+  "source_artifact_id": 9141668017,
+  "source_digest": "sha256:b767a43b37e3cdc6d0840da7fcc61732c8d4461ff24707730472af5be01947b8",
+  "head_sha": "311699d9404632c5c87ff4ec47dc8e00064b3b9a",
+  "design": {
+    "matching_promise_only": true,
+    "n_values": [512, 1024, 2048, 4096, 8192, 16384],
+    "capacity_density_denominators": [64, 32, 16, 8, 4],
+    "replicates_per_cell": 8,
+    "row_count": 240,
+    "scan_trials_per_scale": 512,
+    "estimation_trials": 4096,
+    "survival_window": [0.05, 0.30],
+    "target_relative_error": 0.25
+  },
+  "results": {
+    "mean_relative_capacity_error": 0.048624674479166664,
+    "median_relative_capacity_error": 0.041015625,
+    "p95_relative_capacity_error": 0.125,
+    "maximum_relative_capacity_error": 0.187255859375,
+    "success_fraction_at_target_error": 1.0,
+    "median_selected_scale_to_capacity_ratio": 1.0,
+    "p95_selected_scale_to_capacity_ratio": 2.0,
+    "mean_scan_stage_count": 4.845833333333333,
+    "maximum_scan_stage_count": 7
+  },
+  "gates": {
+    "complete_n_grid": true,
+    "empirical_success_gate": true,
+    "minimum_success_fraction": 0.95
+  },
+  "claim_boundary": {
+    "capacity_known_to_scale_selector": false,
+    "matching_promise_only": true,
+    "monte_carlo_validates_scale_localization_not_quantum_runtime": true,
+    "inner_pair_detection_novelty_claimed": false,
+    "arbitrary_overlap_capacity_estimation_claimed": false,
+    "fault_tolerant_runtime_advantage_claimed": false
+  }
+}
