@@ -1,4 +1,7 @@
 import numpy as np
+import pytest
+
+pytest.importorskip("torch")
 
 from qgapselect.qcollide.cifar_repair_calibrated import (
     apply_soft_closure,
