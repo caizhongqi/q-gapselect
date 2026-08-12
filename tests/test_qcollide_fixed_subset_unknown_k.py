@@ -1,9 +1,9 @@
+from qgapselect.qcollide.fixed_subset_capacity import fixed_subset_survival_probability
 from qgapselect.qcollide.fixed_subset_unknown_k import (
     geometric_capacity_scales,
     invert_survival_binary,
     scan_unknown_capacity,
 )
-from qgapselect.qcollide.fixed_subset_capacity import fixed_subset_survival_probability
 
 
 def test_geometric_scales_descend_to_one():
