@@ -1,0 +1,66 @@
+{
+  "artifact_type": "qcollide_overlap_capacity_benchmark_summary",
+  "schema_version": 1,
+  "workflow": {
+    "run_id": 31449858481,
+    "artifact_id": 9085920720,
+    "artifact_digest": "sha256:fc69d0daa60b58ed7736067be1cde4fa0bdba84ec0d037b6d6e19beaa6830f8b",
+    "head_sha": "7248d4f30f5352cddc61aad2e8142744cb2a0de2"
+  },
+  "configuration": {
+    "n": 128,
+    "requested_matching_size": 16,
+    "trials": 12000,
+    "seed": 20260811
+  },
+  "families": {
+    "matching": {
+      "edge_count": 16,
+      "maximum_degree": 1,
+      "true_matching_size": 16,
+      "uniform_packed_estimate": 15.912814965282479,
+      "uniform_absolute_error": 0.08718503471752115,
+      "degree_aware_packed_estimate": 15.883994455390855,
+      "degree_aware_absolute_error": 0.1160055446091448,
+      "provable_envelope": [16, 16]
+    },
+    "sparse_overlap": {
+      "edge_count": 48,
+      "maximum_degree": 2,
+      "true_matching_size": 38,
+      "uniform_packed_estimate": 47.811585754985956,
+      "uniform_absolute_error": 9.811585754985956,
+      "degree_aware_packed_estimate": 39.48224116519852,
+      "degree_aware_absolute_error": 1.4822411651985234,
+      "provable_envelope": [24, 48]
+    },
+    "hub": {
+      "edge_count": 64,
+      "maximum_degree": 64,
+      "true_matching_size": 1,
+      "uniform_packed_estimate": 1.749038426466782,
+      "uniform_absolute_error": 0.749038426466782,
+      "degree_aware_packed_estimate": 0.13355354713491577,
+      "degree_aware_absolute_error": 0.8664464528650843,
+      "provable_envelope": [1, 64]
+    },
+    "dense": {
+      "edge_count": 1336,
+      "maximum_degree": 19,
+      "true_matching_size": 128,
+      "uniform_packed_estimate": 777.3412106333179,
+      "uniform_absolute_error": 649.3412106333179,
+      "degree_aware_packed_estimate": 98.3618120549967,
+      "degree_aware_absolute_error": 29.638187945003295,
+      "provable_envelope": [71, 128]
+    }
+  },
+  "scientific_verdict": {
+    "packed_inversion_exact_only_for_disjoint_matching": true,
+    "naive_generalization_falsified": true,
+    "degree_aware_isolation_useful_for_sparse_overlap": true,
+    "degree_aware_isolation_universally_unbiased": false,
+    "edge_count_is_capacity": false,
+    "general_bipartite_envelope_proved": "ceil(|E|/Delta) <= nu(G) <= min(|A|,|B|,|E|)"
+  }
+}

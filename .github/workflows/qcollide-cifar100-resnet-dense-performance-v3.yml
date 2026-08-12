@@ -1,0 +1,81 @@
+name: qcollide-cifar100-resnet-dense-performance-v3
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/qcollide-cifar-topology
+    paths:
+      - '.github/workflows/qcollide-cifar100-resnet-dense-performance-v3.yml'
+      - 'configs/qcollide_cifar100_resnet_dense_performance_v3.json'
+
+concurrency:
+  group: qcollide-cifar100-resnet-dense-performance-v3-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  performance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        model-seed: [0, 1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[vision]'
+      - uses: actions/cache@v4
+        with:
+          path: .cache/qcollide-data
+          key: cifar100-main-v1-${{ runner.os }}
+      - run: mkdir -p artifacts-ci
+      - name: Replay dense ResNet checkpoint performance
+        run: >-
+          python scripts/run_qcollide_cifar_performance.py
+          --config configs/qcollide_cifar100_resnet_dense_performance_v3.json
+          --architecture resnet18
+          --model-seed ${{ matrix.model-seed }}
+          --output artifacts-ci/resnet18-seed-${{ matrix.model-seed }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-cifar100-resnet-dense-performance-${{ matrix.model-seed }}
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 21
+
+  merge:
+    needs: performance
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qcollide-cifar100-resnet-dense-performance-*
+          path: artifacts-components
+          merge-multiple: true
+      - run: mkdir -p artifacts-ci
+      - run: >-
+          python scripts/merge_qcollide_cifar_performance.py
+          --input-directory artifacts-components
+          --config configs/qcollide_cifar100_resnet_dense_performance_v3.json
+          --output artifacts-ci/qcollide_cifar100_resnet_dense_performance_v3.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-cifar100-resnet-dense-performance-v3-merged
+          path: artifacts-ci/qcollide_cifar100_resnet_dense_performance_v3.json
+          if-no-files-found: error
+          retention-days: 21

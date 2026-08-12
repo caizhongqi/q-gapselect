@@ -1,0 +1,77 @@
+{
+  "artifact_type": "qcollide_overlap_scaling_audit",
+  "schema_version": 1,
+  "source_workflow_run": 31460807922,
+  "source_artifact_id": 9089771579,
+  "source_digest": "sha256:fbe0dfd346f69f70c9d3c7777606b70bcc153a8f5854d587131298512c08338c",
+  "head_sha": "c0b26e3f2aebfa0abc95153192af5fbe8f80dfa0",
+  "design": {
+    "n_values": [64, 128, 256],
+    "requested_matching_densities": [0.0625, 0.125, 0.25],
+    "families": ["matching", "sparse_overlap", "hub", "dense"],
+    "cell_count": 36,
+    "trials_per_cell_component": 1024,
+    "failure_probability": 0.001
+  },
+  "gates": {
+    "all_deterministic_envelopes_cover_truth": true,
+    "survival_certificate_coverage_fraction": 1.0,
+    "positive_capacity_cell_count": 36,
+    "matching_packed_inversion_mean_relative_error": 0.032694786520737824
+  },
+  "sparse_overlap": {
+    "mean_uniform_packed_absolute_error": 17.485153450959952,
+    "mean_degree_aware_packed_absolute_error": 2.589255682357888,
+    "degree_aware_error_reduction_fraction": 0.8519169025527921
+  },
+  "family_summary": {
+    "matching": {
+      "mean_true_matching_size": 21.77777777777778,
+      "mean_maximum_degree": 1.0,
+      "mean_uniform_packed_absolute_error": 1.0153422434821229,
+      "mean_degree_aware_packed_absolute_error": 0.6692865581753967,
+      "mean_deterministic_relative_width": 0.0,
+      "mean_survival_certificate_relative_width": 0.5988866493364445,
+      "mean_classical_to_quantum_query_proxy_ratio": 3.2031436006904492
+    },
+    "sparse_overlap": {
+      "mean_true_matching_size": 44.333333333333336,
+      "mean_maximum_degree": 3.2222222222222223,
+      "mean_uniform_packed_absolute_error": 17.485153450959952,
+      "mean_degree_aware_packed_absolute_error": 2.589255682357888,
+      "mean_deterministic_relative_width": 0.9566673738387096,
+      "mean_survival_certificate_relative_width": 1.3788872506701242,
+      "mean_classical_to_quantum_query_proxy_ratio": 2.8197699805649514
+    },
+    "hub": {
+      "mean_true_matching_size": 1.0,
+      "mean_maximum_degree": 87.11111111111111,
+      "mean_uniform_packed_absolute_error": 0.7767242074567798,
+      "mean_degree_aware_packed_absolute_error": 0.8608500723085525,
+      "mean_deterministic_relative_width": 86.11111111111111,
+      "mean_survival_certificate_relative_width": 2.0870951889649705,
+      "mean_classical_to_quantum_query_proxy_ratio": 5.129762802484098
+    },
+    "dense": {
+      "mean_true_matching_size": 149.0,
+      "mean_maximum_degree": 22.0,
+      "mean_uniform_packed_absolute_error": 861.0512682979183,
+      "mean_degree_aware_packed_absolute_error": 29.65189602488762,
+      "mean_deterministic_relative_width": 0.48070565405074817,
+      "mean_survival_certificate_relative_width": 0.9536168214250176,
+      "mean_classical_to_quantum_query_proxy_ratio": 2.2566850983440645
+    }
+  },
+  "fixed_density_matching_query_proxy_ratios": {
+    "0.0625": {"64": 3.174802103936399, "128": 3.563594872561357, "256": 4.0},
+    "0.125": {"64": 2.8284271247461903, "128": 3.174802103936399, "256": 3.563594872561357},
+    "0.25": {"64": 2.5198420997897464, "128": 2.8284271247461903, "256": 3.174802103936399}
+  },
+  "claim_boundary": {
+    "query_proxy_is_hardware_runtime": false,
+    "degree_aware_estimator_is_universal": false,
+    "matching_ground_truth_is_exact": true,
+    "survival_capacity_interval_is_proved": true,
+    "hub_and_dense_negative_controls_retained": true
+  }
+}

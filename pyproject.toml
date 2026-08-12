@@ -33,6 +33,12 @@ vision = [
   "torchvision>=0.16",
   "scikit-learn>=1.3",
 ]
+guard = [
+  "torch>=2.1",
+  "transformers>=4.45,<5",
+  "datasets>=2.20",
+  "safetensors>=0.4",
+]
 dev = [
   "pytest>=7.4",
   "pytest-cov>=4.1",

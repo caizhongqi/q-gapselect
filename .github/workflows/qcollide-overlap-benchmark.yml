@@ -1,0 +1,40 @@
+name: qcollide-overlap-benchmark
+
+on:
+  push:
+    branches:
+      - agent/qcollide-cifar-topology
+  pull_request:
+    paths:
+      - 'src/qgapselect/qcollide/overlap_capacity.py'
+      - 'scripts/run_qcollide_overlap_benchmark.py'
+      - 'tests/test_qcollide_overlap_capacity.py'
+      - '.github/workflows/qcollide-overlap-benchmark.yml'
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[dev]'
+      - run: python -m pytest tests/test_qcollide_overlap_capacity.py -q
+      - name: Run overlap benchmark
+        run: |
+          mkdir -p artifacts-ci
+          python scripts/run_qcollide_overlap_benchmark.py \
+            --n 128 \
+            --matching-size 16 \
+            --trials 12000 \
+            --seed 20260811 \
+            --output artifacts-ci/qcollide_overlap_benchmark.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-overlap-benchmark
+          path: artifacts-ci/qcollide_overlap_benchmark.json
+          retention-days: 14

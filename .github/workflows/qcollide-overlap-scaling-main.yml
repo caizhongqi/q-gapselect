@@ -1,0 +1,88 @@
+name: qcollide-overlap-scaling-main
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/qcollide-cifar-topology
+    paths:
+      - '.github/workflows/qcollide-overlap-scaling-main.yml'
+      - 'src/qgapselect/qcollide/overlap_scaling.py'
+      - 'scripts/merge_qcollide_overlap_scaling.py'
+      - 'tests/test_qcollide_overlap_scaling.py'
+
+concurrency:
+  group: qcollide-overlap-scaling-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  component:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {n: 64, matching_size: 4, seed: 20260811}
+          - {n: 64, matching_size: 8, seed: 20260812}
+          - {n: 64, matching_size: 16, seed: 20260813}
+          - {n: 128, matching_size: 8, seed: 20260821}
+          - {n: 128, matching_size: 16, seed: 20260822}
+          - {n: 128, matching_size: 32, seed: 20260823}
+          - {n: 256, matching_size: 16, seed: 20260831}
+          - {n: 256, matching_size: 32, seed: 20260832}
+          - {n: 256, matching_size: 64, seed: 20260833}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[dev]'
+      - run: mkdir -p artifacts-ci
+      - name: Run overlap scaling cell
+        run: >-
+          python scripts/run_qcollide_overlap_benchmark.py
+          --n ${{ matrix.n }}
+          --matching-size ${{ matrix.matching_size }}
+          --trials 1024
+          --failure-probability 0.001
+          --seed ${{ matrix.seed }}
+          --output artifacts-ci/overlap-${{ matrix.n }}-${{ matrix.matching_size }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-overlap-scaling-${{ matrix.n }}-${{ matrix.matching_size }}
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 21
+
+  merge:
+    needs: component
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qcollide-overlap-scaling-*
+          path: artifacts-components
+          merge-multiple: true
+      - run: mkdir -p artifacts-ci
+      - run: >-
+          python scripts/merge_qcollide_overlap_scaling.py
+          --input-directory artifacts-components
+          --output artifacts-ci/qcollide_overlap_scaling_main_table.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qcollide-overlap-scaling-main-table
+          path: artifacts-ci/*.json
+          if-no-files-found: error
+          retention-days: 21
