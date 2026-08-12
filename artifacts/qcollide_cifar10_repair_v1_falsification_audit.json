@@ -1,0 +1,40 @@
+{
+  "artifact_type": "qcollide_cifar10_repair_v1_falsification_audit",
+  "schema_version": 1,
+  "source_workflow_run": 31500523466,
+  "source_artifact_id": 9108152867,
+  "source_digest": "sha256:0f180be8eab38b6ef1f42e96cad937dc11d63da7f5847018d86ab33770c479ca",
+  "design": {
+    "architectures": ["resnet18", "vit_tiny", "mlp_mixer"],
+    "model_seeds": [0, 1, 2],
+    "primary_closure_rank": 2,
+    "maximum_accuracy_loss": 0.03,
+    "heldout_evaluation": true,
+    "threshold_recalibration_after_intervention": false
+  },
+  "primary_result": {
+    "pair_count": 9,
+    "mean_targeted_capacity_reduction": 0.009259259259259252,
+    "mean_random_capacity_reduction": 0.0018518518518518452,
+    "mean_targeted_advantage": 0.007407407407407406,
+    "targeted_win_count": 2,
+    "exact_one_sided_p_value": 0.25,
+    "targeted_accuracy_budget_pass_count": 0
+  },
+  "per_model_targeted_accuracy_loss": {
+    "resnet18": [0.09375, 0.09524999999999995, 0.11875000000000002],
+    "vit_tiny": [0.10599999999999998, 0.10650000000000004, 0.10275000000000006],
+    "mlp_mixer": [0.14225, 0.09850000000000003, 0.11975000000000002]
+  },
+  "gates": {
+    "complete_component_grid": true,
+    "primary_statistical_gate_passed": false,
+    "primary_accuracy_budget_gate_passed": false,
+    "repair_v1_supports_practical_targeted_repair_claim": false
+  },
+  "interpretation": "The first prospective targeted-closure intervention is a falsification/diagnostic: it rarely reduces held-out collision capacity, fails the registered 3% accuracy-loss budget in 9/9 model instances, and does not beat the random control significantly. It must not be reported as a successful repair method.",
+  "claim_boundary": {
+    "positive_repair_claimed": false,
+    "v2_calibrated_soft_energy_design_motivated": true
+  }
+}
