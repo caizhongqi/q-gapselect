@@ -1,0 +1,43 @@
+{
+  "artifact_type": "qcollide_cifar10_repair_calibrated_v2_audit",
+  "schema_version": 1,
+  "source_workflow_run": 31598367114,
+  "source_artifact_id": 9145110457,
+  "source_digest": "sha256:44145ae53b8016a71b50e3f2fff294e45585665ad3b6d97fdae623d334f555c0",
+  "head_sha": "cd9d4d4b1cd22cd1a81ad9c40f9f5e8ac8915165",
+  "design": {
+    "architectures": ["resnet18", "vit_tiny", "mlp_mixer"],
+    "model_seeds": [0, 1, 2],
+    "closure_ranks": [1, 2, 4],
+    "energy_budget_fractions": [0.1, 0.25, 0.5],
+    "primary_closure_rank": 2,
+    "primary_energy_budget_fraction": 0.25,
+    "primary_pair_count": 9
+  },
+  "primary_result": {
+    "mean_targeted_advantage": 0.0,
+    "exact_paired_sign_flip_p_value": 1.0,
+    "targeted_win_count": 0,
+    "targeted_accuracy_budget_pass_count": 9,
+    "maximum_observed_energy_mismatch": 6.9741416045586905e-09
+  },
+  "secondary_result": {
+    "rank_2_energy_0_5_mean_targeted_capacity_reduction": 0.0018518518518518576,
+    "rank_2_energy_0_5_positive_targeted_cells": 1,
+    "rank_4_energy_0_5_mean_targeted_capacity_reduction": 0.003703703703703703,
+    "rank_4_energy_0_5_positive_targeted_cells": 2,
+    "random_high_energy_primary_capacity_reduction": 0.0
+  },
+  "gates": {
+    "complete_component_grid": true,
+    "all_registered_rows_energy_matched": true,
+    "primary_targeted_superiority_supported": false
+  },
+  "claim_boundary": {
+    "repair_v2_is_a_positive_causal_repair_result": false,
+    "operating_point_selected_from_calibration_only": true,
+    "energy_matching_is_soft_and_exact_on_support": true,
+    "model_weight_retraining_claimed": false,
+    "cross_dataset_repair_generalization_claimed": false
+  }
+}
