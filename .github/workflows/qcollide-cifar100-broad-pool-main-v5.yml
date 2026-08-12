@@ -72,9 +72,9 @@ jobs:
       - name: Verify snapshot
         run: |
           test -f .cache/qcollide-cifar100-v4/train_images.npy
-          test -f .cache/qcollide-cifar100-v4/train_fine_labels.npy
+          test -f .cache/qcollide-cifar100-v4/train_labels.npy
           test -f .cache/qcollide-cifar100-v4/evaluation_images.npy
-          test -f .cache/qcollide-cifar100-v4/evaluation_fine_labels.npy
+          test -f .cache/qcollide-cifar100-v4/evaluation_labels.npy
           test -f .cache/qcollide-cifar100-v4/snapshot_metadata.json
 
   component:
