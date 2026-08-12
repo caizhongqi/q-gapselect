@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "n_values": [512, 1024, 2048, 4096, 8192, 16384],
+  "capacity_density_denominators": [64, 32, 16, 8, 4],
+  "replicate_seeds": [20260811, 20260812, 20260813, 20260814, 20260815, 20260816, 20260817, 20260818],
+  "scan_trials_per_scale": 512,
+  "estimation_trials": 4096,
+  "survival_low": 0.05,
+  "survival_high": 0.30,
+  "target_relative_error": 0.25,
+  "minimum_success_fraction": 0.95,
+  "claim_boundary": {
+    "capacity_known_to_scale_selector": false,
+    "matching_promise_only": true,
+    "monte_carlo_validates_scale_localization_not_quantum_runtime": true,
+    "inner_pair_detection_novelty_claimed": false
+  }
+}
